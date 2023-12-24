@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-3xl font-bold mb-5;
+  }
+  h2 {
+    @apply text-2xl font-bold mb-4;
+  }
+  h3 {
+    @apply text-lg font-bold mb-3;
+  }
+
+  .appContaier {
+    @apply max-w-screen-xl mx-auto px-4;
+  }
+
+  .imagesSidebar {
+    @apply flex flex-col gap-4 shadow-md shadow-accent border border-accent rounded-md overflow-hidden;
+  }
+}
+
+@layer utilities {
+  .voteBad {
+    @apply text-error;
+  }
+
+  .voteOk {
+    @apply text-warning;
+  }
+
+  .voteGood {
+    @apply text-success;
+  }
+}
