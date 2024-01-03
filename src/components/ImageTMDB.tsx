@@ -3,7 +3,7 @@
 import Image, { ImageLoaderProps } from "next/image";
 
 const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-  return `${src}`;
+  return `${src}?w=${width}`;
 };
 
 interface Props {
