@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 export default function Modal({ children }: { children: React.ReactNode }) {
   const overlay = useRef(null);
-  const wrapper = useRef(null);
+  // const wrapper = useRef(null);
   const router = useRouter();
 
   const onDismiss = useCallback(() => {
@@ -17,7 +17,8 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         if (onDismiss) onDismiss();
       }
     },
-    [onDismiss, overlay, wrapper],
+    // [onDismiss, overlay, wrapper],
+    [onDismiss, overlay],
   );
 
   const onKeyDown = useCallback(
@@ -38,10 +39,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
       className="fixed bottom-0 left-0 right-0 top-0 z-50 mx-auto bg-black/60"
       onClick={onClick}
     >
-      <div
-        ref={wrapper}
-        className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 rounded bg-white p-6 text-primary-content sm:w-10/12 md:w-8/12 lg:w-1/2"
-      >
+      <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 rounded bg-white p-6 text-primary-content sm:w-10/12 md:w-8/12 lg:w-1/2">
         {children}
       </div>
     </div>
