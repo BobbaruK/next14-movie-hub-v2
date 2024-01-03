@@ -7,12 +7,12 @@ import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
-
 interface Props {
   movie: Movie | TVShow;
+  index: number;
 }
 
-const MovieCard = ({ movie }: Props) => {
+const MovieCard = ({ movie, index }: Props) => {
   const style = {
     "--value": movie.vote_average * 10,
     "--thickness": "3px",
@@ -25,38 +25,37 @@ const MovieCard = ({ movie }: Props) => {
 
   // console.count(config?.images.secure_base_url);
 
-
-  const title = 'title' in movie ? movie.title : movie.name;
+  const title = "title" in movie ? movie.title : movie.name;
 
   const { releaseDate } = ReleaseDateUI(
-    'title' in movie ? movie.release_date : movie.first_air_date
+    "title" in movie ? movie.release_date : movie.first_air_date,
   );
 
-  const link = 'title' in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`;
+  const link = "title" in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`;
 
   return (
     <div className="card bg-base-100 shadow-md shadow-primary">
       <figure>
         <Link href={link} className="w-full">
           <img
-            className="max-w-full sm:h-72 object-cover"
+            className="max-w-full object-cover sm:h-72"
             src={`https://image.tmdb.org/t/p/w300${movie?.poster_path}`}
             alt={title}
             width={3840}
             height={2160}
-            loading="lazy"
+            loading={index < 4 ? "eager" : "lazy"}
           />
         </Link>
       </figure>
-      <div className="card-body p-4 flex justify-between relative pt-7">
+      <div className="card-body relative flex justify-between p-4 pt-7">
         <div
           className={[
             `${
               movie.vote_average > 7.5
                 ? "voteGood"
                 : movie.vote_average > 6.0
-                ? "voteOk"
-                : "voteBad"
+                  ? "voteOk"
+                  : "voteBad"
             }`,
             "radial-progress",
 
@@ -69,10 +68,11 @@ const MovieCard = ({ movie }: Props) => {
             "text-sm",
           ].join(" ")}
           style={style}
-          role="progressbar">
+          role="progressbar"
+        >
           {movie.vote_average.toFixed(1)}
         </div>
-        <h2 className="card-title line-clamp-2 m-0" title={title}>
+        <h2 className="card-title m-0 line-clamp-2" title={title}>
           <Link href={link}>{title}</Link>
         </h2>
         <p className="grow-0">{releaseDate}</p>
