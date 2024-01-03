@@ -9,6 +9,7 @@ import {
 import MoviesGridSection from "./MoviesGridSection";
 import { MovieFilterParams } from "@/types/QueryParams";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
+import { FilteringMovies } from "@/components/Sidebar/FilteringMovies";
 
 interface Props {
   searchParams: MovieFilterParams;
@@ -38,7 +39,7 @@ export default async function PopularMovies({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div className="lg:basis-1/4">
-            sidebar
+            <FilteringMovies />
           </div>
           <div className="lg:basis-3/4">
             <MoviesGridSection
