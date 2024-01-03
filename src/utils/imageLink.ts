@@ -1,5 +1,13 @@
-const imageLink = <T>(secureURL: string, imageSize: T, posterPath: string) => {
-  return secureURL  + imageSize + posterPath;
+import noImage from "../../public/no-entry-sign.svg";
+
+const imageLink = <T>(
+  secureURL: string,
+  imageSize: T,
+  posterPath: string | null,
+): string => {
+  if (!posterPath) return noImage;
+
+  return secureURL + imageSize + posterPath;
 };
 
 export default imageLink;

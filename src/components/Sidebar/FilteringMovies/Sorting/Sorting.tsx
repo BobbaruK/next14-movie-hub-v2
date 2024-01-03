@@ -66,7 +66,11 @@ const Sorting = () => {
 
   return (
     <>
+      <h2>
+        <label htmlFor="sort">Sorting</label>
+      </h2>
       <select
+        id="sort"
         className="select select-bordered w-full"
         onChange={(e) => {
           router.push("?page=1&sort_by=" + e.target.value);

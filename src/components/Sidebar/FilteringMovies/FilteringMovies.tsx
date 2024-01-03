@@ -7,7 +7,7 @@ const FilteringMovies = () => {
   return (
     <>
 
-      <h2>Sorting</h2>
+      
       <Sorting />
 
       <h2 className="mt-14">Filtering</h2>
