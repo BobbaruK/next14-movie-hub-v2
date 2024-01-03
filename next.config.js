@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     // domains: ["https://image.tmdb.org/"],
     // formats: ["image/avif", "image/webp"],
+    // unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

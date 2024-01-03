@@ -3,9 +3,11 @@ import { TMDB_API_Configuration } from "@/types/TMDB_API_Configuration";
 import { PosterSizes } from "@/types/imageSizes";
 import { Movie } from "@/types/movies/movie/MoviesResponse";
 import { TVShow } from "@/types/movies/tv/TVShowsResponse";
+import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import ImageTMDB from "./ImageTMDB";
 
 interface Props {
   movie: Movie | TVShow;
@@ -23,12 +25,10 @@ const MovieCard = ({ movie, index }: Props) => {
     queryKey: [RQ_CONFIG_KEY],
   });
 
-  // console.count(config?.images.secure_base_url);
-
   const title = "title" in movie ? movie.title : movie.name;
 
   const { releaseDate } = ReleaseDateUI(
-    "title" in movie ? movie.release_date : movie.first_air_date,
+    "release_date" in movie ? movie.release_date : movie.first_air_date,
   );
 
   const link = "title" in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`;
@@ -37,13 +37,30 @@ const MovieCard = ({ movie, index }: Props) => {
     <div className="card bg-base-100 shadow-md shadow-primary">
       <figure>
         <Link href={link} className="w-full">
-          <img
+          {/* <img
             className="max-w-full object-cover sm:h-72"
-            src={`https://image.tmdb.org/t/p/w300${movie?.poster_path}`}
+            src={imageLink<PosterSizes>(
+              config?.images.secure_base_url!,
+              "w342",
+              movie?.poster_path!,
+            )}
             alt={title}
-            width={3840}
-            height={2160}
-            loading={index < 4 ? "eager" : "lazy"}
+            width={342}
+            height={513}
+            // loading={index < 4 ? "eager" : "lazy"}
+            loading="lazy"
+          /> */}
+          <ImageTMDB
+            type="poster"
+            alt={title}
+            src={imageLink<PosterSizes>(
+              config?.images.secure_base_url!,
+              "w342",
+              movie?.poster_path!,
+            )}
+            width={342}
+            height={513}
+            priority={index < 4 ? true : false}
           />
         </Link>
       </figure>
