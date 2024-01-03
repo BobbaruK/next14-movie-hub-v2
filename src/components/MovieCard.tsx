@@ -23,7 +23,7 @@ const MovieCard = ({ movie }: Props) => {
     queryKey: [RQ_CONFIG_KEY],
   });
 
-  // console.log(config?.images.secure_base_url);
+  // console.count(config?.images.secure_base_url);
 
 
   const title = 'title' in movie ? movie.title : movie.name;
@@ -38,14 +38,14 @@ const MovieCard = ({ movie }: Props) => {
     <div className="card bg-base-100 shadow-md shadow-primary">
       <figure>
         <Link href={link} className="w-full">
-          <img
+          {/* <img
             className="max-w-full sm:h-72 object-cover"
             src={`https://image.tmdb.org/t/p/w300${movie?.poster_path}`}
             alt={title}
             width={3840}
             height={2160}
             loading="lazy"
-          />
+          /> */}
         </Link>
       </figure>
       <div className="card-body p-4 flex justify-between relative pt-7">
