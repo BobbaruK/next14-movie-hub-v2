@@ -11,7 +11,9 @@ const Header = () => {
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost lg:hidden">
+                  className="btn btn-ghost lg:hidden"
+                  aria-label="Menu Button"
+                  >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -136,7 +138,7 @@ const Header = () => {
               </ul>
             </div>
             <div className="navbar-end">
-              <button className="btn btn-ghost btn-circle">
+              <button className="btn btn-ghost btn-circle" aria-label="Search">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"

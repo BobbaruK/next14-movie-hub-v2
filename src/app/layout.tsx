@@ -37,7 +37,7 @@ export default async function RootLayout({ children }: Props) {
   const apiClientConfig = new MyAPIClient<TMDB_API_Configuration>(
     RQ_CONFIG_ENDPOINT,
   );
-  
+
   await queryClient.prefetchQuery({
     queryKey: [RQ_CONFIG_KEY],
     queryFn: () => apiClientConfig.getAll(),

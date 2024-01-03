@@ -56,7 +56,7 @@ const MovieCard = ({ movie, index }: Props) => {
             src={imageLink<PosterSizes>(
               config?.images.secure_base_url!,
               "w342",
-              movie?.poster_path!,
+              movie.poster_path!,
             )}
             width={342}
             height={513}
@@ -86,6 +86,7 @@ const MovieCard = ({ movie, index }: Props) => {
           ].join(" ")}
           style={style}
           role="progressbar"
+          aria-label="Movie Rating"
         >
           {movie.vote_average.toFixed(1)}
         </div>
