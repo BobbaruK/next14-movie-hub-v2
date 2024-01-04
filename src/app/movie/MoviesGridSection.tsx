@@ -34,6 +34,8 @@ const MoviesGridSection = ({
   if (isLoading)
     return <div className="alert alert-info">Loading movies...</div>;
 
+  if (data?.results.length === 0) return <div className="alert alert-warning">No results</div>;
+
   return (
     <>
       <div className="mb-4">
