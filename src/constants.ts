@@ -6,7 +6,7 @@ export const RQ_CONFIG_ENDPOINT = "/configuration";
 
 // Languages
 export const RQ_LANGUAGES_KEY = "languages";
-export const RQ_LANGUAGES_ENDPOINT = "/languages";
+export const RQ_LANGUAGES_ENDPOINT = "/configuration/languages";
 
 // Movies
 export const RQ_POPULAR_MOVIES_KEY = "popular-movies";

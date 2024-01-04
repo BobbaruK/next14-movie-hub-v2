@@ -1,15 +1,21 @@
-import { RQ_POPULAR_MOVIES_ENDPOINT, RQ_POPULAR_MOVIES_KEY } from "@/constants";
+import { FilteringMovies } from "@/components/Sidebar/FilteringMovies";
+import {
+  RQ_LANGUAGES_ENDPOINT,
+  RQ_LANGUAGES_KEY,
+  RQ_POPULAR_MOVIES_ENDPOINT,
+  RQ_POPULAR_MOVIES_KEY,
+} from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { MovieFilterParams } from "@/types/QueryParams";
+import { Language } from "@/types/movies/Language";
 import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
+import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
   HydrationBoundary,
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
 import MoviesGridSection from "./MoviesGridSection";
-import { MovieFilterParams } from "@/types/QueryParams";
-import moviesFetchConfig from "@/utils/moviesFetchConfig";
-import { FilteringMovies } from "@/components/Sidebar/FilteringMovies";
 
 interface Props {
   searchParams: MovieFilterParams;
@@ -19,6 +25,7 @@ export default async function PopularMovies({
   searchParams: { page, with_original_language, sort_by },
 }: Props) {
   const pageNumber = parseInt(page);
+  const queryClient = new QueryClient();
 
   const moviesConfig = moviesFetchConfig(
     pageNumber,
@@ -26,12 +33,18 @@ export default async function PopularMovies({
     sort_by,
   );
 
-  const apiClient = new MyAPIClient<MoviesResponse>(RQ_POPULAR_MOVIES_ENDPOINT);
-
-  const queryClient = new QueryClient();
+  const apiClientPopularMovies = new MyAPIClient<MoviesResponse>(
+    RQ_POPULAR_MOVIES_ENDPOINT,
+  );
   await queryClient.prefetchQuery({
     queryKey: [RQ_POPULAR_MOVIES_KEY, moviesConfig.params],
-    queryFn: () => apiClient.getAll(moviesConfig),
+    queryFn: () => apiClientPopularMovies.getAll(moviesConfig),
+  });
+
+  const apiClientLanguages = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_LANGUAGES_KEY],
+    queryFn: () => apiClientLanguages.getAll(),
   });
 
   return (
