@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
 
 export const enum SortBy {
   popularityAsc = "popularity.asc",
@@ -61,6 +60,12 @@ const Sorting = () => {
   ];
 
   const params = useSearchParams();
+  const paramsString = (sortBy: string): string =>
+    `?page=1&sort_by=${sortBy}${
+      params.get("with_original_language")
+        ? "&with_original_language=" + params.get("with_original_language")
+        : ""
+    }`;
 
   const router = useRouter();
 
@@ -73,7 +78,7 @@ const Sorting = () => {
         id="sort"
         className="select select-bordered w-full"
         onChange={(e) => {
-          router.push("?page=1&sort_by=" + e.target.value);
+          router.push(paramsString(e.target.value));
         }}
         value={params.get("sort_by") || SortBy.popularityDesc}
       >

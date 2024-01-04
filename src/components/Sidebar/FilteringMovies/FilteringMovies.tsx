@@ -6,10 +6,7 @@ import { Sorting } from "./Sorting";
 const FilteringMovies = () => {
   return (
     <>
-
-      
       <Sorting />
-
       <h2 className="mt-14">Filtering</h2>
       <ByGenre />
       <ByLanguage />

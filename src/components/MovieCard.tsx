@@ -37,19 +37,6 @@ const MovieCard = ({ movie, index }: Props) => {
     <div className="card bg-base-100 shadow-md shadow-primary">
       <figure>
         <Link href={link} className="w-full">
-          {/* <img
-            className="max-w-full object-cover sm:h-72"
-            src={imageLink<PosterSizes>(
-              config?.images.secure_base_url!,
-              "w342",
-              movie?.poster_path!,
-            )}
-            alt={title}
-            width={342}
-            height={513}
-            // loading={index < 4 ? "eager" : "lazy"}
-            loading="lazy"
-          /> */}
           <ImageTMDB
             type="poster"
             alt={title}
