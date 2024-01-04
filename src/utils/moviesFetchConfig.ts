@@ -13,13 +13,14 @@ interface RequestConfigMoviesSearchParams extends AxiosRequestConfig {
 
 const moviesFetchConfig = (
   page: number,
+  genres: string,
   language: string,
-  sort: string
+  sort: string,
 ): RequestConfigMoviesSearchParams => ({
   params: {
     page: page || 1,
+    with_genres: genres || "",
     with_original_language: language || "",
-    with_genres: [].join(","),
     sort_by: sort || "popularity.desc",
   },
 });

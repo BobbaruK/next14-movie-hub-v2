@@ -40,7 +40,7 @@ const ByLanguage = () => {
   });
 
   return (
-    <>
+    <div>
       <h3>
         <label htmlFor="byLanguage">ByLanguage</label>
       </h3>
@@ -59,7 +59,7 @@ const ByLanguage = () => {
           </option>
         ))}
       </select>
-    </>
+    </div>
   );
 };
 
