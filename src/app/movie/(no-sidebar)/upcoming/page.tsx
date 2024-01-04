@@ -7,7 +7,11 @@ import MyAPIClient from "@/services/myApiClient";
 import { MovieFilterParams } from "@/types/QueryParams";
 import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
-import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 import Link from "next/link";
 import MoviesGridSection from "../../MoviesGridSection";
 
@@ -16,12 +20,13 @@ interface Props {
 }
 
 export default async function UpcomingMovies({
-  searchParams: { page, with_original_language, sort_by },
+  searchParams: { page, with_genres, with_original_language, sort_by },
 }: Props) {
   const pageNumber = parseInt(page);
 
   const moviesConfig = moviesFetchConfig(
     pageNumber,
+    with_genres,
     with_original_language,
     sort_by,
   );
@@ -43,8 +48,9 @@ export default async function UpcomingMovies({
           <div>
             <MoviesGridSection
               page={pageNumber}
-              sort_by={sort_by}
-              with_original_language={with_original_language}
+              with_genres=""
+              with_original_language=""
+              sort_by=""
               queryKey={RQ_UPCOMING_MOVIES_KEY}
             />
           </div>

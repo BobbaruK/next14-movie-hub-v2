@@ -1,23 +1,30 @@
-import { RQ_TOP_RATED_MOVIES_ENDPOINT, RQ_TOP_RATED_MOVIES_KEY } from "@/constants";
+import {
+  RQ_TOP_RATED_MOVIES_ENDPOINT,
+  RQ_TOP_RATED_MOVIES_KEY,
+} from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MovieFilterParams } from "@/types/QueryParams";
 import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
-import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 import MoviesGridSection from "../../MoviesGridSection";
-
 
 interface Props {
   searchParams: MovieFilterParams;
 }
 
 export default async function TopRatedMovies({
-  searchParams: { page, with_original_language, sort_by },
+  searchParams: { page, with_genres, with_original_language, sort_by },
 }: Props) {
   const pageNumber = parseInt(page);
 
   const moviesConfig = moviesFetchConfig(
     pageNumber,
+    with_genres,
     with_original_language,
     sort_by,
   );
@@ -39,8 +46,9 @@ export default async function TopRatedMovies({
           <div>
             <MoviesGridSection
               page={pageNumber}
-              sort_by={sort_by}
+              with_genres={with_genres}
               with_original_language={with_original_language}
+              sort_by={sort_by}
               queryKey={RQ_TOP_RATED_MOVIES_KEY}
             />
           </div>

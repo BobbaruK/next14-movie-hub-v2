@@ -2,11 +2,14 @@ import { FilteringMovies } from "@/components/Sidebar/FilteringMovies";
 import {
   RQ_LANGUAGES_ENDPOINT,
   RQ_LANGUAGES_KEY,
+  RQ_MOVIES_GENRES_ENDPOINT,
+  RQ_MOVIES_GENRES_KEY,
   RQ_POPULAR_MOVIES_ENDPOINT,
   RQ_POPULAR_MOVIES_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MovieFilterParams } from "@/types/QueryParams";
+import { GenreResponse } from "@/types/movies/GenreResponse";
 import { Language } from "@/types/movies/Language";
 import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
@@ -22,13 +25,14 @@ interface Props {
 }
 
 export default async function PopularMovies({
-  searchParams: { page, with_original_language, sort_by },
+  searchParams: { page, with_genres, sort_by, with_original_language },
 }: Props) {
   const pageNumber = parseInt(page);
   const queryClient = new QueryClient();
 
   const moviesConfig = moviesFetchConfig(
     pageNumber,
+    with_genres,
     with_original_language,
     sort_by,
   );
@@ -47,6 +51,14 @@ export default async function PopularMovies({
     queryFn: () => apiClientLanguages.getAll(),
   });
 
+  const apiClientGenres = new MyAPIClient<GenreResponse>(
+    RQ_MOVIES_GENRES_ENDPOINT,
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_MOVIES_GENRES_KEY],
+    queryFn: () => apiClientGenres.getAll(),
+  });
+
   return (
     <div>
       <HydrationBoundary state={dehydrate(queryClient)}>
@@ -57,6 +69,7 @@ export default async function PopularMovies({
           <div className="lg:basis-3/4">
             <MoviesGridSection
               page={pageNumber}
+              with_genres={with_genres}
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_POPULAR_MOVIES_KEY}

@@ -18,12 +18,13 @@ interface Props {
 }
 
 export default async function NowPlayingMovies({
-  searchParams: { page, with_original_language, sort_by },
+  searchParams: { page, with_genres, with_original_language, sort_by },
 }: Props) {
   const pageNumber = parseInt(page);
 
   const moviesConfig = moviesFetchConfig(
     pageNumber,
+    with_genres,
     with_original_language,
     sort_by,
   );
@@ -45,6 +46,7 @@ export default async function NowPlayingMovies({
           <div>
             <MoviesGridSection
               page={pageNumber}
+              with_genres={with_genres}
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_NOW_PLAYING_MOVIES_KEY}

@@ -5,18 +5,25 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   page: number;
-  with_original_language: string;
+  with_genres: string;
   sort_by: string;
+  with_original_language: string;
   movie: MoviesResponse | TVShowsResponse | undefined;
 }
 
 const MoviePagination = ({
   page,
-  with_original_language,
+  with_genres,
   sort_by,
+  with_original_language,
   movie,
 }: Props) => {
-  const moviesConfig = moviesFetchConfig(page, with_original_language, sort_by);
+  const moviesConfig = moviesFetchConfig(
+    page,
+    with_genres,
+    sort_by,
+    with_original_language,
+  );
 
   const router = useRouter();
 
