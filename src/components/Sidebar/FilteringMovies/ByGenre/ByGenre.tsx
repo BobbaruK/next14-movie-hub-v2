@@ -13,6 +13,11 @@ const ByGenre = () => {
   });
 
   const params = useSearchParams();
+  const genreParams = params.get("with_genres");
+  const langParams = params.get("with_original_language");
+  const sortByParams = params.get("sort_by");
+
+  const genresArr = genreParams?.split(",") || [];
 
   const router = useRouter();
 
@@ -26,7 +31,43 @@ const ByGenre = () => {
       <h3>ByGenre</h3>
       <div className="flex flex-wrap gap-2">
         {data?.genres.map((genre) => (
-          <button className="badge badge-primary" key={genre.id}>
+          <button
+            className={[
+              "badge",
+              `${
+                genresArr?.includes(String(genre.id))
+                  ? "badge-accent"
+                  : "badge-primary"
+              }`,
+            ].join(" ")}
+            key={genre.id}
+            onClick={() => {
+              if (genresArr?.includes(String(genre.id))) {
+                const ind = genresArr.indexOf(String(genre.id));
+                genresArr.splice(ind, 1);
+
+                router.push(
+                  `?page=1${
+                    genresArr.length
+                      ? "&with_genres=" + genresArr.join(",")
+                      : ""
+                  }${
+                    langParams ? "&with_original_language=" + langParams : ""
+                  }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
+                );
+
+                return;
+              }
+
+              genresArr?.push(String(genre.id));
+
+              router.push(
+                `?page=1&with_genres=${genresArr}${
+                  langParams ? "&with_original_language=" + langParams : ""
+                }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
+              );
+            }}
+          >
             {genre.id} - {genre.name}
           </button>
         ))}

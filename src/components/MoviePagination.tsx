@@ -35,12 +35,12 @@ const MoviePagination = ({
         onClick={() =>
           router.push(
             `?page=${moviesConfig.params.page - 1}${
-              sort_by ? "&sort_by=" + sort_by : ""
+              with_genres ? "&with_genres=" + with_genres : ""
             }${
               with_original_language
                 ? "&with_original_language=" + with_original_language
                 : ""
-            }`,
+            }${sort_by ? "&sort_by=" + sort_by : ""}`,
           )
         }
       >
@@ -53,12 +53,12 @@ const MoviePagination = ({
         onClick={() => {
           router.push(
             `?page=${Number(moviesConfig.params.page) + 1}${
-              sort_by ? "&sort_by=" + sort_by : ""
+              with_genres ? "&with_genres=" + with_genres : ""
             }${
               with_original_language
                 ? "&with_original_language=" + with_original_language
                 : ""
-            }`,
+            }${sort_by ? "&sort_by=" + sort_by : ""}`,
           );
         }}
       >

@@ -15,10 +15,15 @@ const ByLanguage = () => {
   });
 
   const params = useSearchParams();
+  const genreParams = params.get("with_genres");
+  const sortByParams = params.get("sort_by");
+
   const paramsString = (lang: string): string =>
     `?page=1${
-      params.get("sort_by") ? "&sort_by=" + params.get("sort_by") : ""
-    }&with_original_language=${lang}`;
+      genreParams ? "&with_genres=" + genreParams : ""
+    }&with_original_language=${lang}${
+      sortByParams ? "&sort_by=" + sortByParams : ""
+    }`;
 
   const router = useRouter();
 

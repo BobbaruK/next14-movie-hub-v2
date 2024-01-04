@@ -60,12 +60,13 @@ const Sorting = () => {
   ];
 
   const params = useSearchParams();
+  const genreParams = params.get("with_genres");
+  const langParams = params.get("with_original_language");
+
   const paramsString = (sortBy: string): string =>
-    `?page=1&sort_by=${sortBy}${
-      params.get("with_original_language")
-        ? "&with_original_language=" + params.get("with_original_language")
-        : ""
-    }`;
+    `?page=1${genreParams ? "&with_genres=" + genreParams : ""}${
+      langParams ? "&with_original_language=" + langParams : ""
+    }&sort_by=${sortBy}`;
 
   const router = useRouter();
 
