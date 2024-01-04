@@ -22,7 +22,9 @@ const ReleaseDateUI = (relDate: string | undefined) => {
   const monthName = monthNames[month];
   const year = release_date.getFullYear();
 
-  const releaseDate = `${day}/${monthName}/${year}`;
+  const releaseDate = `${!isNaN(day) ? day + "/" : ""}${
+    monthName ? monthName + "/" : ""
+  }${!isNaN(year) ? year : ""}`;
 
   return { releaseDate, year };
 };
