@@ -28,26 +28,30 @@ const MoviePagination = ({
         onClick={() =>
           router.push(
             `?page=${moviesConfig.params.page - 1}${
+              sort_by ? "&sort_by=" + sort_by : ""
+            }${
               with_original_language
                 ? "&with_original_language=" + with_original_language
                 : ""
-            }${sort_by ? "&sort_by=" + sort_by : ""}`,
+            }`,
           )
         }
       >
         Prev
       </button>
-      {/* <span className="loading loading-infinity loading-md"></span> */}
       {movie?.page} of {movie?.total_pages} / {movie?.total_results} results
       <button
         className="btn btn-primary"
+        disabled={moviesConfig.params.page >= movie?.total_pages!}
         onClick={() => {
           router.push(
             `?page=${Number(moviesConfig.params.page) + 1}${
+              sort_by ? "&sort_by=" + sort_by : ""
+            }${
               with_original_language
                 ? "&with_original_language=" + with_original_language
                 : ""
-            }${sort_by ? "&sort_by=" + sort_by : ""}`,
+            }`,
           );
         }}
       >
