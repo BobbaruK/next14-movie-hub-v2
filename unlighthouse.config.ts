@@ -1,5 +1,5 @@
 export default {
-  site: "https://next14-movie-hub.vercel.app/",
+  site: "https://next14-movie-hub-v2.vercel.app/",
   scanner: {
     // exclude specific routes
     // exclude: ["/.*?pdf", ".*/amp", "en-*"],
