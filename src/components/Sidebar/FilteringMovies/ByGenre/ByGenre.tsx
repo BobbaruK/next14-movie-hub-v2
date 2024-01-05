@@ -1,8 +1,9 @@
 "use client";
 
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { RQ_MOVIES_GENRES_KEY } from "@/constants";
 import { GenreResponse } from "@/types/movies/GenreResponse";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
@@ -34,7 +35,7 @@ const ByGenre = () => {
       <h3 className="flex items-center gap-4">
         ByGenre
         {isPending && (
-          <span className="loading loading-infinity loading-md"></span>
+          <LoadingSpinner size="md" />
         )}
       </h3>
       <div className="flex flex-wrap gap-2">

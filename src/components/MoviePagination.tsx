@@ -3,6 +3,7 @@ import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
 interface Props {
   page: number;
@@ -52,7 +53,7 @@ const MoviePagination = ({
         Prev
       </button>
       {isPending ? (
-        <span className="loading loading-infinity loading-lg"></span>
+        <LoadingSpinner size="lg" />
       ) : (
         <>
           {movie?.page} of {movie?.total_pages} / {movie?.total_results} results

@@ -1,6 +1,8 @@
 "use client";
 
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTransition } from "react";
 
 export const enum SortBy {
   popularityAsc = "popularity.asc",
@@ -16,6 +18,8 @@ export const enum SortBy {
 }
 
 const Sorting = () => {
+  const [isPending, startTransition] = useTransition();
+
   const sorter = [
     {
       value: SortBy.popularityAsc,
@@ -72,14 +76,17 @@ const Sorting = () => {
 
   return (
     <>
-      <h2>
+      <h2 className="flex items-center gap-4">
         <label htmlFor="sort">Sorting</label>
+        {isPending && <LoadingSpinner size="md" />}
       </h2>
       <select
         id="sort"
         className="select select-bordered w-full"
         onChange={(e) => {
-          router.push(paramsString(e.target.value));
+          startTransition(() => {
+            router.push(paramsString(e.target.value));
+          });
         }}
         value={params.get("sort_by") || SortBy.popularityDesc}
       >

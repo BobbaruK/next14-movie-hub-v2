@@ -1,11 +1,15 @@
 "use client";
 
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { RQ_LANGUAGES_KEY } from "@/constants";
 import { Language } from "@/types/movies/Language";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTransition } from "react";
 
 const ByLanguage = () => {
+  const [isPending, startTransition] = useTransition();
+
   // const apiClient = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
 
   const { data, error, isLoading } = useQuery<Language[]>({
@@ -46,14 +50,15 @@ const ByLanguage = () => {
 
   return (
     <div>
-      <h3>
+      <h3 className="flex items-center gap-4">
         <label htmlFor="byLanguage">ByLanguage</label>
+        {isPending && <LoadingSpinner size="md" />}
       </h3>
       <select
         id="byLanguage"
         className="select select-bordered w-full"
         onChange={(e) => {
-          router.push(paramsString(e.target.value));
+          startTransition(() => router.push(paramsString(e.target.value)));
         }}
         value={params.get("with_original_language") || ""}
       >
