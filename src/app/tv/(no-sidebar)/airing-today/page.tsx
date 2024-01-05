@@ -12,6 +12,13 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import TVShowsGridSection from "../../TVShowsGridSection";
+import { Metadata } from "next";
+
+const pageTitle = `TV Shows Airing Today`;
+
+export const metadata: Metadata = {
+  title: pageTitle,
+};
 
 interface Props {
   searchParams: MovieFilterParams;
@@ -41,6 +48,9 @@ export default async function AiringTodayTVShows({
 
   return (
     <>
+      <div className="appContaier">
+        <h1>{pageTitle}</h1>
+      </div>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>

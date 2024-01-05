@@ -1,5 +1,4 @@
 import {
-  RQ_NOW_PLAYING_MOVIES_KEY,
   RQ_UPCOMING_MOVIES_ENDPOINT,
   RQ_UPCOMING_MOVIES_KEY,
 } from "@/constants";
@@ -12,8 +11,14 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
-import Link from "next/link";
+import { Metadata } from "next";
 import MoviesGridSection from "../../MoviesGridSection";
+
+const pageTitle = `Upcoming Movies`;
+
+export const metadata: Metadata = {
+  title: pageTitle,
+};
 
 interface Props {
   searchParams: MovieFilterParams;
@@ -43,6 +48,9 @@ export default async function UpcomingMovies({
 
   return (
     <>
+      <div className="appContaier">
+        <h1>{pageTitle}</h1>
+      </div>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>

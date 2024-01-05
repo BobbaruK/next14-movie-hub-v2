@@ -52,7 +52,7 @@ const ByLanguage = () => {
   return (
     <div>
       <h3 className="flex items-center gap-4">
-        <label htmlFor="byLanguage">ByLanguage</label>
+        <label htmlFor="byLanguage">By Language</label>
         {isPending && <LoadingSpinner size="md" />}
       </h3>
       <select

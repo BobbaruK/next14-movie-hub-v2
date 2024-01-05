@@ -7,12 +7,18 @@ import { MovieFilterParams } from "@/types/QueryParams";
 import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
-  QueryClient,
   HydrationBoundary,
+  QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import { Metadata } from "next";
 import TVShowsGridSection from "../../TVShowsGridSection";
 
+const pageTitle = `Top Rated TV Shows`;
+
+export const metadata: Metadata = {
+  title: pageTitle,
+};
 interface Props {
   searchParams: MovieFilterParams;
 }
@@ -41,6 +47,9 @@ export default async function TopRatedTVShows({
 
   return (
     <>
+      <div className="appContaier">
+        <h1>{pageTitle}</h1>
+      </div>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>

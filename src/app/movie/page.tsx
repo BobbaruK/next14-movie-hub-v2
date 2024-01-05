@@ -18,7 +18,14 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import { Metadata } from "next";
 import MoviesGridSection from "./MoviesGridSection";
+
+const pageTitle = `Popular Movies`;
+
+export const metadata: Metadata = {
+  title: pageTitle,
+};
 
 interface Props {
   searchParams: MovieFilterParams;
@@ -61,6 +68,9 @@ export default async function PopularMovies({
 
   return (
     <>
+      <div className="appContaier">
+        <h1>{pageTitle}</h1>
+      </div>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div className="lg:basis-1/4">

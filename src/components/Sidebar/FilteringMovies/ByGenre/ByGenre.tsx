@@ -40,7 +40,7 @@ const ByGenre = ({ rqKey }: Props) => {
   return (
     <div className="mb-6">
       <h3 className="flex items-center gap-4">
-        ByGenre
+        By Genre
         {isPending && <LoadingSpinner size="md" />}
       </h3>
       <div className="flex flex-wrap gap-2">
@@ -56,6 +56,7 @@ const ByGenre = ({ rqKey }: Props) => {
               }`,
               "hover:badge-secondary",
               "disabled:bg-neutral",
+              "disabled:text-neutral-content",
             ].join(" ")}
             key={genre.id}
             onClick={() => {
