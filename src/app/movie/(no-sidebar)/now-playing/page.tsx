@@ -40,7 +40,7 @@ export default async function NowPlayingMovies({
   });
 
   return (
-    <div>
+    <>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>
@@ -54,6 +54,6 @@ export default async function NowPlayingMovies({
           </div>
         </div>
       </HydrationBoundary>
-    </div>
+    </>
   );
 }
