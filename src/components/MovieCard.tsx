@@ -1,4 +1,5 @@
-import { RQ_CONFIG_KEY } from "@/constants";
+import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
+import MyAPIClient from "@/services/myApiClient";
 import { TMDB_API_Configuration } from "@/types/TMDB_API_Configuration";
 import { PosterSizes } from "@/types/imageSizes";
 import { Movie } from "@/types/movies/movie/MoviesResponse";
@@ -21,8 +22,15 @@ const MovieCard = ({ movie, index }: Props) => {
     "--size": "2rem",
   } as React.CSSProperties;
 
-  const { data: config } = useQuery<TMDB_API_Configuration>({
+  const apiClient = new MyAPIClient<TMDB_API_Configuration>(RQ_CONFIG_ENDPOINT);
+
+  const {
+    data: config,
+    isLoading,
+    error,
+  } = useQuery<TMDB_API_Configuration>({
     queryKey: [RQ_CONFIG_KEY],
+    queryFn: () => apiClient.getAll(),
   });
 
   const title = "title" in movie ? movie.title : movie.name;
@@ -32,6 +40,15 @@ const MovieCard = ({ movie, index }: Props) => {
   );
 
   const link = "title" in movie ? `/movie/${movie.id}` : `/tv/${movie.id}`;
+
+  if (error) throw new Error(`${RQ_CONFIG_KEY} - ${error.message}`);
+
+  if (isLoading)
+    return (
+      <div className="alert card alert-info shadow-md shadow-primary">
+        Loading config...
+      </div>
+    );
 
   return (
     <div className="card bg-base-100 shadow-md shadow-primary">

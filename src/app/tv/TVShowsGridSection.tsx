@@ -40,7 +40,7 @@ const TVShowsGridSection = ({
     placeholderData: keepPreviousData,
   });
 
-  if (error) return <div className="alert alert-error">{error.message}</div>;
+  if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
     return <div className="alert alert-info">Loading TV Shows...</div>;

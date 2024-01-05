@@ -1,7 +1,8 @@
 "use client";
 
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { RQ_LANGUAGES_KEY } from "@/constants";
+import { RQ_LANGUAGES_ENDPOINT, RQ_LANGUAGES_KEY } from "@/constants";
+import MyAPIClient from "@/services/myApiClient";
 import { Language } from "@/types/movies/Language";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -10,11 +11,11 @@ import { useTransition } from "react";
 const ByLanguage = () => {
   const [isPending, startTransition] = useTransition();
 
-  // const apiClient = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
+  const apiClient = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
 
   const { data, error, isLoading } = useQuery<Language[]>({
     queryKey: [RQ_LANGUAGES_KEY],
-    // queryFn: () => apiClient.getAll(),
+    queryFn: () => apiClient.getAll(),
     placeholderData: keepPreviousData,
   });
 
@@ -31,10 +32,10 @@ const ByLanguage = () => {
 
   const router = useRouter();
 
-  if (error) return <div className="alert alert-error">{error.message}</div>;
+  if (error) throw new Error(`${RQ_LANGUAGES_KEY} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading movies...</div>;
+    return <div className="alert alert-info">Loading languages...</div>;
 
   const languages = [...(data || [])];
 

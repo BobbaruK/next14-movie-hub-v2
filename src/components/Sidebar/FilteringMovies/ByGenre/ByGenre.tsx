@@ -1,7 +1,8 @@
 "use client";
 
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { RQ_MOVIES_GENRES_KEY } from "@/constants";
+import { RQ_LANGUAGES_ENDPOINT } from "@/constants";
+import MyAPIClient from "@/services/myApiClient";
 import { GenreResponse } from "@/types/movies/GenreResponse";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -14,8 +15,11 @@ interface Props {
 const ByGenre = ({ rqKey }: Props) => {
   const [isPending, startTransition] = useTransition();
 
+  const apiClient = new MyAPIClient<GenreResponse>(RQ_LANGUAGES_ENDPOINT);
+
   const { data, error, isLoading } = useQuery<GenreResponse>({
     queryKey: [rqKey],
+    queryFn: () => apiClient.getAll(),
     placeholderData: keepPreviousData,
   });
 
@@ -28,7 +32,7 @@ const ByGenre = ({ rqKey }: Props) => {
 
   const router = useRouter();
 
-  if (error) return <div className="alert alert-error">{error.message}</div>;
+  if (error) throw new Error(`${rqKey} - ${error.message}`);
 
   if (isLoading)
     return <div className="alert alert-info">Loading genres...</div>;
@@ -51,6 +55,7 @@ const ByGenre = ({ rqKey }: Props) => {
                   : "badge-primary"
               }`,
               "hover:badge-secondary",
+              "disabled:bg-neutral",
             ].join(" ")}
             key={genre.id}
             onClick={() => {
@@ -81,6 +86,7 @@ const ByGenre = ({ rqKey }: Props) => {
                 );
               });
             }}
+            disabled={isPending}
           >
             {genre.name}
           </button>
