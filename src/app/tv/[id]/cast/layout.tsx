@@ -5,14 +5,12 @@ interface Props {
   children: ReactNode;
 }
 
-export default function SidebarBackToMainLayout({
+export default function NoSidebarLayout({
   children, // will be a page or nested layout
 }: Props) {
   return (
     <section>
       <BackToMain />
-      <div>no sidebar</div>
-
       {children}
     </section>
   );

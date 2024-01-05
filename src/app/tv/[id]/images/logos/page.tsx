@@ -7,22 +7,22 @@ interface Props {
   };
 }
 
-export default function MovieImagesBackdrops({ params: { id } }: Props) {
+export default function TVShowsImagesLogos({ params: { id } }: Props) {
   return (
     <MainTitleSidebarLeft
       content={
         <div>
-          <h1>Movie Images Backdrops</h1>
-          <Link href={`/movie/${id}/images/backdrops/12`} scroll={false}>
-            backdrop 12
+          <h1>TVShows Images Logos</h1>
+          <Link href={`/tv/${id}/images/logos/12`} scroll={false}>
+            logo 12
           </Link>
           <br />
-          <Link href={`/movie/${id}/images/backdrops/13`} scroll={false}>
-            backdrop 13
+          <Link href={`/tv/${id}/images/logos/13`} scroll={false}>
+            logo 13
           </Link>
           <br />
-          <Link href={`/movie/${id}/images/backdrops/123`} scroll={false}>
-            backdrop 123
+          <Link href={`/tv/${id}/images/logos/123`} scroll={false}>
+            logo 123
           </Link>
         </div>
       }
