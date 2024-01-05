@@ -50,6 +50,7 @@ const ByGenre = ({ rqKey }: Props) => {
                   ? "badge-accent"
                   : "badge-primary"
               }`,
+              "hover:badge-secondary",
             ].join(" ")}
             key={genre.id}
             onClick={() => {
