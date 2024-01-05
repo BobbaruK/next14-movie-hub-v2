@@ -18,6 +18,7 @@ import { ReactNode } from "react";
 import "../globals.css";
 import ReactQueryProvider from "./ReactQueryProvider";
 import { Language } from "@/types/movies/Language";
+import { Footer } from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -52,11 +53,14 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang="en">
-      <body className={inter.className} data-theme="dim">
+      <body className={inter.className} data-theme="dracula">
         <ReactQueryProvider>
           <HydrationBoundary state={dehydrate(queryClient)}>
-            <Header />
-            <main>{children}</main>
+            <div id="siteWrapper">
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </div>
           </HydrationBoundary>
         </ReactQueryProvider>
       </body>

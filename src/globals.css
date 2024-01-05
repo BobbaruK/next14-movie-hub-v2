@@ -4,21 +4,21 @@
 
 @layer base {
   h1 {
-    @apply text-3xl font-bold mb-5;
+    @apply mb-5 text-3xl font-bold;
   }
   h2 {
-    @apply text-2xl font-bold mb-4;
+    @apply mb-4 text-2xl font-bold;
   }
   h3 {
-    @apply text-lg font-bold mb-3;
+    @apply mb-3 text-lg font-bold;
   }
 
   .appContaier {
-    @apply max-w-screen-xl mx-auto px-4;
+    @apply mx-auto max-w-screen-xl px-4;
   }
 
   .imagesSidebar {
-    @apply flex flex-col gap-4 shadow-md shadow-accent border border-accent rounded-md overflow-hidden;
+    @apply flex flex-col gap-4 overflow-hidden rounded-md border border-accent shadow-md shadow-accent;
   }
 }
 
@@ -34,4 +34,11 @@
   .voteGood {
     @apply text-success;
   }
+}
+
+#siteWrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  position: relative;
 }
