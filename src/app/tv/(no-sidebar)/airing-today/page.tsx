@@ -1,17 +1,17 @@
-import MoviesGridSection from "@/app/movie/MoviesGridSection";
 import {
   RQ_AIRING_TODAY_TVSHOWS_ENDPOINT,
   RQ_AIRING_TODAY_TVSHOWS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MovieFilterParams } from "@/types/QueryParams";
-import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
+import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
-  QueryClient,
   HydrationBoundary,
+  QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import TVShowsGridSection from "../../TVShowsGridSection";
 
 interface Props {
   searchParams: MovieFilterParams;
@@ -29,7 +29,7 @@ export default async function AiringTodayTVShows({
     sort_by,
   );
 
-  const apiClient = new MyAPIClient<MoviesResponse>(
+  const apiClient = new MyAPIClient<TVShowsResponse>(
     RQ_AIRING_TODAY_TVSHOWS_ENDPOINT,
   );
 
@@ -44,7 +44,7 @@ export default async function AiringTodayTVShows({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>
-            <MoviesGridSection
+            <TVShowsGridSection
               page={pageNumber}
               with_genres={with_genres}
               sort_by={sort_by}
