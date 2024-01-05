@@ -7,12 +7,15 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
-const ByGenre = () => {
+interface Props {
+  rqKey: string;
+}
+
+const ByGenre = ({ rqKey }: Props) => {
   const [isPending, startTransition] = useTransition();
 
   const { data, error, isLoading } = useQuery<GenreResponse>({
-    queryKey: [RQ_MOVIES_GENRES_KEY],
-    // queryFn: () => apiClient.getAll(),
+    queryKey: [rqKey],
     placeholderData: keepPreviousData,
   });
 
@@ -34,9 +37,7 @@ const ByGenre = () => {
     <div className="mb-6">
       <h3 className="flex items-center gap-4">
         ByGenre
-        {isPending && (
-          <LoadingSpinner size="md" />
-        )}
+        {isPending && <LoadingSpinner size="md" />}
       </h3>
       <div className="flex flex-wrap gap-2">
         {data?.genres.map((genre) => (

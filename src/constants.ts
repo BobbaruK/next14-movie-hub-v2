@@ -21,7 +21,7 @@ export const RQ_TOP_RATED_MOVIES_ENDPOINT = "movie/top_rated";
 export const RQ_UPCOMING_MOVIES_KEY = "upcoming-movies";
 export const RQ_UPCOMING_MOVIES_ENDPOINT = "movie/upcoming";
 
-export const RQ_MOVIES_GENRES_KEY = "movies-genres";
+export const RQ_MOVIES_GENRES_KEY = "genres-movies";
 export const RQ_MOVIES_GENRES_ENDPOINT = "genre/movie/list";
 
 // TV shows
@@ -36,6 +36,9 @@ export const RQ_ON_THE_AIR_TVSHOW_ENDPOINT = "tv/on_the_air";
 
 export const RQ_TOP_RATED_TVSHOWS_KEY = "top_rated-tvshows";
 export const RQ_TOP_RATED_TVSHOWS_ENDPOINT = "tv/top_rated";
+
+export const RQ_TVSHOWS_GENRES_KEY = "genres-tvshows";
+export const RQ_TVSHOWS_GENRES_ENDPOINT = "genre/tv/list";
 
 // Movie
 export const RQ_MOVIE_KEY = "movie";

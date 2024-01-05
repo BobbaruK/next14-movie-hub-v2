@@ -60,11 +60,11 @@ export default async function PopularMovies({
   });
 
   return (
-    <div>
+    <>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div className="lg:basis-1/4">
-            <FilteringMovies />
+            <FilteringMovies genresRQKey={RQ_MOVIES_GENRES_KEY} />
           </div>
           <div className="lg:basis-3/4">
             <MoviesGridSection
@@ -77,6 +77,6 @@ export default async function PopularMovies({
           </div>
         </div>
       </HydrationBoundary>
-    </div>
+    </>
   );
 }
