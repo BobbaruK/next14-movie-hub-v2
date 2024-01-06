@@ -1,5 +1,3 @@
-import BackToMain from "@/components/BackToMain/BackToMain";
-
 interface Props {
   params: {
     id: string;
