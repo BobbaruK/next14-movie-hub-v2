@@ -1,11 +1,14 @@
-import MainTitleNavigation from "@/components/MainTitleNavigation";
+import MainTitleNavigation from "@/components/MainTitle/Navigation";
 import {
+  RQ_TVSHOW_CAST_ENDPOINT,
+  RQ_TVSHOW_CAST_KEY,
   RQ_TVSHOW_ENDPOINT,
   RQ_TVSHOW_KEY,
   RQ_TVSHOW_KEYWORDS_ENDPOINT,
   RQ_TVSHOW_KEYWORDS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
@@ -103,6 +106,14 @@ export default async function MainTVTitleNavigationLayout({
   await queryClient.prefetchQuery({
     queryKey: [RQ_TVSHOW_KEYWORDS_KEY(id)],
     queryFn: () => apiClientKeywords.getAll(),
+  });
+
+  const apiClientCast = new MyAPIClient<CastAndCrew>(
+    RQ_TVSHOW_CAST_ENDPOINT(id),
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_TVSHOW_CAST_KEY(id)],
+    queryFn: () => apiClientCast.getAll(),
   });
 
   return (

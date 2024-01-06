@@ -1,4 +1,4 @@
-import MainTitleNavigation from "@/components/MainTitleNavigation";
+import MainTitleNavigation from "@/components/MainTitle/Navigation";
 import {
   RQ_LANGUAGES_ENDPOINT,
   RQ_LANGUAGES_KEY,

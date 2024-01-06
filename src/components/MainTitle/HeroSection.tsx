@@ -10,7 +10,7 @@ import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import React from "react";
-import ImageTMDB from "./ImageTMDB";
+import ImageTMDB from "../ImageTMDB";
 
 interface Props {
   queryKey: string;
@@ -19,7 +19,6 @@ interface Props {
 
 const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
   const apiClient = new MyAPIClient<MovieResponse | TVShowResponse>(endpoint);
-
   const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
@@ -29,7 +28,6 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
   const apiClientConfig = new MyAPIClient<TMDB_API_Configuration>(
     RQ_CONFIG_ENDPOINT,
   );
-
   const { data: config } = useQuery<TMDB_API_Configuration>({
     queryKey: [RQ_CONFIG_KEY],
     queryFn: () => apiClientConfig.getAll(),
