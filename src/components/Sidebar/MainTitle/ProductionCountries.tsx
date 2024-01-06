@@ -4,15 +4,14 @@ import MyAPIClient from "@/services/myApiClient";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import Link from "next/link";
-import { FaLink } from "react-icons/fa";
+import React from "react";
 
 interface Props {
   queryKey: string;
   endpoint: string;
 }
 
-const HomePage = ({ queryKey, endpoint }: Props) => {
+const ProductionCountries = ({ queryKey, endpoint }: Props) => {
   const apiClientMainTitle = new MyAPIClient<MovieResponse | TVShowResponse>(
     endpoint,
   );
@@ -25,19 +24,22 @@ const HomePage = ({ queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading Link(s)...</div>;
+    return <div className="alert alert-info">Loading production countries...</div>;
 
   return (
     <>
-      {data?.homepage && (
-        <div className="flex">
-          <Link href={data.homepage} target="_blank">
-            <FaLink size="2em" />
-          </Link>
+      {data?.production_countries && (
+        <div>
+          <h3>Production Countries</h3>
+          <ol className="flex flex-col gap-3">
+            {data?.production_countries.map((country) => (
+              <li key={country.iso_3166_1}>{country.name}</li>
+            ))}
+          </ol>
         </div>
       )}
     </>
   );
 };
 
-export default HomePage;
+export default ProductionCountries;

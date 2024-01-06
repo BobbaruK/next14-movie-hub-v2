@@ -23,16 +23,21 @@ const MainKeywords = ({ queryKey, endpoint }: Props) => {
     placeholderData: keepPreviousData,
   });
 
-  const keywords = "keywords" in data! ? data.keywords : data?.results;
-
-  if (error) throw new Error(`${queryKey} - ${error.message}`);
+  if (error)
+    return (
+      <div className="alert alert-error">
+        {queryKey}: {error.message}
+      </div>
+    );
 
   if (isLoading)
     return <div className="alert alert-info">Loading keywords...</div>;
 
+  const keywords = "keywords" in data! ? data.keywords : data?.results;
+
   return (
     <>
-      {keywords && (
+      {keywords && keywords?.length > 0 && (
         <div>
           <h3>Keywords</h3>
           <div className="flex flex-wrap gap-1">
