@@ -8,8 +8,10 @@ interface Props {
 
 export default function Movie({ params: { id } }: Props) {
   return (
-    <div>
-      <h1>Movie: {id}</h1>
+    <div className="appContaier flex flex-col gap-8 lg:flex-row">
+      <div>
+        <h1>Movie: {id}</h1>
+      </div>
     </div>
   );
 }

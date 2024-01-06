@@ -3,15 +3,19 @@ import MainTitleNavigation from "@/components/MainTitleNavigation/MainTitleNavig
 import { ReactNode } from "react";
 
 interface Props {
+  params: {
+    id: string;
+  };
   children: ReactNode;
 }
 
 export default function MainTitleNavigationLayout({
   children, // will be a page or nested layout
+  params: { id },
 }: Props) {
   return (
     <>
-      <MainTitleNavigation />
+      <MainTitleNavigation mainTitleId={id} />
       {children}
     </>
   );

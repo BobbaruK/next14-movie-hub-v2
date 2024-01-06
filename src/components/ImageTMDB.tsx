@@ -25,6 +25,7 @@ const ImageTMDB = ({ type, src, alt, width, height, priority }: Props) => {
         width={width}
         height={height}
         priority={priority}
+        title={alt}
       />
     </>
   );
