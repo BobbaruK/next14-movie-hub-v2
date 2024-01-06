@@ -5,6 +5,8 @@ import OriginalLanguage from "@/components/Sidebar/MainTitle/OriginalLanguage";
 import ProductionCompanies from "@/components/Sidebar/MainTitle/ProductionCompanies";
 import ProductionCountries from "@/components/Sidebar/MainTitle/ProductionCountries";
 import Status from "@/components/Sidebar/MainTitle/Status";
+import Networks from "@/components/Sidebar/MainTitle/tv/Networks";
+import Type from "@/components/Sidebar/MainTitle/tv/Type";
 import {
   RQ_TVSHOW_ENDPOINT,
   RQ_TVSHOW_KEY,
@@ -34,6 +36,14 @@ export default function TvShow({ params: { id } }: Props) {
               endpoint={RQ_TVSHOW_ENDPOINT(id)}
             />
             <Status
+              queryKey={RQ_TVSHOW_KEY(id)}
+              endpoint={RQ_TVSHOW_ENDPOINT(id)}
+            />
+            <Type
+              queryKey={RQ_TVSHOW_KEY(id)}
+              endpoint={RQ_TVSHOW_ENDPOINT(id)}
+            />
+            <Networks
               queryKey={RQ_TVSHOW_KEY(id)}
               endpoint={RQ_TVSHOW_ENDPOINT(id)}
             />

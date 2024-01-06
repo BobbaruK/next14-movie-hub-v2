@@ -59,11 +59,11 @@ const ProductionCompanies = ({ queryKey, endpoint }: Props) => {
                     alt={company.name}
                     src={imageLink<LogoSizes>(
                       config?.images.secure_base_url!,
-                      "w154",
+                      "w92",
                       company.logo_path,
                     )}
-                    width={154}
-                    height={47}
+                    width={92}
+                    height={28}
                   />
                 ) : (
                   `${company.name}${

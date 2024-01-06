@@ -88,9 +88,14 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
             </div>
           </div>
           <div className="flex flex-col justify-center gap-8 sm:basis-4/6 lg:basis-3/4">
-            <h1 className="m-0">
-              {"title" in data! ? data.title : data?.name} ({year})
-            </h1>
+            <div>
+              <h1 className="m-0">
+                {"title" in data! ? data.title : data?.name} ({year})
+              </h1>
+              <small>
+                {"title" in data! ? data.original_title : data?.original_name}
+              </small>
+            </div>
             <div className="flex flex-wrap gap-4">
               <div className="">{releaseDate}</div>
               &bull;
