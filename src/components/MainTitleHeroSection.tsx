@@ -26,6 +26,15 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
     placeholderData: keepPreviousData,
   });
 
+  const apiClientConfig = new MyAPIClient<TMDB_API_Configuration>(
+    RQ_CONFIG_ENDPOINT,
+  );
+
+  const { data: config } = useQuery<TMDB_API_Configuration>({
+    queryKey: [RQ_CONFIG_KEY],
+    queryFn: () => apiClientConfig.getAll(),
+  });
+
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
@@ -36,15 +45,6 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
         </div>
       </div>
     );
-
-  const apiClientConfig = new MyAPIClient<TMDB_API_Configuration>(
-    RQ_CONFIG_ENDPOINT,
-  );
-
-  const { data: config } = useQuery<TMDB_API_Configuration>({
-    queryKey: [RQ_CONFIG_KEY],
-    queryFn: () => apiClientConfig.getAll(),
-  });
 
   const { releaseDate, year } = ReleaseDateUI(
     "title" in data! ? data.release_date : data?.first_air_date,

@@ -1,14 +1,15 @@
-import MainTitleHeroSection from "@/components/MainTitleHeroSection";
 import MainTitleNavigation from "@/components/MainTitleNavigation";
 import { RQ_TVSHOW_ENDPOINT, RQ_TVSHOW_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
+import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import {
-  QueryClient,
   HydrationBoundary,
+  QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import { Metadata } from "next";
 import { ReactNode } from "react";
 
 interface Props {
@@ -16,6 +17,19 @@ interface Props {
     id: string;
   };
   children: ReactNode;
+}
+
+export async function generateMetadata({
+  params: { id },
+}: Props): Promise<Metadata> {
+  const movie: TVShowResponse = await fetch(
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.TMDB_API_KEY}`,
+  ).then((res) => res.json());
+
+  return {
+    title: movieMetadataTitle(movie.name, movie.first_air_date),
+    description: movie.tagline,
+  };
 }
 
 export default async function MainTVTitleNavigationLayout({

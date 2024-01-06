@@ -4,11 +4,13 @@ import { RQ_MOVIE_ENDPOINT, RQ_MOVIE_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
+import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import {
   HydrationBoundary,
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import { Metadata } from "next";
 import { ReactNode } from "react";
 
 interface Props {
@@ -16,6 +18,19 @@ interface Props {
     id: string;
   };
   children: ReactNode;
+}
+
+export async function generateMetadata({
+  params: { id },
+}: Props): Promise<Metadata> {
+  const movie: MovieResponse = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}`,
+  ).then((res) => res.json());
+
+  return {
+    title: movieMetadataTitle(movie.title, movie.release_date),
+    description: movie.tagline,
+  };
 }
 
 export default async function MainTitleNavigationLayout({

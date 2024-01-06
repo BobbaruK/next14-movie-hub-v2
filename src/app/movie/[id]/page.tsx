@@ -1,5 +1,5 @@
 import MainTitleHeroSection from "@/components/MainTitleHeroSection";
-import { RQ_MOVIE_KEY, RQ_MOVIE_ENDPOINT } from "@/constants";
+import { RQ_MOVIE_ENDPOINT, RQ_MOVIE_KEY } from "@/constants";
 
 interface Props {
   params: {

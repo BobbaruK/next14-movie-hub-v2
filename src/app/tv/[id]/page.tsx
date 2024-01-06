@@ -1,5 +1,5 @@
 import MainTitleHeroSection from "@/components/MainTitleHeroSection";
-import { RQ_TVSHOW_KEY, RQ_TVSHOW_ENDPOINT } from "@/constants";
+import { RQ_TVSHOW_ENDPOINT, RQ_TVSHOW_KEY } from "@/constants";
 
 interface Props {
   params: {
