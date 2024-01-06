@@ -1,5 +1,14 @@
-import MainTitleNavigation from "@/components/MainTitleNavigation/MainTitleNavigation";
+import MainTitleHeroSection from "@/components/MainTitleHeroSection";
+import MainTitleNavigation from "@/components/MainTitleNavigation";
+import { RQ_TVSHOW_ENDPOINT, RQ_TVSHOW_KEY } from "@/constants";
+import MyAPIClient from "@/services/myApiClient";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
+import {
+  QueryClient,
+  HydrationBoundary,
+  dehydrate,
+} from "@tanstack/react-query";
 import { ReactNode } from "react";
 
 interface Props {
@@ -9,10 +18,12 @@ interface Props {
   children: ReactNode;
 }
 
-export default function MainTVTitleNavigationLayout({
+export default async function MainTVTitleNavigationLayout({
   children, // will be a page or nested layout
   params: { id },
 }: Props) {
+  const queryClient = new QueryClient();
+
   const mainTVShowMenu: MainTitleMenuItem[] = [
     {
       label: "Overview",
@@ -58,10 +69,20 @@ export default function MainTVTitleNavigationLayout({
     },
   ];
 
+  const apiClientLanguages = new MyAPIClient<TVShowResponse>(
+    RQ_TVSHOW_ENDPOINT(id),
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_TVSHOW_KEY(id)],
+    queryFn: () => apiClientLanguages.getAll(),
+  });
+
   return (
     <>
-      <MainTitleNavigation mainTitleMenu={mainTVShowMenu} />
-      {children}
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <MainTitleNavigation mainTitleMenu={mainTVShowMenu} />
+        {children}
+      </HydrationBoundary>
     </>
   );
 }

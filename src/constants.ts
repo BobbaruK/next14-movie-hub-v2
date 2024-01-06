@@ -41,11 +41,11 @@ export const RQ_TVSHOWS_GENRES_KEY = "genres-tvshows";
 export const RQ_TVSHOWS_GENRES_ENDPOINT = "genre/tv/list";
 
 // Movie
-export const RQ_MOVIE_KEY = "movie";
+export const RQ_MOVIE_KEY = (id: string) => `movie-${id}`;
 export const RQ_MOVIE_ENDPOINT = (id: string) => `movie/${id}`;
 
 // TV Show
-export const RQ_TVSHOW_KEY = "tvshow";
+export const RQ_TVSHOW_KEY = (id: string) =>  `tvshow-${id}`;
 export const RQ_TVSHOW_ENDPOINT = (id: string) => `tv/${id}`;
 
 // Movie Images
@@ -65,4 +65,3 @@ export const RQ_MOVIE_TRANSLATIONS_ENDPOINT = (id: string) =>
 export const RQ_TV_SHOWS_TRANSLATIONS_KEY = "translations-tvshows";
 export const RQ_TV_SHOWS_TRANSLATIONS_ENDPOINT = (id: string) =>
   `tv/${id}/translations`;
-

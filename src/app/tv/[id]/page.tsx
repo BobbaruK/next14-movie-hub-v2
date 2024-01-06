@@ -1,4 +1,5 @@
-import BackToMain from "@/components/BackToMain/BackToMain";
+import MainTitleHeroSection from "@/components/MainTitleHeroSection";
+import { RQ_TVSHOW_KEY, RQ_TVSHOW_ENDPOINT } from "@/constants";
 
 interface Props {
   params: {
@@ -8,8 +9,9 @@ interface Props {
 
 export default function Movie({ params: { id } }: Props) {
   return (
-    <div>
-      <h1>TVShow: {id}</h1>
-    </div>
+    <MainTitleHeroSection
+      queryKey={RQ_TVSHOW_KEY(id)}
+      endpoint={RQ_TVSHOW_ENDPOINT(id)}
+    />
   );
 }

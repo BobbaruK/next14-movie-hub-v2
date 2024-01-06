@@ -1,5 +1,14 @@
-import MainTitleNavigation from "@/components/MainTitleNavigation/MainTitleNavigation";
+import MainTitleHeroSection from "@/components/MainTitleHeroSection";
+import MainTitleNavigation from "@/components/MainTitleNavigation";
+import { RQ_MOVIE_ENDPOINT, RQ_MOVIE_KEY } from "@/constants";
+import MyAPIClient from "@/services/myApiClient";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+import { MovieResponse } from "@/types/movies/movie/MovieResponse";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 import { ReactNode } from "react";
 
 interface Props {
@@ -9,10 +18,12 @@ interface Props {
   children: ReactNode;
 }
 
-export default function MainTitleNavigationLayout({
+export default async function MainTitleNavigationLayout({
   children, // will be a page or nested layout
   params: { id },
 }: Props) {
+  const queryClient = new QueryClient();
+
   const mainMovieMenu: MainTitleMenuItem[] = [
     {
       label: "Overview",
@@ -58,10 +69,20 @@ export default function MainTitleNavigationLayout({
     },
   ];
 
+  const apiClientLanguages = new MyAPIClient<MovieResponse>(
+    RQ_MOVIE_ENDPOINT(id),
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_MOVIE_KEY(id)],
+    queryFn: () => apiClientLanguages.getAll(),
+  });
+
   return (
     <>
-      <MainTitleNavigation mainTitleMenu={mainMovieMenu} />
-      {children}
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <MainTitleNavigation mainTitleMenu={mainMovieMenu} />
+        {children}
+      </HydrationBoundary>
     </>
   );
 }
