@@ -55,6 +55,13 @@ export const RQ_MOVIE_KEYWORDS_ENDPOINT = (id: string) =>
 export const RQ_TVSHOW_KEYWORDS_KEY = (id: string) => `tvshow-${id}-keywords`;
 export const RQ_TVSHOW_KEYWORDS_ENDPOINT = (id: string) => `/tv/${id}/keywords`;
 
+// Cast & Crew
+export const RQ_MOVIE_CAST_KEY = (id: string) => `movie-${id}-cast`;
+export const RQ_MOVIE_CAST_ENDPOINT = (id: string) => `/movie/${id}/credits`;
+
+export const RQ_TVSHOW_CAST_KEY = (id: string) => `tvshow-${id}-cast`;
+export const RQ_TVSHOW_CAST_ENDPOINT = (id: string) => `/tv/${id}/credits`;
+
 /***
  *
  *

@@ -2,12 +2,15 @@ import MainTitleNavigation from "@/components/MainTitleNavigation";
 import {
   RQ_LANGUAGES_ENDPOINT,
   RQ_LANGUAGES_KEY,
+  RQ_MOVIE_CAST_ENDPOINT,
+  RQ_MOVIE_CAST_KEY,
   RQ_MOVIE_ENDPOINT,
   RQ_MOVIE_KEY,
   RQ_MOVIE_KEYWORDS_ENDPOINT,
   RQ_MOVIE_KEYWORDS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { Language } from "@/types/movies/Language";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
@@ -110,6 +113,14 @@ export default async function MainTitleNavigationLayout({
   await queryClient.prefetchQuery({
     queryKey: [RQ_MOVIE_KEYWORDS_KEY(id)],
     queryFn: () => apiClientKeywords.getAll(),
+  });
+
+  const apiClientCast = new MyAPIClient<CastAndCrew>(
+    RQ_MOVIE_CAST_ENDPOINT(id),
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_MOVIE_CAST_KEY(id)],
+    queryFn: () => apiClientCast.getAll(),
   });
 
   return (

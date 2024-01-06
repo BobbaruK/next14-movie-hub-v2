@@ -5,6 +5,8 @@ import OriginalLanguage from "@/components/Sidebar/MainTitle/OriginalLanguage";
 import ProductionCompanies from "@/components/Sidebar/MainTitle/ProductionCompanies";
 import ProductionCountries from "@/components/Sidebar/MainTitle/ProductionCountries";
 import Status from "@/components/Sidebar/MainTitle/Status";
+import Budget from "@/components/Sidebar/MainTitle/movie/Budget";
+import Revenue from "@/components/Sidebar/MainTitle/movie/Revenue";
 import {
   RQ_MOVIE_ENDPOINT,
   RQ_MOVIE_KEY,
@@ -34,6 +36,14 @@ export default function Movie({ params: { id } }: Props) {
               endpoint={RQ_MOVIE_ENDPOINT(id)}
             />
             <Status
+              queryKey={RQ_MOVIE_KEY(id)}
+              endpoint={RQ_MOVIE_ENDPOINT(id)}
+            />
+            <Budget
+              queryKey={RQ_MOVIE_KEY(id)}
+              endpoint={RQ_MOVIE_ENDPOINT(id)}
+            />
+            <Revenue
               queryKey={RQ_MOVIE_KEY(id)}
               endpoint={RQ_MOVIE_ENDPOINT(id)}
             />

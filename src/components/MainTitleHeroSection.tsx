@@ -50,6 +50,12 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
     "title" in data! ? data.release_date : data?.first_air_date,
   );
 
+  const style = {
+    "--value": data?.vote_average! * 10,
+    "--thickness": "3px",
+    "--size": "3rem",
+  } as React.CSSProperties;
+
   return (
     <div className="relative py-20">
       <div className="absolute inset-0 z-0 h-full w-full">
@@ -89,8 +95,30 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
           </div>
           <div className="flex flex-col justify-center gap-8 sm:basis-4/6 lg:basis-3/4">
             <div>
-              <h1 className="m-0">
+              <h1 className="m-0 flex flex-wrap items-center justify-start gap-6">
                 {"title" in data! ? data.title : data?.name} ({year})
+                <div
+                  className={[
+                    `${
+                      data?.vote_average! > 7.5
+                        ? "voteGood"
+                        : data?.vote_average! > 6.0
+                          ? "voteOk"
+                          : "voteBad"
+                    }`,
+                    "radial-progress",
+
+                    "bg-neutral",
+                    "border-2",
+                    "border-slate-100",
+                    "text-sm",
+                  ].join(" ")}
+                  style={style}
+                  role="progressbar"
+                  aria-label="Movie Rating"
+                >
+                  {data?.vote_average.toFixed(1)}
+                </div>
               </h1>
               <small>
                 {"title" in data! ? data.original_title : data?.original_name}
