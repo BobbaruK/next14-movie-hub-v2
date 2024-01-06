@@ -8,8 +8,6 @@ interface Props {
   };
 }
 
-
-
 export async function generateMetadata({
   params: { id },
 }: Props): Promise<Metadata> {
@@ -18,7 +16,11 @@ export async function generateMetadata({
   ).then((res) => res.json());
 
   return {
-    title: movieMetadataTitle(movie.title, movie.release_date, "Alternative Titles"),
+    title: movieMetadataTitle(
+      movie.title,
+      movie.release_date,
+      "Alternative Titles",
+    ),
     description: movie.tagline,
   };
 }
