@@ -40,13 +40,30 @@ export const RQ_TOP_RATED_TVSHOWS_ENDPOINT = "tv/top_rated";
 export const RQ_TVSHOWS_GENRES_KEY = "genres-tvshows";
 export const RQ_TVSHOWS_GENRES_ENDPOINT = "genre/tv/list";
 
-// Movie
+// Main Title
 export const RQ_MOVIE_KEY = (id: string) => `movie-${id}`;
 export const RQ_MOVIE_ENDPOINT = (id: string) => `movie/${id}`;
 
-// TV Show
-export const RQ_TVSHOW_KEY = (id: string) =>  `tvshow-${id}`;
+export const RQ_TVSHOW_KEY = (id: string) => `tvshow-${id}`;
 export const RQ_TVSHOW_ENDPOINT = (id: string) => `tv/${id}`;
+
+// Keywords
+export const RQ_MOVIE_KEYWORDS_KEY = (id: string) => `movie-${id}-keywords`;
+export const RQ_MOVIE_KEYWORDS_ENDPOINT = (id: string) =>
+  `/movie/${id}/keywords`;
+
+export const RQ_TVSHOW_KEYWORDS_KEY = (id: string) => `tvshow-${id}-keywords`;
+export const RQ_TVSHOW_KEYWORDS_ENDPOINT = (id: string) => `/tv/${id}/keywords`;
+
+/***
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 
 // Movie Images
 export const RQ_MOVIE_IMAGES_KEY = "images-movie";

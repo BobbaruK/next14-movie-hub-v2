@@ -1,8 +1,16 @@
-import MainTitleHeroSection from "@/components/MainTitleHeroSection";
 import MainTitleNavigation from "@/components/MainTitleNavigation";
-import { RQ_MOVIE_ENDPOINT, RQ_MOVIE_KEY } from "@/constants";
+import {
+  RQ_LANGUAGES_ENDPOINT,
+  RQ_LANGUAGES_KEY,
+  RQ_MOVIE_ENDPOINT,
+  RQ_MOVIE_KEY,
+  RQ_MOVIE_KEYWORDS_ENDPOINT,
+  RQ_MOVIE_KEYWORDS_KEY,
+} from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { Language } from "@/types/movies/Language";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import {
@@ -84,12 +92,24 @@ export default async function MainTitleNavigationLayout({
     },
   ];
 
-  const apiClientLanguages = new MyAPIClient<MovieResponse>(
-    RQ_MOVIE_ENDPOINT(id),
-  );
+  const apiClientMovie = new MyAPIClient<MovieResponse>(RQ_MOVIE_ENDPOINT(id));
   await queryClient.prefetchQuery({
     queryKey: [RQ_MOVIE_KEY(id)],
+    queryFn: () => apiClientMovie.getAll(),
+  });
+
+  const apiClientLanguages = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_LANGUAGES_KEY],
     queryFn: () => apiClientLanguages.getAll(),
+  });
+
+  const apiClientKeywords = new MyAPIClient<MovieKeywords>(
+    RQ_MOVIE_KEYWORDS_ENDPOINT(id),
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_MOVIE_KEYWORDS_KEY(id)],
+    queryFn: () => apiClientKeywords.getAll(),
   });
 
   return (

@@ -1,7 +1,13 @@
 import MainTitleNavigation from "@/components/MainTitleNavigation";
-import { RQ_TVSHOW_ENDPOINT, RQ_TVSHOW_KEY } from "@/constants";
+import {
+  RQ_TVSHOW_ENDPOINT,
+  RQ_TVSHOW_KEY,
+  RQ_TVSHOW_KEYWORDS_ENDPOINT,
+  RQ_TVSHOW_KEYWORDS_KEY,
+} from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import {
@@ -89,6 +95,14 @@ export default async function MainTVTitleNavigationLayout({
   await queryClient.prefetchQuery({
     queryKey: [RQ_TVSHOW_KEY(id)],
     queryFn: () => apiClientLanguages.getAll(),
+  });
+
+  const apiClientKeywords = new MyAPIClient<MovieKeywords>(
+    RQ_TVSHOW_KEYWORDS_ENDPOINT(id),
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_TVSHOW_KEYWORDS_KEY(id)],
+    queryFn: () => apiClientKeywords.getAll(),
   });
 
   return (
