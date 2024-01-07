@@ -1,5 +1,6 @@
 import MainTitleCast from "@/components/MainTitle/Cast";
 import MainTitleHeroSection from "@/components/MainTitle/HeroSection";
+import Recommendations from "@/components/MainTitle/Recommendations";
 import HomePage from "@/components/Sidebar/MainTitle/HomePage";
 import MainKeywords from "@/components/Sidebar/MainTitle/MainKeywords";
 import OriginalLanguage from "@/components/Sidebar/MainTitle/OriginalLanguage";
@@ -15,6 +16,8 @@ import {
   RQ_MOVIE_KEY,
   RQ_MOVIE_KEYWORDS_ENDPOINT,
   RQ_MOVIE_KEYWORDS_KEY,
+  RQ_MOVIE_RECOMMENDATIONS_ENDPOINT,
+  RQ_MOVIE_RECOMMENDATIONS_KEY,
 } from "@/constants";
 
 interface Props {
@@ -31,11 +34,15 @@ export default function Movie({ params: { id } }: Props) {
         endpoint={RQ_MOVIE_ENDPOINT(id)}
       />
       <div className="appContaier flex flex-col gap-8 py-20 lg:flex-row">
-        <div className="lg:basis-3/4">
+        <div className="flex flex-col gap-7 lg:basis-3/4">
           <MainTitleCast
             queryKey={RQ_MOVIE_CAST_KEY(id)}
             endpoint={RQ_MOVIE_CAST_ENDPOINT(id)}
             type="movie"
+          />
+          <Recommendations
+            queryKey={RQ_MOVIE_RECOMMENDATIONS_KEY(id)}
+            endpoint={RQ_MOVIE_RECOMMENDATIONS_ENDPOINT(id)}
           />
         </div>
         <div className="lg:basis-1/4">

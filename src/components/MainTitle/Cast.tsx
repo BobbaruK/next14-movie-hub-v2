@@ -33,14 +33,14 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
     );
 
   const cast = [...(data?.cast || [])];
-  cast.length = 4;
+  cast.splice(6);
 
   return (
-    <>
+    <div>
       <div>
         <h2>{type === "movie" ? "Top Billed Cast" : "Series Cast"}</h2>
       </div>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-6">
         {cast.map((cast) => (
           <MainTitlePersonCard cast={cast} key={cast.id} />
         ))}
@@ -48,7 +48,7 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
       <div className="py-4">
         <Link href={`/${type}/${id}/cast`}>View full cast & crew</Link>
       </div>
-    </>
+    </div>
   );
 };
 

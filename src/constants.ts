@@ -62,6 +62,17 @@ export const RQ_MOVIE_CAST_ENDPOINT = (id: string) => `/movie/${id}/credits`;
 export const RQ_TVSHOW_CAST_KEY = (id: string) => `tvshow-${id}-cast`;
 export const RQ_TVSHOW_CAST_ENDPOINT = (id: string) => `/tv/${id}/credits`;
 
+// Recommendations
+export const RQ_MOVIE_RECOMMENDATIONS_KEY = (id: string) =>
+  `movie-${id}-recommendations`;
+export const RQ_MOVIE_RECOMMENDATIONS_ENDPOINT = (id: string) =>
+  `/movie/${id}/recommendations`;
+
+export const RQ_TVSHOW_RECOMMENDATIONS_KEY = (id: string) =>
+  `tvshow-${id}-recommendations`;
+export const RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT = (id: string) =>
+  `/tv/${id}/recommendations`;
+
 /***
  *
  *

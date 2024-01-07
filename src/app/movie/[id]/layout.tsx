@@ -8,12 +8,16 @@ import {
   RQ_MOVIE_KEY,
   RQ_MOVIE_KEYWORDS_ENDPOINT,
   RQ_MOVIE_KEYWORDS_KEY,
+  RQ_MOVIE_RECOMMENDATIONS_ENDPOINT,
+  RQ_MOVIE_RECOMMENDATIONS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { Language } from "@/types/movies/Language";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+import { RecommendationsResponse } from "@/types/movies/Recommendations";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
+import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import {
@@ -95,18 +99,21 @@ export default async function MainTitleNavigationLayout({
     },
   ];
 
+  // Movie
   const apiClientMovie = new MyAPIClient<MovieResponse>(RQ_MOVIE_ENDPOINT(id));
   await queryClient.prefetchQuery({
     queryKey: [RQ_MOVIE_KEY(id)],
     queryFn: () => apiClientMovie.getAll(),
   });
 
+  // Languages
   const apiClientLanguages = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
   await queryClient.prefetchQuery({
     queryKey: [RQ_LANGUAGES_KEY],
     queryFn: () => apiClientLanguages.getAll(),
   });
 
+  // Keywords
   const apiClientKeywords = new MyAPIClient<MovieKeywords>(
     RQ_MOVIE_KEYWORDS_ENDPOINT(id),
   );
@@ -115,12 +122,22 @@ export default async function MainTitleNavigationLayout({
     queryFn: () => apiClientKeywords.getAll(),
   });
 
+  // Cast and crew
   const apiClientCast = new MyAPIClient<CastAndCrew>(
     RQ_MOVIE_CAST_ENDPOINT(id),
   );
   await queryClient.prefetchQuery({
     queryKey: [RQ_MOVIE_CAST_KEY(id)],
     queryFn: () => apiClientCast.getAll(),
+  });
+
+  // Recommendations
+  const apiClientRecommendations = new MyAPIClient<
+    RecommendationsResponse<MovieRecommendation>
+  >(RQ_MOVIE_RECOMMENDATIONS_ENDPOINT(id));
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_MOVIE_RECOMMENDATIONS_KEY(id)],
+    queryFn: () => apiClientRecommendations.getAll(),
   });
 
   return (

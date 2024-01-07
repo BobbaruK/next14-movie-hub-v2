@@ -1,16 +1,23 @@
 import MainTitleNavigation from "@/components/MainTitle/Navigation";
 import {
+  RQ_LANGUAGES_ENDPOINT,
+  RQ_LANGUAGES_KEY,
   RQ_TVSHOW_CAST_ENDPOINT,
   RQ_TVSHOW_CAST_KEY,
   RQ_TVSHOW_ENDPOINT,
   RQ_TVSHOW_KEY,
   RQ_TVSHOW_KEYWORDS_ENDPOINT,
   RQ_TVSHOW_KEYWORDS_KEY,
+  RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT,
+  RQ_TVSHOW_RECOMMENDATIONS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
+import { Language } from "@/types/movies/Language";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+import { RecommendationsResponse } from "@/types/movies/Recommendations";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
+import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import {
@@ -92,14 +99,23 @@ export default async function MainTVTitleNavigationLayout({
     },
   ];
 
-  const apiClientLanguages = new MyAPIClient<TVShowResponse>(
+  // Movie
+  const apiClientMovie = new MyAPIClient<TVShowResponse>(
     RQ_TVSHOW_ENDPOINT(id),
   );
   await queryClient.prefetchQuery({
     queryKey: [RQ_TVSHOW_KEY(id)],
+    queryFn: () => apiClientMovie.getAll(),
+  });
+
+  // Languages
+  const apiClientLanguages = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_LANGUAGES_KEY],
     queryFn: () => apiClientLanguages.getAll(),
   });
 
+  // Keywords
   const apiClientKeywords = new MyAPIClient<MovieKeywords>(
     RQ_TVSHOW_KEYWORDS_ENDPOINT(id),
   );
@@ -108,12 +124,22 @@ export default async function MainTVTitleNavigationLayout({
     queryFn: () => apiClientKeywords.getAll(),
   });
 
+  // Cast and crew
   const apiClientCast = new MyAPIClient<CastAndCrew>(
     RQ_TVSHOW_CAST_ENDPOINT(id),
   );
   await queryClient.prefetchQuery({
     queryKey: [RQ_TVSHOW_CAST_KEY(id)],
     queryFn: () => apiClientCast.getAll(),
+  });
+
+  // Recommendations
+  const apiClientRecommendations = new MyAPIClient<
+    RecommendationsResponse<MovieRecommendation>
+  >(RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT(id));
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_TVSHOW_RECOMMENDATIONS_KEY(id)],
+    queryFn: () => apiClientRecommendations.getAll(),
   });
 
   return (

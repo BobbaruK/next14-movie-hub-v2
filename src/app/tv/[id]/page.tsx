@@ -1,5 +1,6 @@
 import MainTitleCast from "@/components/MainTitle/Cast";
 import MainTitleHeroSection from "@/components/MainTitle/HeroSection";
+import Recommendations from "@/components/MainTitle/Recommendations";
 import HomePage from "@/components/Sidebar/MainTitle/HomePage";
 import MainKeywords from "@/components/Sidebar/MainTitle/MainKeywords";
 import OriginalLanguage from "@/components/Sidebar/MainTitle/OriginalLanguage";
@@ -15,6 +16,8 @@ import {
   RQ_TVSHOW_KEY,
   RQ_TVSHOW_KEYWORDS_ENDPOINT,
   RQ_TVSHOW_KEYWORDS_KEY,
+  RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT,
+  RQ_TVSHOW_RECOMMENDATIONS_KEY,
 } from "@/constants";
 
 interface Props {
@@ -31,11 +34,15 @@ export default function TvShow({ params: { id } }: Props) {
         endpoint={RQ_TVSHOW_ENDPOINT(id)}
       />
       <div className="appContaier flex flex-col gap-8 py-20 lg:flex-row">
-        <div className="lg:basis-3/4">
+        <div className="flex flex-col gap-7 lg:basis-3/4">
           <MainTitleCast
             queryKey={RQ_TVSHOW_CAST_KEY(id)}
             endpoint={RQ_TVSHOW_CAST_ENDPOINT(id)}
             type="tv"
+          />
+          <Recommendations
+            queryKey={RQ_TVSHOW_RECOMMENDATIONS_KEY(id)}
+            endpoint={RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT(id)}
           />
         </div>
         <div className="lg:basis-1/4">
