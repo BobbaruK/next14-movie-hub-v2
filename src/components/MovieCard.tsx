@@ -98,14 +98,6 @@ const MovieCard = ({ movie, index }: Props) => {
           <Link href={link}>{title}</Link>
         </h2>
         <p className="grow-0">{releaseDate}</p>
-
-        {/* delete */}
-        {/* <div>
-          {movie.genre_ids.map((genre) => (
-            <p key={genre}>{genre}</p>
-          ))}
-        </div> */}
-        {/* /delete */}
       </div>
     </div>
   );

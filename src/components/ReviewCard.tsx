@@ -42,7 +42,7 @@ const ReviewCard = ({ review }: Props) => {
 
   return (
     <div className="card mb-5 overflow-hidden bg-base-100 shadow-md shadow-primary">
-      <div className="card-body relative flex justify-between gap-4 p-4 pt-7">
+      <div className="card-body relative flex justify-between gap-4 p-4">
         <div className="flex items-center gap-4">
           <div className="overflow-hidden rounded-full [&>img]:h-[45px] [&>img]:w-[45px]">
             <ImageTMDB
@@ -60,10 +60,12 @@ const ReviewCard = ({ review }: Props) => {
           <div>
             <h3 className="m-0">A review by {review.author}</h3>
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 rounded-md bg-black px-2">
-                <FaStar />
-                {review.author_details.rating}
-              </div>
+              {review.author_details.rating && (
+                <div className="flex items-center gap-2 rounded-md bg-black px-2">
+                  <FaStar />
+                  {review.author_details.rating}
+                </div>
+              )}
               <div>
                 Written by {review.author} on {created.releaseDate}
               </div>
@@ -72,15 +74,6 @@ const ReviewCard = ({ review }: Props) => {
         </div>
         <div>
           <ReviewContent content={review.content} />
-          {/* {review.content.substring(0, 200)}
-          {review.content.length > 199 && (
-            <>
-              {"... "}
-              <Link href="#" className="underline">
-                read the rest
-              </Link>
-            </>
-          )} */}
         </div>
       </div>
     </div>

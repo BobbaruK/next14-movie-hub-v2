@@ -9,6 +9,8 @@ interface Props {
   cast: TheCast;
 }
 
+// TODO: config here on the image
+
 const MainTitlePersonCard = ({ cast }: Props) => {
   return (
     <div className="card overflow-hidden bg-base-100 shadow-md shadow-primary">
@@ -27,7 +29,7 @@ const MainTitlePersonCard = ({ cast }: Props) => {
           />
         </Link>
       </figure>
-      <div className="card-body relative flex justify-between gap-1 p-4 pt-7">
+      <div className="card-body relative flex justify-between gap-1 p-4">
         <p>
           <Link href={`/person/${cast.id}`} className="w-full">
             {cast.name}
