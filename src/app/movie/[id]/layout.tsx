@@ -42,9 +42,14 @@ export async function generateMetadata({
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}`,
   ).then((res) => res.json());
 
+  if (movie.tagline)
+    return {
+      title: movieMetadataTitle(movie.title, movie.release_date),
+      description: movie.tagline,
+    };
+
   return {
     title: movieMetadataTitle(movie.title, movie.release_date),
-    description: movie.tagline,
   };
 }
 
