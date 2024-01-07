@@ -12,7 +12,7 @@ interface Props {
   endpoint: string;
 }
 
-const Recommendations = ({ queryKey, endpoint }: Props) => {
+const MainTitleRecommendations = ({ queryKey, endpoint }: Props) => {
   const apiClient = new MyAPIClient<
     RecommendationsResponse<MovieRecommendation | TVShowRecommendation>
   >(endpoint);
@@ -52,4 +52,4 @@ const Recommendations = ({ queryKey, endpoint }: Props) => {
   );
 };
 
-export default Recommendations;
+export default MainTitleRecommendations;

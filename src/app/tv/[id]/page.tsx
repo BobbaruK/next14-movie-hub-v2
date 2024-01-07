@@ -1,6 +1,7 @@
 import MainTitleCast from "@/components/MainTitle/Cast";
 import MainTitleHeroSection from "@/components/MainTitle/HeroSection";
-import Recommendations from "@/components/MainTitle/Recommendations";
+import MainTitleRecommendations from "@/components/MainTitle/Recommendations";
+import MainTitleReviews from "@/components/MainTitle/Reviews";
 import HomePage from "@/components/Sidebar/MainTitle/HomePage";
 import MainKeywords from "@/components/Sidebar/MainTitle/MainKeywords";
 import OriginalLanguage from "@/components/Sidebar/MainTitle/OriginalLanguage";
@@ -18,6 +19,8 @@ import {
   RQ_TVSHOW_KEYWORDS_KEY,
   RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT,
   RQ_TVSHOW_RECOMMENDATIONS_KEY,
+  RQ_TVSHOW_REVIEWS_ENDPOINT,
+  RQ_TVSHOW_REVIEWS_KEY,
 } from "@/constants";
 
 interface Props {
@@ -40,7 +43,11 @@ export default function TvShow({ params: { id } }: Props) {
             endpoint={RQ_TVSHOW_CAST_ENDPOINT(id)}
             type="tv"
           />
-          <Recommendations
+          <MainTitleReviews
+            queryKey={RQ_TVSHOW_REVIEWS_KEY(id)}
+            endpoint={RQ_TVSHOW_REVIEWS_ENDPOINT(id)}
+          />
+          <MainTitleRecommendations
             queryKey={RQ_TVSHOW_RECOMMENDATIONS_KEY(id)}
             endpoint={RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT(id)}
           />

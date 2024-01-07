@@ -54,11 +54,13 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
     "--size": "3rem",
   } as React.CSSProperties;
 
+  // TODO: try and solve this because on smaller devices loads a big ass image
+
   return (
     <div className="relative py-20">
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="absolute inset-0 -z-20  h-full w-full [&>img]:h-full [&>img]:w-full [&>img]:object-cover">
-          {/* <ImageTMDB
+          <ImageTMDB
             type="poster"
             alt={"title" in data! ? data.title : data?.name!}
             src={imageLink<BackdropSizes>(
@@ -69,7 +71,7 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
             width={3840}
             height={2160}
             priority
-          /> */}
+          />
         </div>
         <div className="absolute inset-0 -z-10  h-full w-full bg-primary bg-gradient-to-r from-primary to-secondary opacity-90"></div>
       </div>

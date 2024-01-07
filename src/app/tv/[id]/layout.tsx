@@ -10,12 +10,15 @@ import {
   RQ_TVSHOW_KEYWORDS_KEY,
   RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT,
   RQ_TVSHOW_RECOMMENDATIONS_KEY,
+  RQ_TVSHOW_REVIEWS_ENDPOINT,
+  RQ_TVSHOW_REVIEWS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { Language } from "@/types/movies/Language";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 import { RecommendationsResponse } from "@/types/movies/Recommendations";
+import { ReviewsResponse } from "@/types/movies/Reviews";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
 import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
@@ -136,6 +139,15 @@ export default async function MainTVTitleNavigationLayout({
   await queryClient.prefetchQuery({
     queryKey: [RQ_TVSHOW_CAST_KEY(id)],
     queryFn: () => apiClientCast.getAll(),
+  });
+
+  // Reviews
+  const apiClientReviews = new MyAPIClient<
+    RecommendationsResponse<ReviewsResponse>
+  >(RQ_TVSHOW_REVIEWS_ENDPOINT(id));
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_TVSHOW_REVIEWS_KEY(id)],
+    queryFn: () => apiClientReviews.getAll(),
   });
 
   // Recommendations
