@@ -63,8 +63,8 @@ const MainTitleFiltering = ({ title, queryKey, endpoint }: Props) => {
         <div
           className={[
             "badge",
-            "badge-accent",
-            "text-accent-content",
+            "badge-primary-content",
+            "text-primary",
             "gap-2",
             "p-3",
           ].join(" ")}
