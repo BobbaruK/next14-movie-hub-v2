@@ -1,4 +1,4 @@
-export interface TMDB_API_Configuration {
+export interface Image_Configuration {
   images: ImagesConfig;
   change_keys: string[];
 }

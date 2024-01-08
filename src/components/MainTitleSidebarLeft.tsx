@@ -10,9 +10,13 @@ const MainTitleSidebarLeft = ({ content, sidebar }: Props) => {
   return (
     <>
       <BackToMain />
-      <div className="flex gap-8">
-        <aside>{sidebar}</aside>
-        {content}
+      <div className="appContaier flex flex-col gap-8 lg:flex-row">
+        <aside className="flex flex-col gap-7 lg:basis-1/4">
+          <div className="overflow-hidden rounded-box border border-primary shadow-md shadow-primary">
+            {sidebar}
+          </div>
+        </aside>
+        <div className="lg:basis-3/4">{content}</div>
       </div>
     </>
   );

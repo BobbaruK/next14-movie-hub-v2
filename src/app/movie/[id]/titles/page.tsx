@@ -1,6 +1,15 @@
+import AlternativeTitles from "@/components/MainTitle/AlternativeTitles";
+import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
+import MainTitleFiltering from "@/components/Sidebar/MainTitle/Filtering";
+import {
+  RQ_MOVIE_ALTERNATIVE_TITLES_ENDPOINT,
+  RQ_MOVIE_ALTERNATIVE_TITLES_KEY,
+} from "@/constants";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
+
+const pageTitle = "Alternative Titles";
 
 interface Props {
   params: {
@@ -16,19 +25,29 @@ export async function generateMetadata({
   ).then((res) => res.json());
 
   return {
-    title: movieMetadataTitle(
-      movie.title,
-      movie.release_date,
-      "Alternative Titles",
-    ),
+    title: movieMetadataTitle(movie.title, movie.release_date, pageTitle),
     description: movie.tagline,
   };
 }
 
 export default function MovieTitles({ params: { id } }: Props) {
   return (
-    <div>
-      <h1>Movie Titles: {id}</h1>
-    </div>
+    <>
+      <MainTitleSidebarLeft
+        content={
+          <AlternativeTitles
+            queryKey={RQ_MOVIE_ALTERNATIVE_TITLES_KEY(id)}
+            endpoint={RQ_MOVIE_ALTERNATIVE_TITLES_ENDPOINT(id)}
+          />
+        }
+        sidebar={
+          <MainTitleFiltering
+            title={pageTitle}
+            queryKey={RQ_MOVIE_ALTERNATIVE_TITLES_KEY(id)}
+            endpoint={RQ_MOVIE_ALTERNATIVE_TITLES_ENDPOINT(id)}
+          />
+        }
+      />
+    </>
   );
 }

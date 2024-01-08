@@ -2,7 +2,7 @@
 
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { TMDB_API_Configuration } from "@/types/TMDB_API_Configuration";
+import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { BackdropSizes, PosterSizes } from "@/types/imageSizes";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
@@ -25,10 +25,10 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
     placeholderData: keepPreviousData,
   });
 
-  const apiClientConfig = new MyAPIClient<TMDB_API_Configuration>(
+  const apiClientConfig = new MyAPIClient<Image_Configuration>(
     RQ_CONFIG_ENDPOINT,
   );
-  const { data: config } = useQuery<TMDB_API_Configuration>({
+  const { data: config } = useQuery<Image_Configuration>({
     queryKey: [RQ_CONFIG_KEY],
     queryFn: () => apiClientConfig.getAll(),
   });

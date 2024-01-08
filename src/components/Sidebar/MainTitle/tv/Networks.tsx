@@ -3,7 +3,7 @@
 import ImageTMDB from "@/components/ImageTMDB";
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { TMDB_API_Configuration } from "@/types/TMDB_API_Configuration";
+import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { LogoSizes } from "@/types/imageSizes";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import imageLink from "@/utils/imageLink";
@@ -23,14 +23,14 @@ const Networks = ({ queryKey, endpoint }: Props) => {
     placeholderData: keepPreviousData,
   });
 
-  const apiClientConfig = new MyAPIClient<TMDB_API_Configuration>(
+  const apiClientConfig = new MyAPIClient<Image_Configuration>(
     RQ_CONFIG_ENDPOINT,
   );
   const {
     data: config,
     error: configError,
     isLoading: isLoadingError,
-  } = useQuery<TMDB_API_Configuration>({
+  } = useQuery<Image_Configuration>({
     queryKey: [RQ_CONFIG_KEY],
     queryFn: () => apiClientConfig.getAll(),
   });

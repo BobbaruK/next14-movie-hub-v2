@@ -1,4 +1,4 @@
-import { CreatedBy } from "../CreatedBy";
+import { TVShowCreatedBy } from "../CreatedBy";
 import { Genre } from "../GenreResponse";
 import { Language } from "../Language";
 import { Network } from "../Network";
@@ -10,7 +10,7 @@ import { Season } from "./Season";
 export interface TVShowResponse {
   adult: boolean;
   backdrop_path: string;
-  created_by: CreatedBy[];
+  created_by: TVShowCreatedBy[];
   episode_run_time: number[];
   first_air_date: string;
   genres: Genre[];

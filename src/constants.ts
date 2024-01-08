@@ -8,6 +8,10 @@ export const RQ_CONFIG_ENDPOINT = "/configuration";
 export const RQ_LANGUAGES_KEY = "languages";
 export const RQ_LANGUAGES_ENDPOINT = "/configuration/languages";
 
+// Countries
+export const RQ_COUNTRIES_KEY = "countries";
+export const RQ_COUNTRIES_ENDPOINT = "/configuration/countries";
+
 // Movies
 export const RQ_POPULAR_MOVIES_KEY = "popular-movies";
 export const RQ_POPULAR_MOVIES_ENDPOINT = "discover/movie";
@@ -79,6 +83,17 @@ export const RQ_TVSHOW_RECOMMENDATIONS_KEY = (id: string) =>
   `tvshow-${id}-recommendations`;
 export const RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT = (id: string) =>
   `/tv/${id}/recommendations`;
+
+// Alternative titles
+export const RQ_MOVIE_ALTERNATIVE_TITLES_KEY = (id: string) =>
+  `movie-${id}-alternative_titles`;
+export const RQ_MOVIE_ALTERNATIVE_TITLES_ENDPOINT = (id: string) =>
+  `/movie/${id}/alternative_titles`;
+
+export const RQ_TVSHOW_ALTERNATIVE_TITLES_KEY = (id: string) =>
+  `tvshow-${id}-alternative_titles`;
+export const RQ_TVSHOW_ALTERNATIVE_TITLES_ENDPOINT = (id: string) =>
+  `/tv/${id}/alternative_titles`;
 
 /***
  *

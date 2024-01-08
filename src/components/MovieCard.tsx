@@ -1,6 +1,6 @@
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { TMDB_API_Configuration } from "@/types/TMDB_API_Configuration";
+import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { PosterSizes } from "@/types/imageSizes";
 import { Movie } from "@/types/movies/movie/MoviesResponse";
 import { TVShow } from "@/types/movies/tv/TVShowsResponse";
@@ -22,13 +22,13 @@ const MovieCard = ({ movie, index }: Props) => {
     "--size": "2rem",
   } as React.CSSProperties;
 
-  const apiClient = new MyAPIClient<TMDB_API_Configuration>(RQ_CONFIG_ENDPOINT);
+  const apiClient = new MyAPIClient<Image_Configuration>(RQ_CONFIG_ENDPOINT);
 
   const {
     data: config,
     isLoading,
     error,
-  } = useQuery<TMDB_API_Configuration>({
+  } = useQuery<Image_Configuration>({
     queryKey: [RQ_CONFIG_KEY],
     queryFn: () => apiClient.getAll(),
   });

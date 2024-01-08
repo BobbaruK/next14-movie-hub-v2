@@ -1,4 +1,4 @@
-export interface CreatedBy {
+export interface TVShowCreatedBy {
   id: number;
   credit_id: string;
   name: string;

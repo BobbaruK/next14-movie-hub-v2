@@ -8,7 +8,7 @@ import {
   RQ_LANGUAGES_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { TMDB_API_Configuration } from "@/types/TMDB_API_Configuration";
+import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import {
   HydrationBoundary,
   QueryClient,
@@ -36,7 +36,7 @@ export default async function RootLayout({ children }: Props) {
   const queryClient = new QueryClient();
 
   // Config
-  const apiClientConfig = new MyAPIClient<TMDB_API_Configuration>(
+  const apiClientConfig = new MyAPIClient<Image_Configuration>(
     RQ_CONFIG_ENDPOINT,
   );
 
@@ -54,7 +54,7 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang="en">
-      <body className={inter.className} data-theme="dracula">
+      <body className={inter.className} data-theme="night">
         <ReactQueryProvider>
           <HydrationBoundary state={dehydrate(queryClient)}>
             <div id="siteWrapper">
