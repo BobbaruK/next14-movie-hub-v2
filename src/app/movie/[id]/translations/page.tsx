@@ -1,6 +1,18 @@
+import BackTo from "@/components/BackTo";
+import MainTitleTranslations from "@/components/MainTitle/Translations";
+import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
+import TranslationsFiltering from "@/components/Sidebar/MainTitle/TranslationsFiltering";
+import {
+  RQ_MOVIE_ENDPOINT,
+  RQ_MOVIE_KEY,
+  RQ_MOVIE_TRANSLATIONS_ENDPOINT,
+  RQ_MOVIE_TRANSLATIONS_KEY,
+} from "@/constants";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
+
+const pageTitle = "Translations";
 
 interface Props {
   params: {
@@ -16,15 +28,35 @@ export async function generateMetadata({
   ).then((res) => res.json());
 
   return {
-    title: movieMetadataTitle(movie.title, movie.release_date, "Translations"),
+    title: movieMetadataTitle(movie.title, movie.release_date, pageTitle),
     description: movie.tagline,
   };
 }
 
 export default function MovieTranslations({ params: { id } }: Props) {
   return (
-    <div>
-      <h1>Movie Translations: {id}</h1>
-    </div>
+    <>
+      <BackTo
+        queryKey={RQ_MOVIE_KEY(id)}
+        endpoint={RQ_MOVIE_ENDPOINT(id)}
+        backTo={{ label: "Main", link: `/movie/${id}` }}
+      />
+
+      <MainTitleSidebarLeft
+        content={
+          <MainTitleTranslations
+            queryKey={RQ_MOVIE_TRANSLATIONS_KEY(id)}
+            endpoint={RQ_MOVIE_TRANSLATIONS_ENDPOINT(id)}
+          />
+        }
+        sidebar={
+          <TranslationsFiltering
+            title={pageTitle}
+            queryKey={RQ_MOVIE_TRANSLATIONS_KEY(id)}
+            endpoint={RQ_MOVIE_TRANSLATIONS_ENDPOINT(id)}
+          />
+        }
+      />
+    </>
   );
 }

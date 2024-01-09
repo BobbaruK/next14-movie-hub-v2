@@ -1,7 +1,7 @@
 import BackTo from "@/components/BackTo";
 import AlternativeTitles from "@/components/MainTitle/AlternativeTitles";
 import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
-import MainTitleFiltering from "@/components/Sidebar/MainTitle/Filtering";
+import AlternativeTitlesFiltering from "@/components/Sidebar/MainTitle/AlternativeTitlesFiltering";
 import {
   RQ_MOVIE_ALTERNATIVE_TITLES_ENDPOINT,
   RQ_MOVIE_ALTERNATIVE_TITLES_KEY,
@@ -49,7 +49,7 @@ export default function MovieTitles({ params: { id } }: Props) {
           />
         }
         sidebar={
-          <MainTitleFiltering
+          <AlternativeTitlesFiltering
             title={pageTitle}
             queryKey={RQ_MOVIE_ALTERNATIVE_TITLES_KEY(id)}
             endpoint={RQ_MOVIE_ALTERNATIVE_TITLES_ENDPOINT(id)}

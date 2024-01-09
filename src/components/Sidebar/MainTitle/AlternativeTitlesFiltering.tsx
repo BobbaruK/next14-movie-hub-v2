@@ -14,7 +14,7 @@ interface Props {
   endpoint: string;
 }
 
-const MainTitleFiltering = ({ title, queryKey, endpoint }: Props) => {
+const AlternativeTitlesFiltering = ({ title, queryKey, endpoint }: Props) => {
   const apiClientMainTitle = new MyAPIClient<
     MovieAlternativeTitles | TVShowAlternativeTitles
   >(endpoint);
@@ -42,9 +42,7 @@ const MainTitleFiltering = ({ title, queryKey, endpoint }: Props) => {
     throw new Error(`${queryKey} - ${errorCountries.message}`);
 
   if (isLoading || isLoadingCountries)
-    return (
-      <div className="alert alert-info">Loading alternative titles sidebar...</div>
-    );
+    return <div className="alert alert-info">Loading sidebar...</div>;
 
   const titles =
     "titles" in data! ? data.titles : "results" in data! ? data.results : [];
@@ -121,4 +119,4 @@ const MainTitleFiltering = ({ title, queryKey, endpoint }: Props) => {
   );
 };
 
-export default MainTitleFiltering;
+export default AlternativeTitlesFiltering;

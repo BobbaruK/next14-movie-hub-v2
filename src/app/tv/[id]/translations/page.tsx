@@ -1,7 +1,62 @@
-export default function TVShowsTranslations() {
+import BackTo from "@/components/BackTo";
+import MainTitleTranslations from "@/components/MainTitle/Translations";
+import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
+import TranslationsFiltering from "@/components/Sidebar/MainTitle/TranslationsFiltering";
+import {
+  RQ_TVSHOW_ENDPOINT,
+  RQ_TVSHOW_KEY,
+  RQ_TVSHOW_TRANSLATIONS_ENDPOINT,
+  RQ_TVSHOW_TRANSLATIONS_KEY,
+} from "@/constants";
+import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
+import movieMetadataTitle from "@/utils/movieMetadataTitle";
+import { Metadata } from "next";
+
+const pageTitle = "Translations";
+
+interface Props {
+  params: {
+    id: string;
+  };
+}
+
+export async function generateMetadata({
+  params: { id },
+}: Props): Promise<Metadata> {
+  const movie: TVShowResponse = await fetch(
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.TMDB_API_KEY}`,
+  ).then((res) => res.json());
+
+  return {
+    title: movieMetadataTitle(movie.name, movie.first_air_date, pageTitle),
+    description: movie.tagline,
+  };
+}
+
+export default function TVShowsTranslations({ params: { id } }: Props) {
   return (
     <div>
-      <h1>TVShows Translations</h1>
+      <BackTo
+        queryKey={RQ_TVSHOW_KEY(id)}
+        endpoint={RQ_TVSHOW_ENDPOINT(id)}
+        backTo={{ label: "Main", link: `/tv/${id}` }}
+      />
+
+      <MainTitleSidebarLeft
+        content={
+          <MainTitleTranslations
+            queryKey={RQ_TVSHOW_TRANSLATIONS_KEY(id)}
+            endpoint={RQ_TVSHOW_TRANSLATIONS_ENDPOINT(id)}
+          />
+        }
+        sidebar={
+          <TranslationsFiltering
+            title={pageTitle}
+            queryKey={RQ_TVSHOW_TRANSLATIONS_KEY(id)}
+            endpoint={RQ_TVSHOW_TRANSLATIONS_ENDPOINT(id)}
+          />
+        }
+      />
     </div>
   );
 }
