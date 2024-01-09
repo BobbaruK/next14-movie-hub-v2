@@ -21,9 +21,10 @@ export default function ReactQueryProvider({ children }: Props) {
             // With SSR, we usually want to set some default staleTime
             // above 0 to avoid refetching immediately on the client
             staleTime: STALE_TIME,
+            gcTime: STALE_TIME,
           },
         },
-      })
+      }),
   );
 
   return (
