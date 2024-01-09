@@ -1,4 +1,3 @@
-import BackToMain from "@/components/BackToMain/BackToMain";
 import { ReactNode } from "react";
 
 interface Props {
@@ -8,10 +7,5 @@ interface Props {
 export default function NoSidebarLayout({
   children, // will be a page or nested layout
 }: Props) {
-  return (
-    <section>
-      <BackToMain />
-      {children}
-    </section>
-  );
+  return <section>{children}</section>;
 }

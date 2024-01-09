@@ -1,9 +1,12 @@
+import BackTo from "@/components/BackTo";
 import AlternativeTitles from "@/components/MainTitle/AlternativeTitles";
 import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
 import MainTitleFiltering from "@/components/Sidebar/MainTitle/Filtering";
 import {
   RQ_MOVIE_ALTERNATIVE_TITLES_ENDPOINT,
   RQ_MOVIE_ALTERNATIVE_TITLES_KEY,
+  RQ_MOVIE_ENDPOINT,
+  RQ_MOVIE_KEY,
 } from "@/constants";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
@@ -33,6 +36,11 @@ export async function generateMetadata({
 export default function MovieTitles({ params: { id } }: Props) {
   return (
     <>
+      <BackTo
+        queryKey={RQ_MOVIE_KEY(id)}
+        endpoint={RQ_MOVIE_ENDPOINT(id)}
+        backTo={{ label: "Main", link: `/movie/${id}` }}
+      />
       <MainTitleSidebarLeft
         content={
           <AlternativeTitles

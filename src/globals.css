@@ -43,6 +43,7 @@
   position: relative;
 }
 
-html {
+html,
+body {
   scroll-behavior: smooth;
 }

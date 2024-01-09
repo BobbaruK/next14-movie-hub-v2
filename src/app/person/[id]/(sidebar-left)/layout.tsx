@@ -1,4 +1,3 @@
-import BackToMain from "@/components/BackToMain/BackToMain";
 import { ReactNode } from "react";
 
 interface Props {
@@ -10,7 +9,6 @@ export default function PersonFilteringSidebarLayout({
 }: Props) {
   return (
     <section>
-      <BackToMain />
       {/* Include shared UI here e.g. a header or sidebar */}
       <aside>Person Filtering Sidebar</aside>
 

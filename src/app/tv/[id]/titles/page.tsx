@@ -1,9 +1,12 @@
+import BackTo from "@/components/BackTo";
 import AlternativeTitles from "@/components/MainTitle/AlternativeTitles";
 import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
 import MainTitleFiltering from "@/components/Sidebar/MainTitle/Filtering";
 import {
   RQ_TVSHOW_ALTERNATIVE_TITLES_KEY,
   RQ_TVSHOW_ALTERNATIVE_TITLES_ENDPOINT,
+  RQ_TVSHOW_ENDPOINT,
+  RQ_TVSHOW_KEY,
 } from "@/constants";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
@@ -33,6 +36,11 @@ export async function generateMetadata({
 export default function TVShowsTitles({ params: { id } }: Props) {
   return (
     <>
+      <BackTo
+        queryKey={RQ_TVSHOW_KEY(id)}
+        endpoint={RQ_TVSHOW_ENDPOINT(id)}
+        backTo={{ label: "Main", link: `/tv/${id}` }}
+      />
       <MainTitleSidebarLeft
         content={
           <AlternativeTitles

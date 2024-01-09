@@ -1,5 +1,4 @@
-import React, { ReactNode } from "react";
-import BackToMain from "./BackToMain/BackToMain";
+import { ReactNode } from "react";
 
 interface Props {
   content: ReactNode;
@@ -9,7 +8,6 @@ interface Props {
 const MainTitleSidebarLeft = ({ content, sidebar }: Props) => {
   return (
     <>
-      <BackToMain />
       <div className="appContaier flex flex-col gap-8 lg:flex-row">
         <aside className="flex flex-col gap-7 lg:basis-1/4">
           <div className="overflow-hidden rounded-box border border-primary shadow-md shadow-primary">

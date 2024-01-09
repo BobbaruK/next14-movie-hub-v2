@@ -54,7 +54,7 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang="en">
-      <body className={inter.className} data-theme="night">
+      <body className={inter.className} data-theme="coffee">
         <ReactQueryProvider>
           <HydrationBoundary state={dehydrate(queryClient)}>
             <div id="siteWrapper">
