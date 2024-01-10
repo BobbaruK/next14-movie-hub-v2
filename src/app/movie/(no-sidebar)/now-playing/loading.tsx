@@ -1,15 +1,5 @@
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingPage from "@/components/LoadingPage";
 
 export default function Loading() {
-  // Or a custom loading skeleton component
-  return (
-    <>
-      <div className="appContaier flex flex-col gap-8 lg:flex-row">
-        <p className="flex items-center justify-center gap-4">
-          <LoadingSpinner size="lg" />
-          Loading Now Playing movies...
-        </p>
-      </div>
-    </>
-  );
+  return <LoadingPage message="Loading Now Playing movies..." />;
 }

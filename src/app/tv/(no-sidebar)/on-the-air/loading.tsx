@@ -1,15 +1,5 @@
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingPage from "@/components/LoadingPage";
 
 export default function Loading() {
-  // Or a custom loading skeleton component
-  return (
-    <>
-      <div className="appContaier flex flex-col gap-8 lg:flex-row">
-        <p className="flex items-center justify-center gap-4">
-          <LoadingSpinner size="lg" />
-          Loading On The Air TV Shows...
-        </p>
-      </div>
-    </>
-  );
+  return <LoadingPage message="Loading On The Air TV Shows..." />;
 }
