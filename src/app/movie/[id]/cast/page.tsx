@@ -1,3 +1,5 @@
+import BackTo from "@/components/BackTo";
+import { RQ_MOVIE_KEY, RQ_MOVIE_ENDPOINT } from "@/constants";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
@@ -23,8 +25,12 @@ export async function generateMetadata({
 
 export default function MovieCast({ params: { id } }: Props) {
   return (
-    <div>
-      <h1>Movie Cast - no sidebar</h1>
-    </div>
+    <>
+      <BackTo
+        queryKey={RQ_MOVIE_KEY(id)}
+        endpoint={RQ_MOVIE_ENDPOINT(id)}
+        backTo={{ label: "Main", link: `/movie/${id}` }}
+      />
+    </>
   );
 }
