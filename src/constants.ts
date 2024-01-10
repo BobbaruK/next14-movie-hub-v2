@@ -111,6 +111,11 @@ export const RQ_MOVIE_RELEASES_KEY = (id: string) => `movie-${id}-releases`;
 export const RQ_MOVIE_RELEASES_ENDPOINT = (id: string) =>
   `/movie/${id}/release_dates`;
 
+// Release dates
+// export const RQ_TVSHOW_SEASON_KEY = (id: string) => `tvshow-${id}-seasons`;
+// export const RQ_TVSHOW_SEASON_ENDPOINT = (id: string) =>
+//   `/movie/${id}/release_dates`;
+
 /***
  *
  *
@@ -128,13 +133,3 @@ export const RQ_MOVIE_IMAGES_ENDPOINT = (id: string) => `movie/${id}/images`;
 // TV Shows Images
 export const RQ_TVSHOWS_IMAGES_KEY = "images-tvshows";
 export const RQ_TVSHOWS_IMAGES_ENDPOINT = (id: string) => `tv/${id}/images`;
-
-// // Movie Translations
-// export const RQ_MOVIE_TRANSLATIONS_KEY = "translations-movie";
-// export const RQ_MOVIE_TRANSLATIONS_ENDPOINT = (id: string) =>
-//   `movie/${id}/translations`;
-
-// // TV Shows Translations
-// export const RQ_TV_SHOWS_TRANSLATIONS_KEY = "translations-tvshows";
-// export const RQ_TV_SHOWS_TRANSLATIONS_ENDPOINT = (id: string) =>
-//   `tv/${id}/translations`;
