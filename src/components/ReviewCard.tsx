@@ -41,7 +41,7 @@ const ReviewCard = ({ review }: Props) => {
   const created = ReleaseDateUI(review.created_at);
 
   return (
-    <div className="card mb-5 overflow-hidden bg-base-100 shadow-md shadow-primary">
+    <div className="card overflow-hidden bg-base-100 shadow-md shadow-primary">
       <div className="card-body relative flex justify-between gap-4 p-4">
         <div className="flex items-center gap-4">
           <div className="overflow-hidden rounded-full [&>img]:h-[45px] [&>img]:w-[45px]">

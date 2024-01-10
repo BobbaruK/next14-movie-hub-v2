@@ -117,6 +117,18 @@ export const RQ_TVSHOW_SEASON_KEY = (id: string, seasonNumber: string) =>
 export const RQ_TVSHOW_SEASON_ENDPOINT = (id: string, seasonNumber: string) =>
   `/tv/${id}/season/${seasonNumber}`;
 
+// Episode
+export const RQ_TVSHOW_EPISODE_KEY = (
+  id: string,
+  seasonNumber: string,
+  episodeNumber: string,
+) => `tvshow-${id}-season-${seasonNumber}-episode-${episodeNumber}`;
+export const RQ_TVSHOW_EPISODE_ENDPOINT = (
+  id: string,
+  seasonNumber: string,
+  episodeNumber: string,
+) => `/tv/${id}/season/${seasonNumber}/episode/${episodeNumber}`;
+
 /***
  *
  *

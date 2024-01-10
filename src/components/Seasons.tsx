@@ -65,7 +65,6 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
                     )}
                     width={154}
                     height={231}
-                    priority
                   />
                 </Link>
               </div>

@@ -24,8 +24,8 @@ const MainTitlePersonCard = ({ cast }: Props) => {
               "w185",
               cast.profile_path,
             )}
-            width={1000}
-            height={1500}
+            width={185}
+            height={278}
           />
         </Link>
       </figure>
