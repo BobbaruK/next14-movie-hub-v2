@@ -5,7 +5,7 @@ import { Network } from "../Network";
 import { ProductionCompany } from "../ProductionCompany";
 import { ProductionCountry } from "../ProductionCountry";
 import { LastEpisodeToAir } from "./LastEpisodeToAir";
-import { Season } from "./Season";
+import { MainTitleSeason } from "./Season";
 
 export interface TVShowResponse {
   adult: boolean;
@@ -33,7 +33,7 @@ export interface TVShowResponse {
   poster_path: string;
   production_companies: ProductionCompany[];
   production_countries: ProductionCountry[];
-  seasons: Season[];
+  seasons: MainTitleSeason[];
   spoken_languages: Language[];
   status: string; // check for enums
   tagline: string;

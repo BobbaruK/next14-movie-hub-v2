@@ -111,10 +111,11 @@ export const RQ_MOVIE_RELEASES_KEY = (id: string) => `movie-${id}-releases`;
 export const RQ_MOVIE_RELEASES_ENDPOINT = (id: string) =>
   `/movie/${id}/release_dates`;
 
-// Release dates
-// export const RQ_TVSHOW_SEASON_KEY = (id: string) => `tvshow-${id}-seasons`;
-// export const RQ_TVSHOW_SEASON_ENDPOINT = (id: string) =>
-//   `/movie/${id}/release_dates`;
+// Season
+export const RQ_TVSHOW_SEASON_KEY = (id: string, seasonNumber: string) =>
+  `tvshow-${id}-season-${seasonNumber}`;
+export const RQ_TVSHOW_SEASON_ENDPOINT = (id: string, seasonNumber: string) =>
+  `/tv/${id}/season/${seasonNumber}`;
 
 /***
  *

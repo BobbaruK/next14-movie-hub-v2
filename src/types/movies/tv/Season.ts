@@ -1,4 +1,4 @@
-export interface Season {
+export interface MainTitleSeason {
   air_date: string;
   episode_count: number;
   id: number;

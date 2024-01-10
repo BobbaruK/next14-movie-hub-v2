@@ -46,16 +46,15 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
     );
 
   const seasons = data?.seasons;
-  console.log(id);
 
   return (
     <div className="flex flex-col gap-8">
       {seasons?.map((season) => (
         <div key={season.id} className="border-b-[1px] border-primary pb-8">
           <div className="appContaier flex flex-col gap-4 lg:flex-row">
-            <div className="flex items-center justify-start md:basis-[154px]">
+            <div className="flex items-center justify-start sm:basis-[154px]">
               <div className="inline-block overflow-hidden rounded-md [&>img]:object-cover">
-                <Link href={`/tv/${id}/seasons/${season.id}`}>
+                <Link href={`/tv/${id}/seasons/${season.season_number}`}>
                   <ImageTMDB
                     type="poster"
                     alt={season.name}
@@ -71,10 +70,10 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-col justify-between gap-4 py-4 md:basis-[100%]">
+            <div className="flex flex-col justify-center gap-4 py-4 sm:basis-[100%]">
               <div>
                 <h2 className="m-0">
-                  <Link href={`/tv/${id}/seasons/${season.id}`}>
+                  <Link href={`/tv/${id}/seasons/${season.season_number}`}>
                     {season.name}
                   </Link>
                 </h2>
@@ -87,11 +86,11 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
                   <span>{season.episode_count} Episodes</span>
                 </p>
               </div>
-              <p>
+              {/* <p>
                 Season {season.season_number} of {data?.name} premiered on{" "}
                 {ReleaseDateUI(season.air_date).releaseDate}
-              </p>
-              <p>{season.overview}</p>
+              </p> */}
+              {/* <p>{season.overview}</p> */}
             </div>
           </div>
         </div>
