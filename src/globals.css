@@ -12,6 +12,9 @@
   h3 {
     @apply mb-3 text-lg font-bold;
   }
+  h4 {
+    @apply text-sm font-bold;
+  }
 
   .appContaier {
     @apply mx-auto max-w-screen-xl px-4;

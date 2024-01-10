@@ -1,8 +1,6 @@
 "use client";
 
-import { RQ_COUNTRIES_ENDPOINT, RQ_COUNTRIES_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { Country } from "@/types/Country";
 import {
   TranslationsMovie,
   TranslationsTV,
