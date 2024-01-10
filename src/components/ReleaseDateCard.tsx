@@ -66,7 +66,9 @@ const ReleaseDateCard = ({ releaseDate }: Props) => {
             <div className="basis-1 px-4 py-2 md:basis-2/12">
               {date.iso_639_1 ? date.iso_639_1 : "-"}
             </div>
-            <div className="basis-1 px-4 py-2 md:basis-2/12">Note</div>
+            <div className="basis-1 px-4 py-2 md:basis-2/12">
+              {date.note ? date.note : "-"}
+            </div>
           </div>
         ))}
       </div>
