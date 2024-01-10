@@ -1,10 +1,8 @@
 "use client";
 
+import { IsoLang } from "@/components/IsoLang";
 import MyAPIClient from "@/services/myApiClient";
-import {
-  TranslationsMovie,
-  TranslationsTV,
-} from "@/types/movies/TranslationsResponse";
+import { ReleaseDatesResponse } from "@/types/movies/movie/ReleaseDates";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
@@ -14,15 +12,11 @@ interface Props {
   endpoint: string;
 }
 
-const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<
-    TranslationsMovie | TranslationsTV
-  >(endpoint);
-  const { data, error, isLoading } = useQuery<
-    TranslationsMovie | TranslationsTV
-  >({
+const ReleasesFiltering = ({ title, queryKey, endpoint }: Props) => {
+  const apiClientReleases = new MyAPIClient<ReleaseDatesResponse>(endpoint);
+  const { data, error, isLoading } = useQuery<ReleaseDatesResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
+    queryFn: () => apiClientReleases.getAll(),
     placeholderData: keepPreviousData,
   });
 
@@ -44,16 +38,16 @@ const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
             "p-3",
           ].join(" ")}
         >
-          {data?.translations.length}
+          {data?.results.length}
         </div>
       </h2>
       <ul className="flex flex-col gap-1 py-2">
-        {data?.translations
+        {data?.results
           .sort((a, b) => {
-            if (a.english_name < b.english_name) {
+            if (a.iso_3166_1 < b.iso_3166_1) {
               return -1;
             }
-            if (a.english_name > b.english_name) {
+            if (a.iso_3166_1 > b.iso_3166_1) {
               return 1;
             }
             return 0;
@@ -64,7 +58,7 @@ const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
               className="p-2 hover:bg-slate-600"
             >
               <Link
-                href={`#${translation.iso_639_1}-${translation.iso_3166_1}`}
+                href={`#${translation.iso_3166_1}`}
                 className={[
                   "flex",
                   "items-center",
@@ -72,7 +66,7 @@ const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
                   "w-full",
                 ].join(" ")}
               >
-                {translation.english_name}
+                <IsoLang iso={translation.iso_3166_1} />
                 <div
                   className={[
                     "badge",
@@ -82,7 +76,7 @@ const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
                     "p-3",
                   ].join(" ")}
                 >
-                  {translation.iso_639_1}-{translation.iso_3166_1}
+                  {translation.release_dates.length}
                 </div>
               </Link>
             </li>
@@ -92,4 +86,4 @@ const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
   );
 };
 
-export default TranslationsFiltering;
+export default ReleasesFiltering;

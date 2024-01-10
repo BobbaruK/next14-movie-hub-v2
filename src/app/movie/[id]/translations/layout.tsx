@@ -33,13 +33,6 @@ const MovieTranslationsLayout = async ({ params: { id }, children }: Props) => {
     queryFn: () => apiClientAlternativeTitles.getAll(),
   });
 
-  // Countries
-  const apiClientCountries = new MyAPIClient<Country[]>(RQ_COUNTRIES_ENDPOINT);
-  await queryClient.prefetchQuery({
-    queryKey: [RQ_COUNTRIES_KEY],
-    queryFn: () => apiClientCountries.getAll(),
-  });
-
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>

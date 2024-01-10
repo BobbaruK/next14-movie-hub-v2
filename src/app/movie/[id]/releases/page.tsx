@@ -1,6 +1,19 @@
+import BackTo from "@/components/BackTo";
+import ReleaseDates from "@/components/MainTitle/movie/ReleaseDates";
+import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
+import ReleasesFiltering from "@/components/Sidebar/MainTitle/ReleasesFiltering";
+import TranslationsFiltering from "@/components/Sidebar/MainTitle/TranslationsFiltering";
+import {
+  RQ_MOVIE_KEY,
+  RQ_MOVIE_ENDPOINT,
+  RQ_MOVIE_RELEASES_ENDPOINT,
+  RQ_MOVIE_RELEASES_KEY,
+} from "@/constants";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
+
+const pageTitle = "Release Dates";
 
 interface Props {
   params: {
@@ -23,8 +36,28 @@ export async function generateMetadata({
 
 export default function MovieReleases({ params: { id } }: Props) {
   return (
-    <div>
-      <h1>Movie Releases: {id}</h1>
-    </div>
+    <>
+      <BackTo
+        queryKey={RQ_MOVIE_KEY(id)}
+        endpoint={RQ_MOVIE_ENDPOINT(id)}
+        backTo={{ label: "Main", link: `/movie/${id}` }}
+      />
+
+      <MainTitleSidebarLeft
+        content={
+          <ReleaseDates
+            queryKey={RQ_MOVIE_RELEASES_KEY(id)}
+            endpoint={RQ_MOVIE_RELEASES_ENDPOINT(id)}
+          />
+        }
+        sidebar={
+          <ReleasesFiltering
+            title={pageTitle}
+            queryKey={RQ_MOVIE_RELEASES_KEY(id)}
+            endpoint={RQ_MOVIE_RELEASES_ENDPOINT(id)}
+          />
+        }
+      />
+    </>
   );
 }

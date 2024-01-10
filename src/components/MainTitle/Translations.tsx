@@ -27,22 +27,9 @@ const MainTitleTranslations = ({ queryKey, endpoint }: Props) => {
     placeholderData: keepPreviousData,
   });
 
-  const apiClientCountries = new MyAPIClient<Country[]>(RQ_COUNTRIES_ENDPOINT);
-  const {
-    data: countries,
-    error: errorCountries,
-    isLoading: isLoadingCountries,
-  } = useQuery<Country[]>({
-    queryKey: [RQ_COUNTRIES_KEY],
-    queryFn: () => apiClientCountries.getAll(),
-    placeholderData: keepPreviousData,
-  });
-
   if (error) throw new Error(`${queryKey} - ${error.message}`);
-  if (errorCountries)
-    throw new Error(`${queryKey} - ${errorCountries.message}`);
 
-  if (isLoading || isLoadingCountries)
+  if (isLoading)
     return <div className="alert alert-info">Loading translations...</div>;
 
   if (data?.translations.length === 0)

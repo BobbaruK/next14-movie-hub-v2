@@ -106,6 +106,11 @@ export const RQ_TVSHOW_TRANSLATIONS_KEY = (id: string) =>
 export const RQ_TVSHOW_TRANSLATIONS_ENDPOINT = (id: string) =>
   `/tv/${id}/translations`;
 
+// Release dates
+export const RQ_MOVIE_RELEASES_KEY = (id: string) => `movie-${id}-releases`;
+export const RQ_MOVIE_RELEASES_ENDPOINT = (id: string) =>
+  `/movie/${id}/release_dates`;
+
 /***
  *
  *

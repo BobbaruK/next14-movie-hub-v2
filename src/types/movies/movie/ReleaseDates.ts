@@ -1,6 +1,6 @@
-export interface ReleaseDates {
+export interface ReleaseDatesResponse {
   id: number;
-  results: [];
+  results: ReleaseDateResult[];
 }
 
 export interface ReleaseDateResult {
@@ -10,7 +10,7 @@ export interface ReleaseDateResult {
 
 export interface ReleaseDate {
   certification: string;
-  descriptors: [];
+  descriptors: any[];
   iso_639_1: string;
   note: string;
   release_date: string;
