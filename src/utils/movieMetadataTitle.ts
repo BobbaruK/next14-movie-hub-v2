@@ -2,14 +2,24 @@ import releaseDateUI from "../utils/releaseDateUI";
 
 const movieMetadataTitle = (
   title: string,
-  releaseDate: string,
-  page?: string
+  releaseDate?: string | null,
+  page?: string | null,
 ) => {
-  const { year } = releaseDateUI(releaseDate);
+  if (page && releaseDate) {
+    const { year } = releaseDateUI(releaseDate);
+    return `${title} (${year}) | ${page}`;
+  }
 
-  if (page) return `${title} (${year}) | ${page}`;
+  if (page) {
+    return `${title} | ${page}`;
+  }
 
-  return `${title} (${year})`;
+  if (releaseDate) {
+    const { year } = releaseDateUI(releaseDate);
+    return `${title} (${year})`;
+  }
+
+  return `${title}`;
 };
 
 export default movieMetadataTitle;
