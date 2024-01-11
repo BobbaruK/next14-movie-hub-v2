@@ -129,6 +129,14 @@ export const RQ_TVSHOW_EPISODE_ENDPOINT = (
   episodeNumber: string,
 ) => `/tv/${id}/season/${seasonNumber}/episode/${episodeNumber}`;
 
+// Popular Persons
+export const RQ_POPULAR_PERSONS_KEY = "popular-persons";
+export const RQ_POPULAR_PERSONS_ENDPOINT = "/person/popular";
+
+// Person
+export const RQ_PERSON_KEY = (id: string) => `person-${id}`;
+export const RQ_PERSON_ENDPOINT = (id: string) => `/person/${id}`;
+
 /***
  *
  *
