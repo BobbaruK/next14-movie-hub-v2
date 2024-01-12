@@ -3,13 +3,14 @@
 import MyAPIClient from "@/services/myApiClient";
 import { People } from "@/types/people/PeoplesResponse";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { useState } from "react";
 
 interface Props {
   queryKey: string;
   endpoint: string;
 }
 
-const PersonName = ({ endpoint, queryKey }: Props) => {
+const KnownFor = ({ endpoint, queryKey }: Props) => {
   const apiClient = new MyAPIClient<People>(endpoint);
   const { data, error, isLoading } = useQuery<People>({
     queryKey: [queryKey],
@@ -20,9 +21,14 @@ const PersonName = ({ endpoint, queryKey }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading person name...</div>;
+    return <div className="alert alert-info">Loading personal info...</div>;
 
-  return <h1>{data?.name}</h1>;
+  return (
+    <div>
+      <h3 className="m-0">Known for</h3>
+      <p>{data?.known_for_department}</p>
+    </div>
+  );
 };
 
-export default PersonName;
+export default KnownFor;

@@ -146,6 +146,12 @@ export const RQ_POPULAR_PERSONS_ENDPOINT = "/person/popular";
 export const RQ_PERSON_KEY = (id: string) => `person-${id}`;
 export const RQ_PERSON_ENDPOINT = (id: string) => `/person/${id}`;
 
+// Person combined credits
+export const RQ_COMBINED_CREDITS_KEY = (id: string) =>
+  `person-${id}-combined_credits`;
+export const RQ_COMBINED_CREDITS_ENDPOINT = (id: string) =>
+  `/person/${id}/combined_credits`;
+
 /***
  *
  *

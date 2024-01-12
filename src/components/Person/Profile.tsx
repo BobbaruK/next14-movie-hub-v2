@@ -41,19 +41,20 @@ const PersonProfile = ({ endpoint, queryKey }: Props) => {
     return <div className="alert alert-info">Loading person name...</div>;
 
   return (
-    <>
+    <div className="overflow-hidden rounded-md">
       <ImageTMDB
         type="poster"
         alt={data?.name!}
         src={imageLink<ProfileSizes>(
           config?.images.secure_base_url!,
-          "w185",
+          "h632",
           data?.profile_path!,
         )}
-        width={185}
-        height={278}
+        width={421}
+        height={632}
+        priority
       />
-    </>
+    </div>
   );
 };
 
