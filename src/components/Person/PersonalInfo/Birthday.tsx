@@ -25,6 +25,7 @@ const Birthday = ({ endpoint, queryKey }: Props) => {
     return <div className="alert alert-info">Loading personal info...</div>;
 
   const birthday = ReleaseDateUI(data?.birthday);
+  Object.keys(birthday).length === 0;
   const personDate = new Date(data?.birthday!);
   const currentDate = new Date();
 
@@ -43,12 +44,16 @@ const Birthday = ({ endpoint, queryKey }: Props) => {
   }
 
   return (
-    <div>
-      <h3 className="m-0">Birthday</h3>
-      <p>
-        {birthday.releaseDate} ({personAge} years old)
-      </p>
-    </div>
+    <>
+      {Object.keys(birthday).length !== 0 && (
+        <div>
+          <h3 className="m-0">Birthday</h3>
+          <p>
+            {birthday.releaseDate} ({personAge} years old)
+          </p>
+        </div>
+      )}
+    </>
   );
 };
 
