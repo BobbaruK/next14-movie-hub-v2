@@ -1,5 +1,10 @@
 import MainTitleNavigation from "@/components/MainTitle/Navigation";
-import { RQ_PERSON_ENDPOINT, RQ_PERSON_KEY } from "@/constants";
+import {
+  RQ_COMBINED_CREDITS_ENDPOINT,
+  RQ_COMBINED_CREDITS_KEY,
+  RQ_PERSON_ENDPOINT,
+  RQ_PERSON_KEY,
+} from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 import { People } from "@/types/people/PeoplesResponse";
@@ -38,13 +43,20 @@ export default async function MainTitleNavigationLayout({
     },
   ];
 
-  // Recommendations
-  const apiClientRecommendations = new MyAPIClient<People>(
-    RQ_PERSON_ENDPOINT(id),
-  );
+  // People
+  const apiClientPeople = new MyAPIClient<People>(RQ_PERSON_ENDPOINT(id));
   await queryClient.prefetchQuery({
     queryKey: [RQ_PERSON_KEY(id)],
-    queryFn: () => apiClientRecommendations.getAll(),
+    queryFn: () => apiClientPeople.getAll(),
+  });
+
+  // People Combined Credits
+  const apiClientCombinedCredits = new MyAPIClient<CombinedCredits>(
+    RQ_COMBINED_CREDITS_ENDPOINT(id),
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_COMBINED_CREDITS_KEY(id)],
+    queryFn: () => apiClientCombinedCredits.getAll(),
   });
 
   return (

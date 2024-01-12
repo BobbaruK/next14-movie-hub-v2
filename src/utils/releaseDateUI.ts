@@ -1,5 +1,5 @@
 const ReleaseDateUI = (relDate: string | undefined) => {
-  if (relDate === undefined) return {};
+  if (!relDate) return {};
 
   const release_date = new Date(relDate);
   const month = release_date.getMonth();
