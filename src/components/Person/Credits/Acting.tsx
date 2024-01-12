@@ -8,7 +8,7 @@ interface Props {
 
 const Acting = ({ castArr }: Props) => {
   return (
-    <div className="flex flex-col gap-2 rounded-md border border-primary">
+    <div className="flex flex-col gap-2 rounded-md border border-primary shadow-md shadow-primary">
       {castArr
         .sort((a, b) => {
           return b[0][0].year - a[0][0].year;
