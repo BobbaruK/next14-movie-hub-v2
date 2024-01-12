@@ -28,6 +28,10 @@ export const RQ_UPCOMING_MOVIES_ENDPOINT = "movie/upcoming";
 export const RQ_MOVIES_GENRES_KEY = "genres-movies";
 export const RQ_MOVIES_GENRES_ENDPOINT = "genre/movie/list";
 
+export const RQ_MOVIE_EXTERNAL_IDS_KEY = (id: string) => `movie-${id}-external`;
+export const RQ_MOVIE_EXTERNAL_IDS_ENDPOINT = (id: string) =>
+  `/movie/${id}/external_ids`;
+
 // TV shows
 export const RQ_POPULAR_TVSHOWS_KEY = "popular-tvshows";
 export const RQ_POPULAR_TVSHOWS_ENDPOINT = "discover/tv";
@@ -43,6 +47,11 @@ export const RQ_TOP_RATED_TVSHOWS_ENDPOINT = "tv/top_rated";
 
 export const RQ_TVSHOWS_GENRES_KEY = "genres-tvshows";
 export const RQ_TVSHOWS_GENRES_ENDPOINT = "genre/tv/list";
+
+export const RQ_TVSHOWS_EXTERNAL_IDS_KEY = (id: string) =>
+  `tvshow-${id}-external`;
+export const RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT = (id: string) =>
+  `/tv/${id}/external_ids`;
 
 // Main Title
 export const RQ_MOVIE_KEY = (id: string) => `movie-${id}`;

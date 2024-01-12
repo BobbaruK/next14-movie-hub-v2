@@ -2,11 +2,11 @@ import MainTitleCast from "@/components/MainTitle/Cast";
 import MainTitleHeroSection from "@/components/MainTitle/HeroSection";
 import MainTitleRecommendations from "@/components/MainTitle/Recommendations";
 import MainTitleReviews from "@/components/MainTitle/Reviews";
-import HomePage from "@/components/Sidebar/MainTitle/HomePage";
 import MainKeywords from "@/components/Sidebar/MainTitle/MainKeywords";
 import OriginalLanguage from "@/components/Sidebar/MainTitle/OriginalLanguage";
 import ProductionCompanies from "@/components/Sidebar/MainTitle/ProductionCompanies";
 import ProductionCountries from "@/components/Sidebar/MainTitle/ProductionCountries";
+import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
 import Status from "@/components/Sidebar/MainTitle/Status";
 import Budget from "@/components/Sidebar/MainTitle/movie/Budget";
 import Revenue from "@/components/Sidebar/MainTitle/movie/Revenue";
@@ -14,6 +14,8 @@ import {
   RQ_MOVIE_CAST_ENDPOINT,
   RQ_MOVIE_CAST_KEY,
   RQ_MOVIE_ENDPOINT,
+  RQ_MOVIE_EXTERNAL_IDS_ENDPOINT,
+  RQ_MOVIE_EXTERNAL_IDS_KEY,
   RQ_MOVIE_KEY,
   RQ_MOVIE_KEYWORDS_ENDPOINT,
   RQ_MOVIE_KEYWORDS_KEY,
@@ -54,9 +56,11 @@ export default function Movie({ params: { id } }: Props) {
         </div>
         <div className="lg:basis-1/4">
           <div className="flex flex-col gap-10">
-            <HomePage
-              queryKey={RQ_MOVIE_KEY(id)}
-              endpoint={RQ_MOVIE_ENDPOINT(id)}
+            <SocialMediaLinks
+              queryKeyMainTitle={RQ_MOVIE_KEY(id)}
+              endpointMainTitle={RQ_MOVIE_ENDPOINT(id)}
+              queryKeyExternalIds={RQ_MOVIE_EXTERNAL_IDS_KEY(id)}
+              endpointExternalIds={RQ_MOVIE_EXTERNAL_IDS_ENDPOINT(id)}
             />
             <Status
               queryKey={RQ_MOVIE_KEY(id)}

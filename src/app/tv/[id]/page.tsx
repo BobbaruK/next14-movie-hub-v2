@@ -3,7 +3,7 @@ import MainTitleHeroSection from "@/components/MainTitle/HeroSection";
 import MainTitleRecommendations from "@/components/MainTitle/Recommendations";
 import MainTitleReviews from "@/components/MainTitle/Reviews";
 import MainTitleCurrentSeason from "@/components/MainTitle/tv/CurrentSeason";
-import HomePage from "@/components/Sidebar/MainTitle/HomePage";
+import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
 import MainKeywords from "@/components/Sidebar/MainTitle/MainKeywords";
 import OriginalLanguage from "@/components/Sidebar/MainTitle/OriginalLanguage";
 import ProductionCompanies from "@/components/Sidebar/MainTitle/ProductionCompanies";
@@ -12,6 +12,8 @@ import Status from "@/components/Sidebar/MainTitle/Status";
 import Networks from "@/components/Sidebar/MainTitle/tv/Networks";
 import Type from "@/components/Sidebar/MainTitle/tv/Type";
 import {
+  RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT,
+  RQ_TVSHOWS_EXTERNAL_IDS_KEY,
   RQ_TVSHOW_CAST_ENDPOINT,
   RQ_TVSHOW_CAST_KEY,
   RQ_TVSHOW_ENDPOINT,
@@ -59,9 +61,11 @@ export default function TvShow({ params: { id } }: Props) {
         </div>
         <div className="lg:basis-1/4">
           <div className="flex flex-col gap-10">
-            <HomePage
-              queryKey={RQ_TVSHOW_KEY(id)}
-              endpoint={RQ_TVSHOW_ENDPOINT(id)}
+            <SocialMediaLinks
+              queryKeyMainTitle={RQ_TVSHOW_KEY(id)}
+              endpointMainTitle={RQ_TVSHOW_ENDPOINT(id)}
+              queryKeyExternalIds={RQ_TVSHOWS_EXTERNAL_IDS_KEY(id)}
+              endpointExternalIds={RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT(id)}
             />
             <Status
               queryKey={RQ_TVSHOW_KEY(id)}

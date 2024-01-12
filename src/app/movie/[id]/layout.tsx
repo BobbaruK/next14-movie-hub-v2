@@ -5,6 +5,8 @@ import {
   RQ_MOVIE_CAST_ENDPOINT,
   RQ_MOVIE_CAST_KEY,
   RQ_MOVIE_ENDPOINT,
+  RQ_MOVIE_EXTERNAL_IDS_ENDPOINT,
+  RQ_MOVIE_EXTERNAL_IDS_KEY,
   RQ_MOVIE_KEY,
   RQ_MOVIE_KEYWORDS_ENDPOINT,
   RQ_MOVIE_KEYWORDS_KEY,
@@ -17,6 +19,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { Language } from "@/types/movies/Language";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+import { MainTitleExternalIds } from "@/types/movies/MainTitleExternalIds";
 import { RecommendationsResponse } from "@/types/movies/Recommendations";
 import { ReviewsResponse } from "@/types/movies/Reviews";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
@@ -155,6 +158,15 @@ export default async function MainTitleNavigationLayout({
   await queryClient.prefetchQuery({
     queryKey: [RQ_MOVIE_RECOMMENDATIONS_KEY(id)],
     queryFn: () => apiClientRecommendations.getAll(),
+  });
+
+  // External ID's
+  const apiClientExternalIds = new MyAPIClient<
+    RecommendationsResponse<MainTitleExternalIds>
+  >(RQ_MOVIE_EXTERNAL_IDS_ENDPOINT(id));
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_MOVIE_EXTERNAL_IDS_KEY(id)],
+    queryFn: () => apiClientExternalIds.getAll(),
   });
 
   return (

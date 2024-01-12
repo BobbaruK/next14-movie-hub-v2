@@ -13,13 +13,14 @@ const Header = () => {
                   role="button"
                   className="btn btn-ghost lg:hidden"
                   aria-label="Menu Button"
-                  >
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor">
+                    stroke="currentColor"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -30,11 +31,12 @@ const Header = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-64">
+                  className="menu dropdown-content menu-sm z-[1] mt-3 w-64 rounded-box bg-base-100 p-2 shadow"
+                >
                   <li>
                     <details>
                       <summary>Movies</summary>
-                      <ul className="p-2 z-10  w-48">
+                      <ul className="z-10 w-48  p-2">
                         <li>
                           <Link href="/movie">Popular</Link>
                         </li>
@@ -53,7 +55,7 @@ const Header = () => {
                   <li>
                     <details>
                       <summary>TV Shows</summary>
-                      <ul className="p-2 z-10  w-48">
+                      <ul className="z-10 w-48  p-2">
                         <li>
                           <Link href="/tv">Popular</Link>
                         </li>
@@ -72,7 +74,7 @@ const Header = () => {
                   <li>
                     <details>
                       <summary>People</summary>
-                      <ul className="p-2 z-10  w-48">
+                      <ul className="z-10 w-48  p-2">
                         <li>
                           <Link href="/person">Popular</Link>
                         </li>
@@ -90,7 +92,7 @@ const Header = () => {
                 <li>
                   <details>
                     <summary>Movies</summary>
-                    <ul className="p-2 z-10  w-48">
+                    <ul className="z-10 w-48  p-2">
                       <li>
                         <Link href="/movie">Popular</Link>
                       </li>
@@ -109,7 +111,7 @@ const Header = () => {
                 <li>
                   <details>
                     <summary>TV Shows</summary>
-                    <ul className="p-2 z-10  w-48">
+                    <ul className="z-10 w-48  p-2">
                       <li>
                         <Link href="/tv">Popular</Link>
                       </li>
@@ -128,7 +130,7 @@ const Header = () => {
                 <li>
                   <details>
                     <summary>People</summary>
-                    <ul className="p-2 z-10  w-48">
+                    <ul className="z-10 w-48  p-2">
                       <li>
                         <Link href="/person">Popular</Link>
                       </li>
@@ -138,13 +140,14 @@ const Header = () => {
               </ul>
             </div>
             <div className="navbar-end">
-              <button className="btn btn-ghost btn-circle" aria-label="Search">
+              <button className="btn btn-circle btn-ghost" aria-label="Search">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor">
+                  stroke="currentColor"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
