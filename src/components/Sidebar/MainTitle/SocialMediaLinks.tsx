@@ -7,7 +7,7 @@ import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { FaImdb, FaLink } from "react-icons/fa";
-import { FaFacebook, FaInstagram, FaMeta, FaXTwitter } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { SiWikidata } from "react-icons/si";
 
 interface Props {

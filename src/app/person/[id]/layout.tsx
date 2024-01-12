@@ -24,10 +24,10 @@ export default async function MainTitleNavigationLayout({
   const queryClient = new QueryClient();
 
   const mainPeopleMenu: MainTitleMenuItem[] = [
-    {
-      label: "Main",
-      href: `/person/${id}`,
-    },
+    // {
+    //   label: "Main",
+    //   href: `/person/${id}`,
+    // },
     {
       label: "Translations",
       href: `/person/${id}/translations`,

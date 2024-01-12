@@ -8,10 +8,10 @@ import { SeasonResponse } from "@/types/movies/tv/SeasonResponse";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaStar } from "react-icons/fa";
 import ImageTMDB from "./ImageTMDB";
-import Link from "next/link";
 
 interface Props {
   queryKey: string;

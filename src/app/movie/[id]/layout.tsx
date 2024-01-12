@@ -160,7 +160,7 @@ export default async function MainTitleNavigationLayout({
     queryFn: () => apiClientRecommendations.getAll(),
   });
 
-  // External ID's
+  // Movie External ID's
   const apiClientExternalIds = new MyAPIClient<
     RecommendationsResponse<MainTitleExternalIds>
   >(RQ_MOVIE_EXTERNAL_IDS_ENDPOINT(id));

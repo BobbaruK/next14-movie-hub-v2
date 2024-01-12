@@ -162,7 +162,7 @@ export default async function MainTVTitleNavigationLayout({
     queryFn: () => apiClientRecommendations.getAll(),
   });
 
-  // External IDs
+  // TVShow External IDs
   const apiClientExternalIds = new MyAPIClient<
     RecommendationsResponse<MainTitleExternalIds>
   >(RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT(id));
