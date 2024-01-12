@@ -93,7 +93,7 @@ const SocialMediaLinks = ({
         )}
         {externalIds?.wikidata_id && (
           <Link
-            href={`https://twitter.com/${externalIds.wikidata_id}`}
+            href={`https://www.wikidata.org/wiki/${externalIds.wikidata_id}`}
             target="_blank"
             className="hover:text-primary"
           >
