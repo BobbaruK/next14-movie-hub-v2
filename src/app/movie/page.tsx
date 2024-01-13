@@ -9,10 +9,11 @@ import {
   RQ_POPULAR_MOVIES_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { MovieFilterParams } from "@/types/QueryParams";
 import { GenreResponse } from "@/types/movies/GenreResponse";
 import { Language } from "@/types/movies/Language";
-import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
+import { Movie } from "@/types/movies/movie/MoviesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
   HydrationBoundary,
@@ -44,7 +45,7 @@ export default async function PopularMovies({
     sort_by,
   );
 
-  const apiClientPopularMovies = new MyAPIClient<MoviesResponse>(
+  const apiClientPopularMovies = new MyAPIClient<MainTitleResponse<Movie>>(
     RQ_POPULAR_MOVIES_ENDPOINT,
   );
   await queryClient.prefetchQuery({

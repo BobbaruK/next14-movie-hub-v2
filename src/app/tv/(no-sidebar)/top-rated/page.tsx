@@ -4,8 +4,9 @@ import {
   RQ_TOP_RATED_TVSHOWS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { MovieFilterParams } from "@/types/QueryParams";
-import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
+import { TVShow } from "@/types/movies/tv/TVShowsResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
   HydrationBoundary,
@@ -35,7 +36,7 @@ export default async function TopRatedTVShows({
     sort_by,
   );
 
-  const apiClient = new MyAPIClient<TVShowsResponse>(
+  const apiClient = new MyAPIClient<MainTitleResponse<TVShow>>(
     RQ_TOP_RATED_TVSHOWS_ENDPOINT,
   );
 

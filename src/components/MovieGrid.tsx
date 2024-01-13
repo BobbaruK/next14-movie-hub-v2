@@ -1,10 +1,14 @@
-import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
-import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
+import { Movie } from "@/types/movies/movie/MoviesResponse";
+import { TVShow } from "@/types/movies/tv/TVShowsResponse";
+import { People } from "@/types/people/PeoplesResponse";
 import MovieCard from "./MovieCard";
-import { PeoplesResponse } from "@/types/people/PeoplesResponse";
 
 interface Props {
-  movies: MoviesResponse | TVShowsResponse | PeoplesResponse;
+  movies:
+    | MainTitleResponse<Movie>
+    | MainTitleResponse<TVShow>
+    | MainTitleResponse<People>;
 }
 
 const MovieGrid = ({ movies }: Props) => {

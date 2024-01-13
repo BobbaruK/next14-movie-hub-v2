@@ -1,10 +1,3 @@
-export interface PeoplesResponse {
-  page: number;
-  results: People[];
-  total_pages: number;
-  total_results: number;
-}
-
 export interface People {
   adult: boolean;
   also_known_as: string[];

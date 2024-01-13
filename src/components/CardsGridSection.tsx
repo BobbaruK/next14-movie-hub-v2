@@ -1,9 +1,10 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
-import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
-import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
-import { PeoplesResponse } from "@/types/people/PeoplesResponse";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
+import { Movie } from "@/types/movies/movie/MoviesResponse";
+import { TVShow } from "@/types/movies/tv/TVShowsResponse";
+import { People } from "@/types/people/PeoplesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useQuery } from "@tanstack/react-query";
 import MovieGrid from "./MovieGrid";
@@ -34,11 +35,15 @@ const CardsGridSection = ({
   );
 
   const apiClient = new MyAPIClient<
-    MoviesResponse | TVShowsResponse | PeoplesResponse
+    | MainTitleResponse<Movie>
+    | MainTitleResponse<TVShow>
+    | MainTitleResponse<People>
   >(endpoint);
 
   const { data, error, isLoading } = useQuery<
-    MoviesResponse | TVShowsResponse | PeoplesResponse
+    | MainTitleResponse<Movie>
+    | MainTitleResponse<TVShow>
+    | MainTitleResponse<People>
   >({
     queryKey: [queryKey, moviesConfig.params],
     queryFn: () => apiClient.getAll(moviesConfig),

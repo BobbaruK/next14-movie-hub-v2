@@ -4,8 +4,9 @@ import {
   RQ_UPCOMING_MOVIES_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { MovieFilterParams } from "@/types/QueryParams";
-import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
+import { Movie } from "@/types/movies/movie/MoviesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
   HydrationBoundary,
@@ -36,7 +37,7 @@ export default async function UpcomingMovies({
     sort_by,
   );
 
-  const apiClient = new MyAPIClient<MoviesResponse>(
+  const apiClient = new MyAPIClient<MainTitleResponse<Movie>>(
     RQ_UPCOMING_MOVIES_ENDPOINT,
   );
 

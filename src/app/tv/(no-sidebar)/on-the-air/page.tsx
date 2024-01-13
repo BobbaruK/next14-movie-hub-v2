@@ -4,8 +4,9 @@ import {
   RQ_ON_THE_AIR_TVSHOW_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { MovieFilterParams } from "@/types/QueryParams";
-import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
+import { TVShow } from "@/types/movies/tv/TVShowsResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
   HydrationBoundary,
@@ -36,7 +37,7 @@ export default async function OnTheAirTVShows({
     sort_by,
   );
 
-  const apiClient = new MyAPIClient<TVShowsResponse>(
+  const apiClient = new MyAPIClient<MainTitleResponse<TVShow>>(
     RQ_ON_THE_AIR_TVSHOW_ENDPOINT,
   );
 

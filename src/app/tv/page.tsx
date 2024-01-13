@@ -9,10 +9,11 @@ import {
   RQ_TVSHOWS_GENRES_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { MovieFilterParams } from "@/types/QueryParams";
 import { GenreResponse } from "@/types/movies/GenreResponse";
 import { Language } from "@/types/movies/Language";
-import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
+import { TVShow } from "@/types/movies/tv/TVShowsResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
   HydrationBoundary,
@@ -44,7 +45,7 @@ export default async function TVShows({
     sort_by,
   );
 
-  const apiClientPopularMovies = new MyAPIClient<TVShowsResponse>(
+  const apiClientPopularMovies = new MyAPIClient<MainTitleResponse<TVShow>>(
     RQ_POPULAR_TVSHOWS_ENDPOINT,
   );
   await queryClient.prefetchQuery({

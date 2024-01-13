@@ -1,10 +1,3 @@
-export interface TVShowsResponse {
-  page: number;
-  results: TVShow[];
-  total_pages: number;
-  total_results: number;
-}
-
 export interface TVShow {
   backdrop_path: string;
   first_air_date: string;

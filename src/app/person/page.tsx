@@ -4,12 +4,13 @@ import {
   RQ_POPULAR_PERSONS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { MovieFilterParams } from "@/types/QueryParams";
-import { PeoplesResponse } from "@/types/people/PeoplesResponse";
+import { People } from "@/types/people/PeoplesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
-  QueryClient,
   HydrationBoundary,
+  QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
 
@@ -32,7 +33,7 @@ export default async function Persons({
   );
 
   // Recommendations
-  const apiClientPeoples = new MyAPIClient<PeoplesResponse>(
+  const apiClientPeoples = new MyAPIClient<MainTitleResponse<People>>(
     RQ_POPULAR_PERSONS_ENDPOINT,
   );
   await queryClient.prefetchQuery({
