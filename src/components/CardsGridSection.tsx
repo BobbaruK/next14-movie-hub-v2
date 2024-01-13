@@ -1,15 +1,13 @@
 "use client";
 
-import { RQ_POPULAR_TVSHOWS_ENDPOINT } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { MainTitleResponse } from "@/types/MainTitleResponse";
-import { Movie, MoviesResponse } from "@/types/movies/movie/MoviesResponse";
-import { TVShow, TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
-import { People, PeoplesResponse } from "@/types/people/PeoplesResponse";
+import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
+import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
+import { PeoplesResponse } from "@/types/people/PeoplesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useQuery } from "@tanstack/react-query";
-import MoviePagination from "./MoviePagination";
 import MovieGrid from "./MovieGrid";
+import MoviePagination from "./MoviePagination";
 
 interface Props {
   page: number;

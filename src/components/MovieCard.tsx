@@ -41,7 +41,7 @@ const MovieCard = ({ movie, index }: Props) => {
 
   const movieTitle = "title" in movie && movie;
   const tv = "first_air_date" in movie && movie;
-  const person = "biography" in movie && movie;
+  const person = "known_for_department" in movie && movie;
 
   const style = {
     "--value": (movieTitle ? movieTitle.vote_average : 0) * 10,
@@ -87,7 +87,7 @@ const MovieCard = ({ movie, index }: Props) => {
               alt={title}
               src={imageLink<ProfileSizes>(
                 config?.images.secure_base_url!,
-                "w185",
+                "h632",
                 movie.profile_path,
               )}
               width={342}
