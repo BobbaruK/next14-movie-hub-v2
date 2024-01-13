@@ -1,4 +1,4 @@
-import BackToPerson from "@/components/BackToPerson";
+import BackTo from "@/components/BackTo";
 import { RQ_PERSON_ENDPOINT, RQ_PERSON_KEY } from "@/constants";
 import { ReactNode } from "react";
 
@@ -15,7 +15,7 @@ export default function PersonFilteringSidebarLayout({
 }: Props) {
   return (
     <>
-      <BackToPerson
+      <BackTo
         backTo={{
           label: "Main",
           link: `/person/${id}`,
