@@ -45,6 +45,7 @@ export default function Person({ params: { id } }: Props) {
             endpoint={RQ_PERSON_ENDPOINT(id)}
           />
           <div className="flex flex-col gap-6">
+            social media aici
             <h2 className="m-0">Personal info</h2>
             <KnownFor
               queryKey={RQ_PERSON_KEY(id)}

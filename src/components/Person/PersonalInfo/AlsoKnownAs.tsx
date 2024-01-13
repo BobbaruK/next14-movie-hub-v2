@@ -24,12 +24,18 @@ const AlsoKnownAs = ({ endpoint, queryKey }: Props) => {
     return <div className="alert alert-info">Loading personal info...</div>;
 
   return (
-    <div>
-      <h3 className="m-0">Also Known As</h3>
-      <ul>
-        {data?.also_known_as.map((name, index) => <li key={index}>{name}</li>)}
-      </ul>
-    </div>
+    <>
+      {data?.also_known_as.length && (
+        <div>
+          <h3 className="m-0">Also Known As</h3>
+          <ul>
+            {data?.also_known_as.map((name, index) => (
+              <li key={index}>{name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 

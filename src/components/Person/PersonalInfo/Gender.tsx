@@ -40,10 +40,14 @@ const Gender = ({ endpoint, queryKey }: Props) => {
   };
 
   return (
-    <div>
-      <h3 className="m-0">Gender</h3>
-      <p>{getGender(data?.gender!)}</p>
-    </div>
+    <>
+      {data?.gender && (
+        <div>
+          <h3 className="m-0">Gender</h3>
+          <p>{getGender(data.gender)}</p>
+        </div>
+      )}
+    </>
   );
 };
 

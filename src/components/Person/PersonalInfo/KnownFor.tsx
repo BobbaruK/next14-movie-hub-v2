@@ -24,10 +24,14 @@ const KnownFor = ({ endpoint, queryKey }: Props) => {
     return <div className="alert alert-info">Loading personal info...</div>;
 
   return (
-    <div>
-      <h3 className="m-0">Known for</h3>
-      <p>{data?.known_for_department}</p>
-    </div>
+    <>
+      {data?.known_for_department && (
+        <div>
+          <h3 className="m-0">Known for</h3>
+          <p>{data.known_for_department}</p>
+        </div>
+      )}
+    </>
   );
 };
 
