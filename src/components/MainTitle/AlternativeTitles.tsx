@@ -3,11 +3,11 @@
 import { RQ_COUNTRIES_ENDPOINT, RQ_COUNTRIES_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Country } from "@/types/Country";
+import { AlternativeTitle } from "@/types/movies/AlternativeTitle";
 import { MovieAlternativeTitles } from "@/types/movies/movie/MovieAlternativeTitles";
 import { TVShowAlternativeTitles } from "@/types/movies/tv/TVShowAlternativeTitles";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import AltTitleCard from "../AltTitleCard";
-import { AlternativeTitle } from "@/types/movies/AlternativeTitle";
 
 interface Props {
   queryKey: string;
@@ -23,7 +23,6 @@ const AlternativeTitles = ({ queryKey, endpoint }: Props) => {
   >({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitle.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientCountries = new MyAPIClient<Country[]>(RQ_COUNTRIES_ENDPOINT);
@@ -34,7 +33,6 @@ const AlternativeTitles = ({ queryKey, endpoint }: Props) => {
   } = useQuery<Country[]>({
     queryKey: [RQ_COUNTRIES_KEY],
     queryFn: () => apiClientCountries.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

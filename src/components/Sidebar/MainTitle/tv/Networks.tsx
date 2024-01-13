@@ -7,8 +7,7 @@ import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { LogoSizes } from "@/types/imageSizes";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import imageLink from "@/utils/imageLink";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import config from "next/config";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
@@ -20,7 +19,6 @@ const Networks = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<TVShowResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitle.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientConfig = new MyAPIClient<Image_Configuration>(

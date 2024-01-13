@@ -2,7 +2,7 @@
 
 import usePersonTitlesCast from "@/hooks/usePersonTitlesCast";
 import MyAPIClient from "@/services/myApiClient";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Acting from "./Acting";
 
 interface Props {
@@ -15,7 +15,6 @@ const Credits = ({ endpoint, queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<CombinedCredits>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const moviesCast = data?.cast.filter(

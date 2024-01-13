@@ -1,13 +1,13 @@
 "use client";
 
+import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { ProfileSizes } from "@/types/imageSizes";
 import { People } from "@/types/people/PeoplesResponse";
 import imageLink from "@/utils/imageLink";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import ImageTMDB from "../ImageTMDB";
-import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
-import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 
 interface Props {
   queryKey: string;
@@ -19,7 +19,6 @@ const PersonProfile = ({ endpoint, queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<People>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientConfig = new MyAPIClient<Image_Configuration>(

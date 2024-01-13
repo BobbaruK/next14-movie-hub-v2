@@ -7,11 +7,11 @@ import { ProfileSizes, StillSizes } from "@/types/imageSizes";
 import { EpisodeResponse } from "@/types/movies/tv/EpisodeResponse";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaStar } from "react-icons/fa";
 import ImageTMDB from "./ImageTMDB";
-import Link from "next/link";
 
 interface Props {
   queryKey: string;
@@ -29,7 +29,6 @@ const Episode = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<EpisodeResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientConfig = new MyAPIClient<Image_Configuration>(

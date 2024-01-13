@@ -4,7 +4,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { MainTitleExternalIds } from "@/types/movies/MainTitleExternalIds";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { FaImdb, FaLink } from "react-icons/fa";
 import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
@@ -29,7 +29,6 @@ const SocialMediaLinks = ({
   const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
     queryKey: [queryKeyMainTitle],
     queryFn: () => apiClientMainTitle.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientExternalIds = new MyAPIClient<MainTitleExternalIds>(
@@ -42,7 +41,6 @@ const SocialMediaLinks = ({
   } = useQuery<MainTitleExternalIds>({
     queryKey: [queryKeyExternalIds],
     queryFn: () => apiClientExternalIds.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKeyMainTitle} - ${error.message}`);

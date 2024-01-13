@@ -3,8 +3,7 @@
 import MyAPIClient from "@/services/myApiClient";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
@@ -18,7 +17,6 @@ const Status = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitle.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

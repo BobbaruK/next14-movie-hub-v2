@@ -5,7 +5,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { Language } from "@/types/movies/Language";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
@@ -19,7 +19,6 @@ const OriginalLanguage = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitle.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientLanguage = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
@@ -30,7 +29,6 @@ const OriginalLanguage = ({ queryKey, endpoint }: Props) => {
   } = useQuery<Language[]>({
     queryKey: [RQ_LANGUAGES_KEY],
     queryFn: () => apiClientLanguage.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const originalLang = languages?.find(

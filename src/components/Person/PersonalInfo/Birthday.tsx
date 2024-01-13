@@ -3,8 +3,7 @@
 import MyAPIClient from "@/services/myApiClient";
 import { People } from "@/types/people/PeoplesResponse";
 import ReleaseDateUI from "@/utils/releaseDateUI";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
@@ -16,7 +15,6 @@ const Birthday = ({ endpoint, queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<People>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

@@ -6,10 +6,9 @@ import { PosterSizes } from "@/types/imageSizes";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { type } from "os";
 import { FaCalendarAlt, FaStar } from "react-icons/fa";
 
 interface Props {
@@ -28,7 +27,6 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<TVShowResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitle.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

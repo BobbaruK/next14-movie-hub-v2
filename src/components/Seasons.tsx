@@ -3,15 +3,15 @@
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
-import { PosterSizes, ProfileSizes } from "@/types/imageSizes";
+import { PosterSizes } from "@/types/imageSizes";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import imageLink from "@/utils/imageLink";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import ImageTMDB from "./ImageTMDB";
-import { FaStar } from "react-icons/fa";
 import ReleaseDateUI from "@/utils/releaseDateUI";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { FaStar } from "react-icons/fa";
+import ImageTMDB from "./ImageTMDB";
 
 interface Props {
   queryKey: string;
@@ -25,7 +25,6 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<TVShowResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientConfig = new MyAPIClient<Image_Configuration>(

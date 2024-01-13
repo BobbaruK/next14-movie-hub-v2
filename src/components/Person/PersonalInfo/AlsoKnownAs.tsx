@@ -2,8 +2,7 @@
 
 import MyAPIClient from "@/services/myApiClient";
 import { People } from "@/types/people/PeoplesResponse";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
@@ -15,7 +14,6 @@ const AlsoKnownAs = ({ endpoint, queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<People>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
@@ -25,7 +23,7 @@ const AlsoKnownAs = ({ endpoint, queryKey }: Props) => {
 
   return (
     <>
-      {data?.also_known_as.length && (
+      {data?.also_known_as.length !== 0 && (
         <div>
           <h3 className="m-0">Also Known As</h3>
           <ul>

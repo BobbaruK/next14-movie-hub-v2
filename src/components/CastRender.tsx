@@ -6,7 +6,7 @@ import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { ProfileSizes } from "@/types/imageSizes";
 import { CastAndCrew, TheCrew } from "@/types/movies/CastAndCrew";
 import imageLink from "@/utils/imageLink";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import ImageTMDB from "./ImageTMDB";
 
@@ -20,7 +20,6 @@ const CastRender = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<CastAndCrew>({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitleCast.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientConfig = new MyAPIClient<Image_Configuration>(

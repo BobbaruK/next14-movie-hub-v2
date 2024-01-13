@@ -2,11 +2,8 @@
 
 import MyAPIClient from "@/services/myApiClient";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
-import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowKeywords } from "@/types/movies/tv/TVShowKeywords";
-import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
@@ -20,7 +17,6 @@ const MainKeywords = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<MovieKeywords | TVShowKeywords>({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitleKeywords.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error)

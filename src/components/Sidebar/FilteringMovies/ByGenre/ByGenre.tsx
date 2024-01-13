@@ -4,7 +4,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { RQ_LANGUAGES_ENDPOINT } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { GenreResponse } from "@/types/movies/GenreResponse";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
@@ -20,7 +20,6 @@ const ByGenre = ({ rqKey }: Props) => {
   const { data, error, isLoading } = useQuery<GenreResponse>({
     queryKey: [rqKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const params = useSearchParams();

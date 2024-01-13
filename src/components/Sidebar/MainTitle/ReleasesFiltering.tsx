@@ -3,7 +3,7 @@
 import { IsoLang } from "@/components/IsoLang";
 import MyAPIClient from "@/services/myApiClient";
 import { ReleaseDatesResponse } from "@/types/movies/movie/ReleaseDates";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
 interface Props {
@@ -17,7 +17,6 @@ const ReleasesFiltering = ({ title, queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<ReleaseDatesResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClientReleases.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

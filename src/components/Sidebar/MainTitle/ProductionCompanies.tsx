@@ -4,11 +4,11 @@ import ImageTMDB from "@/components/ImageTMDB";
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
-import { LogoSizes, PosterSizes } from "@/types/imageSizes";
+import { LogoSizes } from "@/types/imageSizes";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import imageLink from "@/utils/imageLink";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
@@ -22,7 +22,6 @@ const ProductionCompanies = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitle.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientConfig = new MyAPIClient<Image_Configuration>(

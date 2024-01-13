@@ -6,13 +6,13 @@ import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { PosterSizes, ProfileSizes } from "@/types/imageSizes";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
+import { People } from "@/types/people/PeoplesResponse";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import ImageTMDB from "./ImageTMDB";
-import Link from "next/link";
-import { People } from "@/types/people/PeoplesResponse";
 
 interface BackTo {
   label: string;
@@ -34,7 +34,6 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
   >({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const apiClientConfig = new MyAPIClient<Image_Configuration>(

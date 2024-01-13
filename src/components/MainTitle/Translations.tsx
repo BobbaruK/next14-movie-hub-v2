@@ -5,7 +5,7 @@ import {
   TranslationsMovie,
   TranslationsTV,
 } from "@/types/movies/TranslationsResponse";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import TranslationCard from "../TranslationCard";
 
 interface Props {
@@ -22,7 +22,6 @@ const MainTitleTranslations = ({ queryKey, endpoint }: Props) => {
   >({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitle.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

@@ -2,10 +2,10 @@
 
 import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import MainTitlePersonCard from "./PersonCard";
-import { useParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import MainTitlePersonCard from "./PersonCard";
 
 interface Props {
   queryKey: string;
@@ -20,7 +20,6 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
   const { data, error, isLoading } = useQuery<CastAndCrew>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

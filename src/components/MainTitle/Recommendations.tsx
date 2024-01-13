@@ -4,7 +4,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { RecommendationsResponse } from "@/types/movies/Recommendations";
 import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import MovieCard from "../MovieCard";
 
 interface Props {
@@ -21,7 +21,6 @@ const MainTitleRecommendations = ({ queryKey, endpoint }: Props) => {
   >({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

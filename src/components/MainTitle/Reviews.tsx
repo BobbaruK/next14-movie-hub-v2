@@ -2,7 +2,7 @@
 
 import MyAPIClient from "@/services/myApiClient";
 import { ReviewsResponse } from "@/types/movies/Reviews";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import ReviewCard from "../ReviewCard";
 
@@ -16,7 +16,6 @@ const MainTitleReviews = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<ReviewsResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

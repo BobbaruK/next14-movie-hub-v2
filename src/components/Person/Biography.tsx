@@ -2,7 +2,7 @@
 
 import MyAPIClient from "@/services/myApiClient";
 import { People } from "@/types/people/PeoplesResponse";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 interface Props {
@@ -15,7 +15,6 @@ const Biography = ({ endpoint, queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<People>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   const [show, setShow] = useState(false);

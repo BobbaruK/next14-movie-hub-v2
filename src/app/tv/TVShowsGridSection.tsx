@@ -6,7 +6,7 @@ import { RQ_POPULAR_TVSHOWS_ENDPOINT } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   page: number;
@@ -37,7 +37,6 @@ const TVShowsGridSection = ({
   const { data, error, isLoading } = useQuery<TVShowsResponse>({
     queryKey: [queryKey, moviesConfig.params],
     queryFn: () => apiClient.getAll(moviesConfig),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

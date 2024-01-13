@@ -1,9 +1,9 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { ReleaseDatesResponse } from "@/types/movies/movie/ReleaseDates";
 import ReleaseDateCard from "@/components/ReleaseDateCard";
+import MyAPIClient from "@/services/myApiClient";
+import { ReleaseDatesResponse } from "@/types/movies/movie/ReleaseDates";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
@@ -15,7 +15,6 @@ const ReleaseDates = ({ queryKey, endpoint }: Props) => {
   const { data, error, isLoading } = useQuery<ReleaseDatesResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClientReleases.getAll(),
-    placeholderData: keepPreviousData,
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
