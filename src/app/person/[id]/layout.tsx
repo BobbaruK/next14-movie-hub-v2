@@ -7,7 +7,7 @@ import {
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
-import { People } from "@/types/people/PeoplesResponse";
+import { PeopleResponse } from "@/types/people/PeopleResponse";
 import {
   HydrationBoundary,
   QueryClient,
@@ -44,7 +44,7 @@ export default async function MainTitleNavigationLayout({
   ];
 
   // People
-  const apiClientPeople = new MyAPIClient<People>(RQ_PERSON_ENDPOINT(id));
+  const apiClientPeople = new MyAPIClient<PeopleResponse>(RQ_PERSON_ENDPOINT(id));
   await queryClient.prefetchQuery({
     queryKey: [RQ_PERSON_KEY(id)],
     queryFn: () => apiClientPeople.getAll(),

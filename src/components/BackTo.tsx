@@ -6,7 +6,7 @@ import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { PosterSizes, ProfileSizes } from "@/types/imageSizes";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
-import { People } from "@/types/people/PeoplesResponse";
+import { PeopleResponse } from "@/types/people/PeopleResponse";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
@@ -26,11 +26,11 @@ interface Props {
 }
 
 const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
-  const apiClient = new MyAPIClient<MovieResponse | TVShowResponse | People>(
+  const apiClient = new MyAPIClient<MovieResponse | TVShowResponse | PeopleResponse>(
     endpoint,
   );
   const { data, error, isLoading } = useQuery<
-    MovieResponse | TVShowResponse | People
+    MovieResponse | TVShowResponse | PeopleResponse
   >({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),

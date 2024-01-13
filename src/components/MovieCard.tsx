@@ -4,12 +4,12 @@ import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { PosterSizes, ProfileSizes } from "@/types/imageSizes";
 import { Movie } from "@/types/movies/movie/MoviesResponse";
 import { TVShow } from "@/types/movies/tv/TVShowsResponse";
+import { People } from "@/types/people/PeoplesResponse";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import ImageTMDB from "./ImageTMDB";
-import { People } from "@/types/people/PeoplesResponse";
 
 interface Props {
   movie: Movie | TVShow | People;
@@ -131,6 +131,22 @@ const MovieCard = ({ movie, index }: Props) => {
         </h2>
 
         {(movieTitle || tv) && <p className="grow-0">{date()}</p>}
+        {person && (
+          <div>
+            {person.known_for.map((movie, index) => (
+              <small key={index}>
+                {movie.title &&
+                  `${movie.title}${
+                    index === person.known_for.length - 2
+                      ? " and "
+                      : index === person.known_for.length - 1
+                        ? ""
+                        : ", "
+                  }`}
+              </small>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

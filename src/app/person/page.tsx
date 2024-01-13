@@ -6,7 +6,7 @@ import {
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { MovieFilterParams } from "@/types/QueryParams";
-import { People } from "@/types/people/PeoplesResponse";
+import { PeopleResponse } from "@/types/people/PeopleResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import {
   HydrationBoundary,
@@ -33,7 +33,7 @@ export default async function Persons({
   );
 
   // Recommendations
-  const apiClientPeoples = new MyAPIClient<MainTitleResponse<People>>(
+  const apiClientPeoples = new MyAPIClient<MainTitleResponse<PeopleResponse>>(
     RQ_POPULAR_PERSONS_ENDPOINT,
   );
   await queryClient.prefetchQuery({

@@ -1,7 +1,7 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
-import { People } from "@/types/people/PeoplesResponse";
+import { PeopleResponse } from "@/types/people/PeopleResponse";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 
@@ -11,8 +11,8 @@ interface Props {
 }
 
 const Birthday = ({ endpoint, queryKey }: Props) => {
-  const apiClient = new MyAPIClient<People>(endpoint);
-  const { data, error, isLoading } = useQuery<People>({
+  const apiClient = new MyAPIClient<PeopleResponse>(endpoint);
+  const { data, error, isLoading } = useQuery<PeopleResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
   });

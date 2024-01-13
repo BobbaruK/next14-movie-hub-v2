@@ -13,7 +13,7 @@ import {
   RQ_PERSON_ENDPOINT,
   RQ_PERSON_KEY,
 } from "@/constants";
-import { People } from "@/types/people/PeoplesResponse";
+import { PeopleResponse } from "@/types/people/PeopleResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
 
@@ -26,7 +26,7 @@ interface Props {
 export async function generateMetadata({
   params: { id },
 }: Props): Promise<Metadata> {
-  const person: People = await fetch(
+  const person: PeopleResponse = await fetch(
     `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.TMDB_API_KEY}`,
   ).then((res) => res.json());
 
