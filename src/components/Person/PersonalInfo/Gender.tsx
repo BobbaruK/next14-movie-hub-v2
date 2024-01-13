@@ -23,9 +23,6 @@ const Gender = ({ endpoint, queryKey }: Props) => {
 
   const getGender = (gender: number) => {
     switch (gender) {
-      case 0:
-        return "Not specified";
-
       case 1:
         return "Female";
 
@@ -34,12 +31,15 @@ const Gender = ({ endpoint, queryKey }: Props) => {
 
       case 3:
         return "Non-binary";
+
+      default:
+        return "Not specified";
     }
   };
 
   return (
     <>
-      {data?.gender && (
+      {data?.gender !== undefined && (
         <div>
           <h3 className="m-0">Gender</h3>
           <p>{getGender(data.gender)}</p>

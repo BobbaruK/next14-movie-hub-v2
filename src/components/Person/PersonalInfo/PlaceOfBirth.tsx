@@ -22,10 +22,14 @@ const PlaceOfBirth = ({ endpoint, queryKey }: Props) => {
     return <div className="alert alert-info">Loading personal info...</div>;
 
   return (
-    <div>
-      <h3 className="m-0">Place of Birth</h3>
-      <p>{data?.place_of_birth}</p>
-    </div>
+    <>
+      {data?.place_of_birth && (
+        <div>
+          <h3 className="m-0">Place of Birth</h3>
+          <p>{data?.place_of_birth}</p>
+        </div>
+      )}
+    </>
   );
 };
 
