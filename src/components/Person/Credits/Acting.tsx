@@ -7,6 +7,13 @@ interface Props {
 }
 
 const Acting = ({ castArr }: Props) => {
+  const year = (arr: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[]) => {
+    const date = ReleaseDateUI(
+      "title" in arr[0] ? arr[0].release_date : arr[0].first_air_date,
+    );
+
+    return date.year ? date.year : "-";
+  };
   return (
     <div className="flex flex-col gap-2 rounded-md border border-primary shadow-md shadow-primary">
       {castArr
@@ -18,19 +25,7 @@ const Acting = ({ castArr }: Props) => {
             <div className="flex flex-col gap-4 p-3">
               {groups.map((groupCredit, ind) => (
                 <div key={`groupCredit-${ind}`} className="flex flex-row gap-4">
-                  <div>
-                    {ReleaseDateUI(
-                      "title" in groupCredit[0]
-                        ? groupCredit[0].release_date
-                        : groupCredit[0].first_air_date,
-                    ).year
-                      ? ReleaseDateUI(
-                          "title" in groupCredit[0]
-                            ? groupCredit[0].release_date
-                            : groupCredit[0].first_air_date,
-                        ).year
-                      : "-"}
-                  </div>
+                  <div>{year(groupCredit)}</div>
                   &bull;
                   <div className="flex flex-col">
                     <div className="font-bold">
