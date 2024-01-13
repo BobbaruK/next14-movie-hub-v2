@@ -1,3 +1,4 @@
+import CardsGridSection from "@/components/CardsGridSection";
 import {
   RQ_ON_THE_AIR_TVSHOW_ENDPOINT,
   RQ_ON_THE_AIR_TVSHOW_KEY,
@@ -12,7 +13,6 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import { Metadata } from "next";
-import TVShowsGridSection from "../../TVShowsGridSection";
 
 const pageTitle = `Currently Airing TV Shows`;
 
@@ -54,12 +54,13 @@ export default async function OnTheAirTVShows({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>
-            <TVShowsGridSection
+            <CardsGridSection
               page={pageNumber}
               with_genres={with_genres}
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_ON_THE_AIR_TVSHOW_KEY}
+              endpoint={RQ_ON_THE_AIR_TVSHOW_ENDPOINT}
             />
           </div>
         </div>

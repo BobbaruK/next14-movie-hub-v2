@@ -4,13 +4,14 @@ import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import { PeoplesResponse } from "@/types/people/PeoplesResponse";
 
 interface Props {
   page: number;
   with_genres: string;
   sort_by: string;
   with_original_language: string;
-  movie: MoviesResponse | TVShowsResponse | undefined;
+  movie: MoviesResponse | TVShowsResponse | PeoplesResponse;
 }
 
 const MoviePagination = ({

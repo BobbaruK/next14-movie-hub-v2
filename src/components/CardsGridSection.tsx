@@ -1,12 +1,15 @@
 "use client";
 
-import MovieGrid from "@/components/MovieGrid";
-import MoviePagination from "@/components/MoviePagination";
 import { RQ_POPULAR_TVSHOWS_ENDPOINT } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
+import { Movie, MoviesResponse } from "@/types/movies/movie/MoviesResponse";
+import { TVShow, TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
+import { People, PeoplesResponse } from "@/types/people/PeoplesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useQuery } from "@tanstack/react-query";
+import MoviePagination from "./MoviePagination";
+import MovieGrid from "./MovieGrid";
 
 interface Props {
   page: number;
@@ -14,14 +17,16 @@ interface Props {
   sort_by: string;
   with_original_language: string;
   queryKey: string;
+  endpoint: string;
 }
 
-const TVShowsGridSection = ({
+const CardsGridSection = ({
   page,
   with_genres,
   sort_by,
   with_original_language,
   queryKey,
+  endpoint,
 }: Props) => {
   const moviesConfig = moviesFetchConfig(
     page,
@@ -30,19 +35,20 @@ const TVShowsGridSection = ({
     sort_by,
   );
 
-  const apiClient = new MyAPIClient<TVShowsResponse>(
-    RQ_POPULAR_TVSHOWS_ENDPOINT,
-  );
+  const apiClient = new MyAPIClient<
+    MoviesResponse | TVShowsResponse | PeoplesResponse
+  >(endpoint);
 
-  const { data, error, isLoading } = useQuery<TVShowsResponse>({
+  const { data, error, isLoading } = useQuery<
+    MoviesResponse | TVShowsResponse | PeoplesResponse
+  >({
     queryKey: [queryKey, moviesConfig.params],
     queryFn: () => apiClient.getAll(moviesConfig),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
-  if (isLoading)
-    return <div className="alert alert-info">Loading TV Shows...</div>;
+  if (isLoading) return <div className="alert alert-info">Loading shit...</div>;
 
   if (data?.results.length === 0)
     return <div className="alert alert-warning">No results</div>;
@@ -51,17 +57,17 @@ const TVShowsGridSection = ({
     <>
       <div className="mb-4">
         <MoviePagination
-          movie={data}
+          movie={data!}
           page={page}
           with_genres={with_genres}
           sort_by={sort_by}
           with_original_language={with_original_language}
         />
       </div>
-      <MovieGrid movies={data} />
+      <MovieGrid movies={data!} />
       <div className="mt-4">
         <MoviePagination
-          movie={data}
+          movie={data!}
           page={page}
           with_genres={with_genres}
           sort_by={sort_by}
@@ -72,4 +78,4 @@ const TVShowsGridSection = ({
   );
 };
 
-export default TVShowsGridSection;
+export default CardsGridSection;

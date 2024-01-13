@@ -53,9 +53,11 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
       </div>
     );
 
-  const movie = "title" in data! && (data satisfies MovieResponse);
-  const tv = "seasons" in data! && (data satisfies TVShowResponse);
-  const person = "biography" in data! && (data satisfies People);
+  if (!data) return;
+
+  const movie = "title" in data && data;
+  const tv = "seasons" in data && data;
+  const person = "biography" in data && data;
 
   const title = () => {
     if (movie) return movie.title;

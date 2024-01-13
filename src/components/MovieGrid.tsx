@@ -1,9 +1,10 @@
 import { MoviesResponse } from "@/types/movies/movie/MoviesResponse";
 import { TVShowsResponse } from "@/types/movies/tv/TVShowsResponse";
 import MovieCard from "./MovieCard";
+import { PeoplesResponse } from "@/types/people/PeoplesResponse";
 
 interface Props {
-  movies: MoviesResponse | TVShowsResponse | undefined;
+  movies: MoviesResponse | TVShowsResponse | PeoplesResponse;
 }
 
 const MovieGrid = ({ movies }: Props) => {

@@ -1,3 +1,4 @@
+import CardsGridSection from "@/components/CardsGridSection";
 import { FilteringMovies } from "@/components/Sidebar/FilteringMovies";
 import {
   RQ_LANGUAGES_ENDPOINT,
@@ -19,7 +20,6 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import { Metadata } from "next";
-import MoviesGridSection from "./MoviesGridSection";
 
 const pageTitle = `Popular Movies`;
 
@@ -77,12 +77,13 @@ export default async function PopularMovies({
             <FilteringMovies genresRQKey={RQ_MOVIES_GENRES_KEY} />
           </div>
           <div className="lg:basis-3/4">
-            <MoviesGridSection
+            <CardsGridSection
               page={pageNumber}
               with_genres={with_genres}
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_POPULAR_MOVIES_KEY}
+              endpoint={RQ_POPULAR_MOVIES_ENDPOINT}
             />
           </div>
         </div>

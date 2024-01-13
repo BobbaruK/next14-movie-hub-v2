@@ -1,3 +1,4 @@
+import CardsGridSection from "@/components/CardsGridSection";
 import {
   RQ_UPCOMING_MOVIES_ENDPOINT,
   RQ_UPCOMING_MOVIES_KEY,
@@ -12,7 +13,6 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import { Metadata } from "next";
-import MoviesGridSection from "../../MoviesGridSection";
 
 const pageTitle = `Upcoming Movies`;
 
@@ -54,12 +54,13 @@ export default async function UpcomingMovies({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>
-            <MoviesGridSection
+            <CardsGridSection
               page={pageNumber}
               with_genres=""
               with_original_language=""
               sort_by=""
               queryKey={RQ_UPCOMING_MOVIES_KEY}
+              endpoint={RQ_UPCOMING_MOVIES_ENDPOINT}
             />
           </div>
         </div>

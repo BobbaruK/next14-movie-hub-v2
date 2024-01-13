@@ -1,3 +1,4 @@
+import CardsGridSection from "@/components/CardsGridSection";
 import {
   RQ_TOP_RATED_TVSHOWS_ENDPOINT,
   RQ_TOP_RATED_TVSHOWS_KEY,
@@ -12,7 +13,6 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import { Metadata } from "next";
-import TVShowsGridSection from "../../TVShowsGridSection";
 
 const pageTitle = `Top Rated TV Shows`;
 
@@ -53,12 +53,13 @@ export default async function TopRatedTVShows({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>
-            <TVShowsGridSection
+            <CardsGridSection
               page={pageNumber}
               with_genres={with_genres}
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_TOP_RATED_TVSHOWS_KEY}
+              endpoint={RQ_TOP_RATED_TVSHOWS_ENDPOINT}
             />
           </div>
         </div>
