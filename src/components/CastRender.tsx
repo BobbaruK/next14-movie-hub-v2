@@ -1,15 +1,14 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
-import { CastAndCrew, TheCrew } from "@/types/movies/CastAndCrew";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import ImageTMDB from "./ImageTMDB";
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
+import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
-import { PosterSizes, ProfileSizes } from "@/types/imageSizes";
+import { ProfileSizes } from "@/types/imageSizes";
+import { CastAndCrew, TheCrew } from "@/types/movies/CastAndCrew";
 import imageLink from "@/utils/imageLink";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import React from "react";
+import ImageTMDB from "./ImageTMDB";
 
 interface Props {
   queryKey: string;
@@ -143,7 +142,7 @@ const CastRender = ({ queryKey, endpoint }: Props) => {
                 return 0;
               })
               .map((crewDepartment, index) => (
-                <div key={index}>
+                <div key={`crewDepartment-${index}`}>
                   <h3>{crewDepartment[0].department}</h3>
                   <div className="flex flex-col gap-4">
                     {crewDepartment
@@ -156,9 +155,9 @@ const CastRender = ({ queryKey, endpoint }: Props) => {
                         }
                         return 0;
                       })
-                      .map((person) => (
+                      .map((person, ind) => (
                         <div
-                          key={person.id}
+                          key={`person-${person.id}-${ind}`}
                           className="flex items-center gap-4"
                         >
                           <div className="overflow-hidden rounded-md">
