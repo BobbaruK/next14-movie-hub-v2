@@ -48,16 +48,33 @@ const usePersonTitlesCast = (
       },
       item,
     ) => {
+      // console.log(group);
       if (!group[item[0].year]) {
         group[item[0].year] = [];
       }
+
       group[item[0].year].push(item);
+
       return group;
     },
     {},
   );
 
   const groupByYearArray = Object.values(groupByYear);
+
+  let undefinedYearIndexes: number[] = [];
+
+  const undefinedYear = groupByYearArray.filter((groups, index) => {
+    if (groups[0][0].year === undefined) undefinedYearIndexes.push(index);
+
+    return groups[0][0].year === undefined;
+  });
+
+  undefinedYearIndexes.forEach((ind) => {
+    groupByYearArray.splice(ind, 1);
+  });
+
+  if (undefinedYear[0]) groupByYearArray.unshift(undefinedYear[0]);
 
   return groupByYearArray;
 };

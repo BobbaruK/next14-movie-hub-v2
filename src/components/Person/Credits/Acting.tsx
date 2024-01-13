@@ -15,17 +15,20 @@ const Acting = ({ castArr }: Props) => {
     return date.year ? date.year : "-";
   };
   return (
-    <div className="flex flex-col gap-2 rounded-md border border-primary shadow-md shadow-primary">
+    <div className="flex flex-col gap-6 rounded-md border border-primary pt-4 shadow-md shadow-primary">
       {castArr
         .sort((a, b) => {
           return b[0][0].year - a[0][0].year;
         })
         .map((groups, index) => (
           <React.Fragment key={`group-${index}`}>
-            <div className="flex flex-col gap-4 p-3">
+            <div className="flex flex-col gap-4 px-3">
               {groups.map((groupCredit, ind) => (
-                <div key={`groupCredit-${ind}`} className="flex flex-row gap-4">
-                  <div>{year(groupCredit)}</div>
+                <div
+                  key={`groupCredit-${ind}`}
+                  className="grid-cols-person-credit grid gap-4"
+                >
+                  <div className="text-center">{year(groupCredit)}</div>
                   &bull;
                   <div className="flex flex-col">
                     <div className="font-bold">
