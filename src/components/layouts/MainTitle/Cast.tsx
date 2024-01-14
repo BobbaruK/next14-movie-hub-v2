@@ -6,6 +6,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { ProfileSizes } from "@/types/imageSizes";
 import { CastAndCrew, TheCrew } from "@/types/movies/CastAndCrew";
+import idTitleHyphen from "@/utils/idTitleHyphen";
 import imageLink from "@/utils/imageLink";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -74,7 +75,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
             {cast.map((person) => (
               <div key={person.id} className="flex items-center gap-4">
                 <div className="overflow-hidden rounded-md">
-                  <Link href={`/person/${person.id}`}>
+                  <Link href={`/person/${idTitleHyphen(person.id, person.name)}`}>
                     <ImageTMDB
                       type="poster"
                       alt={person.name}
@@ -91,10 +92,10 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                 </div>
                 <div>
                   <h3 className="m-0">
-                    <Link href={`/person/${person.id}`}>{person.name}</Link>
+                    <Link href={`/person/${idTitleHyphen(person.id, person.name)}`}>{person.name}</Link>
                   </h3>
                   <p>
-                    <Link href={`/person/${person.id}`}>
+                    <Link href={`/person/${idTitleHyphen(person.id, person.name)}`}>
                       <small>{person.character}</small>
                     </Link>
                   </p>
@@ -160,7 +161,12 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                           className="flex items-center gap-4"
                         >
                           <div className="overflow-hidden rounded-md">
-                            <Link href={`/person/${person.id}`}>
+                            <Link
+                              href={`/person/${idTitleHyphen(
+                                person.id,
+                                person.name,
+                              )}`}
+                            >
                               <ImageTMDB
                                 type="poster"
                                 alt={person.name}
@@ -177,12 +183,22 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                           </div>
                           <div>
                             <h4 className="m-0">
-                              <Link href={`/person/${person.id}`}>
+                              <Link
+                                href={`/person/${idTitleHyphen(
+                                  person.id,
+                                  person.name,
+                                )}`}
+                              >
                                 {person.name}
                               </Link>
                             </h4>
                             <p>
-                              <Link href={`/person/${person.id}`}>
+                              <Link
+                                href={`/person/${idTitleHyphen(
+                                  person.id,
+                                  person.name,
+                                )}`}
+                              >
                                 <small>{person.job}</small>
                               </Link>
                             </p>

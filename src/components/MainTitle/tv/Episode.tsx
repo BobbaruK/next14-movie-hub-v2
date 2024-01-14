@@ -7,6 +7,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { ProfileSizes, StillSizes } from "@/types/imageSizes";
 import { EpisodeResponse } from "@/types/movies/tv/EpisodeResponse";
+import idTitleHyphen from "@/utils/idTitleHyphen";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
@@ -109,7 +110,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
             {data?.guest_stars.map((star) => (
               <div key={star.id} className="flex flex-row gap-4">
                 <div className="overflow-hidden rounded-md">
-                  <Link href={`/person/${star.id}`}>
+                  <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
                     <ImageTMDB
                       type="poster"
                       alt={star.name}
@@ -125,7 +126,9 @@ const Episode = ({ queryKey, endpoint }: Props) => {
                 </div>
                 <div className="flex flex-col items-start justify-center gap-1">
                   <h4>
-                    <Link href={`/person/${star.id}`}>{star.name}</Link>
+                    <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
+                      {star.name}
+                    </Link>
                   </h4>
                   <div>{star.character}</div>
                 </div>
