@@ -3,9 +3,8 @@ import { Review } from "@/types/movies/Reviews";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useState } from "react";
-import { FaStar } from "react-icons/fa";
-import ImageTMDB from "./ImageTMDB";
-import Rating from "./Rating";
+import ImageTMDB from "../ImageTMDB";
+import Rating from "../Rating";
 
 const ReviewContent = ({ content }: { content: string }) => {
   "use client";

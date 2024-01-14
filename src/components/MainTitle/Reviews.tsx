@@ -4,7 +4,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { ReviewsResponse } from "@/types/movies/Reviews";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import ReviewCard from "../ReviewCard";
+import ReviewCard from "../Cards/Review";
 
 interface Props {
   queryKey: string;
