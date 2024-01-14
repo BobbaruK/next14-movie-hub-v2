@@ -1,5 +1,5 @@
 import BackTo from "@/components/BackTo";
-import Seasons from "@/components/Seasons";
+import Seasons from "@/components/layouts/MainTitle/Seasons";
 import { RQ_TVSHOW_KEY, RQ_TVSHOW_ENDPOINT } from "@/constants";
 
 interface Props {

@@ -1,5 +1,7 @@
 "use client";
 
+import ImageTMDB from "@/components/ImageTMDB";
+import Rating from "@/components/Rating";
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
@@ -10,9 +12,6 @@ import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { FaStar } from "react-icons/fa";
-import ImageTMDB from "./ImageTMDB";
-import Rating from "./Rating";
 
 interface Props {
   queryKey: string;
