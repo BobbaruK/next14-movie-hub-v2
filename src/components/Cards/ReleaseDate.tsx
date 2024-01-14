@@ -1,6 +1,6 @@
 import { ReleaseDateResult } from "@/types/movies/movie/ReleaseDates";
 import ReleaseDateUI from "@/utils/releaseDateUI";
-import { IsoLang } from "./IsoLang";
+import { IsoLang } from "../IsoLang";
 
 interface Props {
   releaseDate: ReleaseDateResult;

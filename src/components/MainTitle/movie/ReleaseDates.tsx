@@ -1,6 +1,6 @@
 "use client";
 
-import ReleaseDateCard from "@/components/ReleaseDateCard";
+import ReleaseDateCard from "@/components/Cards/ReleaseDate";
 import MyAPIClient from "@/services/myApiClient";
 import { ReleaseDatesResponse } from "@/types/movies/movie/ReleaseDates";
 import { useQuery } from "@tanstack/react-query";
