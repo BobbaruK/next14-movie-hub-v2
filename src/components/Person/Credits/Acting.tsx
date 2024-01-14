@@ -1,3 +1,4 @@
+import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import Link from "next/link";
 import React from "react";
@@ -26,14 +27,22 @@ const Acting = ({ castArr }: Props) => {
               {groups.map((groupCredit, ind) => (
                 <div
                   key={`groupCredit-${ind}`}
-                  className="grid-cols-person-credit grid gap-4"
+                  className="grid grid-cols-person-credit gap-4"
                 >
                   <div className="text-center">{year(groupCredit)}</div>
                   &bull;
                   <div className="flex flex-col">
                     <div className="font-bold">
-                      <Link
+                      {/* <Link
                         href={`/${groupCredit[0].media_type}/${groupCredit[0].id}`}
+                      > */}
+                      <Link
+                        href={`/${groupCredit[0].media_type}/${idTitleHyphen(
+                          groupCredit[0].id,
+                          "title" in groupCredit[0]
+                            ? groupCredit[0].title
+                            : groupCredit[0].name,
+                        )}`}
                       >
                         {"title" in groupCredit[0]
                           ? groupCredit[0].title

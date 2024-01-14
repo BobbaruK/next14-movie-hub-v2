@@ -10,6 +10,7 @@ import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import ImageTMDB from "../ImageTMDB";
+import idTitleHyphen from "@/utils/idTitleHyphen";
 
 interface Props {
   movie: Movie | TVShow | People;
@@ -39,27 +40,28 @@ const MainCard = ({ movie, index }: Props) => {
       </div>
     );
 
-  const movieTitle = "title" in movie && movie;
-  const tv = "first_air_date" in movie && movie;
-  const person = "known_for_department" in movie && movie;
+  const theMovie = "title" in movie && movie;
+  const theTv = "first_air_date" in movie && movie;
+  const thePerson = "known_for_department" in movie && movie;
 
   const style = {
-    "--value": (movieTitle ? movieTitle.vote_average : 0) * 10,
+    "--value": (theMovie ? theMovie.vote_average : 0) * 10,
     "--thickness": "3px",
     "--size": "2rem",
   } as React.CSSProperties;
 
   const link = () => {
-    if (movieTitle) return `/movie/${movieTitle.id}`;
-    if (tv) return `/tv/${tv.id}`;
-    if (person) return `/person/${person.id}`;
+    if (theMovie) return `/movie/${idTitleHyphen(theMovie.id, theMovie.title)}`;
+    if (theTv) return `/tv/${idTitleHyphen(theTv.id, theTv.name)}`;
+    if (thePerson)
+      return `/person/${idTitleHyphen(thePerson.id, thePerson.name)}`;
     return "";
   };
 
   const date = () => {
-    if (movieTitle) return ReleaseDateUI(movieTitle.release_date).releaseDate;
-    if (tv) return ReleaseDateUI(tv.first_air_date).releaseDate;
-    if (person) return "";
+    if (theMovie) return ReleaseDateUI(theMovie.release_date).releaseDate;
+    if (theTv) return ReleaseDateUI(theTv.first_air_date).releaseDate;
+    if (thePerson) return "";
     return "";
   };
 
@@ -67,7 +69,7 @@ const MainCard = ({ movie, index }: Props) => {
     <div className="card bg-base-100 shadow-md shadow-primary">
       <figure>
         <Link href={link()} className="w-full">
-          {(movieTitle || tv) && (
+          {(theMovie || theTv) && (
             <ImageTMDB
               type="poster"
               alt={title}
@@ -81,7 +83,7 @@ const MainCard = ({ movie, index }: Props) => {
               priority={index < 4 ? true : false}
             />
           )}
-          {person && (
+          {thePerson && (
             <ImageTMDB
               type="poster"
               alt={title}
@@ -98,7 +100,7 @@ const MainCard = ({ movie, index }: Props) => {
         </Link>
       </figure>
       <div className="card-body relative flex justify-between p-4 pt-7">
-        {(movieTitle || tv) && (
+        {(theMovie || theTv) && (
           <div
             className={[
               `${
@@ -130,16 +132,16 @@ const MainCard = ({ movie, index }: Props) => {
           <Link href={link()}>{title}</Link>
         </h2>
 
-        {(movieTitle || tv) && <p className="grow-0">{date()}</p>}
-        {person && (
+        {(theMovie || theTv) && <p className="grow-0">{date()}</p>}
+        {thePerson && (
           <div>
-            {person.known_for.map((movie, index) => (
+            {thePerson.known_for.map((movie, index) => (
               <small key={index}>
                 {movie.title &&
                   `${movie.title}${
-                    index === person.known_for.length - 2
+                    index === thePerson.known_for.length - 2
                       ? " and "
-                      : index === person.known_for.length - 1
+                      : index === thePerson.known_for.length - 1
                         ? ""
                         : ", "
                   }`}
