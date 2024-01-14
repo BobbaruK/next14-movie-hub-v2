@@ -1,6 +1,6 @@
-import { AlternativeTitle } from "../AlternativeTitle";
+import { AltTitle } from "../AlternativeTitle";
 
 export interface TVShowAlternativeTitles {
   id: number;
-  results: AlternativeTitle[];
+  results: AltTitle[];
 }

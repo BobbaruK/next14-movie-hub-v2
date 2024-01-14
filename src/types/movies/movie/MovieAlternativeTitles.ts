@@ -1,6 +1,6 @@
-import { AlternativeTitle } from "../AlternativeTitle";
+import { AltTitle } from "../AlternativeTitle";
 
 export interface MovieAlternativeTitles {
   id: number;
-  titles: AlternativeTitle[];
+  titles: AltTitle[];
 }

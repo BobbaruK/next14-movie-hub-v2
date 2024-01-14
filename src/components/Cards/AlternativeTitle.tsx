@@ -1,12 +1,12 @@
 import { Country } from "@/types/Country";
-import { AlternativeTitle } from "@/types/movies/AlternativeTitle";
+import { AltTitle } from "@/types/movies/AlternativeTitle";
 
 interface Props {
-  titles: AlternativeTitle[];
+  titles: AltTitle[];
   countries: Country[];
 }
 
-const AltTitleCard = ({ titles, countries }: Props) => {
+const AlternativeTitle = ({ titles, countries }: Props) => {
   const countryName = countries.find(
     (country) => country.iso_3166_1 === titles[0].iso_3166_1,
   );
@@ -34,4 +34,4 @@ const AltTitleCard = ({ titles, countries }: Props) => {
   );
 };
 
-export default AltTitleCard;
+export default AlternativeTitle;

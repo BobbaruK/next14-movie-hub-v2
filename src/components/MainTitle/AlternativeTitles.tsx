@@ -3,11 +3,11 @@
 import { RQ_COUNTRIES_ENDPOINT, RQ_COUNTRIES_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Country } from "@/types/Country";
-import { AlternativeTitle } from "@/types/movies/AlternativeTitle";
+import { AltTitle } from "@/types/movies/AlternativeTitle";
 import { MovieAlternativeTitles } from "@/types/movies/movie/MovieAlternativeTitles";
 import { TVShowAlternativeTitles } from "@/types/movies/tv/TVShowAlternativeTitles";
 import { useQuery } from "@tanstack/react-query";
-import AltTitleCard from "../AltTitleCard";
+import AlternativeTitle from "../Cards/AlternativeTitle";
 
 interface Props {
   queryKey: string;
@@ -51,7 +51,7 @@ const AlternativeTitles = ({ queryKey, endpoint }: Props) => {
     return <div className="alert alert-warning">No results</div>;
 
   const groupedKeys = titles.reduce(
-    (group: { [key: string]: AlternativeTitle[] }, item) => {
+    (group: { [key: string]: AltTitle[] }, item) => {
       if (!group[item.iso_3166_1]) {
         group[item.iso_3166_1] = [];
       }
@@ -82,7 +82,7 @@ const AlternativeTitles = ({ queryKey, endpoint }: Props) => {
           return 0;
         })
         .map((titles, ind) => (
-          <AltTitleCard titles={titles} key={ind} countries={countries!} />
+          <AlternativeTitle titles={titles} key={ind} countries={countries!} />
         ))}
     </div>
   );
