@@ -19,7 +19,7 @@ const Revenue = ({ queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading status...</div>;
+    return <div className="alert alert-info">Loading revenue...</div>;
 
   return (
     <>
