@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaStar } from "react-icons/fa";
 import ImageTMDB from "./ImageTMDB";
+import Rating from "./Rating";
 
 interface Props {
   queryKey: string;
@@ -69,26 +70,16 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
               </div>
             </div>
             <div className="flex flex-col justify-center gap-4 py-4 sm:basis-[100%]">
-              <div>
-                <h2 className="m-0">
-                  <Link href={`/tv/${id}/seasons/${season.season_number}`}>
-                    {season.name}
-                  </Link>
-                </h2>
-                <p className="flex gap-3">
-                  <span className="flex items-center gap-2 rounded-md bg-black px-2">
-                    <FaStar /> {season.vote_average}
-                  </span>
-                  <span>{ReleaseDateUI(season.air_date).year}</span>
-                  &bull;
-                  <span>{season.episode_count} Episodes</span>
-                </p>
-              </div>
-              {/* <p>
-                Season {season.season_number} of {data?.name} premiered on{" "}
-                {ReleaseDateUI(season.air_date).releaseDate}
-              </p> */}
-              {/* <p>{season.overview}</p> */}
+              <h2 className="m-0">
+                <Link href={`/tv/${id}/seasons/${season.season_number}`}>
+                  {season.name}
+                </Link>
+              </h2>
+              <p className="flex gap-3">
+                <Rating vote={season.vote_average} />
+                <span>{ReleaseDateUI(season.air_date).year}</span>
+              </p>
+              <div>{season.episode_count} Episodes</div>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import ImageTMDB from "@/components/ImageTMDB";
+import Rating from "@/components/Rating";
 import MyAPIClient from "@/services/myApiClient";
 import { PosterSizes } from "@/types/imageSizes";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
@@ -67,9 +68,7 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
                 </Link>
               </h3>
               <div className="flex flex-row gap-4">
-                <div className="flex items-center gap-2 rounded-md bg-black px-2">
-                  <FaStar /> {lastSeason.vote_average}
-                </div>
+                <Rating vote={lastSeason.vote_average} />
                 <div>{ReleaseDateUI(lastSeason.air_date).year}</div>
                 &bull;
                 <div>{lastSeason.episode_count} Episodes</div>

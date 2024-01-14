@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaStar } from "react-icons/fa";
 import ImageTMDB from "./ImageTMDB";
+import Rating from "./Rating";
 
 interface Props {
   queryKey: string;
@@ -70,9 +71,7 @@ const Season = ({ queryKey, endpoint }: Props) => {
           <div>
             <h2 className="m-0">{data?.name}</h2>
             <p className="flex gap-3">
-              <span className="flex items-center gap-2 rounded-md bg-black px-2">
-                <FaStar /> {data?.vote_average}
-              </span>
+              <Rating vote={data?.vote_average!} />
               <span>
                 Season {seasonNumber} of {data?.name} premiered on{" "}
                 {ReleaseDateUI(data?.air_date).releaseDate}
@@ -114,9 +113,7 @@ const Season = ({ queryKey, endpoint }: Props) => {
                 </Link>
               </h3>
               <p className="flex gap-3">
-                <span className="flex items-center gap-2 rounded-md bg-black px-2">
-                  <FaStar /> {episode.vote_average}
-                </span>
+                <Rating vote={episode.vote_average} />
               </p>
             </div>
           </div>

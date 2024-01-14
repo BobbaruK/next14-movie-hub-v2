@@ -5,6 +5,7 @@ import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import ImageTMDB from "./ImageTMDB";
+import Rating from "./Rating";
 
 const ReviewContent = ({ content }: { content: string }) => {
   "use client";
@@ -61,10 +62,7 @@ const ReviewCard = ({ review }: Props) => {
             <h3 className="m-0">A review by {review.author}</h3>
             <div className="flex items-center gap-4">
               {review.author_details.rating && (
-                <div className="flex items-center gap-2 rounded-md bg-black px-2">
-                  <FaStar />
-                  {review.author_details.rating}
-                </div>
+                <Rating vote={review.author_details.rating} />
               )}
               <div>
                 Written by {review.author} on {created.releaseDate}
