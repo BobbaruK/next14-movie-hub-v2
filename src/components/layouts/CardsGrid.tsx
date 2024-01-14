@@ -7,8 +7,8 @@ import { TVShow } from "@/types/movies/tv/TVShowsResponse";
 import { People } from "@/types/people/PeoplesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useQuery } from "@tanstack/react-query";
-import MovieGrid from "../MovieGrid";
 import MoviePagination from "../MoviePagination";
+import MovieGrid from "./MovieGrid";
 
 interface Props {
   page: number;
