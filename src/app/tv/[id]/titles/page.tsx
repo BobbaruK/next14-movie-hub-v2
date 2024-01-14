@@ -1,7 +1,7 @@
 import BackTo from "@/components/BackTo";
 import AlternativeTitles from "@/components/MainTitle/AlternativeTitles";
-import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
 import AlternativeTitlesFiltering from "@/components/Sidebar/MainTitle/AlternativeTitlesFiltering";
+import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import {
   RQ_TVSHOW_ALTERNATIVE_TITLES_KEY,
   RQ_TVSHOW_ALTERNATIVE_TITLES_ENDPOINT,

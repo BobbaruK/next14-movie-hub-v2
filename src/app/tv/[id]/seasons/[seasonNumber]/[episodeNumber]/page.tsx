@@ -1,5 +1,5 @@
 import BackTo from "@/components/BackTo";
-import Episode from "@/components/Episode";
+import Episode from "@/components/MainTitle/tv/Episode";
 import {
   RQ_TVSHOW_KEY,
   RQ_TVSHOW_ENDPOINT,

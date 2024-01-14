@@ -1,6 +1,6 @@
 import BackTo from "@/components/BackTo";
 import AlternativeTitles from "@/components/MainTitle/AlternativeTitles";
-import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
+import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import AlternativeTitlesFiltering from "@/components/Sidebar/MainTitle/AlternativeTitlesFiltering";
 import {
   RQ_MOVIE_ALTERNATIVE_TITLES_ENDPOINT,

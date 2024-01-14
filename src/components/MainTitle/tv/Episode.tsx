@@ -1,5 +1,7 @@
 "use client";
 
+import ImageTMDB from "@/components/ImageTMDB";
+import Rating from "@/components/Rating";
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
@@ -10,9 +12,6 @@ import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { FaStar } from "react-icons/fa";
-import ImageTMDB from "./ImageTMDB";
-import Rating from "./Rating";
 
 interface Props {
   queryKey: string;
@@ -54,7 +53,9 @@ const Episode = ({ queryKey, endpoint }: Props) => {
   return (
     <div className="appContaier flex flex-col gap-8">
       <p>
-        <Link href={`/tv/${id}/seasons/${seasonNumber}`}>Season {seasonNumber}</Link>{" "}
+        <Link href={`/tv/${id}/seasons/${seasonNumber}`}>
+          Season {seasonNumber}
+        </Link>{" "}
         Episode {data?.episode_number}
       </p>
       <div className="flex flex-col gap-4 sm:flex-row">
@@ -77,7 +78,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
           <div>
             <h2 className="m-0">{data?.name}</h2>
             <p className="flex gap-3">
-              <Rating vote={data?.vote_average!}/>
+              <Rating vote={data?.vote_average!} />
               <span>{ReleaseDateUI(data?.air_date).releaseDate}</span>
               &bull;
               <span>{data?.runtime}m</span>

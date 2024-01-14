@@ -1,6 +1,6 @@
 import BackTo from "@/components/BackTo";
 import MainTitleTranslations from "@/components/MainTitle/Translations";
-import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
+import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import TranslationsFiltering from "@/components/Sidebar/MainTitle/TranslationsFiltering";
 import {
   RQ_TVSHOW_ENDPOINT,

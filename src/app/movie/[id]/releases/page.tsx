@@ -1,6 +1,6 @@
 import BackTo from "@/components/BackTo";
 import ReleaseDates from "@/components/MainTitle/movie/ReleaseDates";
-import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
+import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import ReleasesFiltering from "@/components/Sidebar/MainTitle/ReleasesFiltering";
 import TranslationsFiltering from "@/components/Sidebar/MainTitle/TranslationsFiltering";
 import {

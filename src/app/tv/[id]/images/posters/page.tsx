@@ -1,4 +1,4 @@
-import MainTitleSidebarLeft from "@/components/MainTitleSidebarLeft";
+import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import Link from "next/link";
 
 interface Props {
