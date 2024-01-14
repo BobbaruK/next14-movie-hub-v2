@@ -7,6 +7,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { PosterSizes, StillSizes } from "@/types/imageSizes";
 import { SeasonResponse } from "@/types/movies/tv/SeasonResponse";
+import idTitleHyphen from "@/utils/idTitleHyphen";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
@@ -88,7 +89,10 @@ const Season = ({ queryKey, endpoint }: Props) => {
           >
             <div className="overflow-hidden rounded-md">
               <Link
-                href={`/tv/${id}/seasons/${seasonNumber}/${episode.episode_number}`}
+                href={`/tv/${id}/seasons/${seasonNumber}/${idTitleHyphen(
+                  episode.episode_number,
+                  episode.name,
+                )}`}
               >
                 <ImageTMDB
                   type="poster"
@@ -106,7 +110,10 @@ const Season = ({ queryKey, endpoint }: Props) => {
             <div className="flex flex-col justify-center gap-4 py-4">
               <h3 className="m-0">
                 <Link
-                  href={`/tv/${id}/seasons/${seasonNumber}/${episode.episode_number}`}
+                  href={`/tv/${id}/seasons/${seasonNumber}/${idTitleHyphen(
+                    episode.episode_number,
+                    episode.name,
+                  )}`}
                 >
                   {episode.episode_number}. {episode.name}
                 </Link>

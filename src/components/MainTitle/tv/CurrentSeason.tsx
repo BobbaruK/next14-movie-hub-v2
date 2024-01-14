@@ -5,6 +5,7 @@ import Rating from "@/components/Rating";
 import MyAPIClient from "@/services/myApiClient";
 import { PosterSizes } from "@/types/imageSizes";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
+import idTitleHyphen from "@/utils/idTitleHyphen";
 import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
@@ -82,7 +83,12 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
             <div className="flex items-center gap-2">
               <FaCalendarAlt />
               <Link
-                href={`/tv/${id}/seasons/${lastSeason.season_number}/${data?.last_episode_to_air.episode_number}`}
+                href={`/tv/${id}/seasons/${
+                  lastSeason.season_number
+                }/${idTitleHyphen(
+                  data?.last_episode_to_air.episode_number!,
+                  data?.last_episode_to_air.name!,
+                )}`}
               >
                 {data?.last_episode_to_air.name} (
                 {data?.last_episode_to_air.season_number}&times;
