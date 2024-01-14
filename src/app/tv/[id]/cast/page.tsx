@@ -1,5 +1,5 @@
 import BackTo from "@/components/BackTo";
-import CastRender from "@/components/CastRender";
+import Cast from "@/components/layouts/MainTitle/Cast";
 import {
   RQ_TVSHOW_CAST_ENDPOINT,
   RQ_TVSHOW_CAST_KEY,
@@ -21,7 +21,7 @@ export default function TVShowCast({ params: { id } }: Props) {
         endpoint={RQ_TVSHOW_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/tv/${id}` }}
       />
-      <CastRender
+      <Cast
         queryKey={RQ_TVSHOW_CAST_KEY(id)}
         endpoint={RQ_TVSHOW_CAST_ENDPOINT(id)}
       />

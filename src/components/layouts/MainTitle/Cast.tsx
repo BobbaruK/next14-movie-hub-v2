@@ -1,5 +1,6 @@
 "use client";
 
+import ImageTMDB from "@/components/ImageTMDB";
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
@@ -8,14 +9,13 @@ import { CastAndCrew, TheCrew } from "@/types/movies/CastAndCrew";
 import imageLink from "@/utils/imageLink";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import ImageTMDB from "./ImageTMDB";
 
 interface Props {
   queryKey: string;
   endpoint: string;
 }
 
-const CastRender = ({ queryKey, endpoint }: Props) => {
+const Cast = ({ queryKey, endpoint }: Props) => {
   const apiClientMainTitleCast = new MyAPIClient<CastAndCrew>(endpoint);
   const { data, error, isLoading } = useQuery<CastAndCrew>({
     queryKey: [queryKey],
@@ -201,4 +201,4 @@ const CastRender = ({ queryKey, endpoint }: Props) => {
   );
 };
 
-export default CastRender;
+export default Cast;

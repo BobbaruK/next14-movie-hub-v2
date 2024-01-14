@@ -1,6 +1,6 @@
 
 import BackTo from "@/components/BackTo";
-import CastRender from "@/components/CastRender";
+import Cast from "@/components/layouts/MainTitle/Cast";
 import {
   RQ_MOVIE_CAST_ENDPOINT,
   RQ_MOVIE_CAST_KEY,
@@ -38,7 +38,7 @@ export default function MovieCast({ params: { id } }: Props) {
         endpoint={RQ_MOVIE_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/movie/${id}` }}
       />
-      <CastRender
+      <Cast
         queryKey={RQ_MOVIE_CAST_KEY(id)}
         endpoint={RQ_MOVIE_CAST_ENDPOINT(id)}
       />

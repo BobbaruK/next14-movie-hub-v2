@@ -9,7 +9,7 @@ import { ProfileSizes } from "@/types/imageSizes";
 import imageLink from "@/utils/imageLink";
 import ImageTMDB from "../ImageTMDB";
 
-const MainTitlePersonCard = ({ cast }: { cast: TheCast }) => {
+const PersonCard = ({ cast }: { cast: TheCast }) => {
   return (
     <div className="card overflow-hidden bg-base-100 shadow-md shadow-primary">
       <figure>
@@ -79,7 +79,7 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
       </div>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-6">
         {cast.map((cast) => (
-          <MainTitlePersonCard cast={cast} key={cast.id} />
+          <PersonCard cast={cast} key={cast.id} />
         ))}
       </div>
       <div className="py-4">
