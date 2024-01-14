@@ -16,7 +16,7 @@ interface Props {
   index: number;
 }
 
-const MovieCard = ({ movie, index }: Props) => {
+const MainCard = ({ movie, index }: Props) => {
   const apiClient = new MyAPIClient<Image_Configuration>(RQ_CONFIG_ENDPOINT);
 
   const {
@@ -152,4 +152,4 @@ const MovieCard = ({ movie, index }: Props) => {
   );
 };
 
-export default MovieCard;
+export default MainCard;
