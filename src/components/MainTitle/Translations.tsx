@@ -6,7 +6,7 @@ import {
   TranslationsTV,
 } from "@/types/movies/TranslationsResponse";
 import { useQuery } from "@tanstack/react-query";
-import TranslationCard from "../TranslationCard";
+import TranslationCard from "../Cards/Translation";
 
 interface Props {
   queryKey: string;
