@@ -6,7 +6,7 @@ interface Props {
   countries: Country[];
 }
 
-const AlternativeTitle = ({ titles, countries }: Props) => {
+const AlternativeTitleCard = ({ titles, countries }: Props) => {
   const countryName = countries.find(
     (country) => country.iso_3166_1 === titles[0].iso_3166_1,
   );
@@ -34,4 +34,4 @@ const AlternativeTitle = ({ titles, countries }: Props) => {
   );
 };
 
-export default AlternativeTitle;
+export default AlternativeTitleCard;

@@ -2,7 +2,7 @@ import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { Movie } from "@/types/movies/movie/MoviesResponse";
 import { TVShow } from "@/types/movies/tv/TVShowsResponse";
 import { People } from "@/types/people/PeoplesResponse";
-import MovieCard from "./MovieCard";
+import MovieCard from "./Cards/Movie";
 
 interface Props {
   movies:

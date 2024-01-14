@@ -5,7 +5,7 @@ import { RecommendationsResponse } from "@/types/movies/Recommendations";
 import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
 import { useQuery } from "@tanstack/react-query";
-import MovieCard from "../MovieCard";
+import MovieCard from "../Cards/Movie";
 
 interface Props {
   queryKey: string;

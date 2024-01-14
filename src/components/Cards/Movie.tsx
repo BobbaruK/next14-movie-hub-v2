@@ -9,7 +9,7 @@ import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import ImageTMDB from "./ImageTMDB";
+import ImageTMDB from "../ImageTMDB";
 
 interface Props {
   movie: Movie | TVShow | People;

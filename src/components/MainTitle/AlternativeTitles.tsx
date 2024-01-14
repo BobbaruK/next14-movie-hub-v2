@@ -7,7 +7,7 @@ import { AltTitle } from "@/types/movies/AlternativeTitle";
 import { MovieAlternativeTitles } from "@/types/movies/movie/MovieAlternativeTitles";
 import { TVShowAlternativeTitles } from "@/types/movies/tv/TVShowAlternativeTitles";
 import { useQuery } from "@tanstack/react-query";
-import AlternativeTitle from "../Cards/AlternativeTitle";
+import AlternativeTitleCard from "../Cards/AlternativeTitle";
 
 interface Props {
   queryKey: string;
@@ -82,7 +82,7 @@ const AlternativeTitles = ({ queryKey, endpoint }: Props) => {
           return 0;
         })
         .map((titles, ind) => (
-          <AlternativeTitle titles={titles} key={ind} countries={countries!} />
+          <AlternativeTitleCard titles={titles} key={ind} countries={countries!} />
         ))}
     </div>
   );
