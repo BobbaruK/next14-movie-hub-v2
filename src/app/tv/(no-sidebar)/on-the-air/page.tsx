@@ -1,4 +1,4 @@
-import CardsGridSection from "@/components/CardsGridSection";
+import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_ON_THE_AIR_TVSHOW_ENDPOINT,
   RQ_ON_THE_AIR_TVSHOW_KEY,
@@ -55,7 +55,7 @@ export default async function OnTheAirTVShows({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>
-            <CardsGridSection
+            <CardsGrid
               page={pageNumber}
               with_genres={with_genres}
               sort_by={sort_by}

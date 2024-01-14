@@ -7,8 +7,8 @@ import { TVShow } from "@/types/movies/tv/TVShowsResponse";
 import { People } from "@/types/people/PeoplesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useQuery } from "@tanstack/react-query";
-import MovieGrid from "./MovieGrid";
-import MoviePagination from "./MoviePagination";
+import MovieGrid from "../MovieGrid";
+import MoviePagination from "../MoviePagination";
 
 interface Props {
   page: number;
@@ -19,7 +19,7 @@ interface Props {
   endpoint: string;
 }
 
-const CardsGridSection = ({
+const CardsGrid = ({
   page,
   with_genres,
   sort_by,
@@ -81,4 +81,4 @@ const CardsGridSection = ({
   );
 };
 
-export default CardsGridSection;
+export default CardsGrid;

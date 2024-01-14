@@ -1,4 +1,4 @@
-import CardsGridSection from "@/components/CardsGridSection";
+import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_UPCOMING_MOVIES_ENDPOINT,
   RQ_UPCOMING_MOVIES_KEY,
@@ -55,7 +55,7 @@ export default async function UpcomingMovies({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>
-            <CardsGridSection
+            <CardsGrid
               page={pageNumber}
               with_genres=""
               with_original_language=""

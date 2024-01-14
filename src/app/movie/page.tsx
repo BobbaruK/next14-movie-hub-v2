@@ -1,4 +1,4 @@
-import CardsGridSection from "@/components/CardsGridSection";
+import CardsGrid from "@/components/layouts/CardsGrid";
 import { FilteringMovies } from "@/components/Sidebar/FilteringMovies";
 import {
   RQ_LANGUAGES_ENDPOINT,
@@ -78,7 +78,7 @@ export default async function PopularMovies({
             <FilteringMovies genresRQKey={RQ_MOVIES_GENRES_KEY} />
           </div>
           <div className="lg:basis-3/4">
-            <CardsGridSection
+            <CardsGrid
               page={pageNumber}
               with_genres={with_genres}
               sort_by={sort_by}

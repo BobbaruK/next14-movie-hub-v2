@@ -1,4 +1,4 @@
-import CardsGridSection from "@/components/CardsGridSection";
+import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_POPULAR_PERSONS_ENDPOINT,
   RQ_POPULAR_PERSONS_KEY,
@@ -44,7 +44,7 @@ export default async function Persons({
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="appContaier">
-        <CardsGridSection
+        <CardsGrid
           page={pageNumber}
           with_genres={with_genres}
           sort_by={sort_by}

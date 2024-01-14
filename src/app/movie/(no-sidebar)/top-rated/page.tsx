@@ -1,4 +1,4 @@
-import CardsGridSection from "@/components/CardsGridSection";
+import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_TOP_RATED_MOVIES_ENDPOINT,
   RQ_TOP_RATED_MOVIES_KEY,
@@ -55,7 +55,7 @@ export default async function TopRatedMovies({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>
-            <CardsGridSection
+            <CardsGrid
               page={pageNumber}
               with_genres={with_genres}
               with_original_language={with_original_language}

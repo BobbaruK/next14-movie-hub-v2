@@ -1,4 +1,4 @@
-import CardsGridSection from "@/components/CardsGridSection";
+import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_TOP_RATED_TVSHOWS_ENDPOINT,
   RQ_TOP_RATED_TVSHOWS_KEY,
@@ -54,7 +54,7 @@ export default async function TopRatedTVShows({
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="appContaier flex flex-col gap-8 lg:flex-row">
           <div>
-            <CardsGridSection
+            <CardsGrid
               page={pageNumber}
               with_genres={with_genres}
               sort_by={sort_by}
