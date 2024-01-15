@@ -1,6 +1,5 @@
 import usePersonTitlesCast from "@/hooks/usePersonTitlesCast";
 import idTitleHyphen from "@/utils/idTitleHyphen";
-import ReleaseDateUI from "@/utils/releaseDateUI";
 import Link from "next/link";
 import React from "react";
 
@@ -9,23 +8,8 @@ interface Props {
 }
 
 const Acting = ({ castArr }: Props) => {
-  const moviesCast = castArr.filter(
-    (cast) => cast.media_type === "movie",
-  ) as CombinedCreditsMovieCast[];
+  const creditsCombined = usePersonTitlesCast(castArr);
 
-  const tvsCast = castArr.filter(
-    (cast) => cast.media_type === "tv",
-  ) as CombinedCreditsTVCast[];
-
-  const creditsCombined = usePersonTitlesCast(moviesCast, tvsCast);
-
-  const year = (arr: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[]) => {
-    const date = ReleaseDateUI(
-      "title" in arr[0] ? arr[0].release_date : arr[0].first_air_date,
-    );
-
-    return date.year ? date.year : "-";
-  };
   return (
     <div className="flex flex-col gap-6 rounded-md border border-primary pt-4 shadow-md shadow-primary">
       {creditsCombined
@@ -40,7 +24,9 @@ const Acting = ({ castArr }: Props) => {
                   key={`groupCredit-${ind}`}
                   className="grid grid-cols-person-credit gap-4"
                 >
-                  <div className="text-center">{year(groupCredit)}</div>
+                  <div className="text-center">
+                    {groupCredit[0].year ? groupCredit[0].year : "-"}
+                  </div>
                   &bull;
                   <div className="flex flex-col">
                     <div className="font-bold">

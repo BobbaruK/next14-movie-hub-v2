@@ -1,6 +1,5 @@
 "use client";
 
-import usePersonTitlesCast from "@/hooks/usePersonTitlesCast";
 import MyAPIClient from "@/services/myApiClient";
 import { useQuery } from "@tanstack/react-query";
 import Acting from "./Acting";

@@ -1,3 +1,4 @@
+import groupBy from "@/utils/groupBy";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import Link from "next/link";
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const Crew = ({ crewArr }: Props) => {
+  // add year member to crewArr items
   for (let i = 0; i < crewArr.length; i++) {
     const data = crewArr[i];
     crewArr[i].year = ReleaseDateUI(
@@ -15,27 +17,18 @@ const Crew = ({ crewArr }: Props) => {
     ).year!;
   }
 
-  const groupBy = <T,>(arr: T[], fn: (item: T) => any) => {
-    return arr.reduce<Record<string, T[]>>((prev, curr) => {
-      const groupKey = fn(curr);
-      const group = prev[groupKey] || [];
-      group.push(curr);
-      return { ...prev, [groupKey]: group };
-    }, {});
-  };
-
-  const result = groupBy<CombinedCreditsMovieCrew | CombinedCreditsTVCrew>(
+  const crewSortDep = groupBy<CombinedCreditsMovieCrew | CombinedCreditsTVCrew>(
     crewArr,
-    (e) => {
-      return e.department;
+    (crew) => {
+      return crew.department;
     },
   );
 
-  const resultArray = Object.values(result);
+  const crewSortDepArr = Object.values(crewSortDep);
 
   return (
     <>
-      {resultArray
+      {crewSortDepArr
         .sort((a, b) => {
           if (a[0].department < b[0].department) {
             return -1;
@@ -56,7 +49,7 @@ const Crew = ({ crewArr }: Props) => {
                 .map((group, ind) => (
                   <React.Fragment key={`group-${ind}`}>
                     <div className="grid grid-cols-person-credit gap-4">
-                      <div className="text-center">{group.year}</div>
+                      <div className="text-center">{group.year ? group.year : "-"}</div>
                       &bull;
                       <div className="flex flex-col">
                         <div className="font-bold">

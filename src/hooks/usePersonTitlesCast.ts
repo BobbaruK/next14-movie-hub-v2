@@ -1,36 +1,33 @@
+import groupBy from "@/utils/groupBy";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 
 const usePersonTitlesCast = (
-  moviesCast: CombinedCreditsMovieCast[],
-  tvsCast: CombinedCreditsTVCast[],
+  castArr: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[],
 ) => {
-  const movies = moviesCast.reduce(
-    (group: { [key: string]: CombinedCreditsMovieCast[] }, item) => {
-      if (!group[item.title]) {
-        group[item.title] = [];
-      }
-      group[item.title].push(item);
-      return group;
+  const moviesCast = castArr.filter(
+    (cast) => cast.media_type === "movie",
+  ) as CombinedCreditsMovieCast[];
+
+  const tvsCast = castArr.filter(
+    (cast) => cast.media_type === "tv",
+  ) as CombinedCreditsTVCast[];
+
+  const moviesCastSortTitle = groupBy<CombinedCreditsMovieCast>(
+    moviesCast,
+    (cast) => {
+      return cast.title;
     },
-    {},
   );
 
-  const moviesArray = Object.values(movies);
+  const moviesCastSortTitleArr = Object.values(moviesCastSortTitle);
 
-  const tvs = tvsCast.reduce(
-    (group: { [key: string]: CombinedCreditsTVCast[] }, item) => {
-      if (!group[item.name]) {
-        group[item.name] = [];
-      }
-      group[item.name].push(item);
-      return group;
-    },
-    {},
-  );
+  const tvCastSortTitle = groupBy<CombinedCreditsTVCast>(tvsCast, (cast) => {
+    return cast.name;
+  });
 
-  const tvsArray = Object.values(tvs);
+  const tvCastSortTitleArr = Object.values(tvCastSortTitle);
 
-  const castCreditsArray = [...moviesArray, ...tvsArray];
+  const castCreditsArray = [...moviesCastSortTitleArr, ...tvCastSortTitleArr];
 
   for (let i = 0; i < castCreditsArray.length; i++) {
     for (let j = 0; j < castCreditsArray[i].length; j++) {
@@ -41,24 +38,11 @@ const usePersonTitlesCast = (
     }
   }
 
-  const groupByYear = castCreditsArray.reduce(
-    (
-      group: {
-        [key: string]: (CombinedCreditsMovieCast[] | CombinedCreditsTVCast[])[];
-      },
-      item,
-    ) => {
-      // console.log(group);
-      if (!group[item[0].year]) {
-        group[item[0].year] = [];
-      }
-
-      group[item[0].year].push(item);
-
-      return group;
-    },
-    {},
-  );
+  const groupByYear = groupBy<
+    CombinedCreditsMovieCast[] | CombinedCreditsTVCast[]
+  >(castCreditsArray, (cast) => {
+    return cast[0].year;
+  });
 
   const groupByYearArray = Object.values(groupByYear);
 
@@ -66,7 +50,6 @@ const usePersonTitlesCast = (
 
   const undefinedYear = groupByYearArray.filter((groups, index) => {
     if (groups[0][0].year === undefined) undefinedYearIndexes.push(index);
-
     return groups[0][0].year === undefined;
   });
 
