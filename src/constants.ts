@@ -28,9 +28,10 @@ export const RQ_UPCOMING_MOVIES_ENDPOINT = "movie/upcoming";
 export const RQ_MOVIES_GENRES_KEY = "genres-movies";
 export const RQ_MOVIES_GENRES_ENDPOINT = "genre/movie/list";
 
-export const RQ_MOVIE_EXTERNAL_IDS_KEY = (id: string) => `movie-${id}-external`;
+export const RQ_MOVIE_EXTERNAL_IDS_KEY = (id: string) =>
+  `movie-${parseInt(id)}-external`;
 export const RQ_MOVIE_EXTERNAL_IDS_ENDPOINT = (id: string) =>
-  `/movie/${id}/external_ids`;
+  `/movie/${parseInt(id)}/external_ids`;
 
 // TV shows
 export const RQ_POPULAR_TVSHOWS_KEY = "popular-tvshows";
@@ -49,108 +50,118 @@ export const RQ_TVSHOWS_GENRES_KEY = "genres-tvshows";
 export const RQ_TVSHOWS_GENRES_ENDPOINT = "genre/tv/list";
 
 export const RQ_TVSHOWS_EXTERNAL_IDS_KEY = (id: string) =>
-  `tvshow-${id}-external`;
+  `tvshow-${parseInt(id)}-external`;
 export const RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT = (id: string) =>
-  `/tv/${id}/external_ids`;
+  `/tv/${parseInt(id)}/external_ids`;
 
 // Main Title
-export const RQ_MOVIE_KEY = (id: string) => `movie-${id}`;
-export const RQ_MOVIE_ENDPOINT = (id: string) => `movie/${id}`;
+export const RQ_MOVIE_KEY = (id: string) => `movie-${parseInt(id)}`;
+export const RQ_MOVIE_ENDPOINT = (id: string) => `movie/${parseInt(id)}`;
 
-export const RQ_TVSHOW_KEY = (id: string) => `tvshow-${id}`;
-export const RQ_TVSHOW_ENDPOINT = (id: string) => `tv/${id}`;
+export const RQ_TVSHOW_KEY = (id: string) => `tvshow-${parseInt(id)}`;
+export const RQ_TVSHOW_ENDPOINT = (id: string) => `tv/${parseInt(id)}`;
 
 // Keywords
-export const RQ_MOVIE_KEYWORDS_KEY = (id: string) => `movie-${id}-keywords`;
+export const RQ_MOVIE_KEYWORDS_KEY = (id: string) =>
+  `movie-${parseInt(id)}-keywords`;
 export const RQ_MOVIE_KEYWORDS_ENDPOINT = (id: string) =>
-  `/movie/${id}/keywords`;
+  `/movie/${parseInt(id)}/keywords`;
 
-export const RQ_TVSHOW_KEYWORDS_KEY = (id: string) => `tvshow-${id}-keywords`;
-export const RQ_TVSHOW_KEYWORDS_ENDPOINT = (id: string) => `/tv/${id}/keywords`;
+export const RQ_TVSHOW_KEYWORDS_KEY = (id: string) =>
+  `tvshow-${parseInt(id)}-keywords`;
+export const RQ_TVSHOW_KEYWORDS_ENDPOINT = (id: string) =>
+  `/tv/${parseInt(id)}/keywords`;
 
 // Cast & Crew
-export const RQ_MOVIE_CAST_KEY = (id: string) => `movie-${id}-cast`;
-export const RQ_MOVIE_CAST_ENDPOINT = (id: string) => `/movie/${id}/credits`;
+export const RQ_MOVIE_CAST_KEY = (id: string) => `movie-${parseInt(id)}-cast`;
+export const RQ_MOVIE_CAST_ENDPOINT = (id: string) =>
+  `/movie/${parseInt(id)}/credits`;
 
-export const RQ_TVSHOW_CAST_KEY = (id: string) => `tvshow-${id}-cast`;
-export const RQ_TVSHOW_CAST_ENDPOINT = (id: string) => `/tv/${id}/credits`;
+export const RQ_TVSHOW_CAST_KEY = (id: string) => `tvshow-${parseInt(id)}-cast`;
+export const RQ_TVSHOW_CAST_ENDPOINT = (id: string) =>
+  `/tv/${parseInt(id)}/credits`;
 
 // Reviews
-export const RQ_MOVIE_REVIEWS_KEY = (id: string) => `movie-${id}-reviews`;
-export const RQ_MOVIE_REVIEWS_ENDPOINT = (id: string) => `/movie/${id}/reviews`;
+export const RQ_MOVIE_REVIEWS_KEY = (id: string) =>
+  `movie-${parseInt(id)}-reviews`;
+export const RQ_MOVIE_REVIEWS_ENDPOINT = (id: string) =>
+  `/movie/${parseInt(id)}/reviews`;
 
-export const RQ_TVSHOW_REVIEWS_KEY = (id: string) => `tvshow-${id}-reviews`;
-export const RQ_TVSHOW_REVIEWS_ENDPOINT = (id: string) => `/tv/${id}/reviews`;
+export const RQ_TVSHOW_REVIEWS_KEY = (id: string) =>
+  `tvshow-${parseInt(id)}-reviews`;
+export const RQ_TVSHOW_REVIEWS_ENDPOINT = (id: string) =>
+  `/tv/${parseInt(id)}/reviews`;
 
 // Recommendations
 export const RQ_MOVIE_RECOMMENDATIONS_KEY = (id: string) =>
-  `movie-${id}-recommendations`;
+  `movie-${parseInt(id)}-recommendations`;
 export const RQ_MOVIE_RECOMMENDATIONS_ENDPOINT = (id: string) =>
-  `/movie/${id}/recommendations`;
+  `/movie/${parseInt(id)}/recommendations`;
 
 export const RQ_TVSHOW_RECOMMENDATIONS_KEY = (id: string) =>
-  `tvshow-${id}-recommendations`;
+  `tvshow-${parseInt(id)}-recommendations`;
 export const RQ_TVSHOW_RECOMMENDATIONS_ENDPOINT = (id: string) =>
-  `/tv/${id}/recommendations`;
+  `/tv/${parseInt(id)}/recommendations`;
 
 // Alternative titles
 export const RQ_MOVIE_ALTERNATIVE_TITLES_KEY = (id: string) =>
-  `movie-${id}-alternative_titles`;
+  `movie-${parseInt(id)}-alternative_titles`;
 export const RQ_MOVIE_ALTERNATIVE_TITLES_ENDPOINT = (id: string) =>
-  `/movie/${id}/alternative_titles`;
+  `/movie/${parseInt(id)}/alternative_titles`;
 
 export const RQ_TVSHOW_ALTERNATIVE_TITLES_KEY = (id: string) =>
-  `tvshow-${id}-alternative_titles`;
+  `tvshow-${parseInt(id)}-alternative_titles`;
 export const RQ_TVSHOW_ALTERNATIVE_TITLES_ENDPOINT = (id: string) =>
-  `/tv/${id}/alternative_titles`;
+  `/tv/${parseInt(id)}/alternative_titles`;
 
 // Translations
 export const RQ_MOVIE_TRANSLATIONS_KEY = (id: string) =>
-  `movie-${id}-translations`;
+  `movie-${parseInt(id)}-translations`;
 export const RQ_MOVIE_TRANSLATIONS_ENDPOINT = (id: string) =>
-  `/movie/${id}/translations`;
+  `/movie/${parseInt(id)}/translations`;
 
 export const RQ_TVSHOW_TRANSLATIONS_KEY = (id: string) =>
-  `tvshow-${id}-translations`;
+  `tvshow-${parseInt(id)}-translations`;
 export const RQ_TVSHOW_TRANSLATIONS_ENDPOINT = (id: string) =>
-  `/tv/${id}/translations`;
+  `/tv/${parseInt(id)}/translations`;
 
 // Release dates
-export const RQ_MOVIE_RELEASES_KEY = (id: string) => `movie-${id}-releases`;
+export const RQ_MOVIE_RELEASES_KEY = (id: string) =>
+  `movie-${parseInt(id)}-releases`;
 export const RQ_MOVIE_RELEASES_ENDPOINT = (id: string) =>
-  `/movie/${id}/release_dates`;
+  `/movie/${parseInt(id)}/release_dates`;
 
 // Season
 export const RQ_TVSHOW_SEASON_KEY = (id: string, seasonNumber: string) =>
-  `tvshow-${id}-season-${seasonNumber}`;
+  `tvshow-${parseInt(id)}-season-${seasonNumber}`;
 export const RQ_TVSHOW_SEASON_ENDPOINT = (id: string, seasonNumber: string) =>
-  `/tv/${id}/season/${seasonNumber}`;
+  `/tv/${parseInt(id)}/season/${seasonNumber}`;
 
 // Episode
 export const RQ_TVSHOW_EPISODE_KEY = (
   id: string,
   seasonNumber: string,
   episodeNumber: string,
-) => `tvshow-${id}-season-${seasonNumber}-episode-${episodeNumber}`;
+) => `tvshow-${parseInt(id)}-season-${seasonNumber}-episode-${episodeNumber}`;
 export const RQ_TVSHOW_EPISODE_ENDPOINT = (
   id: string,
   seasonNumber: string,
   episodeNumber: string,
-) => `/tv/${id}/season/${seasonNumber}/episode/${episodeNumber}`;
+) => `/tv/${parseInt(id)}/season/${seasonNumber}/episode/${episodeNumber}`;
 
 // Popular Persons
 export const RQ_POPULAR_PERSONS_KEY = "popular-persons";
 export const RQ_POPULAR_PERSONS_ENDPOINT = "/person/popular";
 
 // Person
-export const RQ_PERSON_KEY = (id: string) => `person-${id}`;
-export const RQ_PERSON_ENDPOINT = (id: string) => `/person/${id}`;
+export const RQ_PERSON_KEY = (id: string) => `person-${parseInt(id)}`;
+export const RQ_PERSON_ENDPOINT = (id: string) => `/person/${parseInt(id)}`;
 
 // Person combined credits
 export const RQ_COMBINED_CREDITS_KEY = (id: string) =>
-  `person-${id}-combined_credits`;
+  `person-${parseInt(id)}-combined_credits`;
 export const RQ_COMBINED_CREDITS_ENDPOINT = (id: string) =>
-  `/person/${id}/combined_credits`;
+  `/person/${parseInt(id)}/combined_credits`;
 
 /***
  *
@@ -164,8 +175,10 @@ export const RQ_COMBINED_CREDITS_ENDPOINT = (id: string) =>
 
 // Movie Images
 export const RQ_MOVIE_IMAGES_KEY = "images-movie";
-export const RQ_MOVIE_IMAGES_ENDPOINT = (id: string) => `movie/${id}/images`;
+export const RQ_MOVIE_IMAGES_ENDPOINT = (id: string) =>
+  `movie/${parseInt(id)}/images`;
 
 // TV Shows Images
 export const RQ_TVSHOWS_IMAGES_KEY = "images-tvshows";
-export const RQ_TVSHOWS_IMAGES_ENDPOINT = (id: string) => `tv/${id}/images`;
+export const RQ_TVSHOWS_IMAGES_ENDPOINT = (id: string) =>
+  `tv/${parseInt(id)}/images`;
