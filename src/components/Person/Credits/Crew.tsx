@@ -1,3 +1,4 @@
+import usePersonTitlesCrew from "@/hooks/usePersonTitlesCrew";
 import groupBy from "@/utils/groupBy";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
@@ -9,26 +10,11 @@ interface Props {
 }
 
 const Crew = ({ crewArr }: Props) => {
-  // add year member to crewArr items
-  for (let i = 0; i < crewArr.length; i++) {
-    const data = crewArr[i];
-    crewArr[i].year = ReleaseDateUI(
-      "title" in data ? data.release_date : data.first_air_date,
-    ).year!;
-  }
-
-  const crewSortDep = groupBy<CombinedCreditsMovieCrew | CombinedCreditsTVCrew>(
-    crewArr,
-    (crew) => {
-      return crew.department;
-    },
-  );
-
-  const crewSortDepArr = Object.values(crewSortDep);
+  const newCrewSortDep = usePersonTitlesCrew(crewArr);
 
   return (
     <>
-      {crewSortDepArr
+      {newCrewSortDep
         .sort((a, b) => {
           if (a[0].department < b[0].department) {
             return -1;
@@ -49,7 +35,9 @@ const Crew = ({ crewArr }: Props) => {
                 .map((group, ind) => (
                   <React.Fragment key={`group-${ind}`}>
                     <div className="grid grid-cols-person-credit gap-4">
-                      <div className="text-center">{group.year ? group.year : "-"}</div>
+                      <div className="text-center">
+                        {group.year ? group.year : "-"}
+                      </div>
                       &bull;
                       <div className="flex flex-col">
                         <div className="font-bold">
