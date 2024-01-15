@@ -1,7 +1,7 @@
 interface CombinedCredits {
   id: number;
   cast: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[];
-  crew: CombinedCreditsCrew[];
+  crew: CombinedCreditsMovieCrew[];
 }
 
 type MediaType = "movie" | "tv";
@@ -50,7 +50,7 @@ interface CombinedCreditsTVCast {
   year: number;
 }
 
-interface CombinedCreditsCrew {
+interface CombinedCreditsMovieCrew {
   adult: boolean;
   backdrop_path: string | null;
   genre_ids: number[];
@@ -69,4 +69,28 @@ interface CombinedCreditsCrew {
   department: string;
   job: string;
   media_type: string;
+  year: number;
+}
+
+interface CombinedCreditsTVCrew {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  first_air_date: string;
+  name: string;
+  vote_average: number;
+  vote_count: number;
+  credit_id: string;
+  department: string;
+  episode_count: number;
+  job: string;
+  media_type: string;
+  year: number;
 }

@@ -4,6 +4,7 @@ import usePersonTitlesCast from "@/hooks/usePersonTitlesCast";
 import MyAPIClient from "@/services/myApiClient";
 import { useQuery } from "@tanstack/react-query";
 import Acting from "./Acting";
+import Crew from "./Crew";
 
 interface Props {
   queryKey: string;
@@ -17,16 +18,6 @@ const Credits = ({ endpoint, queryKey }: Props) => {
     queryFn: () => apiClient.getAll(),
   });
 
-  const moviesCast = data?.cast.filter(
-    (cast) => cast.media_type === "movie",
-  ) as CombinedCreditsMovieCast[];
-
-  const tvsCast = data?.cast.filter(
-    (cast) => cast.media_type === "tv",
-  ) as CombinedCreditsTVCast[];
-
-  const creditsCombined = usePersonTitlesCast(moviesCast, tvsCast);
-
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
@@ -36,8 +27,9 @@ const Credits = ({ endpoint, queryKey }: Props) => {
     <div className="flex flex-col gap-8 py-10">
       <div>
         <h2>Acting</h2>
-        <Acting castArr={creditsCombined} />
+        <Acting castArr={data?.cast!} />
       </div>
+      <Crew crewArr={data?.crew!} />
     </div>
   );
 };

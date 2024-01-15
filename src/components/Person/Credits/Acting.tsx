@@ -1,13 +1,24 @@
+import usePersonTitlesCast from "@/hooks/usePersonTitlesCast";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import Link from "next/link";
 import React from "react";
 
 interface Props {
-  castArr: (CombinedCreditsMovieCast[] | CombinedCreditsTVCast[])[][];
+  castArr: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[];
 }
 
 const Acting = ({ castArr }: Props) => {
+  const moviesCast = castArr.filter(
+    (cast) => cast.media_type === "movie",
+  ) as CombinedCreditsMovieCast[];
+
+  const tvsCast = castArr.filter(
+    (cast) => cast.media_type === "tv",
+  ) as CombinedCreditsTVCast[];
+
+  const creditsCombined = usePersonTitlesCast(moviesCast, tvsCast);
+
   const year = (arr: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[]) => {
     const date = ReleaseDateUI(
       "title" in arr[0] ? arr[0].release_date : arr[0].first_air_date,
@@ -17,7 +28,7 @@ const Acting = ({ castArr }: Props) => {
   };
   return (
     <div className="flex flex-col gap-6 rounded-md border border-primary pt-4 shadow-md shadow-primary">
-      {castArr
+      {creditsCombined
         .sort((a, b) => {
           return b[0][0].year - a[0][0].year;
         })
