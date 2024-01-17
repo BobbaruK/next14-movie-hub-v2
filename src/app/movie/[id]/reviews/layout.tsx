@@ -30,7 +30,6 @@ const MovieReviewsLayout = async ({ params: { id }, children }: Props) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      sda
       {children}
     </HydrationBoundary>
   );

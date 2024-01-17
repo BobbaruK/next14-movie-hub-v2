@@ -1,4 +1,4 @@
-import noImage from "../../public/no-entry-sign.svg";
+import noImage from "../../public/noimage.svg";
 
 const imageLink = <T>(
   secureURL: string,
