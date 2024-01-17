@@ -1,11 +1,10 @@
 import BackTo from "@/components/BackTo";
 import ReleaseDates from "@/components/MainTitle/movie/ReleaseDates";
-import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import ReleasesFiltering from "@/components/Sidebar/MainTitle/ReleasesFiltering";
-import TranslationsFiltering from "@/components/Sidebar/MainTitle/TranslationsFiltering";
+import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import {
-  RQ_MOVIE_KEY,
   RQ_MOVIE_ENDPOINT,
+  RQ_MOVIE_KEY,
   RQ_MOVIE_RELEASES_ENDPOINT,
   RQ_MOVIE_RELEASES_KEY,
 } from "@/constants";
@@ -29,7 +28,7 @@ export async function generateMetadata({
   ).then((res) => res.json());
 
   return {
-    title: movieMetadataTitle(movie.title, movie.release_date, "Release Dates"),
+    title: movieMetadataTitle(movie.title, movie.release_date, pageTitle),
     description: movie.tagline,
   };
 }

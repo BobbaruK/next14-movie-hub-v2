@@ -93,20 +93,30 @@ export default async function MainTitleNavigationLayout({
       ],
     },
     {
-      label: "Backdrops",
+      label: "Images",
       href: `/movie/${id}/images/backdrops`,
-    },
-    {
-      label: "Logos",
-      href: `/movie/${id}/images/logos`,
-    },
-    {
-      label: "Posters",
-      href: `/movie/${id}/images/posters`,
+      children: [
+        {
+          label: "Backdrops",
+          href: `/movie/${id}/images/backdrops`,
+        },
+        {
+          label: "Logos",
+          href: `/movie/${id}/images/logos`,
+        },
+        {
+          label: "Posters",
+          href: `/movie/${id}/images/posters`,
+        },
+      ],
     },
     {
       label: "Videos",
       href: `/movie/${id}/videos`,
+    },
+    {
+      label: "Reviews",
+      href: `/movie/${id}/reviews`,
     },
   ];
 

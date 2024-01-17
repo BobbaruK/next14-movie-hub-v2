@@ -93,20 +93,30 @@ export default async function MainTVTitleNavigationLayout({
       ],
     },
     {
-      label: "Backdrops",
-      href: `/tv/${id}/images/backdrops`,
-    },
-    {
-      label: "Logos",
-      href: `/tv/${id}/images/logos`,
-    },
-    {
-      label: "Posters",
-      href: `/tv/${id}/images/posters`,
+      label: "Images",
+      href: "",
+      children: [
+        {
+          label: "Backdrops",
+          href: `/tv/${id}/images/backdrops`,
+        },
+        {
+          label: "Logos",
+          href: `/tv/${id}/images/logos`,
+        },
+        {
+          label: "Posters",
+          href: `/tv/${id}/images/posters`,
+        },
+      ],
     },
     {
       label: "Videos",
       href: `/tv/${id}/videos`,
+    },
+    {
+      label: "Reviews",
+      href: `/tv/${id}/reviews`,
     },
   ];
 

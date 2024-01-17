@@ -5,6 +5,7 @@ import { ReviewsResponse } from "@/types/movies/Reviews";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import ReviewCard from "../Cards/Review";
+import { useParams } from "next/navigation";
 
 interface Props {
   queryKey: string;
@@ -12,6 +13,8 @@ interface Props {
 }
 
 const MainTitleReviews = ({ queryKey, endpoint }: Props) => {
+  const { id } = useParams<{ id: string }>();
+
   const apiClient = new MyAPIClient<ReviewsResponse>(endpoint);
   const { data, error, isLoading } = useQuery<ReviewsResponse>({
     queryKey: [queryKey],
@@ -37,7 +40,7 @@ const MainTitleReviews = ({ queryKey, endpoint }: Props) => {
         <ReviewCard review={data?.results[0]!} />
         {data?.results.length && data?.results.length > 1 && (
           <div className="py-4">
-            <Link href="#">View all reviews</Link>
+            <Link href={`/tv/${id}/reviews`}>View all reviews</Link>
           </div>
         )}
       </div>
