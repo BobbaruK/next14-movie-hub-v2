@@ -22,8 +22,6 @@ const usePersonTitlesCrew = (
     }
   }
 
-  console.log(crewSortDep);
-
   for (let i = 0; i < crewSortDepArr.length; i++) {
     const group = crewSortDepArr[i];
 
@@ -34,7 +32,6 @@ const usePersonTitlesCrew = (
     });
 
     const groupSortYearArr = Object.values(groupSortYear);
-    console.log(groupSortYear);
 
     for (let j = 0; j < groupSortYearArr.length; j++) {
       // crewSortDepArr[i].push(groupSortYearArr[j]);

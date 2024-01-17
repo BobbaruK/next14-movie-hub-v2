@@ -10,9 +10,10 @@ import { useParams } from "next/navigation";
 interface Props {
   queryKey: string;
   endpoint: string;
+  type: "movie" | "tv";
 }
 
-const MainTitleReviews = ({ queryKey, endpoint }: Props) => {
+const MainTitleReviews = ({ queryKey, endpoint, type }: Props) => {
   const { id } = useParams<{ id: string }>();
 
   const apiClient = new MyAPIClient<ReviewsResponse>(endpoint);
@@ -40,7 +41,7 @@ const MainTitleReviews = ({ queryKey, endpoint }: Props) => {
         <ReviewCard review={data?.results[0]!} />
         {data?.results.length && data?.results.length > 1 && (
           <div className="py-4">
-            <Link href={`/tv/${id}/reviews`}>View all reviews</Link>
+            <Link href={`/${type}/${id}/reviews`}>View all reviews</Link>
           </div>
         )}
       </div>

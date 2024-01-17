@@ -1,5 +1,11 @@
 import BackTo from "@/components/BackTo";
-import { RQ_MOVIE_ENDPOINT, RQ_MOVIE_KEY } from "@/constants";
+import ReviewsGrid from "@/components/layouts/ReviewsGrid";
+import {
+  RQ_MOVIE_ENDPOINT,
+  RQ_MOVIE_KEY,
+  RQ_MOVIE_REVIEWS_ENDPOINT,
+  RQ_MOVIE_REVIEWS_KEY,
+} from "@/constants";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
@@ -32,6 +38,10 @@ export default function MovieReviews({ params: { id } }: Props) {
         queryKey={RQ_MOVIE_KEY(id)}
         endpoint={RQ_MOVIE_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/movie/${id}` }}
+      />
+      <ReviewsGrid
+        queryKey={RQ_MOVIE_REVIEWS_KEY(id)}
+        endpoint={RQ_MOVIE_REVIEWS_ENDPOINT(id)}
       />
     </>
   );

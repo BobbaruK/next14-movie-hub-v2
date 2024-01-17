@@ -48,6 +48,7 @@ export default function Movie({ params: { id } }: Props) {
           <MainTitleReviews
             queryKey={RQ_MOVIE_REVIEWS_KEY(id)}
             endpoint={RQ_MOVIE_REVIEWS_ENDPOINT(id)}
+            type="movie"
           />
           <MainTitleRecommendations
             queryKey={RQ_MOVIE_RECOMMENDATIONS_KEY(id)}

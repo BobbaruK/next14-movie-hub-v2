@@ -6,6 +6,7 @@ import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import LoadingSpinner from "../LoadingSpinner";
+import { Review } from "@/types/movies/Reviews";
 
 interface Props {
   page: number;
@@ -15,7 +16,8 @@ interface Props {
   movie:
     | MainTitleResponse<Movie>
     | MainTitleResponse<TVShow>
-    | MainTitleResponse<People>;
+    | MainTitleResponse<People>
+    | MainTitleResponse<Review>;
 }
 
 const MoviePagination = ({

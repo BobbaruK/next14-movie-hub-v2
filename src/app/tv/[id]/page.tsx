@@ -53,6 +53,7 @@ export default function TvShow({ params: { id } }: Props) {
           <MainTitleReviews
             queryKey={RQ_TVSHOW_REVIEWS_KEY(id)}
             endpoint={RQ_TVSHOW_REVIEWS_ENDPOINT(id)}
+            type="tv"
           />
           <MainTitleRecommendations
             queryKey={RQ_TVSHOW_RECOMMENDATIONS_KEY(id)}
