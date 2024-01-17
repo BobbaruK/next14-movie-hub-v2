@@ -37,7 +37,7 @@ const Networks = ({ queryKey, endpoint }: Props) => {
   if (configError) throw new Error(`${queryKey} - ${configError.message}`);
 
   if (isLoading || isLoadingError)
-    return <div className="alert alert-info">Loading networks...</div>;
+    return <div className="alert alert-warning">Loading networks...</div>;
 
   return (
     <>

@@ -22,7 +22,7 @@ const ReleasesFiltering = ({ title, queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading sidebar...</div>;
+    return <div className="alert alert-warning">Loading sidebar...</div>;
 
   return (
     <>

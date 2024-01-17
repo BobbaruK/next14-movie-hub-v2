@@ -34,7 +34,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading translations...</div>;
+    return <div className="alert alert-warning">Loading translations...</div>;
 
   const cast = data?.cast;
   const crew = data?.crew;

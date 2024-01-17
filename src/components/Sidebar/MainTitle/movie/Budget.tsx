@@ -19,7 +19,7 @@ const Budget = ({ queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading budget...</div>;
+    return <div className="alert alert-warning">Loading budget...</div>;
 
   return (
     <>

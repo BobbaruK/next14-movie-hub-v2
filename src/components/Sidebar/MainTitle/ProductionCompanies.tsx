@@ -41,7 +41,7 @@ const ProductionCompanies = ({ queryKey, endpoint }: Props) => {
 
   if (isLoading || isLoadingError)
     return (
-      <div className="alert alert-info">Loading production companies...</div>
+      <div className="alert alert-warning">Loading production companies...</div>
     );
 
   return (

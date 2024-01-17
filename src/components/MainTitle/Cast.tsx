@@ -68,7 +68,7 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
 
   if (isLoading)
     return (
-      <div className="alert alert-info">
+      <div className="alert alert-warning">
         Loading main title cast and crew...
       </div>
     );

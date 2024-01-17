@@ -27,7 +27,7 @@ const MainTitleTranslations = ({ queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading translations...</div>;
+    return <div className="alert alert-warning">Loading translations...</div>;
 
   if (data?.translations.length === 0)
     return <div className="alert alert-warning">No results</div>;

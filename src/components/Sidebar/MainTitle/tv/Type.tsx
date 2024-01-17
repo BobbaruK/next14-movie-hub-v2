@@ -18,7 +18,7 @@ const Type = ({ queryKey, endpoint }: Props) => {
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
-  if (isLoading) return <div className="alert alert-info">Loading type...</div>;
+  if (isLoading) return <div className="alert alert-warning">Loading type...</div>;
 
   return (
     <>

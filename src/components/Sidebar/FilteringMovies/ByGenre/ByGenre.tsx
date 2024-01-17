@@ -34,7 +34,7 @@ const ByGenre = ({ rqKey }: Props) => {
   if (error) throw new Error(`${rqKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading genres...</div>;
+    return <div className="alert alert-warning">Loading genres...</div>;
 
   return (
     <div className="mb-6">

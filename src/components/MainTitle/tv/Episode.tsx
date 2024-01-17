@@ -45,7 +45,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
   if (isLoading)
     return (
       <div className="appContaier">
-        <div className="alert alert-info">
+        <div className="alert alert-warning">
           Loading tv show&apos;s episode...
         </div>
       </div>

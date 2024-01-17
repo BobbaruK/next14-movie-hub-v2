@@ -19,7 +19,7 @@ const PersonName = ({ endpoint, queryKey }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading person name...</div>;
+    return <div className="alert alert-warning">Loading person name...</div>;
 
   return <h1>{data?.name}</h1>;
 };

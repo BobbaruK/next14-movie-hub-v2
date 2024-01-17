@@ -25,7 +25,7 @@ const MainTitleReviews = ({ queryKey, endpoint, type }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading movie reviews...</div>;
+    return <div className="alert alert-warning">Loading movie reviews...</div>;
 
   if (data?.results.length === 0) return;
 

@@ -34,7 +34,7 @@ const ByLanguage = () => {
   if (error) throw new Error(`${RQ_LANGUAGES_KEY} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading languages...</div>;
+    return <div className="alert alert-warning">Loading languages...</div>;
 
   const languages = [...(data || [])];
 

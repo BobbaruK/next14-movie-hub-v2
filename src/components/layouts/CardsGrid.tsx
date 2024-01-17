@@ -51,7 +51,8 @@ const CardsGrid = ({
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
-  if (isLoading) return <div className="alert alert-info">Loading shit...</div>;
+  if (isLoading)
+    return <div className="alert alert-warning">Loading cards...</div>;
 
   if (data?.results.length === 0)
     return <div className="alert alert-warning">No results</div>;

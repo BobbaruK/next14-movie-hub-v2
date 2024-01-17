@@ -34,7 +34,7 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading current season...</div>;
+    return <div className="alert alert-warning">Loading current season...</div>;
 
   const nrOfSeasons = data?.seasons.length! - 1;
   const lastSeason = data?.seasons[nrOfSeasons]!;

@@ -48,7 +48,7 @@ const SocialMediaLinks = ({
     throw new Error(`${queryKeyExternalIds} - ${externalIdsError.message}`);
 
   if (isLoading || externalIdsIsLoading)
-    return <div className="alert alert-info">Loading Link(s)...</div>;
+    return <div className="alert alert-warning">Loading Link(s)...</div>;
 
   return (
     <>

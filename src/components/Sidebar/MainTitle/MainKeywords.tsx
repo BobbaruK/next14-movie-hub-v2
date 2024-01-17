@@ -27,7 +27,7 @@ const MainKeywords = ({ queryKey, endpoint }: Props) => {
     );
 
   if (isLoading)
-    return <div className="alert alert-info">Loading keywords...</div>;
+    return <div className="alert alert-warning">Loading keywords...</div>;
 
   const keywords = "keywords" in data! ? data.keywords : data?.results;
 

@@ -20,7 +20,7 @@ const Birthday = ({ endpoint, queryKey }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading personal info...</div>;
+    return <div className="alert alert-warning">Loading personal info...</div>;
 
   const birthday = ReleaseDateUI(data?.birthday);
   Object.keys(birthday).length === 0;

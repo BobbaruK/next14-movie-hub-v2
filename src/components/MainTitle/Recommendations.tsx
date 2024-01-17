@@ -27,7 +27,7 @@ const MainTitleRecommendations = ({ queryKey, endpoint }: Props) => {
 
   if (isLoading)
     return (
-      <div className="alert alert-info">Loading movie recommendations...</div>
+      <div className="alert alert-warning">Loading movie recommendations...</div>
     );
 
   const recommended = [...(data?.results || [])];

@@ -37,7 +37,7 @@ const PersonProfile = ({ endpoint, queryKey }: Props) => {
   if (configError) throw new Error(`${queryKey} - ${configError.message}`);
 
   if (isLoading || isLoadingError)
-    return <div className="alert alert-info">Loading person name...</div>;
+    return <div className="alert alert-warning">Loading person name...</div>;
 
   return (
     <div className="overflow-hidden rounded-md">

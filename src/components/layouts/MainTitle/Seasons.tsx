@@ -40,7 +40,7 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
   if (isLoading)
     return (
       <div className="appContaier">
-        <div className="alert alert-info">Loading tv show seasons...</div>
+        <div className="alert alert-warning">Loading tv show seasons...</div>
       </div>
     );
 

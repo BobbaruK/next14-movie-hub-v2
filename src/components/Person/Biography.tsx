@@ -23,10 +23,10 @@ const Biography = ({ endpoint, queryKey }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading person name...</div>;
+    return <div className="alert alert-warning">Loading person name...</div>;
 
   if (!data?.biography)
-    return <div className="alert alert-info">No Biography for this person</div>;
+    return <div className="alert alert-warning">No Biography for this person</div>;
 
   return (
     <>

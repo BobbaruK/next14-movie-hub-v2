@@ -40,7 +40,7 @@ const AlternativeTitlesFiltering = ({ title, queryKey, endpoint }: Props) => {
     throw new Error(`${queryKey} - ${errorCountries.message}`);
 
   if (isLoading || isLoadingCountries)
-    return <div className="alert alert-info">Loading sidebar...</div>;
+    return <div className="alert alert-warning">Loading sidebar...</div>;
 
   const titles =
     "titles" in data! ? data.titles : "results" in data! ? data.results : [];

@@ -41,7 +41,7 @@ const AlternativeTitles = ({ queryKey, endpoint }: Props) => {
 
   if (isLoading || isLoadingCountries)
     return (
-      <div className="alert alert-info">Loading alternative titles...</div>
+      <div className="alert alert-warning">Loading alternative titles...</div>
     );
 
   const titles =

@@ -20,7 +20,7 @@ const ReleaseDates = ({ queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading release dates...</div>;
+    return <div className="alert alert-warning">Loading release dates...</div>;
 
   if (data?.results.length === 0)
     return <div className="alert alert-warning">No results</div>;

@@ -40,7 +40,7 @@ const OriginalLanguage = ({ queryKey, endpoint }: Props) => {
     throw new Error(`${queryKey} - ${languagesError.message}`);
 
   if (isLoading || languagesIsLoading)
-    return <div className="alert alert-info">Loading original language...</div>;
+    return <div className="alert alert-warning">Loading original language...</div>;
 
   return (
     <>

@@ -25,7 +25,7 @@ const ReviewsGrid = ({ queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading reviews...</div>;
+    return <div className="alert alert-warning">Loading reviews...</div>;
 
   if (!data?.results.length)
     return (

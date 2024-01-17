@@ -20,7 +20,7 @@ const Credits = ({ endpoint, queryKey }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-info">Loading credits...</div>;
+    return <div className="alert alert-warning">Loading credits...</div>;
 
   return (
     <div className="flex flex-col gap-8 py-10">

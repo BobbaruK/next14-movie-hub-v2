@@ -49,7 +49,7 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
   if (isLoading)
     return (
       <div className="appContaier">
-        <div className="alert alert-info">Loading main title...</div>
+        <div className="alert alert-warning">Loading main title...</div>
       </div>
     );
 

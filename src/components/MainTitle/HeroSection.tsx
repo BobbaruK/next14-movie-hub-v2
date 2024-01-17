@@ -37,7 +37,7 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
   if (isLoading)
     return (
       <div className="appContaier">
-        <div className="alert alert-info">
+        <div className="alert alert-warning">
           Loading main title hero section...
         </div>
       </div>
