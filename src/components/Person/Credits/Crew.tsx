@@ -27,35 +27,37 @@ const Crew = ({ crewArr }: Props) => {
         <div key={`department-${index}`}>
           <h2>{department[0][0].department}</h2>
           <div className="flex flex-col gap-6 rounded-md border border-primary pt-4 shadow-md shadow-primary">
-            {department.map((yearGroup, ind) => (
-              <div key={`yearGroup-${ind}`} className="flex flex-col gap-4 ">
-                {yearGroup.map((crew, indx) => (
-                  <div
-                    key={crew.id + "" + indx}
-                    className="grid grid-cols-person-credit gap-4 px-3"
-                  >
-                    <div className="text-center">
-                      {crew.year ? crew.year : "-"}
-                    </div>
-                    &bull;
-                    <div className="flex flex-col">
-                      <div className="font-bold">
-                        <Link
-                          href={`/${crew.media_type}/${idTitleHyphen(
-                            crew.id,
-                            "title" in crew ? crew.title : crew.name,
-                          )}`}
-                        >
-                          {"title" in crew ? crew.title : crew.name}
-                        </Link>
+            {department
+              .sort((a, b) => b[0].year - a[0].year)
+              .map((yearGroup, ind) => (
+                <div key={`yearGroup-${ind}`} className="flex flex-col gap-4 ">
+                  {yearGroup.map((crew, indx) => (
+                    <div
+                      key={crew.id + "" + indx}
+                      className="grid grid-cols-person-credit gap-4 px-3"
+                    >
+                      <div className="text-center">
+                        {crew.year ? crew.year : "-"}
                       </div>
-                      <div className="indent-5">...{crew.job}</div>
+                      &bull;
+                      <div className="flex flex-col">
+                        <div className="font-bold">
+                          <Link
+                            href={`/${crew.media_type}/${idTitleHyphen(
+                              crew.id,
+                              "title" in crew ? crew.title : crew.name,
+                            )}`}
+                          >
+                            {"title" in crew ? crew.title : crew.name}
+                          </Link>
+                        </div>
+                        <div className="indent-5">...{crew.job}</div>
+                      </div>
                     </div>
-                  </div>
-                ))}
-                <hr className="border-primary" />
-              </div>
-            ))}
+                  ))}
+                  <hr className="border-primary" />
+                </div>
+              ))}
           </div>
         </div>
       ))}

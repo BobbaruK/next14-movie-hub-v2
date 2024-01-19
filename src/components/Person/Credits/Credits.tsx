@@ -1,12 +1,10 @@
 "use client";
 
-import { RQ_POPULAR_JOBS_ENDPOINT, RQ_POPULAR_JOBS_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { Job } from "@/types/Job";
+import { CombinedCredits } from "@/types/people/CombinedCredits";
 import { useQuery } from "@tanstack/react-query";
 import Acting from "./Acting";
 import Crew from "./Crew";
-import { CombinedCredits } from "@/types/people/CombinedCredits";
 
 interface Props {
   creditsQueryKey: string;
