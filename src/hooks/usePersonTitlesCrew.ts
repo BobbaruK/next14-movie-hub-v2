@@ -1,70 +1,232 @@
-import groupBy from "@/utils/groupBy";
+import { Department } from "@/types/Job";
+import {
+  CombinedCreditsMovieCrew,
+  CombinedCreditsTVCrew,
+} from "@/types/people/CombinedCredits";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 
 const usePersonTitlesCrew = (
-  castArr: CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[],
+  crewArr: CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[],
 ) => {
-  const crewSortDep = groupBy<CombinedCreditsMovieCrew | CombinedCreditsTVCrew>(
-    castArr,
-    (crew) => {
-      return crew.department;
-    },
-  );
+  const output = [] as (CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[])[];
 
-  const crewSortDepArr = Object.values(crewSortDep);
+  // Editing
+  const editing = "Editing" as Department;
 
-  for (let i = 0; i < crewSortDepArr.length; i++) {
-    for (let j = 0; j < crewSortDepArr[i].length; j++) {
-      const t = crewSortDepArr[i][j];
-      crewSortDepArr[i][j].year = ReleaseDateUI(
+  const departmentEditing = crewArr.filter(
+    (crewItem) => crewItem.department === editing,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+  if (departmentEditing.length > 0) {
+    for (let i = 0; i < departmentEditing.length; i++) {
+      const t = departmentEditing[i];
+      departmentEditing[i].year = ReleaseDateUI(
         "title" in t ? t.release_date : t.first_air_date,
       ).year!;
     }
+
+    output.push(departmentEditing);
   }
 
-  for (let i = 0; i < crewSortDepArr.length; i++) {
-    const group = crewSortDepArr[i];
+  // Art
+  const art = "Art" as Department;
 
-    const groupSortYear = groupBy<
-      CombinedCreditsMovieCrew | CombinedCreditsTVCrew
-    >(group, (e) => {
-      return e.year;
-    });
+  const departmentArt = crewArr.filter(
+    (crewItem) => crewItem.department === art,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
 
-    const groupSortYearArr = Object.values(groupSortYear);
-
-    for (let j = 0; j < groupSortYearArr.length; j++) {
-      // crewSortDepArr[i].push(groupSortYearArr[j]);
+  if (departmentArt.length > 0) {
+    for (let i = 0; i < departmentArt.length; i++) {
+      const t = departmentArt[i];
+      departmentArt[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
     }
+
+    output.push(departmentArt);
   }
 
-  // const groupByYear = groupBy<CombinedCreditsMovieCrew | CombinedCreditsTVCrew>(
-  //   crewSortDepArr,
-  //   (cast) => {
-  //     return cast.year;
-  //   },
-  // );
+  // Writing
+  const writing = "Writing" as Department;
 
-  // const groupByYearArray = Object.values(groupByYear);
+  const departmentWriting = crewArr.filter(
+    (crewItem) => crewItem.department === writing,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
 
-  // let undefinedYearIndexes: number[] = [];
+  if (departmentWriting.length > 0) {
+    for (let i = 0; i < departmentWriting.length; i++) {
+      const t = departmentWriting[i];
+      departmentWriting[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
 
-  // const undefinedYear = groupByYearArray.filter((groups, index) => {
-  //   if (groups[0][0].year === undefined) undefinedYearIndexes.push(index);
-  //   return groups[0][0].year === undefined;
-  // });
+    output.push(departmentWriting);
+  }
 
-  // undefinedYearIndexes.forEach((ind) => {
-  //   groupByYearArray.splice(ind, 1);
-  // });
+  // Camera
+  const camera = "Camera" as Department;
 
-  // if (undefinedYear[0]) groupByYearArray.unshift(undefinedYear[0]);
+  const departmentCamera = crewArr.filter(
+    (crewItem) => crewItem.department === camera,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
 
-  // console.log(groupByYear);
+  if (departmentCamera.length > 0) {
+    for (let i = 0; i < departmentCamera.length; i++) {
+      const t = departmentCamera[i];
+      departmentCamera[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
 
-  // return groupByYearArray;
+    output.push(departmentCamera);
+  }
 
-  return crewSortDepArr;
+  // Directing
+  const directing = "Directing" as Department;
+
+  const departmentDirecting = crewArr.filter(
+    (crewItem) => crewItem.department === directing,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+  if (departmentDirecting.length > 0) {
+    for (let i = 0; i < departmentDirecting.length; i++) {
+      const t = departmentDirecting[i];
+      departmentDirecting[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
+
+    output.push(departmentDirecting);
+  }
+
+  // Visual Effects
+  const visualEffects = "Visual Effects" as Department;
+
+  const departmentVisualEffects = crewArr.filter(
+    (crewItem) => crewItem.department === visualEffects,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+  if (departmentVisualEffects.length > 0) {
+    for (let i = 0; i < departmentVisualEffects.length; i++) {
+      const t = departmentVisualEffects[i];
+      departmentVisualEffects[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
+
+    output.push(departmentVisualEffects);
+  }
+
+  // Actors
+  const actors = "Actors" as Department;
+
+  const departmentActors = crewArr.filter(
+    (crewItem) => crewItem.department === actors,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+  if (departmentActors.length > 0) {
+    for (let i = 0; i < departmentActors.length; i++) {
+      const t = departmentActors[i];
+      departmentActors[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
+
+    output.push(departmentActors);
+  }
+
+  // Production
+  const production = "Production" as Department;
+
+  const departmentProduction = crewArr.filter(
+    (crewItem) => crewItem.department === production,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+  if (departmentProduction.length > 0) {
+    for (let i = 0; i < departmentProduction.length; i++) {
+      const t = departmentProduction[i];
+      departmentProduction[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
+
+    output.push(departmentProduction);
+  }
+
+  // Costume & Make-Up
+  const costumeAndMakeUp = "Costume & Make-Up" as Department;
+
+  const departmentCostumeAndMakeUp = crewArr.filter(
+    (crewItem) => crewItem.department === costumeAndMakeUp,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+  if (departmentCostumeAndMakeUp.length > 0) {
+    for (let i = 0; i < departmentCostumeAndMakeUp.length; i++) {
+      const t = departmentCostumeAndMakeUp[i];
+      departmentCostumeAndMakeUp[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
+
+    output.push(departmentCostumeAndMakeUp);
+  }
+
+  // Crew
+  const crew = "Crew" as Department;
+
+  const departmentCrew = crewArr.filter(
+    (crewItem) => crewItem.department === crew,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+  if (departmentCrew.length > 0) {
+    for (let i = 0; i < departmentCrew.length; i++) {
+      const t = departmentCrew[i];
+      departmentCrew[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
+
+    output.push(departmentCrew);
+  }
+
+  // Sound
+  const sound = "Sound" as Department;
+
+  const departmentSound = crewArr.filter(
+    (crewItem) => crewItem.department === sound,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+  if (departmentSound.length > 0) {
+    for (let i = 0; i < departmentSound.length; i++) {
+      const t = departmentSound[i];
+      departmentSound[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
+
+    output.push(departmentSound);
+  }
+
+  // Lighting
+  const lightning = "Lighting" as Department;
+
+  const departmentLighting = crewArr.filter(
+    (crewItem) => crewItem.department === lightning,
+  ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+  if (departmentLighting.length > 0) {
+    for (let i = 0; i < departmentLighting.length; i++) {
+      const t = departmentLighting[i];
+      departmentLighting[i].year = ReleaseDateUI(
+        "title" in t ? t.release_date : t.first_air_date,
+      ).year!;
+    }
+
+    output.push(departmentLighting);
+  }
+
+  return output;
 };
 
 export default usePersonTitlesCrew;

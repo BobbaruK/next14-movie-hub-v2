@@ -1,34 +1,42 @@
 "use client";
 
+import { RQ_POPULAR_JOBS_ENDPOINT, RQ_POPULAR_JOBS_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { Job } from "@/types/Job";
 import { useQuery } from "@tanstack/react-query";
 import Acting from "./Acting";
 import Crew from "./Crew";
+import { CombinedCredits } from "@/types/people/CombinedCredits";
 
 interface Props {
-  queryKey: string;
-  endpoint: string;
+  creditsQueryKey: string;
+  creditsEndpoint: string;
 }
 
-const Credits = ({ endpoint, queryKey }: Props) => {
-  const apiClient = new MyAPIClient<CombinedCredits>(endpoint);
-  const { data, error, isLoading } = useQuery<CombinedCredits>({
-    queryKey: [queryKey],
+const Credits = ({ creditsEndpoint, creditsQueryKey }: Props) => {
+  const apiClient = new MyAPIClient<CombinedCredits>(creditsEndpoint);
+  const {
+    data: credits,
+    error: creditsError,
+    isLoading: creditsIsLoading,
+  } = useQuery<CombinedCredits>({
+    queryKey: [creditsQueryKey],
     queryFn: () => apiClient.getAll(),
   });
 
-  if (error) throw new Error(`${queryKey} - ${error.message}`);
+  if (creditsError)
+    throw new Error(`${creditsQueryKey} - ${creditsError.message}`);
 
-  if (isLoading)
+  if (creditsIsLoading)
     return <div className="alert alert-warning">Loading credits...</div>;
 
   return (
     <div className="flex flex-col gap-8 py-10">
       <div>
         <h2>Acting</h2>
-        <Acting castArr={data?.cast!} />
+        <Acting castArr={credits?.cast!} />
       </div>
-      <Crew crewArr={data?.crew!} />
+      <Crew crewArr={credits?.crew!} />
     </div>
   );
 };
