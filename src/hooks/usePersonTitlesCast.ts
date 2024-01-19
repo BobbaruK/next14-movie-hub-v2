@@ -1,3 +1,7 @@
+import {
+  CombinedCreditsMovieCast,
+  CombinedCreditsTVCast,
+} from "@/types/people/CombinedCredits";
 import groupBy from "@/utils/groupBy";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 

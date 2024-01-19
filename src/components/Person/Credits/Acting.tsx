@@ -1,4 +1,5 @@
 import usePersonTitlesCast from "@/hooks/usePersonTitlesCast";
+import { CombinedCreditsMovieCast, CombinedCreditsTVCast } from "@/types/people/CombinedCredits";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import Link from "next/link";
 import React from "react";

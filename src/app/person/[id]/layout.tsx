@@ -7,6 +7,7 @@ import {
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+import { CombinedCredits } from "@/types/people/CombinedCredits";
 import { PeopleResponse } from "@/types/people/PeopleResponse";
 import {
   HydrationBoundary,

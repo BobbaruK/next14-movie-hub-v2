@@ -12,6 +12,10 @@ export const RQ_LANGUAGES_ENDPOINT = "/configuration/languages";
 export const RQ_COUNTRIES_KEY = "countries";
 export const RQ_COUNTRIES_ENDPOINT = "/configuration/countries";
 
+// Jobs
+export const RQ_POPULAR_JOBS_KEY = "jobs";
+export const RQ_POPULAR_JOBS_ENDPOINT = "/configuration/jobs";
+
 // Movies
 export const RQ_POPULAR_MOVIES_KEY = "popular-movies";
 export const RQ_POPULAR_MOVIES_ENDPOINT = "discover/movie";

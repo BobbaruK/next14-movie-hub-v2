@@ -37,53 +37,51 @@ export async function generateMetadata({
 
 export default function Person({ params: { id } }: Props) {
   return (
-    <>
-      <div className="appContaier flex flex-col gap-8 py-20 lg:flex-row">
-        <div className="flex flex-col gap-10 lg:basis-1/4">
-          <PersonProfile
+    <div className="appContaier flex flex-col gap-8 py-20 lg:flex-row">
+      <div className="flex flex-col gap-10 lg:basis-1/4">
+        <PersonProfile
+          queryKey={RQ_PERSON_KEY(id)}
+          endpoint={RQ_PERSON_ENDPOINT(id)}
+        />
+        <div className="flex flex-col gap-6">
+          social media aici
+          <h2 className="m-0">Personal info</h2>
+          <KnownFor
             queryKey={RQ_PERSON_KEY(id)}
             endpoint={RQ_PERSON_ENDPOINT(id)}
           />
-          <div className="flex flex-col gap-6">
-            social media aici
-            <h2 className="m-0">Personal info</h2>
-            <KnownFor
-              queryKey={RQ_PERSON_KEY(id)}
-              endpoint={RQ_PERSON_ENDPOINT(id)}
-            />
-            <Gender
-              queryKey={RQ_PERSON_KEY(id)}
-              endpoint={RQ_PERSON_ENDPOINT(id)}
-            />
-            <Birthday
-              queryKey={RQ_PERSON_KEY(id)}
-              endpoint={RQ_PERSON_ENDPOINT(id)}
-            />
-            <PlaceOfBirth
-              queryKey={RQ_PERSON_KEY(id)}
-              endpoint={RQ_PERSON_ENDPOINT(id)}
-            />
-            <AlsoKnownAs
-              queryKey={RQ_PERSON_KEY(id)}
-              endpoint={RQ_PERSON_ENDPOINT(id)}
-            />
-          </div>
-        </div>
-        <div className="lg:basis-3/4">
-          <PersonName
+          <Gender
             queryKey={RQ_PERSON_KEY(id)}
             endpoint={RQ_PERSON_ENDPOINT(id)}
           />
-          <Biography
+          <Birthday
             queryKey={RQ_PERSON_KEY(id)}
             endpoint={RQ_PERSON_ENDPOINT(id)}
           />
-          <Credits
-            queryKey={RQ_COMBINED_CREDITS_KEY(id)}
-            endpoint={RQ_COMBINED_CREDITS_ENDPOINT(id)}
+          <PlaceOfBirth
+            queryKey={RQ_PERSON_KEY(id)}
+            endpoint={RQ_PERSON_ENDPOINT(id)}
+          />
+          <AlsoKnownAs
+            queryKey={RQ_PERSON_KEY(id)}
+            endpoint={RQ_PERSON_ENDPOINT(id)}
           />
         </div>
       </div>
-    </>
+      <div className="lg:basis-3/4">
+        <PersonName
+          queryKey={RQ_PERSON_KEY(id)}
+          endpoint={RQ_PERSON_ENDPOINT(id)}
+        />
+        <Biography
+          queryKey={RQ_PERSON_KEY(id)}
+          endpoint={RQ_PERSON_ENDPOINT(id)}
+        />
+        <Credits
+          creditsQueryKey={RQ_COMBINED_CREDITS_KEY(id)}
+          creditsEndpoint={RQ_COMBINED_CREDITS_ENDPOINT(id)}
+        />
+      </div>
+    </div>
   );
 }

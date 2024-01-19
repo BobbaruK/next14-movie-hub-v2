@@ -1,12 +1,12 @@
-interface CombinedCredits {
+export interface CombinedCredits {
   id: number;
   cast: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[];
   crew: CombinedCreditsMovieCrew[];
 }
 
-type MediaType = "movie" | "tv";
+export type MediaType = "movie" | "tv";
 
-interface CombinedCreditsMovieCast {
+export interface CombinedCreditsMovieCast {
   adult: boolean;
   backdrop_path: string | null;
   genre_ids: number[];
@@ -28,7 +28,7 @@ interface CombinedCreditsMovieCast {
   year: number;
 }
 
-interface CombinedCreditsTVCast {
+export interface CombinedCreditsTVCast {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -50,7 +50,7 @@ interface CombinedCreditsTVCast {
   year: number;
 }
 
-interface CombinedCreditsMovieCrew {
+export interface CombinedCreditsMovieCrew {
   adult: boolean;
   backdrop_path: string | null;
   genre_ids: number[];
@@ -72,7 +72,7 @@ interface CombinedCreditsMovieCrew {
   year: number;
 }
 
-interface CombinedCreditsTVCrew {
+export interface CombinedCreditsTVCrew {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
