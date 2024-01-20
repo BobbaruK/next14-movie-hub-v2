@@ -1,18 +1,24 @@
 import {
-  TranslationMovie,
-  TranslationTV,
+  TranslationMovieBase,
+  TranslationPeopleBase,
+  TranslationTVShowBase,
 } from "@/types/movies/TranslationsResponse";
 import Link from "next/link";
 
 interface Props {
-  translation: TranslationMovie | TranslationTV;
+  translation:
+    | TranslationMovieBase
+    | TranslationTVShowBase
+    | TranslationPeopleBase;
 }
 
 const TranslationCard = ({ translation }: Props) => {
   const title =
     "title" in translation.data
       ? translation.data.title
-      : translation.data.name;
+      : "name" in translation.data
+        ? translation.data.name
+        : "";
   return (
     <div
       id={`${translation.iso_639_1}-${translation.iso_3166_1}`}
@@ -31,22 +37,38 @@ const TranslationCard = ({ translation }: Props) => {
           </div>
           <div className="basis-2/4 px-4 py-2 md:basis-4/5">{title || "-"}</div>
         </div>
-        <div className="flex border-b-[1px] border-primary">
-          <div className="basis-2/4 border-r-[1px] border-primary px-4 py-2 font-bold md:basis-1/5">
-            Tagline
-          </div>
-          <div className="basis-2/4 px-4 py-2 md:basis-4/5">
-            {translation.data.tagline || "-"}
-          </div>
-        </div>
-        <div className="flex border-b-[1px] border-primary">
-          <div className="basis-2/4 border-r-[1px] border-primary px-4 py-2 font-bold md:basis-1/5">
-            Overview
-          </div>
-          <div className="basis-2/4 px-4 py-2 md:basis-4/5">
-            {translation.data.overview || "-"}
-          </div>
-        </div>
+        {!("biography" in translation.data) && (
+          <>
+            <div className="flex border-b-[1px] border-primary">
+              <div className="basis-2/4 border-r-[1px] border-primary px-4 py-2 font-bold md:basis-1/5">
+                Tagline
+              </div>
+              <div className="basis-2/4 px-4 py-2 md:basis-4/5">
+                {translation.data.tagline || "-"}
+              </div>
+            </div>
+            <div className="flex border-b-[1px] border-primary">
+              <div className="basis-2/4 border-r-[1px] border-primary px-4 py-2 font-bold md:basis-1/5">
+                Overview
+              </div>
+              <div className="basis-2/4 px-4 py-2 md:basis-4/5">
+                {translation.data.overview || "-"}
+              </div>
+            </div>
+          </>
+        )}
+        {"biography" in translation.data && (
+          <>
+            <div className="flex border-b-[1px] border-primary">
+              <div className="basis-2/4 border-r-[1px] border-primary px-4 py-2 font-bold md:basis-1/5">
+                Biography
+              </div>
+              <div className="basis-2/4 px-4 py-2 md:basis-4/5">
+                {translation.data.biography ? translation.data.biography : "-"}
+              </div>
+            </div>
+          </>
+        )}
         {"title" in translation.data && (
           <>
             <div className="flex border-b-[1px] border-primary">

@@ -1,10 +1,7 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
-import {
-  TranslationsMovie,
-  TranslationsTV,
-} from "@/types/movies/TranslationsResponse";
+import { TranslationsBase } from "@/types/movies/TranslationsResponse";
 import { useQuery } from "@tanstack/react-query";
 import TranslationCard from "../Cards/Translation";
 
@@ -14,12 +11,8 @@ interface Props {
 }
 
 const MainTitleTranslations = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<
-    TranslationsMovie | TranslationsTV
-  >(endpoint);
-  const { data, error, isLoading } = useQuery<
-    TranslationsMovie | TranslationsTV
-  >({
+  const apiClientMainTitle = new MyAPIClient<TranslationsBase>(endpoint);
+  const { data, error, isLoading } = useQuery<TranslationsBase>({
     queryKey: [queryKey],
     queryFn: () => apiClientMainTitle.getAll(),
   });
