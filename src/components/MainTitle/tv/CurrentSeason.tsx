@@ -49,7 +49,6 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
           <div className="basis-1/5 [&>img]:h-full [&>img]:w-full [&>img]:object-cover">
             <Link href={`/tv/${id}/seasons/${lastSeason.season_number}/`}>
               <ImageTMDB
-                type="poster"
                 alt={lastSeason.name}
                 src={imageLink<PosterSizes>(
                   "https://image.tmdb.org/t/p/",

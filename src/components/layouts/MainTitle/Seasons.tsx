@@ -55,7 +55,6 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
               <div className="inline-block overflow-hidden rounded-md [&>img]:object-cover">
                 <Link href={`/tv/${id}/seasons/${season.season_number}`}>
                   <ImageTMDB
-                    type="poster"
                     alt={season.name}
                     src={imageLink<PosterSizes>(
                       config?.images.secure_base_url!,

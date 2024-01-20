@@ -60,7 +60,6 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="absolute inset-0 -z-20  h-full w-full [&>img]:h-full [&>img]:w-full [&>img]:object-cover">
           <ImageTMDB
-            type="poster"
             alt={"title" in data! ? data.title : data?.name!}
             src={imageLink<BackdropSizes>(
               config?.images.secure_base_url!,
@@ -79,7 +78,6 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
           <div className="flex items-center justify-center sm:basis-2/6 lg:basis-1/4">
             <div className="max-w-[342px] overflow-hidden rounded-lg">
               <ImageTMDB
-                type="poster"
                 alt={"title" in data! ? data.title : data?.name!}
                 src={imageLink<PosterSizes>(
                   config?.images.secure_base_url!,

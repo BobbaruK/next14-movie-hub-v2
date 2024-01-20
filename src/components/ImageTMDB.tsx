@@ -6,8 +6,8 @@ const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   return `${src}?w=${width}`;
 };
 
-interface Props {
-  type: "backdrop" | "logo" | "poster" | "profile" | "still";
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  // type: "backdrop" | "logo" | "poster" | "profile" | "still";
   src: string;
   alt: string;
   width: number;
@@ -15,10 +15,18 @@ interface Props {
   priority?: boolean;
 }
 
-const ImageTMDB = ({ type, src, alt, width, height, priority }: Props) => {
+const ImageTMDB = ({
+  src,
+  alt,
+  width,
+  height,
+  priority,
+  ...restProps
+}: Props) => {
   return (
     <>
       <Image
+        {...restProps}
         loader={imageLoader}
         src={src}
         alt={alt}

@@ -19,7 +19,6 @@ const PersonCard = ({ cast }: { cast: TheCast }) => {
           className="w-full"
         >
           <ImageTMDB
-            type="poster"
             alt={cast.name}
             src={imageLink<ProfileSizes>(
               "https://image.tmdb.org/t/p/",

@@ -42,7 +42,6 @@ const PersonProfile = ({ endpoint, queryKey }: Props) => {
   return (
     <div className="overflow-hidden rounded-md">
       <ImageTMDB
-        type="poster"
         alt={data?.name!}
         src={imageLink<ProfileSizes>(
           config?.images.secure_base_url!,

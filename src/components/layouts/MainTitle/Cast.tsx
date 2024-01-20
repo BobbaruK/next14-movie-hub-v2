@@ -75,9 +75,10 @@ const Cast = ({ queryKey, endpoint }: Props) => {
             {cast.map((person) => (
               <div key={person.id} className="flex items-center gap-4">
                 <div className="overflow-hidden rounded-md">
-                  <Link href={`/person/${idTitleHyphen(person.id, person.name)}`}>
+                  <Link
+                    href={`/person/${idTitleHyphen(person.id, person.name)}`}
+                  >
                     <ImageTMDB
-                      type="poster"
                       alt={person.name}
                       src={imageLink<ProfileSizes>(
                         config?.images.secure_base_url!,
@@ -92,10 +93,16 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                 </div>
                 <div>
                   <h3 className="m-0">
-                    <Link href={`/person/${idTitleHyphen(person.id, person.name)}`}>{person.name}</Link>
+                    <Link
+                      href={`/person/${idTitleHyphen(person.id, person.name)}`}
+                    >
+                      {person.name}
+                    </Link>
                   </h3>
                   <p>
-                    <Link href={`/person/${idTitleHyphen(person.id, person.name)}`}>
+                    <Link
+                      href={`/person/${idTitleHyphen(person.id, person.name)}`}
+                    >
                       <small>{person.character}</small>
                     </Link>
                   </p>
@@ -168,7 +175,6 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                               )}`}
                             >
                               <ImageTMDB
-                                type="poster"
                                 alt={person.name}
                                 src={imageLink<ProfileSizes>(
                                   config?.images.secure_base_url!,

@@ -46,7 +46,6 @@ const ReviewCard = ({ review }: Props) => {
         <div className="flex items-center gap-4">
           <div className="overflow-hidden rounded-full [&>img]:h-[45px] [&>img]:w-[45px] [&>img]:object-cover">
             <ImageTMDB
-              type="poster"
               alt={review.author}
               src={imageLink<ProfileSizes>(
                 "https://www.themoviedb.org/t/p/",

@@ -71,7 +71,6 @@ const MainCard = ({ movie, index }: Props) => {
         <Link href={link()} className="w-full">
           {(theMovie || theTv) && (
             <ImageTMDB
-              type="poster"
               alt={title}
               src={imageLink<PosterSizes>(
                 config?.images.secure_base_url!,
@@ -85,7 +84,6 @@ const MainCard = ({ movie, index }: Props) => {
           )}
           {thePerson && (
             <ImageTMDB
-              type="poster"
               alt={title}
               src={imageLink<ProfileSizes>(
                 config?.images.secure_base_url!,

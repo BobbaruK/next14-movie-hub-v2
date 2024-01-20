@@ -48,7 +48,6 @@ const Networks = ({ queryKey, endpoint }: Props) => {
             {data.networks.map((network) => (
               <li key={network.id}>
                 <ImageTMDB
-                  type="poster"
                   alt={network.name}
                   src={imageLink<LogoSizes>(
                     config?.images.secure_base_url!,

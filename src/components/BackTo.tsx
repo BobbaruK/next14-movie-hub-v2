@@ -26,9 +26,9 @@ interface Props {
 }
 
 const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
-  const apiClient = new MyAPIClient<MovieResponse | TVShowResponse | PeopleResponse>(
-    endpoint,
-  );
+  const apiClient = new MyAPIClient<
+    MovieResponse | TVShowResponse | PeopleResponse
+  >(endpoint);
   const { data, error, isLoading } = useQuery<
     MovieResponse | TVShowResponse | PeopleResponse
   >({
@@ -81,7 +81,6 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
             <Link href={backTo.link}>
               {(movie || tv) && (
                 <ImageTMDB
-                  type="poster"
                   alt={title()}
                   src={imageLink<PosterSizes>(
                     config?.images.secure_base_url!,
@@ -95,7 +94,6 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
               )}
               {person && (
                 <ImageTMDB
-                  type="poster"
                   alt={title()}
                   src={imageLink<ProfileSizes>(
                     config?.images.secure_base_url!,

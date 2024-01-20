@@ -63,7 +63,6 @@ const Season = ({ queryKey, endpoint }: Props) => {
         <div className="flex items-center sm:basis-[185px]  sm:justify-center">
           <div className="overflow-hidden rounded-md">
             <ImageTMDB
-              type="poster"
               alt={data?.name!}
               src={imageLink<PosterSizes>(
                 config?.images.secure_base_url!,
@@ -112,7 +111,6 @@ const Season = ({ queryKey, endpoint }: Props) => {
                 )}`}
               >
                 <ImageTMDB
-                  type="poster"
                   alt={data?.name!}
                   src={imageLink<StillSizes>(
                     config?.images.secure_base_url!,

@@ -4,7 +4,7 @@ import {
 } from "@/types/people/CombinedCredits";
 import groupBy from "@/utils/groupBy";
 
-const yearsByDepartment = (
+const useYearsByDepartment = (
   departments: (CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[])[],
 ) => {
   const output = [];
@@ -37,4 +37,4 @@ const yearsByDepartment = (
   return output;
 };
 
-export default yearsByDepartment;
+export default useYearsByDepartment;

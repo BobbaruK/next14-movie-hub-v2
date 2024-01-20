@@ -70,7 +70,6 @@ const Episode = ({ queryKey, endpoint }: Props) => {
         <div className="flex items-center sm:basis-[300px]  sm:justify-center">
           <div className="overflow-hidden rounded-md">
             <ImageTMDB
-              type="poster"
               alt={data?.name!}
               src={imageLink<StillSizes>(
                 config?.images.secure_base_url!,
@@ -133,7 +132,6 @@ const Episode = ({ queryKey, endpoint }: Props) => {
                 <div className="overflow-hidden rounded-md">
                   <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
                     <ImageTMDB
-                      type="poster"
                       alt={star.name}
                       src={imageLink<ProfileSizes>(
                         config?.images.secure_base_url!,
@@ -179,7 +177,6 @@ const Episode = ({ queryKey, endpoint }: Props) => {
                 <div className="overflow-hidden rounded-md">
                   <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
                     <ImageTMDB
-                      type="poster"
                       alt={star.name}
                       src={imageLink<ProfileSizes>(
                         config?.images.secure_base_url!,

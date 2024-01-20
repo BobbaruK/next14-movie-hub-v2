@@ -54,7 +54,6 @@ const ProductionCompanies = ({ queryKey, endpoint }: Props) => {
               <li key={company.id}>
                 {company.logo_path ? (
                   <ImageTMDB
-                    type="poster"
                     alt={company.name}
                     src={imageLink<LogoSizes>(
                       config?.images.secure_base_url!,
