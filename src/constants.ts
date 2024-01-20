@@ -32,11 +32,6 @@ export const RQ_UPCOMING_MOVIES_ENDPOINT = "movie/upcoming";
 export const RQ_MOVIES_GENRES_KEY = "genres-movies";
 export const RQ_MOVIES_GENRES_ENDPOINT = "genre/movie/list";
 
-export const RQ_MOVIE_EXTERNAL_IDS_KEY = (id: string) =>
-  `movie-${parseInt(id)}-external`;
-export const RQ_MOVIE_EXTERNAL_IDS_ENDPOINT = (id: string) =>
-  `/movie/${parseInt(id)}/external_ids`;
-
 // TV shows
 export const RQ_POPULAR_TVSHOWS_KEY = "popular-tvshows";
 export const RQ_POPULAR_TVSHOWS_ENDPOINT = "discover/tv";
@@ -53,10 +48,9 @@ export const RQ_TOP_RATED_TVSHOWS_ENDPOINT = "tv/top_rated";
 export const RQ_TVSHOWS_GENRES_KEY = "genres-tvshows";
 export const RQ_TVSHOWS_GENRES_ENDPOINT = "genre/tv/list";
 
-export const RQ_TVSHOWS_EXTERNAL_IDS_KEY = (id: string) =>
-  `tvshow-${parseInt(id)}-external`;
-export const RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT = (id: string) =>
-  `/tv/${parseInt(id)}/external_ids`;
+// Popular Persons
+export const RQ_POPULAR_PERSONS_KEY = "popular-persons";
+export const RQ_POPULAR_PERSONS_ENDPOINT = "/person/popular";
 
 // Main Title
 export const RQ_MOVIE_KEY = (id: string) => `movie-${parseInt(id)}`;
@@ -64,6 +58,9 @@ export const RQ_MOVIE_ENDPOINT = (id: string) => `movie/${parseInt(id)}`;
 
 export const RQ_TVSHOW_KEY = (id: string) => `tvshow-${parseInt(id)}`;
 export const RQ_TVSHOW_ENDPOINT = (id: string) => `tv/${parseInt(id)}`;
+
+export const RQ_PERSON_KEY = (id: string) => `person-${parseInt(id)}`;
+export const RQ_PERSON_ENDPOINT = (id: string) => `/person/${parseInt(id)}`;
 
 // Keywords
 export const RQ_MOVIE_KEYWORDS_KEY = (id: string) =>
@@ -84,6 +81,12 @@ export const RQ_MOVIE_CAST_ENDPOINT = (id: string) =>
 export const RQ_TVSHOW_CAST_KEY = (id: string) => `tvshow-${parseInt(id)}-cast`;
 export const RQ_TVSHOW_CAST_ENDPOINT = (id: string) =>
   `/tv/${parseInt(id)}/credits`;
+
+// Person combined credits
+export const RQ_COMBINED_CREDITS_KEY = (id: string) =>
+  `person-${parseInt(id)}-combined_credits`;
+export const RQ_COMBINED_CREDITS_ENDPOINT = (id: string) =>
+  `/person/${parseInt(id)}/combined_credits`;
 
 // Reviews
 export const RQ_MOVIE_REVIEWS_KEY = (id: string) =>
@@ -153,19 +156,42 @@ export const RQ_TVSHOW_EPISODE_ENDPOINT = (
   episodeNumber: string,
 ) => `/tv/${parseInt(id)}/season/${seasonNumber}/episode/${episodeNumber}`;
 
-// Popular Persons
-export const RQ_POPULAR_PERSONS_KEY = "popular-persons";
-export const RQ_POPULAR_PERSONS_ENDPOINT = "/person/popular";
+// External IDs
+export const RQ_MOVIE_EXTERNAL_IDS_KEY = (id: string) =>
+  `movie-${parseInt(id)}-external`;
+export const RQ_MOVIE_EXTERNAL_IDS_ENDPOINT = (id: string) =>
+  `/movie/${parseInt(id)}/external_ids`;
 
-// Person
-export const RQ_PERSON_KEY = (id: string) => `person-${parseInt(id)}`;
-export const RQ_PERSON_ENDPOINT = (id: string) => `/person/${parseInt(id)}`;
+export const RQ_TVSHOW_EXTERNAL_IDS_KEY = (id: string) =>
+  `tvshow-${parseInt(id)}-external`;
+export const RQ_TVSHOW_EXTERNAL_IDS_ENDPOINT = (id: string) =>
+  `/tv/${parseInt(id)}/external_ids`;
 
-// Person combined credits
-export const RQ_COMBINED_CREDITS_KEY = (id: string) =>
-  `person-${parseInt(id)}-combined_credits`;
-export const RQ_COMBINED_CREDITS_ENDPOINT = (id: string) =>
-  `/person/${parseInt(id)}/combined_credits`;
+export const RQ_PERSON_EXTERNAL_IDS_KEY = (id: string) =>
+  `person-${parseInt(id)}-external`;
+export const RQ_PERSON_EXTERNAL_IDS_ENDPOINT = (id: string) =>
+  `/person/${parseInt(id)}/external_ids`;
+
+export const RQ_SEASON_EXTERNAL_IDS_KEY = (
+  tvId: string,
+  seasonNumber: string,
+) => `tvshow-${parseInt(tvId)}-${parseInt(seasonNumber)}-external`;
+export const RQ_SEASON_EXTERNAL_IDS_ENDPOINT = (
+  tvId: string,
+  seasonNumber: string,
+) => `/tv/${tvId}/season/${seasonNumber}/external_ids`;
+
+export const RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY = (
+  tvId: string,
+  seasonNumber: string,
+  episodeNumber: string,
+) =>
+  `tvshow-${parseInt(tvId)}-season-${parseInt(seasonNumber)}-episode-${episodeNumber}-external`;
+export const RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT = (
+  tvId: string,
+  seasonNumber: string,
+  episodeNumber: string,
+) => `/tv/${tvId}/season/${seasonNumber}/episode/${episodeNumber}/external_ids`;
 
 /***
  *
