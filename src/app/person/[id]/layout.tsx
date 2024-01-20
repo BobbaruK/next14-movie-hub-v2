@@ -3,10 +3,13 @@ import {
   RQ_COMBINED_CREDITS_ENDPOINT,
   RQ_COMBINED_CREDITS_KEY,
   RQ_PERSON_ENDPOINT,
+  RQ_PERSON_EXTERNAL_IDS_ENDPOINT,
+  RQ_PERSON_EXTERNAL_IDS_KEY,
   RQ_PERSON_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+import { ExternalIDs } from "@/types/movies/MainTitleExternalIds";
 import { CombinedCredits } from "@/types/people/CombinedCredits";
 import { PeopleResponse } from "@/types/people/PeopleResponse";
 import {
@@ -45,7 +48,9 @@ export default async function MainTitleNavigationLayout({
   ];
 
   // People
-  const apiClientPeople = new MyAPIClient<PeopleResponse>(RQ_PERSON_ENDPOINT(id));
+  const apiClientPeople = new MyAPIClient<PeopleResponse>(
+    RQ_PERSON_ENDPOINT(id),
+  );
   await queryClient.prefetchQuery({
     queryKey: [RQ_PERSON_KEY(id)],
     queryFn: () => apiClientPeople.getAll(),
@@ -58,6 +63,15 @@ export default async function MainTitleNavigationLayout({
   await queryClient.prefetchQuery({
     queryKey: [RQ_COMBINED_CREDITS_KEY(id)],
     queryFn: () => apiClientCombinedCredits.getAll(),
+  });
+
+  // People External IDs
+  const apiClientExternalIDs = new MyAPIClient<ExternalIDs>(
+    RQ_PERSON_EXTERNAL_IDS_ENDPOINT(id),
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_PERSON_EXTERNAL_IDS_KEY(id)],
+    queryFn: () => apiClientExternalIDs.getAll(),
   });
 
   return (

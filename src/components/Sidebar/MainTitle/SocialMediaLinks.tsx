@@ -1,13 +1,20 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
-import { MainTitleExternalIds } from "@/types/movies/MainTitleExternalIds";
+import { ExternalIDs } from "@/types/movies/MainTitleExternalIds";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
+import { PeopleResponse } from "@/types/people/PeopleResponse";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { FaImdb, FaLink } from "react-icons/fa";
-import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTiktok,
+  FaXTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
 import { SiWikidata } from "react-icons/si";
 
 interface Props {
@@ -23,22 +30,24 @@ const SocialMediaLinks = ({
   queryKeyExternalIds,
   endpointExternalIds,
 }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<MovieResponse | TVShowResponse>(
-    endpointMainTitle,
-  );
-  const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
+  const apiClientMainTitle = new MyAPIClient<
+    MovieResponse | TVShowResponse | PeopleResponse
+  >(endpointMainTitle);
+  const { data, error, isLoading } = useQuery<
+    MovieResponse | TVShowResponse | PeopleResponse
+  >({
     queryKey: [queryKeyMainTitle],
     queryFn: () => apiClientMainTitle.getAll(),
   });
 
-  const apiClientExternalIds = new MyAPIClient<MainTitleExternalIds>(
+  const apiClientExternalIds = new MyAPIClient<ExternalIDs>(
     endpointExternalIds,
   );
   const {
     data: externalIds,
     error: externalIdsError,
     isLoading: externalIdsIsLoading,
-  } = useQuery<MainTitleExternalIds>({
+  } = useQuery<ExternalIDs>({
     queryKey: [queryKeyExternalIds],
     queryFn: () => apiClientExternalIds.getAll(),
   });
@@ -48,14 +57,23 @@ const SocialMediaLinks = ({
     throw new Error(`${queryKeyExternalIds} - ${externalIdsError.message}`);
 
   if (isLoading || externalIdsIsLoading)
-    return <div className="alert alert-warning">Loading Link(s)...</div>;
+    return (
+      <div className="alert alert-warning">Loading Social Media Link(s)...</div>
+    );
+
+  console.log(externalIds?.imdb_id?.startsWith("nm"));
+
+  const imdbPath = (externalId: string) => {
+    if (externalId.startsWith("nm")) return "name";
+    return "title";
+  };
 
   return (
     <>
-      <div className="flex flex-row flex-wrap items-center justify-start gap-6">
+      <div className="flex flex-row flex-wrap items-center justify-start gap-3">
         {externalIds?.imdb_id && (
           <Link
-            href={`https://www.imdb.com/title/${externalIds.imdb_id}`}
+            href={`https://www.imdb.com/${imdbPath(externalIds.imdb_id)}/${externalIds.imdb_id}`}
             target="_blank"
             className="hover:text-imdb"
           >
@@ -87,6 +105,24 @@ const SocialMediaLinks = ({
             className="hover:text-twitter"
           >
             <FaXTwitter size="1.8em" />
+          </Link>
+        )}
+        {externalIds?.tiktok_id && (
+          <Link
+            href={`https://www.tiktok.com/@${externalIds.tiktok_id}`}
+            target="_blank"
+            className="hover:text-tiktok"
+          >
+            <FaTiktok size="1.8em" />
+          </Link>
+        )}
+        {externalIds?.youtube_id && (
+          <Link
+            href={`https://www.youtube.com/@${externalIds.youtube_id}`}
+            target="_blank"
+            className="hover:text-youtube"
+          >
+            <FaYoutube size="1.8em" />
           </Link>
         )}
         {externalIds?.wikidata_id && (
