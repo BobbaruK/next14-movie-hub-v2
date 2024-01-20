@@ -1,7 +1,7 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
-import { ExternalIDs } from "@/types/movies/MainTitleExternalIds";
+import { ExternalIDs } from "@/types/ExternalIDs";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import { PeopleResponse } from "@/types/people/PeopleResponse";

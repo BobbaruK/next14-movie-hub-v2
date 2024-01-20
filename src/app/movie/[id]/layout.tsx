@@ -16,10 +16,10 @@ import {
   RQ_MOVIE_REVIEWS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { ExternalIDs } from "@/types/ExternalIDs";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { Language } from "@/types/movies/Language";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
-import { ExternalIDs } from "@/types/movies/MainTitleExternalIds";
 import { RecommendationsResponse } from "@/types/movies/Recommendations";
 import { ReviewsResponse } from "@/types/movies/Reviews";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";

@@ -8,8 +8,8 @@ import {
   RQ_PERSON_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { ExternalIDs } from "@/types/ExternalIDs";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
-import { ExternalIDs } from "@/types/movies/MainTitleExternalIds";
 import { CombinedCredits } from "@/types/people/CombinedCredits";
 import { PeopleResponse } from "@/types/people/PeopleResponse";
 import {
