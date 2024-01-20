@@ -156,7 +156,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
             {data?.crew.map((star) => (
               <div key={star.id} className="flex flex-row gap-4">
                 <div className="overflow-hidden rounded-md">
-                  <Link href={`/person/${star.id}`}>
+                  <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
                     <ImageTMDB
                       type="poster"
                       alt={star.name}
@@ -172,7 +172,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
                 </div>
                 <div className="flex flex-col items-start justify-center gap-1">
                   <h4>
-                    <Link href={`/person/${star.id}`}>{star.name}</Link>
+                    <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>{star.name}</Link>
                   </h4>
                   <div>{star.department}</div>
                 </div>
