@@ -132,6 +132,11 @@ export const RQ_TVSHOW_TRANSLATIONS_KEY = (id: string) =>
 export const RQ_TVSHOW_TRANSLATIONS_ENDPOINT = (id: string) =>
   `/tv/${parseInt(id)}/translations`;
 
+export const RQ_PERSON_TRANSLATIONS_KEY = (id: string) =>
+  `person-${parseInt(id)}-translations`;
+export const RQ_PERSON_TRANSLATIONS_ENDPOINT = (id: string) =>
+  `/person/${parseInt(id)}/translations`;
+
 // Release dates
 export const RQ_MOVIE_RELEASES_KEY = (id: string) =>
   `movie-${parseInt(id)}-releases`;
