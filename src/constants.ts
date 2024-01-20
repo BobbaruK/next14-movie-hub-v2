@@ -215,3 +215,7 @@ export const RQ_MOVIE_VIDEOS_KEY = (id: string) =>
   `movie-${parseInt(id)}-videos`;
 export const RQ_MOVIE_VIDEOS_ENDPOINT = (id: string) =>
   `movie/${parseInt(id)}/videos`;
+
+export const RQ_TVSHOW_VIDEOS_KEY = (id: string) => `tvshow-${parseInt(id)}-videos`;
+export const RQ_TVSHOW_VIDEOS_ENDPOINT = (id: string) =>
+  `tv/${parseInt(id)}/videos`;
