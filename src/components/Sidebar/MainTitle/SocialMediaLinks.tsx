@@ -61,8 +61,6 @@ const SocialMediaLinks = ({
       <div className="alert alert-warning">Loading Social Media Link(s)...</div>
     );
 
-  console.log(externalIds?.imdb_id?.startsWith("nm"));
-
   const imdbPath = (externalId: string) => {
     if (externalId.startsWith("nm")) return "name";
     return "title";

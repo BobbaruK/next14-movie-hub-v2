@@ -175,7 +175,7 @@ export const RQ_PERSON_EXTERNAL_IDS_ENDPOINT = (id: string) =>
 export const RQ_SEASON_EXTERNAL_IDS_KEY = (
   tvId: string,
   seasonNumber: string,
-) => `tvshow-${parseInt(tvId)}-${parseInt(seasonNumber)}-external`;
+) => `tvshow-${parseInt(tvId)}-season-${parseInt(seasonNumber)}-external`;
 export const RQ_SEASON_EXTERNAL_IDS_ENDPOINT = (
   tvId: string,
   seasonNumber: string,

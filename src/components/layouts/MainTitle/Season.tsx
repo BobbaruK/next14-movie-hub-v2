@@ -2,7 +2,13 @@
 
 import ImageTMDB from "@/components/ImageTMDB";
 import Rating from "@/components/Rating";
-import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
+import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
+import {
+  RQ_CONFIG_ENDPOINT,
+  RQ_CONFIG_KEY,
+  RQ_SEASON_EXTERNAL_IDS_ENDPOINT,
+  RQ_SEASON_EXTERNAL_IDS_KEY,
+} from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { PosterSizes, StillSizes } from "@/types/imageSizes";
@@ -45,7 +51,9 @@ const Season = ({ queryKey, endpoint }: Props) => {
   if (isLoading)
     return (
       <div className="appContaier">
-        <div className="alert alert-warning">Loading tv show&apos;s season...</div>
+        <div className="alert alert-warning">
+          Loading tv show&apos;s season...
+        </div>
       </div>
     );
 
@@ -79,6 +87,15 @@ const Season = ({ queryKey, endpoint }: Props) => {
             </p>
           </div>
           <p>{data?.overview}</p>
+          <SocialMediaLinks
+            queryKeyMainTitle={queryKey}
+            endpointMainTitle={endpoint}
+            queryKeyExternalIds={RQ_SEASON_EXTERNAL_IDS_KEY(id, seasonNumber)}
+            endpointExternalIds={RQ_SEASON_EXTERNAL_IDS_ENDPOINT(
+              id,
+              seasonNumber,
+            )}
+          />
         </div>
       </div>
       <div className="my-20 flex flex-col items-start justify-center gap-8">

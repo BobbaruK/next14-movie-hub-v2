@@ -1,5 +1,11 @@
-import { RQ_TVSHOW_SEASON_ENDPOINT, RQ_TVSHOW_SEASON_KEY } from "@/constants";
+import {
+  RQ_SEASON_EXTERNAL_IDS_ENDPOINT,
+  RQ_SEASON_EXTERNAL_IDS_KEY,
+  RQ_TVSHOW_SEASON_ENDPOINT,
+  RQ_TVSHOW_SEASON_KEY,
+} from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
+import { ExternalIDs } from "@/types/ExternalIDs";
 import { SeasonResponse } from "@/types/movies/tv/SeasonResponse";
 import {
   HydrationBoundary,
@@ -29,6 +35,15 @@ export default async function NoSidebarLayout({
   await queryClient.prefetchQuery({
     queryKey: [RQ_TVSHOW_SEASON_KEY(id, seasonNumber)],
     queryFn: () => apiClientRecommendations.getAll(),
+  });
+
+  // Season External IDs
+  const apiClientSeasonExternalIDs = new MyAPIClient<ExternalIDs>(
+    RQ_SEASON_EXTERNAL_IDS_ENDPOINT(id, seasonNumber),
+  );
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_SEASON_EXTERNAL_IDS_KEY(id, seasonNumber)],
+    queryFn: () => apiClientSeasonExternalIDs.getAll(),
   });
 
   return (
