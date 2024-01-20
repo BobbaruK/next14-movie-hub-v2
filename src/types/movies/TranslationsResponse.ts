@@ -1,74 +1,50 @@
-// export interface TranslationsResponse<T> {
-//   id: number;
-//   translations: Translation<T>[];
-// }
-
-// export interface Translation<T> {
-//   iso_3166_1: string;
-//   iso_639_1: string;
-//   name: string;
-//   english_name: string;
-//   data: T;
-// }
-
-// export interface TranslationMovie {
-//   homepage: string;
-//   overview: string;
-//   runtime: number;
-//   tagline: string;
-//   title: string;
-// }
-
-// export interface TranslationTV {
-//   name: string;
-//   overview: string;
-//   homepage: string;
-//   tagline: string;
-// }
-
-// export type TranslationsMovie = TranslationsResponse<TranslationMovie>;
-// export type TranslationsTV = TranslationsResponse<TranslationTV>;
-
-/**
- *
- *
- *
- *
- *
- *
- */
-export interface TranslationsMovie {
+export interface TranslationsBase {
   id: number;
-  translations: TranslationMovie[];
+  translations:
+    | TranslationMovieBase[]
+    | TranslationTVShowBase[]
+    | TranslationPeopleBase[];
 }
 
-export interface TranslationMovie {
+export interface TranslationMovieBase {
+  iso_3166_1: string;
+  iso_639_1: string;
+  title: string;
+  english_name: string;
+  data: TranslationDataMovie;
+}
+
+export interface TranslationDataMovie {
+  homepage: string;
+  overview: string;
+  runtime: number;
+  tagline: string;
+  title: string;
+}
+
+export interface TranslationTVShowBase {
   iso_3166_1: string;
   iso_639_1: string;
   name: string;
   english_name: string;
-  data: {
-    homepage: string;
-    overview: string;
-    runtime: number;
-    tagline: string;
-    title: string;
-  };
-}
-export interface TranslationsTV {
-  id: number;
-  translations: TranslationTV[];
+  data: TranslationDataTVShow;
 }
 
-export interface TranslationTV {
+export interface TranslationDataTVShow {
+  name: string;
+  overview: string;
+  homepage: string;
+  tagline: string;
+}
+
+export interface TranslationPeopleBase {
   iso_3166_1: string;
   iso_639_1: string;
   name: string;
   english_name: string;
-  data: {
-    name: string;
-    overview: string;
-    homepage: string;
-    tagline: string;
-  };
+  data: TranslationDataPerson;
+}
+
+export interface TranslationDataPerson {
+  biography: string;
 }

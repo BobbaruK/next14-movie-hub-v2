@@ -1,12 +1,9 @@
 import {
-  RQ_COUNTRIES_ENDPOINT,
-  RQ_COUNTRIES_KEY,
   RQ_MOVIE_TRANSLATIONS_ENDPOINT,
   RQ_MOVIE_TRANSLATIONS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { Country } from "@/types/Country";
-import { TranslationsMovie } from "@/types/movies/TranslationsResponse";
+import { TranslationsBase } from "@/types/movies/TranslationsResponse";
 import {
   HydrationBoundary,
   QueryClient,
@@ -25,7 +22,7 @@ const MovieTranslationsLayout = async ({ params: { id }, children }: Props) => {
   const queryClient = new QueryClient();
 
   // Translations
-  const apiClientAlternativeTitles = new MyAPIClient<TranslationsMovie>(
+  const apiClientAlternativeTitles = new MyAPIClient<TranslationsBase>(
     RQ_MOVIE_TRANSLATIONS_ENDPOINT(id),
   );
   await queryClient.prefetchQuery({
