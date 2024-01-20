@@ -186,12 +186,13 @@ export const RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY = (
   seasonNumber: string,
   episodeNumber: string,
 ) =>
-  `tvshow-${parseInt(tvId)}-season-${parseInt(seasonNumber)}-episode-${episodeNumber}-external`;
+  `tvshow-${parseInt(tvId)}-season-${parseInt(seasonNumber)}-episode-${parseInt(episodeNumber)}-external`;
 export const RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT = (
   tvId: string,
   seasonNumber: string,
   episodeNumber: string,
-) => `/tv/${tvId}/season/${seasonNumber}/episode/${episodeNumber}/external_ids`;
+) =>
+  `/tv/${tvId}/season/${seasonNumber}/episode/${parseInt(episodeNumber)}/external_ids`;
 
 /***
  *

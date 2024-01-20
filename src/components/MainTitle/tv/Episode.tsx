@@ -2,7 +2,13 @@
 
 import ImageTMDB from "@/components/ImageTMDB";
 import Rating from "@/components/Rating";
-import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
+import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
+import {
+  RQ_CONFIG_ENDPOINT,
+  RQ_CONFIG_KEY,
+  RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT,
+  RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY,
+} from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import { ProfileSizes, StillSizes } from "@/types/imageSizes";
@@ -20,9 +26,10 @@ interface Props {
 }
 
 const Episode = ({ queryKey, endpoint }: Props) => {
-  const { id, seasonNumber } = useParams<{
+  const { id, seasonNumber, episodeNumber } = useParams<{
     id: string;
     seasonNumber: string;
+    episodeNumber: string;
   }>();
 
   const apiClient = new MyAPIClient<EpisodeResponse>(endpoint);
@@ -85,6 +92,20 @@ const Episode = ({ queryKey, endpoint }: Props) => {
               <span>{data?.runtime}m</span>
             </p>
           </div>
+          <SocialMediaLinks
+            queryKeyMainTitle={queryKey}
+            endpointMainTitle={endpoint}
+            queryKeyExternalIds={RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY(
+              id,
+              seasonNumber,
+              episodeNumber,
+            )}
+            endpointExternalIds={RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT(
+              id,
+              seasonNumber,
+              episodeNumber,
+            )}
+          />
         </div>
       </div>
       <p>{data?.overview}</p>
@@ -172,7 +193,9 @@ const Episode = ({ queryKey, endpoint }: Props) => {
                 </div>
                 <div className="flex flex-col items-start justify-center gap-1">
                   <h4>
-                    <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>{star.name}</Link>
+                    <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
+                      {star.name}
+                    </Link>
                   </h4>
                   <div>{star.department}</div>
                 </div>
