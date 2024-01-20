@@ -1,5 +1,5 @@
 import usePersonTitlesCrew from "@/hooks/usePersonTitlesCrew";
-import yearsByDepartment from "@/hooks/yearsByDepartment";
+import useYearsByDepartment from "@/hooks/useYearsByDepartment";
 import {
   CombinedCreditsMovieCrew,
   CombinedCreditsTVCrew,
@@ -19,7 +19,7 @@ const Crew = ({ crewArr }: Props) => {
     return 0;
   });
 
-  const actualDepartments = yearsByDepartment(departments);
+  const actualDepartments = useYearsByDepartment(departments);
 
   return (
     <>
