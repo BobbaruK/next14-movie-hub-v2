@@ -199,22 +199,13 @@ export const RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT = (
 ) =>
   `/tv/${tvId}/season/${seasonNumber}/episode/${parseInt(episodeNumber)}/external_ids`;
 
-/***
- *
- *
- *
- *
- *
- *
- *
- */
-
-// Movie Images
-export const RQ_MOVIE_IMAGES_KEY = "images-movie";
+// Images
+export const RQ_MOVIE_IMAGES_KEY = (id: string) =>
+  `movie-${parseInt(id)}-images`;
 export const RQ_MOVIE_IMAGES_ENDPOINT = (id: string) =>
   `movie/${parseInt(id)}/images`;
 
-// TV Shows Images
-export const RQ_TVSHOWS_IMAGES_KEY = "images-tvshows";
+export const RQ_TVSHOWS_IMAGES_KEY = (id: string) =>
+  `tv-${parseInt(id)}-images`;
 export const RQ_TVSHOWS_IMAGES_ENDPOINT = (id: string) =>
   `tv/${parseInt(id)}/images`;
