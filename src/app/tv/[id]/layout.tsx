@@ -2,11 +2,11 @@ import MainTitleNavigation from "@/components/MainTitle/Navigation";
 import {
   RQ_LANGUAGES_ENDPOINT,
   RQ_LANGUAGES_KEY,
-  RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT,
-  RQ_TVSHOWS_EXTERNAL_IDS_KEY,
   RQ_TVSHOW_CAST_ENDPOINT,
   RQ_TVSHOW_CAST_KEY,
   RQ_TVSHOW_ENDPOINT,
+  RQ_TVSHOW_EXTERNAL_IDS_ENDPOINT,
+  RQ_TVSHOW_EXTERNAL_IDS_KEY,
   RQ_TVSHOW_KEY,
   RQ_TVSHOW_KEYWORDS_ENDPOINT,
   RQ_TVSHOW_KEYWORDS_KEY,
@@ -19,7 +19,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { Language } from "@/types/movies/Language";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
-import { MainTitleExternalIds } from "@/types/movies/MainTitleExternalIds";
+import { ExternalIDs } from "@/types/movies/MainTitleExternalIds";
 import { RecommendationsResponse } from "@/types/movies/Recommendations";
 import { ReviewsResponse } from "@/types/movies/Reviews";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
@@ -174,10 +174,10 @@ export default async function MainTVTitleNavigationLayout({
 
   // TVShow External IDs
   const apiClientExternalIds = new MyAPIClient<
-    RecommendationsResponse<MainTitleExternalIds>
-  >(RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT(id));
+    RecommendationsResponse<ExternalIDs>
+  >(RQ_TVSHOW_EXTERNAL_IDS_ENDPOINT(id));
   await queryClient.prefetchQuery({
-    queryKey: [RQ_TVSHOWS_EXTERNAL_IDS_KEY(id)],
+    queryKey: [RQ_TVSHOW_EXTERNAL_IDS_KEY(id)],
     queryFn: () => apiClientExternalIds.getAll(),
   });
 

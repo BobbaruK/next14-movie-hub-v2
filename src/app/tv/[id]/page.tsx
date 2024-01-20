@@ -12,8 +12,8 @@ import Status from "@/components/Sidebar/MainTitle/Status";
 import Networks from "@/components/Sidebar/MainTitle/tv/Networks";
 import Type from "@/components/Sidebar/MainTitle/tv/Type";
 import {
-  RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT,
-  RQ_TVSHOWS_EXTERNAL_IDS_KEY,
+  RQ_TVSHOW_EXTERNAL_IDS_ENDPOINT,
+  RQ_TVSHOW_EXTERNAL_IDS_KEY,
   RQ_TVSHOW_CAST_ENDPOINT,
   RQ_TVSHOW_CAST_KEY,
   RQ_TVSHOW_ENDPOINT,
@@ -65,8 +65,8 @@ export default function TvShow({ params: { id } }: Props) {
             <SocialMediaLinks
               queryKeyMainTitle={RQ_TVSHOW_KEY(id)}
               endpointMainTitle={RQ_TVSHOW_ENDPOINT(id)}
-              queryKeyExternalIds={RQ_TVSHOWS_EXTERNAL_IDS_KEY(id)}
-              endpointExternalIds={RQ_TVSHOWS_EXTERNAL_IDS_ENDPOINT(id)}
+              queryKeyExternalIds={RQ_TVSHOW_EXTERNAL_IDS_KEY(id)}
+              endpointExternalIds={RQ_TVSHOW_EXTERNAL_IDS_ENDPOINT(id)}
             />
             <Status
               queryKey={RQ_TVSHOW_KEY(id)}

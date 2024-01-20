@@ -19,7 +19,7 @@ import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { Language } from "@/types/movies/Language";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
-import { MainTitleExternalIds } from "@/types/movies/MainTitleExternalIds";
+import { ExternalIDs } from "@/types/movies/MainTitleExternalIds";
 import { RecommendationsResponse } from "@/types/movies/Recommendations";
 import { ReviewsResponse } from "@/types/movies/Reviews";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
@@ -172,7 +172,7 @@ export default async function MainTitleNavigationLayout({
 
   // Movie External ID's
   const apiClientExternalIds = new MyAPIClient<
-    RecommendationsResponse<MainTitleExternalIds>
+    RecommendationsResponse<ExternalIDs>
   >(RQ_MOVIE_EXTERNAL_IDS_ENDPOINT(id));
   await queryClient.prefetchQuery({
     queryKey: [RQ_MOVIE_EXTERNAL_IDS_KEY(id)],
