@@ -34,6 +34,7 @@ const config: Config = {
         snapchat: "#fffc00",
         soundcloud: "#ff3300",
         stumbleupon: "#eb4924",
+        tiktok: "#69c9d0",
         tumblr: "#34465d",
         twitter: "#55acee",
         vimeo: "#1ab7ea",
