@@ -47,7 +47,7 @@ const VideosGrid = ({ queryKey, endpoint, videoType }: Props) => {
     return theVideoType === videoType;
   });
 
-  if (videos.length === 0) return <div>No Results</div>;
+  if (videos.length === 0) return <div className="alert alert-warning">No videos</div>;
 
   return (
     <div className="flex flex-col gap-6">

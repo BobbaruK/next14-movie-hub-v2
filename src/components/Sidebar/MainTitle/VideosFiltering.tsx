@@ -1,11 +1,13 @@
 "use client";
 
+import LoadingSpinner from "@/components/LoadingSpinner";
 import useGetVideos from "@/hooks/useGetVideos";
 import MyAPIClient from "@/services/myApiClient";
 import { VideosResponse } from "@/types/VideoResponse";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 interface Props {
   queryKey: string;
@@ -15,6 +17,9 @@ interface Props {
 
 const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
   const { id } = useParams<{ id: string }>();
+
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const apiClientVideos = new MyAPIClient<VideosResponse>(endpoint);
 
@@ -79,60 +84,56 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
 
   return (
     <div>
-      <h2 className="m-0 flex items-center justify-between bg-primary px-2 py-4 text-primary-content">
-        Videos
+      <h2 className="m-0 flex items-center justify-start gap-4 bg-primary px-2 py-4 text-primary-content">
+        Videos {isPending && <LoadingSpinner size="lg" />}
       </h2>
       <ul className="flex flex-col gap-1 py-2">
         {videoTypes.map((type, index) => (
-          <li key={index} className="p-2 hover:bg-slate-600">
-            <Link
-              href={`/${titleType}/${id}/videos/${type.href}`}
+          <li
+            key={index}
+            className="flex cursor-pointer items-center justify-between p-2 hover:bg-slate-600"
+            onClick={() =>
+              startTransition(() =>
+                router.push(`/${titleType}/${id}/videos/${type.href}`),
+              )
+            }
+          >
+            {type.label}
+            <div
               className={[
-                "flex",
-                "items-center",
-                "justify-between",
-                "w-full",
+                "badge",
+                "badge-secondary",
+                "text-secondary-content",
+                "gap-2",
+                "p-3",
               ].join(" ")}
             >
-              {type.label}
-              <div
-                className={[
-                  "badge",
-                  "badge-secondary",
-                  "text-secondary-content",
-                  "gap-2",
-                  "p-3",
-                ].join(" ")}
-              >
-                {type.count}
-              </div>
-            </Link>
+              {type.count}
+            </div>
           </li>
         ))}
         {titleType === "tv" && (
-          <li className="p-2 hover:bg-slate-600" >
-            <Link
-              href={`/tv/${id}/videos/opening-credits`}
+          <li
+            className="flex cursor-pointer items-center justify-between p-2 hover:bg-slate-600"
+            onClick={() =>
+              startTransition(() =>
+                router.push(`/${titleType}/${id}/videos/opening-credits`),
+              )
+            }
+            role="link"
+          >
+            Opening Credits
+            <div
               className={[
-                "flex",
-                "items-center",
-                "justify-between",
-                "w-full",
+                "badge",
+                "badge-secondary",
+                "text-secondary-content",
+                "gap-2",
+                "p-3",
               ].join(" ")}
             >
-              Opening Credits
-              <div
-                className={[
-                  "badge",
-                  "badge-secondary",
-                  "text-secondary-content",
-                  "gap-2",
-                  "p-3",
-                ].join(" ")}
-              >
-                {openingCredits.length}
-              </div>
-            </Link>
+              {openingCredits.length}
+            </div>
           </li>
         )}
       </ul>
