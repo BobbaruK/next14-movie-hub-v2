@@ -11,8 +11,19 @@ const useGetVideos = (videos: VideosResponse) => {
   const featurettes = videos?.results.filter(
     (video) => video.type === "Featurette",
   );
+  const openingCredits = videos?.results.filter(
+    (video) => video.type === "Opening Credits",
+  );
 
-  return { trailers, teasers, clips, bts, bloopers, featurettes };
+  return {
+    trailers,
+    teasers,
+    clips,
+    bts,
+    bloopers,
+    featurettes,
+    openingCredits,
+  };
 };
 
 export default useGetVideos;

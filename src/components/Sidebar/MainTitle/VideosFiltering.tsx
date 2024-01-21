@@ -19,9 +19,15 @@ const VideosFiltering = ({ queryKey, endpoint }: Props) => {
     queryFn: () => apiClientVideos.getAll(),
   });
 
-  const { trailers, teasers, clips, bts, bloopers, featurettes } = useGetVideos(
-    data!,
-  );
+  const {
+    trailers,
+    teasers,
+    clips,
+    bts,
+    bloopers,
+    featurettes,
+    openingCredits,
+  } = useGetVideos(data!);
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
@@ -58,6 +64,11 @@ const VideosFiltering = ({ queryKey, endpoint }: Props) => {
       label: "Featurettes",
       key: "featurette",
       count: featurettes.length,
+    },
+    {
+      label: "Opening Credits",
+      key: "opening-credits",
+      count: openingCredits.length,
     },
   ];
 
