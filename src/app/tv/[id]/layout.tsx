@@ -112,7 +112,7 @@ export default async function MainTVTitleNavigationLayout({
     },
     {
       label: "Videos",
-      href: `/tv/${id}/videos`,
+      href: `/tv/${id}/videos/trailers`,
     },
     {
       label: "Reviews",

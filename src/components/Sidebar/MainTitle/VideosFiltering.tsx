@@ -5,13 +5,17 @@ import MyAPIClient from "@/services/myApiClient";
 import { VideosResponse } from "@/types/VideoResponse";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 interface Props {
   queryKey: string;
   endpoint: string;
+  titleType: "movie" | "tv";
 }
 
-const VideosFiltering = ({ queryKey, endpoint }: Props) => {
+const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
+  const { id } = useParams<{ id: string }>();
+
   const apiClientVideos = new MyAPIClient<VideosResponse>(endpoint);
 
   const { data, error, isLoading } = useQuery<VideosResponse>({
@@ -38,36 +42,43 @@ const VideosFiltering = ({ queryKey, endpoint }: Props) => {
     {
       label: "Trailers",
       key: "trailer",
+      href: "trailers",
       count: trailers.length,
     },
     {
       label: "Teasers",
       key: "teaser",
+      href: "teasers",
       count: teasers.length,
     },
     {
       label: "Clips",
       key: "clip",
+      href: "clips",
       count: clips.length,
     },
     {
       label: "Behind the Scenes",
       key: "behind-the-scenes",
+      href: "behind-the-scenes",
       count: bts.length,
     },
     {
       label: "Bloopers",
       key: "blooper",
+      href: "bloopers",
       count: bloopers.length,
     },
     {
       label: "Featurettes",
       key: "featurette",
+      href: "featurettes",
       count: featurettes.length,
     },
     {
       label: "Opening Credits",
       key: "opening-credits",
+      href: "opening-credits",
       count: openingCredits.length,
     },
   ];
@@ -81,7 +92,7 @@ const VideosFiltering = ({ queryKey, endpoint }: Props) => {
         {videoTypes.map((type, index) => (
           <li key={index} className="p-2 hover:bg-slate-600">
             <Link
-              href={`?filter=${type.key}`}
+              href={`/${titleType}/${id}/videos/${type.href}`}
               className={[
                 "flex",
                 "items-center",

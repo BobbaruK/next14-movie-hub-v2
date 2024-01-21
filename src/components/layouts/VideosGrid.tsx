@@ -9,13 +9,17 @@ import { useSearchParams } from "next/navigation";
 interface Props {
   queryKey: string;
   endpoint: string;
+  videoType:
+    | "trailer"
+    | "teaser"
+    | "clip"
+    | "behind-the-scenes"
+    | "blooper"
+    | "featurette"
+    | "opening-credits";
 }
 
-const VideosGrid = ({ queryKey, endpoint }: Props) => {
-  const searchParams = useSearchParams();
-  const filterParam = searchParams.get("filter");
-  const filter = filterParam ? filterParam : "trailer";
-
+const VideosGrid = ({ queryKey, endpoint, videoType }: Props) => {
   const apiClientVideos = new MyAPIClient<VideosResponse>(endpoint);
 
   const { data, error, isLoading } = useQuery<VideosResponse>({
@@ -35,14 +39,17 @@ const VideosGrid = ({ queryKey, endpoint }: Props) => {
       </div>
     );
 
-  const videos = data.results.filter((video) => {
-    const videoType = video.type.toLowerCase().replace(/\s/g, "-");
-    const filterType = filter.toLowerCase();
+  console.log(videoType);
 
-    return videoType === filterType;
+  const videos = data.results.filter((video) => {
+    const theVideoType = video.type.toLowerCase().replace(/\s/g, "-");
+
+    console.log(theVideoType, videoType, theVideoType === videoType);
+
+    return theVideoType === videoType;
   });
 
-	if (videos.length === 0) return <div>No Results</div>
+  if (videos.length === 0) return <div>No Results</div>;
 
   return (
     <div className="flex flex-col gap-6">
