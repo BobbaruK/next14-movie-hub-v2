@@ -50,8 +50,6 @@ const VideosGrid = ({ queryKey, endpoint, videoType }: Props) => {
   if (videos.length === 0)
     return <div className="alert alert-warning">No videos</div>;
 
-  console.log(data);
-
   return (
     <div className="flex flex-col gap-6">
       {videos.map((video) => (
