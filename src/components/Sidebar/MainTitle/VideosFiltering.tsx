@@ -75,12 +75,6 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
       href: "featurettes",
       count: featurettes.length,
     },
-    {
-      label: "Opening Credits",
-      key: "opening-credits",
-      href: "opening-credits",
-      count: openingCredits.length,
-    },
   ];
 
   return (
@@ -115,6 +109,32 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
             </Link>
           </li>
         ))}
+        {titleType === "tv" && (
+          <li className="p-2 hover:bg-slate-600" >
+            <Link
+              href={`/tv/${id}/videos/opening-credits`}
+              className={[
+                "flex",
+                "items-center",
+                "justify-between",
+                "w-full",
+              ].join(" ")}
+            >
+              Opening Credits
+              <div
+                className={[
+                  "badge",
+                  "badge-secondary",
+                  "text-secondary-content",
+                  "gap-2",
+                  "p-3",
+                ].join(" ")}
+              >
+                {openingCredits.length}
+              </div>
+            </Link>
+          </li>
+        )}
       </ul>
     </div>
   );

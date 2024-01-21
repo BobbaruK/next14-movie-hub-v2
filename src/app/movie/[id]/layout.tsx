@@ -112,7 +112,7 @@ export default async function MainTitleNavigationLayout({
     },
     {
       label: "Videos",
-      href: `/movie/${id}/videos`,
+      href: `/movie/${id}/videos/trailers`,
     },
     {
       label: "Reviews",

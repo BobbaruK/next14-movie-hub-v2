@@ -15,7 +15,7 @@ interface Props {
   };
 }
 
-const MovieVideos = ({ params: { id } }: Props) => {
+const MovieVideosBloopers = ({ params: { id } }: Props) => {
   return (
     <>
       <BackTo
@@ -28,12 +28,14 @@ const MovieVideos = ({ params: { id } }: Props) => {
           <VideosGrid
             queryKey={RQ_MOVIE_VIDEOS_KEY(id)}
             endpoint={RQ_MOVIE_VIDEOS_ENDPOINT(id)}
+            videoType="blooper"
           />
         }
         sidebar={
           <VideosFiltering
             queryKey={RQ_MOVIE_VIDEOS_KEY(id)}
             endpoint={RQ_MOVIE_VIDEOS_ENDPOINT(id)}
+            titleType="movie"
           />
         }
       />
@@ -41,4 +43,4 @@ const MovieVideos = ({ params: { id } }: Props) => {
   );
 };
 
-export default MovieVideos;
+export default MovieVideosBloopers;

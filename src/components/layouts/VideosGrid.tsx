@@ -39,12 +39,10 @@ const VideosGrid = ({ queryKey, endpoint, videoType }: Props) => {
       </div>
     );
 
-  console.log(videoType);
-
   const videos = data.results.filter((video) => {
     const theVideoType = video.type.toLowerCase().replace(/\s/g, "-");
 
-    console.log(theVideoType, videoType, theVideoType === videoType);
+    // console.log(theVideoType, videoType, theVideoType === videoType);
 
     return theVideoType === videoType;
   });
