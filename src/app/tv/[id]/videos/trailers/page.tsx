@@ -21,7 +21,7 @@ const TVShowVideosTrailers = ({ params: { id } }: Props) => {
       <BackTo
         queryKey={RQ_TVSHOW_KEY(id)}
         endpoint={RQ_TVSHOW_ENDPOINT(id)}
-        backTo={{ label: "Main", link: `/movie/${id}` }}
+        backTo={{ label: "Main", link: `/tv/${id}` }}
       />
       <MainTitleSidebarLeft
         content={
