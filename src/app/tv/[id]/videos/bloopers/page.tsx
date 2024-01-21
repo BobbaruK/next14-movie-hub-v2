@@ -28,7 +28,7 @@ const TVShowVideosBloopers = ({ params: { id } }: Props) => {
           <VideosGrid
             queryKey={RQ_TVSHOW_VIDEOS_KEY(id)}
             endpoint={RQ_TVSHOW_VIDEOS_ENDPOINT(id)}
-            videoType="blooper"
+            videoType="bloopers"
           />
         }
         sidebar={

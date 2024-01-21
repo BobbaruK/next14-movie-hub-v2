@@ -28,7 +28,7 @@ const MovieVideosBloopers = ({ params: { id } }: Props) => {
           <VideosGrid
             queryKey={RQ_MOVIE_VIDEOS_KEY(id)}
             endpoint={RQ_MOVIE_VIDEOS_ENDPOINT(id)}
-            videoType="blooper"
+            videoType="bloopers"
           />
         }
         sidebar={

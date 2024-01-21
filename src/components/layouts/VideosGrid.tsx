@@ -14,7 +14,7 @@ interface Props {
     | "teaser"
     | "clip"
     | "behind-the-scenes"
-    | "blooper"
+    | "bloopers"
     | "featurette"
     | "opening-credits";
 }
@@ -47,7 +47,10 @@ const VideosGrid = ({ queryKey, endpoint, videoType }: Props) => {
     return theVideoType === videoType;
   });
 
-  if (videos.length === 0) return <div className="alert alert-warning">No videos</div>;
+  if (videos.length === 0)
+    return <div className="alert alert-warning">No videos</div>;
+
+  console.log(data);
 
   return (
     <div className="flex flex-col gap-6">
