@@ -30,6 +30,7 @@ const MovieVideosTrailers = ({ params: { id } }: Props) => {
             endpoint={RQ_MOVIE_VIDEOS_ENDPOINT(id)}
             videoType="trailer"
             videoTypeLink="trailers"
+            titleType="movie"
           />
         }
         sidebar={
