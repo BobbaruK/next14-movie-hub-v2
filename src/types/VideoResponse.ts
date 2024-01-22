@@ -15,3 +15,21 @@ export interface TheVideo {
   published_at: string;
   id: string;
 }
+
+export type VideoType =
+  | "trailer"
+  | "teaser"
+  | "clip"
+  | "behind-the-scenes"
+  | "bloopers"
+  | "featurette"
+  | "opening-credits";
+
+export type VideoTypeLink =
+  | "trailers"
+  | "teasers"
+  | "clips"
+  | "behind-the-scenes"
+  | "bloopers"
+  | "featurettes"
+  | "opening-credits";

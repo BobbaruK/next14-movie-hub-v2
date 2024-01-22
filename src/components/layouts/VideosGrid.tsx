@@ -1,25 +1,30 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
-import { VideosResponse } from "@/types/VideoResponse";
+import {
+  VideoType,
+  VideoTypeLink,
+  VideosResponse,
+} from "@/types/VideoResponse";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
 import VideoCard from "../Cards/VideoCard";
-import { useSearchParams } from "next/navigation";
 
 interface Props {
   queryKey: string;
   endpoint: string;
-  videoType:
-    | "trailer"
-    | "teaser"
-    | "clip"
-    | "behind-the-scenes"
-    | "bloopers"
-    | "featurette"
-    | "opening-credits";
+  videoType: VideoType;
+  videoTypeLink: VideoTypeLink;
 }
 
-const VideosGrid = ({ queryKey, endpoint, videoType }: Props) => {
+const VideosGrid = ({
+  queryKey,
+  endpoint,
+  videoType,
+  videoTypeLink,
+}: Props) => {
+  const { id } = useParams<{ id: string }>();
+
   const apiClientVideos = new MyAPIClient<VideosResponse>(endpoint);
 
   const { data, error, isLoading } = useQuery<VideosResponse>({
@@ -53,7 +58,12 @@ const VideosGrid = ({ queryKey, endpoint, videoType }: Props) => {
   return (
     <div className="flex flex-col gap-6">
       {videos.map((video) => (
-        <VideoCard key={video.id} video={video} />
+        <VideoCard
+          key={video.id}
+          video={video}
+          mainTitleID={id}
+          videoTypeLink={videoTypeLink}
+        />
       ))}
     </div>
   );
