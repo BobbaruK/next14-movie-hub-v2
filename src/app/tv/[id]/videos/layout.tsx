@@ -13,9 +13,14 @@ interface Props {
     id: string;
   };
   children: ReactNode;
+  modal: ReactNode;
 }
 
-const TVShowVideoLayout = async ({ params: { id }, children }: Props) => {
+const TVShowVideoLayout = async ({
+  params: { id },
+  children,
+  modal,
+}: Props) => {
   const queryClient = new QueryClient();
 
   // Translations
@@ -29,6 +34,7 @@ const TVShowVideoLayout = async ({ params: { id }, children }: Props) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
+      {modal}
       {children}
     </HydrationBoundary>
   );

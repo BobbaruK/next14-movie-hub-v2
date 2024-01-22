@@ -12,7 +12,7 @@ const TVShowBloopersYTVideoId = ({ params: { id, ytVideoId } }: Props) => {
       <BackTo
         queryKey={RQ_TVSHOW_KEY(id)}
         endpoint={RQ_TVSHOW_ENDPOINT(id)}
-        backTo={{ label: "Videos", link: `/tv/${id}/videos/bloopers` }}
+        backTo={{ label: "Bloopers", link: `/tv/${id}/videos/bloopers` }}
       />
       <SingleVideo />
     </>
