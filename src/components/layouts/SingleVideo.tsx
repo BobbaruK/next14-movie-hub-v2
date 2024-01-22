@@ -7,6 +7,7 @@ const SingleVideo = () => {
 
   return (
     <div className="appContaier">
+
       <iframe
         width="560"
         height="315"
@@ -15,7 +16,7 @@ const SingleVideo = () => {
         // frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         // allowfullscreen
-        className="aspect-video h-auto w-full"
+        className="aspect-video h-auto w-full rounded-md"
       ></iframe>
     </div>
   );

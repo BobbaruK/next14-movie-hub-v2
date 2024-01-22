@@ -13,9 +13,10 @@ interface Props {
     id: string;
   };
   children: ReactNode;
+  modal: ReactNode;
 }
 
-const MovieVideoLayout = async ({ params: { id }, children }: Props) => {
+const MovieVideoLayout = async ({ params: { id }, children, modal }: Props) => {
   const queryClient = new QueryClient();
 
   // Translations
@@ -29,6 +30,7 @@ const MovieVideoLayout = async ({ params: { id }, children }: Props) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
+      {modal}
       {children}
     </HydrationBoundary>
   );
