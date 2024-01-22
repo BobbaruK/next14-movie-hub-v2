@@ -29,6 +29,8 @@ const TVShowVideosOpeningCredits = ({ params: { id } }: Props) => {
             queryKey={RQ_TVSHOW_VIDEOS_KEY(id)}
             endpoint={RQ_TVSHOW_VIDEOS_ENDPOINT(id)}
             videoType="opening-credits"
+            videoTypeLink="opening-credits"
+            titleType="tv"
           />
         }
         sidebar={

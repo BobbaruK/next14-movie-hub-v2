@@ -29,6 +29,8 @@ const TVShowVideosFeaturettes = ({ params: { id } }: Props) => {
             queryKey={RQ_TVSHOW_VIDEOS_KEY(id)}
             endpoint={RQ_TVSHOW_VIDEOS_ENDPOINT(id)}
             videoType="featurette"
+            videoTypeLink="featurettes"
+            titleType="tv"
           />
         }
         sidebar={

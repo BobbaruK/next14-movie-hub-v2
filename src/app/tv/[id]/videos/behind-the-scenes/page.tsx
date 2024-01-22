@@ -29,6 +29,8 @@ const TVShowVideosBTS = ({ params: { id } }: Props) => {
             queryKey={RQ_TVSHOW_VIDEOS_KEY(id)}
             endpoint={RQ_TVSHOW_VIDEOS_ENDPOINT(id)}
             videoType="behind-the-scenes"
+            videoTypeLink="behind-the-scenes"
+            titleType="tv"
           />
         }
         sidebar={
