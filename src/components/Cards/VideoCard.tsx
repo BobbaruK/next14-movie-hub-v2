@@ -4,19 +4,21 @@ import ImageTMDB from "../ImageTMDB";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { FaPlay } from "react-icons/fa";
 import Link from "next/link";
+import { MediaType } from "@/types/MediaType";
 
 interface Props {
   video: TheVideo;
   mainTitleID: string;
   videoTypeLink: VideoTypeLink;
+  titleType: MediaType;
 }
 
-const VideoCard = ({ video, mainTitleID, videoTypeLink }: Props) => {
+const VideoCard = ({ video, mainTitleID, videoTypeLink, titleType }: Props) => {
   return (
     <div className="card flex overflow-hidden bg-base-100 shadow-md shadow-primary sm:flex-row">
       <div className="relative cursor-pointer sm:basis-1/3">
         <Link
-          href={`/movie/${mainTitleID}/videos/${videoTypeLink}/${video.key}`}
+          href={`/${titleType}/${mainTitleID}/videos/${videoTypeLink}/${video.key}`}
         >
           <ImageTMDB
             src={`https://img.youtube.com/vi/${video.key}/0.jpg`}

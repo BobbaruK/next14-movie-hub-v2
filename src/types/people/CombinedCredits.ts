@@ -1,10 +1,10 @@
+import { MediaType } from "../MediaType";
+
 export interface CombinedCredits {
   id: number;
   cast: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[];
   crew: CombinedCreditsMovieCrew[];
 }
-
-export type MediaType = "movie" | "tv";
 
 export interface CombinedCreditsMovieCast {
   adult: boolean;

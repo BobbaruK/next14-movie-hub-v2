@@ -9,12 +9,14 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import VideoCard from "../Cards/VideoCard";
+import { MediaType } from "@/types/MediaType";
 
 interface Props {
   queryKey: string;
   endpoint: string;
   videoType: VideoType;
   videoTypeLink: VideoTypeLink;
+  titleType: MediaType;
 }
 
 const VideosGrid = ({
@@ -22,6 +24,7 @@ const VideosGrid = ({
   endpoint,
   videoType,
   videoTypeLink,
+  titleType,
 }: Props) => {
   const { id } = useParams<{ id: string }>();
 
@@ -63,6 +66,7 @@ const VideosGrid = ({
           video={video}
           mainTitleID={id}
           videoTypeLink={videoTypeLink}
+          titleType={titleType}
         />
       ))}
     </div>
