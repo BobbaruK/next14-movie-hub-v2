@@ -1,6 +1,7 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
+import { MediaType } from "@/types/MediaType";
 import {
   VideoType,
   VideoTypeLink,
@@ -8,8 +9,7 @@ import {
 } from "@/types/VideoResponse";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import VideoCard from "../Cards/VideoCard";
-import { MediaType } from "@/types/MediaType";
+import VideoCard from "../Cards/Video";
 
 interface Props {
   queryKey: string;
