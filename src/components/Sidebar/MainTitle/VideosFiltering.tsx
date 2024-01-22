@@ -5,8 +5,7 @@ import useGetVideos from "@/hooks/useGetVideos";
 import MyAPIClient from "@/services/myApiClient";
 import { VideosResponse } from "@/types/VideoResponse";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 interface Props {
@@ -17,6 +16,8 @@ interface Props {
 
 const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
   const { id } = useParams<{ id: string }>();
+
+  const pathname = usePathname();
 
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -88,30 +89,49 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
         Videos {isPending && <LoadingSpinner size="lg" />}
       </h2>
       <ul className="flex flex-col gap-1 py-2">
-        {videoTypes.map((type, index) => (
-          <li
-            key={index}
-            className="flex cursor-pointer items-center justify-between p-2 hover:bg-slate-600"
-            onClick={() =>
-              startTransition(() =>
-                router.push(`/${titleType}/${id}/videos/${type.href}`),
-              )
-            }
-          >
-            {type.label}
-            <div
-              className={[
-                "badge",
-                "badge-secondary",
-                "text-secondary-content",
-                "gap-2",
-                "p-3",
-              ].join(" ")}
+        {videoTypes.map((type, index) => {
+          const path = `/${titleType}/${id}/videos/${type.href}`;
+
+          const isActive = pathname === path;
+
+          const goToPath = () =>
+            startTransition(() => {
+              router.push(path);
+            });
+
+          return (
+            <li
+              key={index}
+              className={` cursor-pointer  ${isActive ? "bg-accent text-accent-content" : "hover:bg-slate-600"}`}
+              role="link"
+              tabIndex={0}
+              aria-label={type.label}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  goToPath();
+                }
+              }}
+              onClick={goToPath}
             >
-              {type.count}
-            </div>
-          </li>
-        ))}
+              <div
+                role="presentation"
+                className="flex items-center justify-between p-2"
+              >
+                {type.label}
+                <div
+                  className={[
+                    "badge",
+                    `${isActive ? "badge-neutral text-neutral-content" : "badge-secondary text-secondary-content"}`,
+                    "gap-2",
+                    "p-3",
+                  ].join(" ")}
+                >
+                  {type.count}
+                </div>
+              </div>
+            </li>
+          );
+        })}
         {titleType === "tv" && (
           <li
             className="flex cursor-pointer items-center justify-between p-2 hover:bg-slate-600"
