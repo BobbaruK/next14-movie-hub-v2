@@ -15,7 +15,7 @@ const MovieBehindTheScenesYTVideoId = ({
         queryKey={RQ_MOVIE_KEY(id)}
         endpoint={RQ_MOVIE_ENDPOINT(id)}
         backTo={{
-          label: "Videos",
+          label: "Behind the Scenes",
           link: `/movie/${id}/videos/behind-the-scenes`,
         }}
       />

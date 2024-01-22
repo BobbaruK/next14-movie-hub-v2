@@ -3,7 +3,7 @@ import SingleVideo from "@/components/layouts/SingleVideo";
 
 interface Props {}
 
-const MovieModalTrailersYTVideoId = ({}: Props) => {
+const MovieModalFeaturettesYTVideoId = ({}: Props) => {
   return (
     <>
       <Modal>
@@ -13,4 +13,4 @@ const MovieModalTrailersYTVideoId = ({}: Props) => {
   );
 };
 
-export default MovieModalTrailersYTVideoId;
+export default MovieModalFeaturettesYTVideoId;
