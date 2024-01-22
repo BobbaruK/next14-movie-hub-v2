@@ -29,6 +29,7 @@ const MovieVideosTeasers = ({ params: { id } }: Props) => {
             queryKey={RQ_MOVIE_VIDEOS_KEY(id)}
             endpoint={RQ_MOVIE_VIDEOS_ENDPOINT(id)}
             videoType="teaser"
+            videoTypeLink="teasers"
           />
         }
         sidebar={
