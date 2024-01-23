@@ -1,6 +1,12 @@
-import { RQ_MOVIE_IMAGES_ENDPOINT, RQ_MOVIE_IMAGES_KEY } from "@/constants";
+import BackTo from "@/components/BackTo";
+import {
+  RQ_MOVIE_ENDPOINT,
+  RQ_MOVIE_IMAGES_ENDPOINT,
+  RQ_MOVIE_IMAGES_KEY,
+  RQ_MOVIE_KEY,
+} from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { MovieAlternativeTitles } from "@/types/movies/movie/MovieAlternativeTitles";
+import { ImagesResponse } from "@/types/ImagesResponse";
 import {
   HydrationBoundary,
   QueryClient,
@@ -13,28 +19,32 @@ interface Props {
     id: string;
   };
   children: ReactNode;
-  modal: ReactNode;
 }
 
 export default async function MovieImagesLayout({
   params: { id },
   children,
-  modal,
 }: Props) {
   const queryClient = new QueryClient();
 
-  // Alternative Titles
-  const apiClientImages = new MyAPIClient<MovieAlternativeTitles>(
+  // Images
+  const apiClientImages = new MyAPIClient<ImagesResponse>(
     RQ_MOVIE_IMAGES_ENDPOINT(id),
   );
+  
   await queryClient.prefetchQuery({
     queryKey: [RQ_MOVIE_IMAGES_KEY(id)],
     queryFn: () => apiClientImages.getAll(),
   });
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      {modal}
-      <div>{children}</div>
+      <BackTo
+        queryKey={RQ_MOVIE_KEY(id)}
+        endpoint={RQ_MOVIE_ENDPOINT(id)}
+        backTo={{ label: "Main", link: `/movie/${id}` }}
+      />
+      {children}
     </HydrationBoundary>
   );
 }
