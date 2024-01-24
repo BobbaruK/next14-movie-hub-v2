@@ -16,9 +16,10 @@ import {
 } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import "../globals.css";
-import ReactQueryProvider from "./ReactQueryProvider";
 import { Language } from "@/types/movies/Language";
 import { Footer } from "@/components/layouts/Footer";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import { ThemeProvider } from "@/providers/ThemesProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,16 +55,23 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang="en">
-      <body className={inter.className} data-theme="night">
-        <ReactQueryProvider>
-          <HydrationBoundary state={dehydrate(queryClient)}>
-            <div id="siteWrapper">
-              <Header />
-              <main>{children}</main>
-              <Footer />
-            </div>
-          </HydrationBoundary>
-        </ReactQueryProvider>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ReactQueryProvider>
+            <HydrationBoundary state={dehydrate(queryClient)}>
+              <div id="siteWrapper">
+                <Header />
+                <main>{children}</main>
+                <Footer />
+              </div>
+            </HydrationBoundary>
+          </ReactQueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
