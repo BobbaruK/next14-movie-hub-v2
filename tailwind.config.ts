@@ -1,99 +1,80 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
-const config: Config = {
+const config = {
+  darkMode: ["class"],
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+	],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
-        "google-plus": "#dd4b39",
-        behance: "#131418",
-        blogger: "#f57d00",
-        dribbble: "#ea4c89",
-        dropbox: "#007ee5",
-        facebook: "#3b5999",
-        flickr: "#ff0084",
-        foursquare: "#f94877",
-        hackernews: "#ff6600",
-        instagram: "#e4405f",
-        imdb: "#deb522",
-        line: "#00c300",
-        linkedin: "#0077b5",
-        medium: "#02b875",
-        messenger: "#0084ff",
-        pinterest: "#bd081c",
-        producthunt: "#da552f",
-        quora: "#b92b27",
-        reddit: "#ff5700",
-        skype: "#00aff0",
-        slack: "#3aaf85",
-        slideshare: "#0077b5",
-        snapchat: "#fffc00",
-        soundcloud: "#ff3300",
-        stumbleupon: "#eb4924",
-        tiktok: "#69c9d0",
-        tumblr: "#34465d",
-        twitter: "#55acee",
-        vimeo: "#1ab7ea",
-        vine: "#00b489",
-        vk: "#4c75a3",
-        wechat: "#09b83e",
-        weibo: "#df2029",
-        whatsapp: "#25d366",
-        wordpress: "#21759b",
-        yahoo: "#410093",
-        yelp: "#af0606",
-        youtube: "#cd201f",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
-      gridTemplateColumns: {
-        "person-credit": "65px 30px 1fr",
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: [
-      "light",
-      "dark",
-      "cupcake",
-      "bumblebee",
-      "emerald",
-      "corporate",
-      "synthwave",
-      "retro",
-      "cyberpunk",
-      "valentine",
-      "halloween",
-      "garden",
-      "forest",
-      "aqua",
-      "lofi",
-      "pastel",
-      "fantasy",
-      "wireframe",
-      "black",
-      "luxury",
-      "dracula",
-      "cmyk",
-      "autumn",
-      "business",
-      "acid",
-      "lemonade",
-      "night",
-      "coffee",
-      "winter",
-      "dim",
-      "nord",
-      "sunset",
-    ],
-  },
-};
-export default config;
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config
+
+export default config

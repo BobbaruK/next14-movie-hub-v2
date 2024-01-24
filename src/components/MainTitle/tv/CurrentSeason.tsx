@@ -16,8 +16,6 @@ interface Props {
   endpoint: string;
 }
 
-// TODO: config here on the image
-
 const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
   const { id } = useParams<{
     id: string;
