@@ -1,17 +1,15 @@
 "use client";
 
-import ImageTMDB from "@/components/ImageTMDB";
 import Rating from "@/components/Rating";
+import TMDBImages from "@/components/TMDBImages";
 import MyAPIClient from "@/services/myApiClient";
-import { PosterSizes } from "@/types/imageSizes";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import idTitleHyphen from "@/utils/idTitleHyphen";
-import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { FaCalendarAlt, FaStar } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
 
 interface Props {
   queryKey: string;
@@ -48,13 +46,10 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
         <div className="card flex flex-row overflow-hidden bg-base-100 shadow-md shadow-primary">
           <div className="basis-1/5 [&>img]:h-full [&>img]:w-full [&>img]:object-cover">
             <Link href={`/tv/${id}/seasons/${lastSeason.season_number}/`}>
-              <ImageTMDB
+              <TMDBImages
+                type={{ type: "poster", size: "w185" }}
                 alt={lastSeason.name}
-                src={imageLink<PosterSizes>(
-                  "https://image.tmdb.org/t/p/",
-                  "w185",
-                  lastSeason.poster_path,
-                )}
+                src={lastSeason.poster_path}
                 width={185}
                 height={278}
               />

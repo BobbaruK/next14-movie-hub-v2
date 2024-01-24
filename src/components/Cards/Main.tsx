@@ -1,44 +1,17 @@
-import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
-import MyAPIClient from "@/services/myApiClient";
-import { Image_Configuration } from "@/types/TMDB_API_Configuration";
-import { PosterSizes, ProfileSizes } from "@/types/imageSizes";
 import { Movie } from "@/types/movies/movie/MoviesResponse";
 import { TVShow } from "@/types/movies/tv/TVShowsResponse";
 import { People } from "@/types/people/PeoplesResponse";
-import imageLink from "@/utils/imageLink";
-import ReleaseDateUI from "@/utils/releaseDateUI";
-import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
-import ImageTMDB from "../ImageTMDB";
 import idTitleHyphen from "@/utils/idTitleHyphen";
+import ReleaseDateUI from "@/utils/releaseDateUI";
+import Link from "next/link";
+import TMDBImages from "../TMDBImages";
 
 interface Props {
   movie: Movie | TVShow | People;
-  index: number;
 }
 
-const MainCard = ({ movie, index }: Props) => {
-  const apiClient = new MyAPIClient<Image_Configuration>(RQ_CONFIG_ENDPOINT);
-
-  const {
-    data: config,
-    isLoading,
-    error,
-  } = useQuery<Image_Configuration>({
-    queryKey: [RQ_CONFIG_KEY],
-    queryFn: () => apiClient.getAll(),
-  });
-
+const MainCard = ({ movie }: Props) => {
   const title = "title" in movie ? movie.title : movie.name;
-
-  if (error) throw new Error(`${RQ_CONFIG_KEY} - ${error.message}`);
-
-  if (isLoading)
-    return (
-      <div className="alert card alert-info shadow-md shadow-primary">
-        Loading config...
-      </div>
-    );
 
   const theMovie = "title" in movie && movie;
   const theTv = "first_air_date" in movie && movie;
@@ -70,29 +43,21 @@ const MainCard = ({ movie, index }: Props) => {
       <figure>
         <Link href={link()} className="w-full">
           {(theMovie || theTv) && (
-            <ImageTMDB
+            <TMDBImages
+              type={{ type: "poster", size: "w342" }}
               alt={title}
-              src={imageLink<PosterSizes>(
-                config?.images.secure_base_url!,
-                "w342",
-                movie.poster_path,
-              )}
+              src={movie.poster_path}
               width={342}
               height={513}
-              priority={index < 4 ? true : false}
             />
           )}
           {thePerson && (
-            <ImageTMDB
+            <TMDBImages
+              type={{ type: "profile", size: "h632" }}
               alt={title}
-              src={imageLink<ProfileSizes>(
-                config?.images.secure_base_url!,
-                "h632",
-                movie.profile_path,
-              )}
+              src={movie.profile_path}
               width={342}
               height={513}
-              priority={index < 4 ? true : false}
             />
           )}
         </Link>

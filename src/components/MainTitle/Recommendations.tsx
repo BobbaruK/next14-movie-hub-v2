@@ -27,7 +27,9 @@ const MainTitleRecommendations = ({ queryKey, endpoint }: Props) => {
 
   if (isLoading)
     return (
-      <div className="alert alert-warning">Loading movie recommendations...</div>
+      <div className="alert alert-warning">
+        Loading movie recommendations...
+      </div>
     );
 
   const recommended = [...(data?.results || [])];
@@ -41,8 +43,8 @@ const MainTitleRecommendations = ({ queryKey, endpoint }: Props) => {
             <h2>Recommendations</h2>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-6">
-            {recommended.map((movie, index) => (
-              <MainCard movie={movie} index={index} key={movie.id} />
+            {recommended.map((movie) => (
+              <MainCard movie={movie} key={movie.id} />
             ))}
           </div>
         </div>

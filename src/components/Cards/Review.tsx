@@ -1,10 +1,8 @@
-import { ProfileSizes } from "@/types/imageSizes";
 import { Review } from "@/types/movies/Reviews";
-import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useState } from "react";
-import ImageTMDB from "../ImageTMDB";
 import Rating from "../Rating";
+import TMDBImages from "../TMDBImages";
 
 const ReviewContent = ({ content }: { content: string }) => {
   "use client";
@@ -45,13 +43,10 @@ const ReviewCard = ({ review }: Props) => {
       <div className="card-body relative flex justify-between gap-4 p-4">
         <div className="flex items-center gap-4">
           <div className="overflow-hidden rounded-full [&>img]:h-[45px] [&>img]:w-[45px] [&>img]:object-cover">
-            <ImageTMDB
+            <TMDBImages
+              type={{ type: "profile", size: "w45" }}
               alt={review.author}
-              src={imageLink<ProfileSizes>(
-                "https://www.themoviedb.org/t/p/",
-                "w45",
-                review.author_details.avatar_path,
-              )}
+              src={review.author_details.avatar_path}
               width={45}
               height={45}
             />

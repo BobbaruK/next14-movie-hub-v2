@@ -1,9 +1,11 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
-import { ImageType, ImagesResponse } from "@/types/ImagesResponse";
+import { ImagesResponse } from "@/types/ImagesResponse";
 import { useQuery } from "@tanstack/react-query";
 import ImageCard from "../Cards/Image";
+
+type ImageType = "backdrops" | "logos" | "posters";
 
 interface Props {
   queryKey: string;
@@ -13,6 +15,7 @@ interface Props {
 
 const ImagesGrid = ({ queryKey, endpoint, imagesType }: Props) => {
   const apiClientReleases = new MyAPIClient<ImagesResponse>(endpoint);
+  
   const { data, error, isLoading } = useQuery<ImagesResponse>({
     queryKey: [queryKey],
     queryFn: () => apiClientReleases.getAll(),
@@ -41,8 +44,8 @@ const ImagesGrid = ({ queryKey, endpoint, imagesType }: Props) => {
 
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-      {images()?.map((image) => (
-        <ImageCard key={image.file_path} image={image} />
+      {images()?.map((image, index) => (
+        <ImageCard key={image.file_path + '' + index} image={image} />
       ))}
     </div>
   );

@@ -1,18 +1,14 @@
 "use client";
 
-import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { Image_Configuration } from "@/types/TMDB_API_Configuration";
-import { PosterSizes, ProfileSizes } from "@/types/imageSizes";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import { PeopleResponse } from "@/types/people/PeopleResponse";
-import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import ImageTMDB from "./ImageTMDB";
+import TMDBImages from "./TMDBImages";
 
 interface BackTo {
   label: string;
@@ -34,14 +30,6 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
   >({
     queryKey: [queryKey],
     queryFn: () => apiClient.getAll(),
-  });
-
-  const apiClientConfig = new MyAPIClient<Image_Configuration>(
-    RQ_CONFIG_ENDPOINT,
-  );
-  const { data: config } = useQuery<Image_Configuration>({
-    queryKey: [RQ_CONFIG_KEY],
-    queryFn: () => apiClientConfig.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
@@ -80,26 +68,20 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
           <div className="overflow-hidden rounded-md">
             <Link href={backTo.link}>
               {(movie || tv) && (
-                <ImageTMDB
+                <TMDBImages
+                  type={{ type: "poster", size: "w92" }}
                   alt={title()}
-                  src={imageLink<PosterSizes>(
-                    config?.images.secure_base_url!,
-                    "w92",
-                    data?.poster_path!,
-                  )}
+                  src={data.poster_path}
                   width={92}
                   height={138}
                   priority
                 />
               )}
               {person && (
-                <ImageTMDB
+                <TMDBImages
+                  type={{ type: "profile", size: "w185" }}
                   alt={title()}
-                  src={imageLink<ProfileSizes>(
-                    config?.images.secure_base_url!,
-                    "w185",
-                    data?.profile_path!,
-                  )}
+                  src={data.profile_path}
                   width={92}
                   height={138}
                   priority

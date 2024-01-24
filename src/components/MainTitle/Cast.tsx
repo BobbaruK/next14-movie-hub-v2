@@ -1,14 +1,12 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
-import { ProfileSizes } from "@/types/imageSizes";
 import { CastAndCrew, TheCast } from "@/types/movies/CastAndCrew";
 import idTitleHyphen from "@/utils/idTitleHyphen";
-import imageLink from "@/utils/imageLink";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import ImageTMDB from "../ImageTMDB";
+import TMDBImages from "../TMDBImages";
 
 const PersonCard = ({ cast }: { cast: TheCast }) => {
   return (
@@ -18,13 +16,10 @@ const PersonCard = ({ cast }: { cast: TheCast }) => {
           href={`/person/${idTitleHyphen(cast.id, cast.name)}`}
           className="w-full"
         >
-          <ImageTMDB
+          <TMDBImages
+            type={{ type: "profile", size: "w185" }}
             alt={cast.name}
-            src={imageLink<ProfileSizes>(
-              "https://image.tmdb.org/t/p/",
-              "w185",
-              cast.profile_path,
-            )}
+            src={cast.profile_path}
             width={185}
             height={278}
           />

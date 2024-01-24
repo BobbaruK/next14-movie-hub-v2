@@ -1,20 +1,15 @@
 "use client";
 
-import ImageTMDB from "@/components/ImageTMDB";
 import Rating from "@/components/Rating";
 import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
+import TMDBImages from "@/components/TMDBImages";
 import {
-  RQ_CONFIG_ENDPOINT,
-  RQ_CONFIG_KEY,
   RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT,
   RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
-import { Image_Configuration } from "@/types/TMDB_API_Configuration";
-import { ProfileSizes, StillSizes } from "@/types/imageSizes";
 import { EpisodeResponse } from "@/types/movies/tv/EpisodeResponse";
 import idTitleHyphen from "@/utils/idTitleHyphen";
-import imageLink from "@/utils/imageLink";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -39,14 +34,6 @@ const Episode = ({ queryKey, endpoint }: Props) => {
     queryFn: () => apiClient.getAll(),
   });
 
-  const apiClientConfig = new MyAPIClient<Image_Configuration>(
-    RQ_CONFIG_ENDPOINT,
-  );
-  const { data: config } = useQuery<Image_Configuration>({
-    queryKey: [RQ_CONFIG_KEY],
-    queryFn: () => apiClientConfig.getAll(),
-  });
-
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
@@ -69,13 +56,10 @@ const Episode = ({ queryKey, endpoint }: Props) => {
       <div className="flex flex-col gap-4 sm:flex-row">
         <div className="flex items-center sm:basis-[300px]  sm:justify-center">
           <div className="overflow-hidden rounded-md">
-            <ImageTMDB
+            <TMDBImages
+              type={{ type: "still", size: "w300" }}
               alt={data?.name!}
-              src={imageLink<StillSizes>(
-                config?.images.secure_base_url!,
-                "w300",
-                data?.still_path!,
-              )}
+              src={data?.still_path!}
               width={300}
               height={169}
             />
@@ -131,13 +115,10 @@ const Episode = ({ queryKey, endpoint }: Props) => {
               <div key={star.id} className="flex flex-row gap-4">
                 <div className="overflow-hidden rounded-md">
                   <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
-                    <ImageTMDB
+                    <TMDBImages
+                      type={{ type: "profile", size: "w45" }}
                       alt={star.name}
-                      src={imageLink<ProfileSizes>(
-                        config?.images.secure_base_url!,
-                        "w45",
-                        star.profile_path,
-                      )}
+                      src={star.profile_path}
                       width={45}
                       height={68}
                     />
@@ -176,13 +157,10 @@ const Episode = ({ queryKey, endpoint }: Props) => {
               <div key={star.id} className="flex flex-row gap-4">
                 <div className="overflow-hidden rounded-md">
                   <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
-                    <ImageTMDB
+                    <TMDBImages
+                      type={{ type: "profile", size: "w45" }}
                       alt={star.name}
-                      src={imageLink<ProfileSizes>(
-                        config?.images.secure_base_url!,
-                        "w45",
-                        star.profile_path,
-                      )}
+                      src={star.profile_path}
                       width={45}
                       height={68}
                     />
