@@ -1,6 +1,5 @@
 "use client";
 
-import LoadingSpinner from "@/components/LoadingSpinner";
 import useGetVideos from "@/hooks/useGetVideos";
 import MyAPIClient from "@/services/myApiClient";
 import { VideosResponse } from "@/types/VideoResponse";
@@ -85,8 +84,8 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
 
   return (
     <div>
-      <h2 className="m-0 flex items-center justify-start gap-4 bg-primary px-2 py-4 text-primary-content">
-        Videos {isPending && <LoadingSpinner size="lg" />}
+      <h2 className="text-primary-content m-0 flex items-center justify-start gap-4 bg-primary px-2 py-4">
+        {isPending && <small> Loading...</small>}
       </h2>
       <ul className="flex flex-col gap-1 py-2">
         {videoTypes.map((type, index) => {
@@ -102,7 +101,7 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
           return (
             <li
               key={index}
-              className={` cursor-pointer  ${isActive ? "bg-accent text-accent-content" : "hover:bg-slate-600"}`}
+              className={` cursor-pointer  ${isActive ? "text-accent-content bg-accent" : "hover:bg-slate-600"}`}
               role="link"
               tabIndex={0}
               aria-label={type.label}

@@ -1,6 +1,5 @@
 "use client";
 
-import LoadingSpinner from "@/components/LoadingSpinner";
 import { RQ_LANGUAGES_ENDPOINT, RQ_LANGUAGES_KEY } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { Language } from "@/types/movies/Language";
@@ -10,8 +9,8 @@ import { useState, useTransition } from "react";
 
 import { Check, ChevronsUpDown } from "lucide-react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 import {
   Command,
@@ -74,7 +73,7 @@ const ByLanguage = () => {
     <div>
       <h3 className="flex items-center gap-4">
         <label htmlFor="byLanguage">By Language</label>
-        {isPending && <LoadingSpinner size="md" />}
+        {isPending && <small> Loading...</small>}
       </h3>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>

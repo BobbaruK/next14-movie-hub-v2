@@ -1,12 +1,11 @@
 import { MainTitleResponse } from "@/types/MainTitleResponse";
+import { Review } from "@/types/movies/Reviews";
 import { Movie } from "@/types/movies/movie/MoviesResponse";
 import { TVShow } from "@/types/movies/tv/TVShowsResponse";
 import { People } from "@/types/people/PeoplesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import LoadingSpinner from "../LoadingSpinner";
-import { Review } from "@/types/movies/Reviews";
 import { Button } from "../ui/button";
 
 interface Props {
@@ -60,7 +59,7 @@ const MoviePagination = ({
         Prev
       </Button>
       {isPending ? (
-        <LoadingSpinner size="lg" />
+        <small> Loading...</small>
       ) : (
         <>
           {movie?.page} of {movie?.total_pages} / {movie?.total_results} results

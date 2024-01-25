@@ -1,12 +1,9 @@
 "use client";
 
-import LoadingSpinner from "@/components/LoadingSpinner";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -87,7 +84,7 @@ const Sorting = () => {
     <>
       <h2 className="flex items-center gap-4">
         <label htmlFor="sort">Sorting</label>
-        {isPending && <LoadingSpinner size="md" />}
+        {isPending && <small> Loading...</small>}
       </h2>
       <Select
         onValueChange={(e) => {
