@@ -1,10 +1,12 @@
 "use client";
 
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { Badge, badgeVariants } from "@/components/ui/badge";
 import { RQ_LANGUAGES_ENDPOINT } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { GenreResponse } from "@/types/movies/GenreResponse";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
@@ -44,52 +46,49 @@ const ByGenre = ({ rqKey }: Props) => {
       </h3>
       <div className="flex flex-wrap gap-2">
         {data?.genres.map((genre) => (
-          <button
-            className={[
-              "badge",
-              "p-3",
-              `${
-                genresArr?.includes(String(genre.id))
-                  ? "badge-accent"
-                  : "badge-primary"
-              }`,
-              "hover:badge-secondary",
-              "disabled:bg-neutral",
-              "disabled:text-neutral-content",
-            ].join(" ")}
-            key={genre.id}
-            onClick={() => {
-              startTransition(() => {
-                if (genresArr?.includes(String(genre.id))) {
-                  const ind = genresArr.indexOf(String(genre.id));
-                  genresArr.splice(ind, 1);
+          <>
+            <button
+              className={badgeVariants({
+                variant: genresArr?.includes(String(genre.id))
+                  ? "default"
+                  : "outline",
+              })}
+              key={genre.id}
+              onClick={() => {
+                startTransition(() => {
+                  if (genresArr?.includes(String(genre.id))) {
+                    const ind = genresArr.indexOf(String(genre.id));
+                    genresArr.splice(ind, 1);
+
+                    router.push(
+                      `?page=1${
+                        genresArr.length
+                          ? "&with_genres=" + genresArr.join(",")
+                          : ""
+                      }${
+                        langParams
+                          ? "&with_original_language=" + langParams
+                          : ""
+                      }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
+                    );
+
+                    return;
+                  }
+
+                  genresArr?.push(String(genre.id));
 
                   router.push(
-                    `?page=1${
-                      genresArr.length
-                        ? "&with_genres=" + genresArr.join(",")
-                        : ""
-                    }${
+                    `?page=1&with_genres=${genresArr}${
                       langParams ? "&with_original_language=" + langParams : ""
                     }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
                   );
-
-                  return;
-                }
-
-                genresArr?.push(String(genre.id));
-
-                router.push(
-                  `?page=1&with_genres=${genresArr}${
-                    langParams ? "&with_original_language=" + langParams : ""
-                  }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
-                );
-              });
-            }}
-            disabled={isPending}
-          >
-            {genre.name}
-          </button>
+                });
+              }}
+              disabled={isPending}
+            >
+              {genre.name}
+            </button>
+          </>
         ))}
       </div>
     </div>
