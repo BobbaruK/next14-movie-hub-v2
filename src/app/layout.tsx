@@ -54,15 +54,15 @@ export default async function RootLayout({ children }: Props) {
   });
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ReactQueryProvider>
+        <ReactQueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <HydrationBoundary state={dehydrate(queryClient)}>
               <div id="siteWrapper">
                 <Header />
@@ -70,8 +70,8 @@ export default async function RootLayout({ children }: Props) {
                 <Footer />
               </div>
             </HydrationBoundary>
-          </ReactQueryProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
