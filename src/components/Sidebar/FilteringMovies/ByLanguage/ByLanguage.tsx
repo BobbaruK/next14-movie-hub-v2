@@ -28,6 +28,9 @@ import {
 } from "@/components/ui/popover";
 
 const ByLanguage = () => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
+
   const [isPending, startTransition] = useTransition();
 
   const apiClient = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
@@ -66,9 +69,6 @@ const ByLanguage = () => {
     }
     return 0;
   });
-
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
 
   return (
     <div>

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import { Review } from "@/types/movies/Reviews";
+import { Button } from "../ui/button";
 
 interface Props {
   page: number;
@@ -40,8 +41,7 @@ const MoviePagination = ({
 
   return (
     <div className="flex items-center justify-between gap-4">
-      <button
-        className="btn btn-primary"
+      <Button
         disabled={moviesConfig.params.page <= 1 || isPending}
         onClick={() =>
           startTransition(() =>
@@ -58,7 +58,7 @@ const MoviePagination = ({
         }
       >
         Prev
-      </button>
+      </Button>
       {isPending ? (
         <LoadingSpinner size="lg" />
       ) : (
@@ -66,8 +66,7 @@ const MoviePagination = ({
           {movie?.page} of {movie?.total_pages} / {movie?.total_results} results
         </>
       )}
-      <button
-        className="btn btn-primary"
+      <Button
         disabled={moviesConfig.params.page >= movie?.total_pages! || isPending}
         onClick={() => {
           startTransition(() =>
@@ -84,7 +83,7 @@ const MoviePagination = ({
         }}
       >
         Next
-      </button>
+      </Button>
     </div>
   );
 };
