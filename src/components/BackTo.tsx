@@ -9,6 +9,8 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import TMDBImages from "./TMDBImages";
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertTitle, AlertDescription } from "./ui/alert";
 
 interface BackTo {
   label: string;
@@ -37,7 +39,11 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
   if (isLoading)
     return (
       <div className="appContaier">
-        <div className="alert alert-warning">Loading main title...</div>
+        <Alert variant="default">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Info</AlertTitle>
+          <AlertDescription>Loading main title...</AlertDescription>
+        </Alert>
       </div>
     );
 
@@ -62,7 +68,7 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
   };
 
   return (
-    <div className="mb-10 bg-gradient-to-r from-secondary via-primary to-neutral py-4 text-secondary-content">
+    <div className="to-neutral text-secondary-content mb-10 bg-gradient-to-r from-secondary via-primary py-4">
       <div className="appContaier">
         <div className="flex gap-5">
           <div className="overflow-hidden rounded-md">

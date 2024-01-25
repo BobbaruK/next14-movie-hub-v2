@@ -4,7 +4,9 @@ import MyAPIClient from "@/services/myApiClient";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { Review } from "@/types/movies/Reviews";
 import { useQuery } from "@tanstack/react-query";
+import { AlertCircle } from "lucide-react";
 import ReviewCard from "../Cards/Review";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import MoviePagination from "./MoviePagination";
 
 interface Props {
@@ -25,12 +27,24 @@ const ReviewsGrid = ({ queryKey, endpoint }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading reviews...</div>;
+    return (
+      <div className="appContaier">
+        <Alert variant="default">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Info</AlertTitle>
+          <AlertDescription>Loading reviews...</AlertDescription>
+        </Alert>
+      </div>
+    );
 
   if (!data?.results.length)
     return (
       <div className="appContaier">
-        <div className="alert alert-warning">No reviews</div>
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Info</AlertTitle>
+          <AlertDescription>No reviews</AlertDescription>
+        </Alert>
       </div>
     );
 

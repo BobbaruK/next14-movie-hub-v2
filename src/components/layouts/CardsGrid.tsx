@@ -7,6 +7,8 @@ import { TVShow } from "@/types/movies/tv/TVShowsResponse";
 import { People } from "@/types/people/PeoplesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useQuery } from "@tanstack/react-query";
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import MovieGrid from "./MovieGrid";
 import MoviePagination from "./MoviePagination";
 
@@ -52,10 +54,22 @@ const CardsGrid = ({
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading cards...</div>;
+    return (
+      <Alert variant="default">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Info</AlertTitle>
+        <AlertDescription>Loading cards...</AlertDescription>
+      </Alert>
+    );
 
   if (data?.results.length === 0)
-    return <div className="alert alert-warning">No results</div>;
+    return (
+      <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Info</AlertTitle>
+        <AlertDescription>No results</AlertDescription>
+      </Alert>
+    );
 
   return (
     <>
