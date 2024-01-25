@@ -78,7 +78,7 @@ export function MainNavigation() {
                     <p>Card Content</p>
                   </CardContent>
                 </Card>
-                <ul className="flex flex-col gap-4">
+                <ul className="flex flex-grow flex-col gap-4">
                   <ListItem href="/movie" title="Popular">
                     Popular movies
                   </ListItem>
@@ -108,7 +108,7 @@ export function MainNavigation() {
                     <p>Card Content</p>
                   </CardContent>
                 </Card>
-                <ul className="flex flex-col gap-4">
+                <ul className="flex flex-grow flex-col gap-4">
                   <ListItem href="/tv" title="Popular">
                     Popular tv shows
                   </ListItem>
@@ -138,7 +138,7 @@ export function MainNavigation() {
                     <p>Card Content</p>
                   </CardContent>
                 </Card>
-                <ul className="flex flex-col gap-4">
+                <ul className="flex flex-grow flex-col gap-4">
                   <ListItem href="/person" title="Popular">
                     Popular people
                   </ListItem>
@@ -171,13 +171,13 @@ const ListItem = React.forwardRef<
           href={props.href!}
           ref={ref}
           className={cn(
-            "hover:text-accent-foreground focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent focus:bg-accent",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className,
           )}
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
         </Link>

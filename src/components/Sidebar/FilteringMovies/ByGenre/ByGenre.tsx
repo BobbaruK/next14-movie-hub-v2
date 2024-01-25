@@ -46,49 +46,45 @@ const ByGenre = ({ rqKey }: Props) => {
       </h3>
       <div className="flex flex-wrap gap-2">
         {data?.genres.map((genre) => (
-          <>
-            <button
-              className={badgeVariants({
-                variant: genresArr?.includes(String(genre.id))
-                  ? "default"
-                  : "outline",
-              })}
-              key={genre.id}
-              onClick={() => {
-                startTransition(() => {
-                  if (genresArr?.includes(String(genre.id))) {
-                    const ind = genresArr.indexOf(String(genre.id));
-                    genresArr.splice(ind, 1);
-
-                    router.push(
-                      `?page=1${
-                        genresArr.length
-                          ? "&with_genres=" + genresArr.join(",")
-                          : ""
-                      }${
-                        langParams
-                          ? "&with_original_language=" + langParams
-                          : ""
-                      }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
-                    );
-
-                    return;
-                  }
-
-                  genresArr?.push(String(genre.id));
+          <button
+            className={badgeVariants({
+              variant: genresArr?.includes(String(genre.id))
+                ? "default"
+                : "outline",
+            })}
+            key={genre.id}
+            onClick={() => {
+              startTransition(() => {
+                if (genresArr?.includes(String(genre.id))) {
+                  const ind = genresArr.indexOf(String(genre.id));
+                  genresArr.splice(ind, 1);
 
                   router.push(
-                    `?page=1&with_genres=${genresArr}${
+                    `?page=1${
+                      genresArr.length
+                        ? "&with_genres=" + genresArr.join(",")
+                        : ""
+                    }${
                       langParams ? "&with_original_language=" + langParams : ""
                     }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
                   );
-                });
-              }}
-              disabled={isPending}
-            >
-              {genre.name}
-            </button>
-          </>
+
+                  return;
+                }
+
+                genresArr?.push(String(genre.id));
+
+                router.push(
+                  `?page=1&with_genres=${genresArr}${
+                    langParams ? "&with_original_language=" + langParams : ""
+                  }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
+                );
+              });
+            }}
+            disabled={isPending}
+          >
+            {genre.name}
+          </button>
         ))}
       </div>
     </div>
