@@ -5,6 +5,14 @@ import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import Link from "next/link";
 import TMDBImages from "../TMDBImages";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import { Badge } from "../ui/badge";
 
 interface Props {
   movie: Movie | TVShow | People;
@@ -38,18 +46,34 @@ const MainCard = ({ movie }: Props) => {
     return "";
   };
 
+  // $
+
   return (
-    <div className="card bg-base-100 shadow-md shadow-primary">
-      <figure>
-        <Link href={link()} className="w-full">
+    <>
+      <Card className="flex flex-col overflow-hidden">
+        <Link href={link()} className="relative w-full">
           {(theMovie || theTv) && (
-            <TMDBImages
-              type={{ type: "poster", size: "w342" }}
-              alt={title}
-              src={movie.poster_path}
-              width={342}
-              height={513}
-            />
+            <>
+              <Badge
+                variant={
+                  movie.vote_average > 7.5
+                    ? "default"
+                    : movie.vote_average > 6.0
+                      ? "secondary"
+                      : "destructive"
+                }
+                className="absolute left-2 top-2"
+              >
+                {movie.vote_average.toFixed(1)}
+              </Badge>
+              <TMDBImages
+                type={{ type: "poster", size: "w342" }}
+                alt={title}
+                src={movie.poster_path}
+                width={342}
+                height={513}
+              />
+            </>
           )}
           {thePerson && (
             <TMDBImages
@@ -61,43 +85,19 @@ const MainCard = ({ movie }: Props) => {
             />
           )}
         </Link>
-      </figure>
-      <div className="card-body relative flex justify-between p-4 pt-7">
-        {(theMovie || theTv) && (
-          <div
-            className={[
-              `${
-                movie.vote_average > 7.5
-                  ? "voteGood"
-                  : movie.vote_average > 6.0
-                    ? "voteOk"
-                    : "voteBad"
-              }`,
-              "radial-progress",
+        <CardHeader>
+          <CardTitle>
+            <Link href={link()} className="line-clamp-2" title={title}>
+              {title}
+            </Link>
+          </CardTitle>
 
-              "absolute",
-              "-top-5",
-
-              "bg-slate-900",
-              "border-2",
-              "border-slate-100",
-              "text-sm",
-            ].join(" ")}
-            style={style}
-            role="progressbar"
-            aria-label="Movie Rating"
-          >
-            {movie.vote_average.toFixed(1)}
-          </div>
-        )}
-
-        <h2 className="card-title m-0 line-clamp-2" title={title}>
-          <Link href={link()}>{title}</Link>
-        </h2>
-
-        {(theMovie || theTv) && <p className="grow-0">{date()}</p>}
+          {(theMovie || theTv) && (
+            <CardDescription className="grow-0">{date()}</CardDescription>
+          )}
+        </CardHeader>
         {thePerson && (
-          <div>
+          <CardContent className="my-auto">
             {thePerson.known_for.map((movie, index) => (
               <small key={index}>
                 {movie.title &&
@@ -110,10 +110,10 @@ const MainCard = ({ movie }: Props) => {
                   }`}
               </small>
             ))}
-          </div>
+          </CardContent>
         )}
-      </div>
-    </div>
+      </Card>
+    </>
   );
 };
 
