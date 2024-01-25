@@ -97,7 +97,7 @@ const Sorting = () => {
         }}
         value={params.get("sort_by") || SortBy.popularityDesc}
       >
-        <SelectTrigger>
+        <SelectTrigger className="w-[270px]">
           <SelectValue placeholder="Select a fruit" />
         </SelectTrigger>
         <SelectContent>
