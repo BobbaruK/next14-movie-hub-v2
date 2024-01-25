@@ -1,6 +1,15 @@
 "use client";
 
 import LoadingSpinner from "@/components/LoadingSpinner";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
@@ -80,22 +89,25 @@ const Sorting = () => {
         <label htmlFor="sort">Sorting</label>
         {isPending && <LoadingSpinner size="md" />}
       </h2>
-      <select
-        id="sort"
-        className="select select-bordered w-full"
-        onChange={(e) => {
+      <Select
+        onValueChange={(e) => {
           startTransition(() => {
-            router.push(paramsString(e.target.value));
+            router.push(paramsString(e));
           });
         }}
         value={params.get("sort_by") || SortBy.popularityDesc}
       >
-        {sorter.map((sort) => (
-          <option key={sort.value} value={sort.value}>
-            {sort.label}
-          </option>
-        ))}
-      </select>
+        <SelectTrigger>
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          {sorter.map((sort) => (
+            <SelectItem key={sort.value} value={sort.value}>
+              {sort.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </>
   );
 };
