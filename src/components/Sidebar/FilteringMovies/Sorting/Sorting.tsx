@@ -83,7 +83,7 @@ const Sorting = () => {
   return (
     <>
       <h2 className="flex items-center gap-4">
-        <label htmlFor="sort">Sorting</label>
+        Sorting
         {isPending && <small> Loading...</small>}
       </h2>
       <Select
@@ -95,7 +95,7 @@ const Sorting = () => {
         value={params.get("sort_by") || SortBy.popularityDesc}
       >
         <SelectTrigger className="w-[270px]">
-          <SelectValue placeholder="Select a fruit" />
+          <SelectValue placeholder="Sorting by..." />
         </SelectTrigger>
         <SelectContent>
           {sorter.map((sort) => (

@@ -68,7 +68,6 @@ export default async function MainTVTitleNavigationLayout({
   const mainTVShowMenu: MainTitleMenuItem[] = [
     {
       label: "Overview",
-      href: `/tv/${id}/`,
       children: [
         {
           label: "Main",
@@ -94,7 +93,6 @@ export default async function MainTVTitleNavigationLayout({
     },
     {
       label: "Images",
-      href: "",
       children: [
         {
           label: "Backdrops",

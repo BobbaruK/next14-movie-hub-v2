@@ -19,7 +19,7 @@ const MainTitleNavigation = ({ mainTitleMenu }: Props) => {
                   <ul className="w-48 bg-neutral p-2 shadow-md shadow-primary">
                     {menuItem.children.map((childMenuItem) => (
                       <li key={childMenuItem.href}>
-                        <Link href={childMenuItem.href}>
+                        <Link href={childMenuItem.href!}>
                           {childMenuItem.label}
                         </Link>
                       </li>
@@ -27,7 +27,7 @@ const MainTitleNavigation = ({ mainTitleMenu }: Props) => {
                   </ul>
                 </details>
               ) : (
-                <Link href={menuItem.href}>{menuItem.label}</Link>
+                <Link href={menuItem.href!}>{menuItem.label}</Link>
               )}
             </li>
           ))}

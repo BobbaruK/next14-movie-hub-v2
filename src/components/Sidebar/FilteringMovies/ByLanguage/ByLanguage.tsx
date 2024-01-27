@@ -72,7 +72,7 @@ const ByLanguage = () => {
   return (
     <div>
       <h3 className="flex items-center gap-4">
-        <label htmlFor="byLanguage">By Language</label>
+        By Language
         {isPending && <small> Loading...</small>}
       </h3>
       <Popover open={open} onOpenChange={setOpen}>

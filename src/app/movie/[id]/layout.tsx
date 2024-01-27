@@ -68,7 +68,6 @@ export default async function MainTitleNavigationLayout({
   const mainMovieMenu: MainTitleMenuItem[] = [
     {
       label: "Overview",
-      href: `/movie/${id}/`,
       children: [
         {
           label: "Main",
@@ -94,7 +93,6 @@ export default async function MainTitleNavigationLayout({
     },
     {
       label: "Images",
-      href: `/movie/${id}/images/backdrops`,
       children: [
         {
           label: "Backdrops",
