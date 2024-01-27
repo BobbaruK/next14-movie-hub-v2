@@ -2,6 +2,7 @@ import { MainNavigation } from "@/components/MainNavigation";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 
 import BurgerMenu from "@/components/BurgerMenu";
+import Link from "next/link";
 
 const Header = () => {
   const menuItems: MainTitleMenuItem[] = [
@@ -9,24 +10,24 @@ const Header = () => {
       label: "Movies",
       children: [
         {
-          label: "Main",
+          label: "Popular",
           href: `/movie/`,
-          descriptionLabel: "Popular movies",
+          descriptionLabel: "Popular Movies",
         },
         {
           label: "Now Playing",
           href: `/movie/now-playing`,
-          descriptionLabel: "Now Playing movies",
+          descriptionLabel: "Now Playing Movies",
         },
         {
           label: "Upcoming",
           href: `/movie/upcoming`,
-          descriptionLabel: "Upcoming movies",
+          descriptionLabel: "Upcoming Movies",
         },
         {
           label: "Top Rated",
           href: `/movie/top-rated`,
-          descriptionLabel: "Top Rated movies",
+          descriptionLabel: "Top Rated Movies",
         },
       ],
     },
@@ -36,22 +37,22 @@ const Header = () => {
         {
           label: "Popular",
           href: "/tv",
-          descriptionLabel: "Popular tv shows",
+          descriptionLabel: "Popular TV Shows",
         },
         {
           label: "Airing Today",
-          href: "/tv",
-          descriptionLabel: "Airing Today tv shows",
+          href: "/tv/airing-today",
+          descriptionLabel: "TV Shows Airing Today",
         },
         {
           label: "On TV",
           href: "/tv/on-the-air",
-          descriptionLabel: "Upcoming tv shows",
+          descriptionLabel: "Currently Airing TV Shows",
         },
         {
           label: "Top Rated",
           href: "/tv/top-rated",
-          descriptionLabel: "Top Rated tv shows",
+          descriptionLabel: "Top Rated TV Shows",
         },
       ],
     },
@@ -61,7 +62,7 @@ const Header = () => {
         {
           label: "Popular",
           href: "/person",
-          descriptionLabel: "Popular people",
+          descriptionLabel: "Popular People",
         },
       ],
     },
@@ -70,10 +71,17 @@ const Header = () => {
   return (
     <>
       <header className="relative z-20">
-        <div className="appContaier flex justify-between py-8">
-          <div>Logo</div>
+        <div className="appContaier flex items-center justify-start gap-8 py-8">
+          <div>
+            <Link
+              href="/"
+              className="block rounded-md border py-2 px-6 text-center font-bold hover:bg-secondary hover:text-secondary-foreground"
+            >
+              SCSSeco's <br /> MovieHub
+            </Link>
+          </div>
           <MainNavigation menuItems={menuItems} />
-          <BurgerMenu menuItems={menuItems} />
+          <BurgerMenu menuItems={menuItems} className="ms-auto" />
         </div>
       </header>
     </>

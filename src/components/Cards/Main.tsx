@@ -86,7 +86,7 @@ const MainCard = ({ movie }: Props) => {
           )}
         </Link>
         <CardHeader>
-          <CardTitle>
+          <CardTitle className="m-0">
             <Link href={link()} className="line-clamp-2" title={title}>
               {title}
             </Link>

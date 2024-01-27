@@ -6,9 +6,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
 import { Button } from "./ui/button";
@@ -23,19 +22,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
-import { useRouter } from "next/navigation";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   menuItems: MainTitleMenuItem[];
 }
 
-const BurgerMenu = ({ menuItems }: Props) => {
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
-
+const BurgerMenu = ({ menuItems, ...restProps }: Props) => {
   const router = useRouter();
 
   return (
-    <div className="flex gap-4">
+    <div {...restProps} className={`flex gap-4 ${restProps.className}`}>
       <Button variant="outline" size="icon" className="hidden md:flex">
         <IoSearch />
       </Button>
@@ -52,13 +48,23 @@ const BurgerMenu = ({ menuItems }: Props) => {
             className="flex flex-col justify-start gap-8"
           >
             <SheetHeader>
-              <SheetTitle className="text-start">Navigation</SheetTitle>
+              <SheetTitle className="text-start">
+                <SheetClose
+                  onClick={(e) => {
+                    router.push("/");
+                  }}
+                >
+                  SCSSeco's MovieHub
+                </SheetClose>
+              </SheetTitle>
               <Accordion type="single" collapsible className="w-full">
                 {menuItems.map((menuItem, index) => (
-                  <AccordionItem key={index} value={`item-${index + 1}`}>
-                    <AccordionTrigger className="pb-0">
-                      {menuItem.label}
-                    </AccordionTrigger>
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index + 1}`}
+                    className="[&>h3]:m-0"
+                  >
+                    <AccordionTrigger>{menuItem.label}</AccordionTrigger>
                     <AccordionContent className="text-start">
                       <ul className="mt-1 flex flex-col gap-4">
                         {menuItem.children?.map((child) => (
