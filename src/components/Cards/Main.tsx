@@ -49,71 +49,69 @@ const MainCard = ({ movie }: Props) => {
   // $
 
   return (
-    <>
-      <Card className="flex flex-col overflow-hidden">
-        <Link href={link()} className="relative w-full">
-          {(theMovie || theTv) && (
-            <>
-              <Badge
-                variant={
-                  movie.vote_average > 7.5
-                    ? "default"
-                    : movie.vote_average > 6.0
-                      ? "secondary"
-                      : "destructive"
-                }
-                className="absolute left-2 top-2"
-              >
-                {movie.vote_average.toFixed(1)}
-              </Badge>
-              <TMDBImages
-                type={{ type: "poster", size: "w342" }}
-                alt={title}
-                src={movie.poster_path}
-                width={342}
-                height={513}
-              />
-            </>
-          )}
-          {thePerson && (
+    <Card className="flex flex-col overflow-hidden">
+      <Link href={link()} className="relative w-full">
+        {(theMovie || theTv) && (
+          <>
+            <Badge
+              variant={
+                movie.vote_average > 7.5
+                  ? "default"
+                  : movie.vote_average > 6.0
+                    ? "secondary"
+                    : "destructive"
+              }
+              className="absolute left-2 top-2"
+            >
+              {movie.vote_average.toFixed(1)}
+            </Badge>
             <TMDBImages
-              type={{ type: "profile", size: "h632" }}
+              type={{ type: "poster", size: "w342" }}
               alt={title}
-              src={movie.profile_path}
+              src={movie.poster_path}
               width={342}
               height={513}
             />
-          )}
-        </Link>
-        <CardHeader>
-          <CardTitle className="m-0">
-            <Link href={link()} className="line-clamp-2" title={title}>
-              {title}
-            </Link>
-          </CardTitle>
-
-          {(theMovie || theTv) && (
-            <CardDescription className="grow-0">{date()}</CardDescription>
-          )}
-        </CardHeader>
-        {thePerson && (
-          <CardContent className="my-auto">
-            {thePerson.known_for.map((movie, index) => (
-              <small key={index}>
-                {movie.title &&
-                  `${movie.title}${
-                    index === thePerson.known_for.length - 2
-                      ? " and "
-                      : index === thePerson.known_for.length - 1
-                        ? ""
-                        : ", "
-                  }`}
-              </small>
-            ))}
-          </CardContent>
+          </>
         )}
-      </Card>
-    </>
+        {thePerson && (
+          <TMDBImages
+            type={{ type: "profile", size: "h632" }}
+            alt={title}
+            src={movie.profile_path}
+            width={342}
+            height={513}
+          />
+        )}
+      </Link>
+      <CardHeader>
+        <CardTitle className="m-0">
+          <Link href={link()} className="line-clamp-2" title={title}>
+            {title}
+          </Link>
+        </CardTitle>
+
+        {(theMovie || theTv) && (
+          <CardDescription className="grow-0">{date()}</CardDescription>
+        )}
+      </CardHeader>
+      {thePerson && (
+        <CardContent className="my-auto">
+          {thePerson.known_for.map((movie, index) => (
+            <small key={index}>
+              {movie.title &&
+                `${movie.title}${
+                  index === thePerson.known_for.length - 2
+                    ? " and "
+                    : index === thePerson.known_for.length - 1
+                      ? ""
+                      : ", "
+                }`}
+            </small>
+          ))}
+        </CardContent>
+      )}
+    </Card>
   );
 };
 
