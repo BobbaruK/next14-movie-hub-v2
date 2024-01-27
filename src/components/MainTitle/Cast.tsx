@@ -2,16 +2,17 @@
 
 import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew, TheCast } from "@/types/movies/CastAndCrew";
-import idTitleHyphen from "@/utils/idTitleHyphen";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import TMDBImages from "../TMDBImages";
+import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import idTitleHyphen from "@/utils/idTitleHyphen";
 
 const PersonCard = ({ cast }: { cast: TheCast }) => {
   return (
-    <div className="card overflow-hidden bg-base-100 shadow-md shadow-primary">
-      <figure>
+    <>
+      <Card className="overflow-hidden">
         <Link
           href={`/person/${idTitleHyphen(cast.id, cast.name)}`}
           className="w-full"
@@ -24,22 +25,16 @@ const PersonCard = ({ cast }: { cast: TheCast }) => {
             height={278}
           />
         </Link>
-      </figure>
-      <div className="card-body relative flex justify-between gap-1 p-4">
-        <p>
-          <Link href={`/person/${cast.id}`} className="w-full">
-            {cast.name}
-          </Link>
-        </p>
-        <p>
-          <small>
-            <Link href={`/person/${cast.id}`} className="w-full">
-              {cast.character}
+        <CardHeader>
+          <CardTitle>
+            <Link href={`/person/${idTitleHyphen(cast.id, cast.name)}`} className="w-full">
+              {cast.name}
             </Link>
-          </small>
-        </p>
-      </div>
-    </div>
+          </CardTitle>
+          <CardDescription>{cast.character}</CardDescription>
+        </CardHeader>
+      </Card>
+    </>
   );
 };
 
