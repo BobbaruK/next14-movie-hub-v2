@@ -3,6 +3,9 @@ import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 
 import BurgerMenu from "@/components/BurgerMenu";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import { IoSearch } from "react-icons/io5";
 
 const Header = () => {
   const menuItems: MainTitleMenuItem[] = [
@@ -75,13 +78,19 @@ const Header = () => {
           <div>
             <Link
               href="/"
-              className="block rounded-md border py-2 px-6 text-center font-bold hover:bg-secondary hover:text-secondary-foreground"
+              className="block rounded-md border px-6 py-2 text-center font-bold hover:bg-secondary hover:text-secondary-foreground"
             >
               SCSSeco's <br /> MovieHub
             </Link>
           </div>
           <MainNavigation menuItems={menuItems} />
           <BurgerMenu menuItems={menuItems} className="ms-auto" />
+          <Button variant="outline" size="icon" className="hidden md:flex">
+            <IoSearch />
+          </Button>
+          <div className="hidden md:block">
+            <ModeToggle />
+          </div>
         </div>
       </header>
     </>

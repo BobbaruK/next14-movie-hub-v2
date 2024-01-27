@@ -32,15 +32,9 @@ const BurgerMenu = ({ menuItems, ...restProps }: Props) => {
 
   return (
     <div {...restProps} className={`flex gap-4 ${restProps.className}`}>
-      <Button variant="outline" size="icon" className="hidden md:flex">
-        <IoSearch />
-      </Button>
-      <div className="hidden md:block">
-        <ModeToggle />
-      </div>
       <div className="block md:hidden">
         <Sheet>
-          <SheetTrigger className="text-3xl hover:text-primary">
+          <SheetTrigger className="text-3xl hover:text-inherit">
             <GiHamburgerMenu />
           </SheetTrigger>
           <SheetContent
@@ -64,32 +58,45 @@ const BurgerMenu = ({ menuItems, ...restProps }: Props) => {
                     value={`item-${index + 1}`}
                     className="[&>h3]:m-0"
                   >
-                    <AccordionTrigger>{menuItem.label}</AccordionTrigger>
-                    <AccordionContent className="text-start">
-                      <ul className="mt-1 flex flex-col gap-4">
-                        {menuItem.children?.map((child) => (
-                          <li key={child.label.replaceAll(" ", "-")}>
-                            {child.href ? (
-                              <SheetClose
-                                onClick={(e) => {
-                                  router.push(child.href!);
-                                }}
-                              >
-                                {child.label}
-                              </SheetClose>
-                            ) : (
-                              child.label
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
+                    {menuItem.children ? (
+                      <>
+                        <AccordionTrigger>{menuItem.label}</AccordionTrigger>
+                        <AccordionContent className="text-start">
+                          <ul className="mt-1 flex flex-col gap-4">
+                            {menuItem.children.map((child) => (
+                              <li key={child.label.replaceAll(" ", "-")}>
+                                {child.href ? (
+                                  <SheetClose
+                                    onClick={(e) => {
+                                      router.push(child.href!);
+                                    }}
+                                  >
+                                    {child.label}
+                                  </SheetClose>
+                                ) : (
+                                  child.label
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        </AccordionContent>
+                      </>
+                    ) : (
+                      <SheetClose
+                        className="block py-4 font-medium hover:underline"
+                        onClick={(e) => {
+                          router.push(menuItem.href!);
+                        }}
+                      >
+                        {menuItem.label}
+                      </SheetClose>
+                    )}
                   </AccordionItem>
                 ))}
               </Accordion>
               <SheetDescription className="text-start">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reiciendis, maxime?
+                Movie HUB APP is based on The Movie Database (TMDB) api wich is
+                a popular, user editable database for movies and TV shows.
               </SheetDescription>
             </SheetHeader>
             <SheetFooter className="flex-row items-center justify-between gap-8 sm:justify-between">
