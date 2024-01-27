@@ -80,7 +80,7 @@ const Header = () => {
               href="/"
               className="block rounded-md border px-6 py-2 text-center font-bold hover:bg-secondary hover:text-secondary-foreground"
             >
-              SCSSeco's <br /> MovieHub
+              SCSSeco&apos;s <br /> MovieHub
             </Link>
           </div>
           <MainNavigation menuItems={menuItems} />

@@ -48,7 +48,7 @@ const BurgerMenu = ({ menuItems, ...restProps }: Props) => {
                     router.push("/");
                   }}
                 >
-                  SCSSeco's MovieHub
+                  SCSSeco&apos;s MovieHub
                 </SheetClose>
               </SheetTitle>
               <Accordion type="single" collapsible className="w-full">
