@@ -1,5 +1,6 @@
 export interface MainTitleMenuItem {
   label: string;
-  href: string;
+  descriptionLabel?: string;
+  href?: string;
   children?: MainTitleMenuItem[];
 }
