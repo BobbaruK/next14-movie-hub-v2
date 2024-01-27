@@ -11,6 +11,7 @@ import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import MovieGrid from "./MovieGrid";
 import MoviePagination from "./MoviePagination";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
   page: number;
@@ -55,11 +56,11 @@ const CardsGrid = ({
 
   if (isLoading)
     return (
-      <Alert variant="default">
-        <AlertCircle className="h-4 w-4" />
-        <AlertTitle>Info</AlertTitle>
-        <AlertDescription>Loading cards...</AlertDescription>
-      </Alert>
+      <CustomAlert
+        variant={"default"}
+        title={"Movie Cards"}
+        description="Loading... Please be patient"
+      />
     );
 
   if (data?.results.length === 0)

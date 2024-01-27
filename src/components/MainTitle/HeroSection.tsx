@@ -6,7 +6,9 @@ import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import CustomAlert from "../CustomAlert";
 import TMDBImages from "../TMDBImages";
+import { Badge } from "../ui/badge";
 
 interface Props {
   queryKey: string;
@@ -24,11 +26,12 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
 
   if (isLoading)
     return (
-      <div className="appContaier">
-        <div className="alert alert-warning">
-          Loading main title hero section...
-        </div>
-      </div>
+      <CustomAlert
+        variant={"default"}
+        title={"Hero section"}
+        description="Loading... Please be patient"
+        className="appContaier"
+      />
     );
 
   const { releaseDate, year } = ReleaseDateUI(
@@ -57,7 +60,7 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
         <div className="absolute inset-0 -z-10  h-full w-full bg-primary bg-gradient-to-r from-primary to-secondary opacity-90"></div>
       </div>
       <div className="relative z-0">
-        <div className="appContaier flex flex-col gap-8 text-primary-content md:flex-row">
+        <div className="appContaier text-primary-content flex flex-col gap-8 md:flex-row">
           <div className="flex items-center justify-center sm:basis-2/6 lg:basis-1/4">
             <div className="max-w-[342px] overflow-hidden rounded-lg">
               <TMDBImages
@@ -74,28 +77,17 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
             <div>
               <h1 className="m-0 flex flex-wrap items-center justify-start gap-6">
                 {"title" in data! ? data.title : data?.name} ({year})
-                <div
-                  className={[
-                    `${
-                      data?.vote_average! > 7.5
-                        ? "voteGood"
-                        : data?.vote_average! > 6.0
-                          ? "voteOk"
-                          : "voteBad"
-                    }`,
-                    "radial-progress",
-
-                    "bg-neutral",
-                    "border-2",
-                    "border-slate-100",
-                    "text-sm",
-                  ].join(" ")}
-                  style={style}
-                  role="progressbar"
-                  aria-label="Movie Rating"
+                <Badge
+                  variant={
+                    data!.vote_average > 7.5
+                      ? "default"
+                      : data!.vote_average > 6.0
+                        ? "secondary"
+                        : "destructive"
+                  }
                 >
                   {data?.vote_average.toFixed(1)}
-                </div>
+                </Badge>
               </h1>
               <small>
                 {"title" in data! ? data.original_title : data?.original_name}

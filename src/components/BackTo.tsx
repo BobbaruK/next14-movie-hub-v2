@@ -8,9 +8,8 @@ import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import CustomAlert from "./CustomAlert";
 import TMDBImages from "./TMDBImages";
-import { AlertCircle } from "lucide-react";
-import { Alert, AlertTitle, AlertDescription } from "./ui/alert";
 
 interface BackTo {
   label: string;
@@ -38,13 +37,12 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
 
   if (isLoading)
     return (
-      <div className="appContaier">
-        <Alert variant="default">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Info</AlertTitle>
-          <AlertDescription>Loading main title...</AlertDescription>
-        </Alert>
-      </div>
+      <CustomAlert
+        variant={"default"}
+        title={"Back to"}
+        description="Loading... Please be patient"
+        className="appContaier"
+      />
     );
 
   if (!data) return;
