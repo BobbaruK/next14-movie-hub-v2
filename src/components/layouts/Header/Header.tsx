@@ -1,33 +1,79 @@
 import { MainNavigation } from "@/components/MainNavigation";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import Link from "next/link";
+import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
+
+import BurgerMenu from "@/components/BurgerMenu";
 
 const Header = () => {
+  const menuItems: MainTitleMenuItem[] = [
+    {
+      label: "Movies",
+      children: [
+        {
+          label: "Main",
+          href: `/movie/`,
+          descriptionLabel: "Popular movies",
+        },
+        {
+          label: "Now Playing",
+          href: `/movie/now-playing`,
+          descriptionLabel: "Now Playing movies",
+        },
+        {
+          label: "Upcoming",
+          href: `/movie/upcoming`,
+          descriptionLabel: "Upcoming movies",
+        },
+        {
+          label: "Top Rated",
+          href: `/movie/top-rated`,
+          descriptionLabel: "Top Rated movies",
+        },
+      ],
+    },
+    {
+      label: "TV Shows",
+      children: [
+        {
+          label: "Popular",
+          href: "/tv",
+          descriptionLabel: "Popular tv shows",
+        },
+        {
+          label: "Airing Today",
+          href: "/tv",
+          descriptionLabel: "Airing Today tv shows",
+        },
+        {
+          label: "On TV",
+          href: "/tv/on-the-air",
+          descriptionLabel: "Upcoming tv shows",
+        },
+        {
+          label: "Top Rated",
+          href: "/tv/top-rated",
+          descriptionLabel: "Top Rated tv shows",
+        },
+      ],
+    },
+    {
+      label: "People",
+      children: [
+        {
+          label: "Popular",
+          href: "/person",
+          descriptionLabel: "Popular people",
+        },
+      ],
+    },
+  ];
+
   return (
     <>
       <header className="relative z-20">
         <div className="appContaier flex justify-between py-8">
           <div>Logo</div>
-          <MainNavigation />
-          <div className="flex gap-4">
-            <button className="btn btn-circle btn-ghost" aria-label="Search">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </button>
-            <ModeToggle />
-          </div>
+          <MainNavigation menuItems={menuItems} />
+          <BurgerMenu menuItems={menuItems} />
         </div>
       </header>
     </>

@@ -10,8 +10,10 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 import {
   Card,
   CardContent,
@@ -19,103 +21,59 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
-export function MainNavigation() {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  menuItems: MainTitleMenuItem[];
+}
+
+export function MainNavigation({ menuItems, ...restProps }: Props) {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
   return (
-    <>
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Movies</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="flex gap-4 p-4 md:w-[400px] lg:w-[400px]">
-                <Card className="flex flex-col">
-                  <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                  </CardHeader>
-                  <CardContent className="my-auto">
-                    <p>Card Content</p>
-                  </CardContent>
-                </Card>
-                <ul className="flex flex-grow flex-col gap-4">
-                  <ListItem href="/movie" title="Popular">
-                    Popular movies
-                  </ListItem>
-                  <ListItem href="/movie/now-playing" title="Now Playing">
-                    Now Playing movies
-                  </ListItem>
-                  <ListItem href="/movie/upcoming" title="Upcoming">
-                    Upcoming movies
-                  </ListItem>
-                  <ListItem href="/movie/top-rated" title="Top Rated">
-                    Top Rated movies
-                  </ListItem>
-                </ul>
-              </div>
-            </NavigationMenuContent>
+    <NavigationMenu className="hidden md:block">
+      <NavigationMenuList>
+        {menuItems.map((item) => (
+          <NavigationMenuItem key={item.label.replaceAll(" ", "-")}>
+            {!item.children ? (
+              <Link href="/movie" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  {item.label}
+                </NavigationMenuLink>
+              </Link>
+            ) : (
+              <>
+                <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="flex gap-4 p-4 md:w-[400px] lg:w-[400px]">
+                    {/* <Card className="flex flex-col">
+                <CardHeader>
+                  <CardTitle>Card Title</CardTitle>
+                  <CardDescription>Card Description</CardDescription>
+                </CardHeader>
+                <CardContent className="my-auto">
+                  <p>Card Content</p>
+                </CardContent>
+              </Card> */}
+                    <ul className="flex flex-grow flex-col gap-4">
+                      {item.children.map((child) => (
+                        <ListItem
+                          key={child.label.replaceAll(" ", "-")}
+                          href={child.href}
+                          title={child.label}
+                        >
+                          {child.descriptionLabel}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </>
+            )}
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>TV Shows</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="flex gap-4 p-4 md:w-[400px] lg:w-[400px]">
-                <Card className="flex flex-col">
-                  <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                  </CardHeader>
-                  <CardContent className="my-auto">
-                    <p>Card Content</p>
-                  </CardContent>
-                </Card>
-                <ul className="flex flex-grow flex-col gap-4">
-                  <ListItem href="/tv" title="Popular">
-                    Popular tv shows
-                  </ListItem>
-                  <ListItem href="/tv/airing-today" title="Airing Today">
-                    Airing Today tv shows
-                  </ListItem>
-                  <ListItem href="/tv/on-the-air" title="On TV">
-                    Upcoming tv shows
-                  </ListItem>
-                  <ListItem href="/tv/top-rated" title="Top Rated">
-                    Top Rated tv shows
-                  </ListItem>
-                </ul>
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>People</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="flex gap-4 p-4 md:w-[400px] lg:w-[400px]">
-                <Card className="flex flex-col">
-                  <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                  </CardHeader>
-                  <CardContent className="my-auto">
-                    <p>Card Content</p>
-                  </CardContent>
-                </Card>
-                <ul className="flex flex-grow flex-col gap-4">
-                  <ListItem href="/person" title="Popular">
-                    Popular people
-                  </ListItem>
-                </ul>
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          {/* <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Documentation
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem> */}
-        </NavigationMenuList>
-      </NavigationMenu>
-    </>
+        ))}
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }
 
