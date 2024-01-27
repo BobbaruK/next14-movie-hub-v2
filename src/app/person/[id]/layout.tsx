@@ -1,4 +1,4 @@
-import MainTitleNavigation from "@/components/MainTitle/Navigation";
+import MovieNavigation from "@/components/MovieNavigation";
 import {
   RQ_COMBINED_CREDITS_ENDPOINT,
   RQ_COMBINED_CREDITS_KEY,
@@ -77,7 +77,7 @@ export default async function MainTitleNavigationLayout({
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <MainTitleNavigation mainTitleMenu={mainPeopleMenu} />
+        <MovieNavigation menu={mainPeopleMenu} />
         {children}
       </HydrationBoundary>
     </>

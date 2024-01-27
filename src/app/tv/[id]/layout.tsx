@@ -1,4 +1,4 @@
-import MainTitleNavigation from "@/components/MainTitle/Navigation";
+import MovieNavigation from "@/components/MovieNavigation";
 import {
   RQ_LANGUAGES_ENDPOINT,
   RQ_LANGUAGES_KEY,
@@ -182,7 +182,7 @@ export default async function MainTVTitleNavigationLayout({
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <MainTitleNavigation mainTitleMenu={mainTVShowMenu} />
+        <MovieNavigation menu={mainTVShowMenu} />
         {children}
       </HydrationBoundary>
     </>

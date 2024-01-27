@@ -35,26 +35,20 @@ export function MainNavigation({ menuItems, ...restProps }: Props) {
       <NavigationMenuList>
         {menuItems.map((item) => (
           <NavigationMenuItem key={item.label.replaceAll(" ", "-")}>
-            {!item.children ? (
-              <Link href="/movie" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  {item.label}
-                </NavigationMenuLink>
-              </Link>
-            ) : (
+            {item.children ? (
               <>
                 <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="flex gap-4 p-4 md:w-[400px] lg:w-[400px]">
                     {/* <Card className="flex flex-col">
-                <CardHeader>
-                  <CardTitle>Card Title</CardTitle>
-                  <CardDescription>Card Description</CardDescription>
-                </CardHeader>
-                <CardContent className="my-auto">
-                  <p>Card Content</p>
-                </CardContent>
-              </Card> */}
+               <CardHeader>
+                 <CardTitle>Card Title</CardTitle>
+                 <CardDescription>Card Description</CardDescription>
+               </CardHeader>
+               <CardContent className="my-auto">
+                 <p>Card Content</p>
+               </CardContent>
+             </Card> */}
                     <ul className="flex flex-grow flex-col gap-4">
                       {item.children.map((child) => (
                         <ListItem
@@ -69,6 +63,12 @@ export function MainNavigation({ menuItems, ...restProps }: Props) {
                   </div>
                 </NavigationMenuContent>
               </>
+            ) : (
+              <Link href={item.href!} legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  {item.label}
+                </NavigationMenuLink>
+              </Link>
             )}
           </NavigationMenuItem>
         ))}
