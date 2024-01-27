@@ -26,7 +26,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Movie HUB APP",
   description:
-    "Movie HUB APP is based on The Movie Database (TMDB) wich is a popular, user editable database for movies and TV shows.",
+    "Movie HUB APP is based on The Movie Database (TMDB) api wich is a popular, user editable database for movies and TV shows.",
 };
 
 interface Props {
