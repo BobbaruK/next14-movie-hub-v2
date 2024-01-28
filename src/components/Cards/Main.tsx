@@ -49,7 +49,7 @@ const MainCard = ({ movie }: Props) => {
   // $
 
   return (
-    <Card className="flex flex-col overflow-hidden">
+    <Card className="flex h-full flex-col overflow-hidden">
       <Link href={link()} className="relative w-full">
         {(theMovie || theTv) && (
           <>
