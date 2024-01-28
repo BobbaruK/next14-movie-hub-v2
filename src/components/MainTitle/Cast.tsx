@@ -40,7 +40,10 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
   return (
     <div>
       <h2>{type === "movie" ? "Top Billed Cast" : "Series Cast"}</h2>
-      <MainTitleEmblaCarousel typeOptions={{ type: "cast", arr: cast }} />
+      <MainTitleEmblaCarousel
+        typeOptions={{ type: "cast", arr: cast }}
+        slideSizes="auto-cols-[50%] grid-flow-col sm:auto-cols-[33.33333333333333%] md:auto-cols-[33.33%] lg:auto-cols-[25%] xl:auto-cols-[20%]"
+      />
       <div className="py-4">
         <Link href={`/${type}/${id}/cast`}>View full cast & crew</Link>
       </div>
