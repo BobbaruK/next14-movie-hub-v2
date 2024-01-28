@@ -6,6 +6,7 @@ import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
 import { useQuery } from "@tanstack/react-query";
 import { MainTitleEmblaCarousel } from "../MainTitleEmblaCarousel";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
   queryKey: string;
@@ -27,9 +28,13 @@ const MainTitleRecommendations = ({ queryKey, endpoint }: Props) => {
 
   if (isLoading)
     return (
-      <div className="alert alert-warning">
-        Loading movie recommendations...
-      </div>
+      <>
+        <CustomAlert
+          variant="default"
+          title={"Movie recommendations"}
+          description="Loading... Please be patient"
+        />
+      </>
     );
 
   const recommended = [...(data?.results || [])];
@@ -41,6 +46,7 @@ const MainTitleRecommendations = ({ queryKey, endpoint }: Props) => {
           <h2>Recommendations</h2>
           <MainTitleEmblaCarousel
             typeOptions={{ type: "movie-recommendation", arr: recommended }}
+            slideSizes="auto-cols-[50%] grid-flow-col sm:auto-cols-[33.33333333333333%] md:auto-cols-[25%] lg:auto-cols-[16.66666666666667%] xl:auto-cols-[14.28571428571429%]"
           />
         </div>
       )}
