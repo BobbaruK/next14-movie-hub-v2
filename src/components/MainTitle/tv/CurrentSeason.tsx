@@ -78,9 +78,9 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
             </CardHeader>
             <CardContent>
               <p>
-                {lastSeason.overview.length < 400
+                {lastSeason.overview.length < 200
                   ? lastSeason.overview
-                  : lastSeason.overview.substring(0, 400) + "..."}
+                  : lastSeason.overview.substring(0, 200) + "..."}
               </p>
             </CardContent>
             <CardFooter className="flex items-center gap-2">
