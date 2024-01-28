@@ -5,6 +5,7 @@ import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
 import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import dynamic from "next/dynamic";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { Button } from "./ui/button";
 const DynamicCastPersonCard = dynamic(() => import("./Cards/CastPerson"));
 const DynamicMainCard = dynamic(() => import("./Cards/Main"));
@@ -22,12 +23,16 @@ interface Props {
 
   emblaCarouselOptions?: EmblaOptionsType;
   slideSizes?: string;
+  carouselOptions?: {
+    showButtons?: boolean;
+  };
 }
 
 export function MainTitleEmblaCarousel({
   typeOptions,
   emblaCarouselOptions,
   slideSizes,
+  carouselOptions,
 }: Props) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     containScroll: "trimSnaps",
@@ -57,7 +62,7 @@ export function MainTitleEmblaCarousel({
         const recommendation = arrItem as
           | MovieRecommendation
           | TVShowRecommendation;
-        return <DynamicMainCard movie={arrItem} />;
+        return <DynamicMainCard movie={recommendation} />;
 
       default:
         break;
@@ -79,12 +84,24 @@ export function MainTitleEmblaCarousel({
           ))}
         </div>
       </div>
-      <Button className="embla__prev" onClick={scrollPrev}>
-        Prev
-      </Button>
-      <Button className="embla__next" onClick={scrollNext}>
-        Next
-      </Button>
+      {carouselOptions?.showButtons && (
+        <div className="flex gap-2 py-2">
+          <Button
+            className="embla__prev rounded-full"
+            onClick={scrollPrev}
+            size="icon"
+          >
+            <FaChevronLeft />
+          </Button>
+          <Button
+            className="embla__next rounded-full"
+            onClick={scrollNext}
+            size="icon"
+          >
+            <FaChevronRight />
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
