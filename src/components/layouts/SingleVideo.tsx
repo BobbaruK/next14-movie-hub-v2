@@ -7,7 +7,6 @@ const SingleVideo = () => {
 
   return (
     <div className="appContaier">
-
       <iframe
         width="560"
         height="315"

@@ -67,18 +67,7 @@ const VideosGrid = ({
     );
   }
 
-  if (!data?.results.length)
-    return (
-      <div className="appContaier">
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Info</AlertTitle>
-          <AlertDescription>No videos</AlertDescription>
-        </Alert>
-      </div>
-    );
-
-  const videos = data.results.filter((video) => {
+  const videos = data?.results.filter((video) => {
     const theVideoType = video.type.toLowerCase().replace(/\s/g, "-");
 
     // console.log(theVideoType, videoType, theVideoType === videoType);
@@ -86,9 +75,20 @@ const VideosGrid = ({
     return theVideoType === videoType;
   });
 
+  if (videos?.length === 0)
+    return (
+      <div className="appContaier">
+        <Alert variant="default">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Info</AlertTitle>
+          <AlertDescription>No videos</AlertDescription>
+        </Alert>
+      </div>
+    );
+
   return (
     <div className="flex flex-col gap-6">
-      {videos.map((video) => (
+      {videos?.map((video) => (
         <VideoCard
           key={video.id}
           video={video}
