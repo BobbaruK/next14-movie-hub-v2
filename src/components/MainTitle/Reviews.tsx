@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import ReviewCard from "../Cards/Review";
 import { useParams } from "next/navigation";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
   queryKey: string;
@@ -24,8 +25,15 @@ const MainTitleReviews = ({ queryKey, endpoint, type }: Props) => {
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
-  if (isLoading)
-    return <div className="alert alert-warning">Loading movie reviews...</div>;
+  if (isLoading) {
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Reviews"}
+        description="Loading... Please be patient"
+      />
+    );
+  }
 
   if (data?.results.length === 0) return;
 

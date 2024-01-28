@@ -1,5 +1,6 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import Rating from "@/components/Rating";
 import TMDBImages from "@/components/TMDBImages";
 import {
@@ -37,8 +38,15 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
-  if (isLoading)
-    return <div className="alert alert-warning">Loading current season...</div>;
+  if (isLoading) {
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Current Season"}
+        description="Loading... Please be patient"
+      />
+    );
+  }
 
   const nrOfSeasons = data?.seasons.length! - 1;
   const lastSeason = data?.seasons[nrOfSeasons]!;

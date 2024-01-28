@@ -1,6 +1,8 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import TMDBImages from "@/components/TMDBImages";
+import { Badge } from "@/components/ui/badge";
 import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew, TheCrew } from "@/types/movies/CastAndCrew";
 import idTitleHyphen from "@/utils/idTitleHyphen";
@@ -21,9 +23,16 @@ const Cast = ({ queryKey, endpoint }: Props) => {
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
-  if (isLoading)
-    return <div className="alert alert-warning">Loading translations...</div>;
-
+  if (isLoading) {
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Translations"}
+        description="Loading... Please be patient"
+        className="appContaier"
+      />
+    );
+  }
   const cast = data?.cast;
   const crew = data?.crew;
 
@@ -47,18 +56,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
           <>
             <h2 className="flex items-center gap-4">
               Cast
-              <div
-                className={[
-                  "badge",
-                  "badge-sm",
-                  "badge-primary",
-                  "text-primary-content",
-                  "gap-2",
-                  "p-2",
-                ].join(" ")}
-              >
-                {cast.length}
-              </div>
+              <Badge variant="outline">{cast.length}</Badge>
             </h2>
             {cast.map((person) => (
               <div key={person.id} className="flex items-center gap-4">
@@ -104,18 +102,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
           <div className="flex flex-col gap-8">
             <h2 className="m-0 flex items-center gap-4">
               Crew
-              <div
-                className={[
-                  "badge",
-                  "badge-sm",
-                  "badge-primary",
-                  "text-primary-content",
-                  "gap-2",
-                  "p-2",
-                ].join(" ")}
-              >
-                {crew.length}
-              </div>
+              <Badge variant="outline">{crew.length}</Badge>
             </h2>
             {crewSorted
               .sort((a, b) => {
