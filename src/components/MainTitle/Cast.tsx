@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { MainTitleEmblaCarousel } from "../MainTitleEmblaCarousel";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
   queryKey: string;
@@ -26,9 +27,11 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
 
   if (isLoading)
     return (
-      <div className="alert alert-warning">
-        Loading main title cast and crew...
-      </div>
+      <CustomAlert
+        variant="default"
+        title={"Cast"}
+        description="Loading... Please be patient"
+      />
     );
 
   const cast = [...(data?.cast || [])];
