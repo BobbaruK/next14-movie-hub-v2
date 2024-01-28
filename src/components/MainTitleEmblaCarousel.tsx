@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { TheCast } from "@/types/movies/CastAndCrew";
 import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
@@ -19,13 +20,13 @@ interface Props {
         arr: (MovieRecommendation | TVShowRecommendation)[];
       };
 
-  carouselOptions?: EmblaOptionsType;
+  emblaCarouselOptions?: EmblaOptionsType;
   slideSizes?: string;
 }
 
 export function MainTitleEmblaCarousel({
   typeOptions,
-  carouselOptions,
+  emblaCarouselOptions,
   slideSizes,
 }: Props) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -35,7 +36,7 @@ export function MainTitleEmblaCarousel({
     // loop: true,
     // slidesToScroll: 3,
     // startIndex: 4
-    ...carouselOptions,
+    ...emblaCarouselOptions,
   });
 
   const scrollPrev = () => {
@@ -66,9 +67,13 @@ export function MainTitleEmblaCarousel({
   return (
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
+        <div
+          className={cn(
+            `embla__container grid auto-cols-[100%] grid-flow-col gap-x-4 sm:auto-cols-[50%] md:auto-cols-[33.33%] lg:auto-cols-[25%] xl:auto-cols-[20%] ${slideSizes}`,
+          )}
+        >
           {typeOptions.arr.map((arrItem) => (
-            <div key={arrItem.id} className="embla__slide">
+            <div key={arrItem.id} className="embla__slide min-w-0">
               {cardRender(arrItem)}
             </div>
           ))}

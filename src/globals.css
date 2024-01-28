@@ -108,14 +108,14 @@
   /* overflow: hidden; */
 }
 .embla__container {
-  @apply grid auto-cols-[100%] grid-flow-col sm:auto-cols-[50%] md:auto-cols-[33.33%] lg:auto-cols-[25%] xl:auto-cols-[20%];
+  /* @apply grid auto-cols-[100%] grid-flow-col sm:auto-cols-[50%] md:auto-cols-[33.33%] lg:auto-cols-[25%] xl:auto-cols-[20%]; */
   /* display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 100%; */
-  grid-column-gap: 20px; 
+  /* grid-column-gap: 20px;  */
 }
 
 .embla__slide {
   /* @apply ms-2; */
-  min-width: 0;
+  /* min-width: 0; */
 }
