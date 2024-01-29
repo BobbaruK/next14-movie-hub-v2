@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -72,9 +72,21 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      height: {
+        "main-card-image-height":
+          "clamp(11.875rem, -2.5451rem + 72.1003vw, 26.25rem)",
+        "main-card-image-height-sm":
+          "clamp(17.5rem, -4.5472rem + 55.1181vw, 21.875rem)",
+        "main-card-image-height-md":
+          "clamp(16.25rem, -0.6912rem + 35.2941vw, 21.875rem)",
+        "main-card-image-height-lg":
+          "clamp(14.375rem, -8.2132rem + 35.2941vw, 20rem)",
+        "main-card-image-height-xl":
+          "clamp(15rem, -11.6667rem + 33.3333vw, 17.5rem)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
