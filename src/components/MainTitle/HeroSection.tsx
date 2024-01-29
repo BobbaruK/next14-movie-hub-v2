@@ -47,14 +47,13 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
   return (
     <div className="relative py-20">
       <div className="absolute inset-0 z-0 h-full w-full">
-        <div className="absolute inset-0 -z-20  h-full w-full [&>img]:h-full [&>img]:w-full [&>img]:object-cover">
+        <div className="absolute inset-0 -z-20  h-full w-full">
           <TMDBImages
             type={{ type: "backdrop", size: "original" }}
             alt={"title" in data! ? data.title : data?.name!}
             src={data?.backdrop_path!}
-            width={3840}
-            height={2160}
             priority
+            className="h-full w-full"
           />
         </div>
         <div className="absolute inset-0 -z-10  h-full w-full bg-primary bg-gradient-to-r from-primary to-secondary opacity-90"></div>
@@ -62,16 +61,17 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
       <div className="relative z-0">
         <div className="appContaier text-primary-content flex flex-col gap-8 md:flex-row">
           <div className="flex items-center justify-center sm:basis-2/6 lg:basis-1/4">
-            <div className="max-w-[342px] overflow-hidden rounded-lg">
-              <TMDBImages
-                type={{ type: "poster", size: "w342" }}
-                alt={"title" in data! ? data.title : data?.name!}
-                src={data?.poster_path!}
-                width={342}
-                height={513}
-                priority
-              />
-            </div>
+            <TMDBImages
+              type={{ type: "poster", size: "w342" }}
+              alt={"title" in data! ? data.title : data?.name!}
+              src={data?.poster_path!}
+              className="h-full max-h-[513px] w-full"
+              priority
+              style={{
+                width: "clamp(15.625rem, 13.9213rem + 8.5185vw, 21.375rem)",
+                height: "clamp(23.4375rem, 20.8819rem + 12.7778vw, 32.0625rem)",
+              }}
+            />
           </div>
           <div className="flex flex-col justify-center gap-8 sm:basis-4/6 lg:basis-3/4">
             <div>
