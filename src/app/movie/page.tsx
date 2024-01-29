@@ -7,6 +7,7 @@ import {
   RQ_MOVIES_GENRES_KEY,
   RQ_POPULAR_MOVIES_ENDPOINT,
   RQ_POPULAR_MOVIES_KEY,
+  imagesSizesWithSidebar,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
@@ -85,6 +86,7 @@ export default async function PopularMovies({
               with_original_language={with_original_language}
               queryKey={RQ_POPULAR_MOVIES_KEY}
               endpoint={RQ_POPULAR_MOVIES_ENDPOINT}
+              imageWrapperClasses={imagesSizesWithSidebar}
             />
           </div>
         </div>

@@ -2,6 +2,7 @@ import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_ON_THE_AIR_TVSHOW_ENDPOINT,
   RQ_ON_THE_AIR_TVSHOW_KEY,
+  imagesSizesNoSidebar,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
@@ -62,6 +63,7 @@ export default async function OnTheAirTVShows({
               with_original_language={with_original_language}
               queryKey={RQ_ON_THE_AIR_TVSHOW_KEY}
               endpoint={RQ_ON_THE_AIR_TVSHOW_ENDPOINT}
+              imageWrapperClasses={imagesSizesNoSidebar}
             />
           </div>
         </div>

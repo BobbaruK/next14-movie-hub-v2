@@ -1,5 +1,3 @@
-export const STALE_TIME = 24 * 60 * 60 * 1000; // 24 hours
-
 // Config
 export const RQ_CONFIG_KEY = "config";
 export const RQ_CONFIG_ENDPOINT = "/configuration";
@@ -216,6 +214,26 @@ export const RQ_MOVIE_VIDEOS_KEY = (id: string) =>
 export const RQ_MOVIE_VIDEOS_ENDPOINT = (id: string) =>
   `movie/${parseInt(id)}/videos`;
 
-export const RQ_TVSHOW_VIDEOS_KEY = (id: string) => `tvshow-${parseInt(id)}-videos`;
+export const RQ_TVSHOW_VIDEOS_KEY = (id: string) =>
+  `tvshow-${parseInt(id)}-videos`;
 export const RQ_TVSHOW_VIDEOS_ENDPOINT = (id: string) =>
   `tv/${parseInt(id)}/videos`;
+
+/**
+ * Miscellaneous
+ */
+export const STALE_TIME = 24 * 60 * 60 * 1000; // 24 hours
+
+export const imagesSizesWithSidebar = `
+  h-mainCardImageHeight_WithSidebar 
+  sm:h-mainCardImageHeight_WithSidebar-sm 
+  md:h-mainCardImageHeight_WithSidebar-md 
+  lg:h-mainCardImageHeight_WithSidebar-lg 
+  xl:h-mainCardImageHeight_WithSidebar-xl`;
+
+export const imagesSizesNoSidebar = `
+  h-mainCardImageHeight_NoSidebar 
+  sm:h-mainCardImageHeight_NoSidebar-sm 
+  md:h-mainCardImageHeight_NoSidebar-md 
+  lg:h-mainCardImageHeight_NoSidebar-lg 
+  xl:h-mainCardImageHeight_NoSidebar-xl`;

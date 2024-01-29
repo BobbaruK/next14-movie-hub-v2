@@ -2,6 +2,7 @@ import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_AIRING_TODAY_TVSHOWS_ENDPOINT,
   RQ_AIRING_TODAY_TVSHOWS_KEY,
+  imagesSizesNoSidebar,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
@@ -62,6 +63,7 @@ export default async function AiringTodayTVShows({
               with_original_language={with_original_language}
               queryKey={RQ_AIRING_TODAY_TVSHOWS_KEY}
               endpoint={RQ_AIRING_TODAY_TVSHOWS_ENDPOINT}
+              imageWrapperClasses={imagesSizesNoSidebar}
             />
           </div>
         </div>

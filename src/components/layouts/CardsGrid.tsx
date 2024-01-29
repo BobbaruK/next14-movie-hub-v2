@@ -20,6 +20,7 @@ interface Props {
   with_original_language: string;
   queryKey: string;
   endpoint: string;
+  imageWrapperClasses?: string;
 }
 
 const CardsGrid = ({
@@ -29,6 +30,7 @@ const CardsGrid = ({
   with_original_language,
   queryKey,
   endpoint,
+  imageWrapperClasses,
 }: Props) => {
   const moviesConfig = moviesFetchConfig(
     page,
@@ -83,7 +85,7 @@ const CardsGrid = ({
           with_original_language={with_original_language}
         />
       </div>
-      <MovieGrid movies={data!} />
+      <MovieGrid movies={data!} imageWrapperClasses={imageWrapperClasses} />
       <div className="mt-4">
         <MoviePagination
           movie={data!}

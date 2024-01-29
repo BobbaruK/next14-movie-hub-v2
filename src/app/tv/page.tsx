@@ -7,6 +7,7 @@ import {
   RQ_POPULAR_TVSHOWS_KEY,
   RQ_TVSHOWS_GENRES_ENDPOINT,
   RQ_TVSHOWS_GENRES_KEY,
+  imagesSizesWithSidebar,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
@@ -85,6 +86,7 @@ export default async function TVShows({
               with_original_language={with_original_language}
               queryKey={RQ_POPULAR_TVSHOWS_KEY}
               endpoint={RQ_POPULAR_TVSHOWS_ENDPOINT}
+              imageWrapperClasses={imagesSizesWithSidebar}
             />
           </div>
         </div>

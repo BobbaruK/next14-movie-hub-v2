@@ -2,6 +2,7 @@ import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_NOW_PLAYING_MOVIES_ENDPOINT,
   RQ_NOW_PLAYING_MOVIES_KEY,
+  imagesSizesNoSidebar,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
@@ -62,6 +63,7 @@ export default async function NowPlayingMovies({
               with_original_language={with_original_language}
               queryKey={RQ_NOW_PLAYING_MOVIES_KEY}
               endpoint={RQ_NOW_PLAYING_MOVIES_ENDPOINT}
+              imageWrapperClasses={imagesSizesNoSidebar}
             />
           </div>
         </div>

@@ -73,16 +73,27 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       height: {
-        "main-card-image-height":
+        mainCardImageHeight_WithSidebar:
           "clamp(11.875rem, -2.5451rem + 72.1003vw, 26.25rem)",
-        "main-card-image-height-sm":
+        "mainCardImageHeight_WithSidebar-sm":
           "clamp(17.5rem, -4.5472rem + 55.1181vw, 21.875rem)",
-        "main-card-image-height-md":
+        "mainCardImageHeight_WithSidebar-md":
           "clamp(16.25rem, -0.6912rem + 35.2941vw, 21.875rem)",
-        "main-card-image-height-lg":
+        "mainCardImageHeight_WithSidebar-lg":
           "clamp(14.375rem, -8.2132rem + 35.2941vw, 20rem)",
-        "main-card-image-height-xl":
+        "mainCardImageHeight_WithSidebar-xl":
           "clamp(15rem, -11.6667rem + 33.3333vw, 17.5rem)",
+
+        mainCardImageHeight_NoSidebar:
+          "clamp(11.875rem, -2.5451rem + 72.1003vw, 26.25rem)",
+        "mainCardImageHeight_NoSidebar-sm":
+          "clamp(17.5rem, -4.5472rem + 55.1181vw, 21.875rem)",
+        "mainCardImageHeight_NoSidebar-md":
+          "clamp(16.25rem, -0.6912rem + 35.2941vw, 21.875rem)",
+        "mainCardImageHeight_NoSidebar-lg":
+          "clamp(21.25rem, -3.848rem + 39.2157vw, 27.5rem);",
+        "mainCardImageHeight_NoSidebar-xl":
+          "clamp(21.25rem, -12.0833rem + 41.6667vw, 24.375rem);",
       },
     },
   },
