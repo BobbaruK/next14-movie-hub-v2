@@ -34,8 +34,6 @@ const Networks = ({ queryKey, endpoint }: Props) => {
                   type={{ type: "logo", size: "w92" }}
                   alt={network.name}
                   src={network.logo_path}
-                  width={92}
-                  height={28}
                 />
               </li>
             ))}

@@ -60,8 +60,6 @@ const Episode = ({ queryKey, endpoint }: Props) => {
               type={{ type: "still", size: "w300" }}
               alt={data?.name!}
               src={data?.still_path!}
-              width={300}
-              height={169}
             />
           </div>
         </div>
@@ -119,8 +117,6 @@ const Episode = ({ queryKey, endpoint }: Props) => {
                       type={{ type: "profile", size: "w45" }}
                       alt={star.name}
                       src={star.profile_path}
-                      width={45}
-                      height={68}
                     />
                   </Link>
                 </div>
@@ -161,8 +157,6 @@ const Episode = ({ queryKey, endpoint }: Props) => {
                       type={{ type: "profile", size: "w45" }}
                       alt={star.name}
                       src={star.profile_path}
-                      width={45}
-                      height={68}
                     />
                   </Link>
                 </div>

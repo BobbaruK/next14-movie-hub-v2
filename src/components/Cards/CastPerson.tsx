@@ -16,8 +16,6 @@ const CastPersonCard = ({ cast }: { cast: TheCast }) => {
             type={{ type: "profile", size: "w185" }}
             alt={cast.name}
             src={cast.profile_path}
-            width={185}
-            height={278}
           />
         </Link>
         <CardHeader>

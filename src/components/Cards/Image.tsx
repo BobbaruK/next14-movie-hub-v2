@@ -12,8 +12,6 @@ const ImageCard = ({ image }: Props) => {
         type={{ type: "backdrop", size: "w300" }}
         alt={image.file_path}
         src={image.file_path}
-        width={image.width}
-        height={image.height}
       />
       <div className="flex flex-col items-start gap-4 p-3 ">
         <p>Aspect Ratio: {image.aspect_ratio}</p>

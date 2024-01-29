@@ -76,8 +76,6 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
                   type={{ type: "poster", size: "w92" }}
                   alt={title()}
                   src={data.poster_path}
-                  width={92}
-                  height={138}
                   priority
                 />
               )}
@@ -86,8 +84,6 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
                   type={{ type: "profile", size: "w185" }}
                   alt={title()}
                   src={data.profile_path}
-                  width={92}
-                  height={138}
                   priority
                 />
               )}

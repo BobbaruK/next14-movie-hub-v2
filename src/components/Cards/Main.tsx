@@ -14,12 +14,15 @@ import {
 } from "../ui/card";
 import { Badge } from "../ui/badge";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   movie: Movie | TVShow | People;
+  imageClass?: string;
 }
 
-const MainCard = ({ movie }: Props) => {
+const MainCard = ({ movie, imageClass, ...restProps }: Props) => {
   const title = "title" in movie ? movie.title : movie.name;
+
+  restProps.className
 
   const theMovie = "title" in movie && movie;
   const theTv = "first_air_date" in movie && movie;
@@ -61,7 +64,7 @@ const MainCard = ({ movie }: Props) => {
                     ? "secondary"
                     : "destructive"
               }
-              className="absolute left-2 top-2"
+              className="absolute left-2 top-2 z-10"
             >
               {movie.vote_average.toFixed(1)}
             </Badge>
@@ -69,8 +72,14 @@ const MainCard = ({ movie }: Props) => {
               type={{ type: "poster", size: "w342" }}
               alt={title}
               src={movie.poster_path}
-              width={342}
-              height={513}
+              // width={342}
+              // height={513}
+              style={
+                {
+                  // height: "clamp(25rem, 27.4074rem + -12.037vw, 16.875rem)",
+                }
+              }
+              className="h-main-card-image-height sm:h-main-card-image-height-sm md:h-main-card-image-height-md lg:h-main-card-image-height-lg xl:h-main-card-image-height-xl"
             />
           </>
         )}
@@ -79,8 +88,14 @@ const MainCard = ({ movie }: Props) => {
             type={{ type: "profile", size: "h632" }}
             alt={title}
             src={movie.profile_path}
-            width={342}
-            height={513}
+            style={
+              {
+                // height: "clamp(25rem, 27.4074rem + -12.037vw, 16.875rem)",
+              }
+            }
+            // width={342}
+            // height={513}
+            className="h-main-card-image-height sm:h-main-card-image-height-sm md:h-main-card-image-height-md lg:h-main-card-image-height-lg xl:h-main-card-image-height-xl"
           />
         )}
       </Link>

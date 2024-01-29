@@ -50,8 +50,6 @@ const ReviewCard = ({ review }: Props) => {
               type={{ type: "profile", size: "w45" }}
               alt={review.author}
               src={review.author_details.avatar_path}
-              width={45}
-              height={45}
               className="h-[45px] w-[45px] rounded-full object-cover"
             />
             <div>

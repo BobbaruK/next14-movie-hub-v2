@@ -66,8 +66,6 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
               type={{ type: "poster", size: "w185" }}
               alt={lastSeason.name}
               src={lastSeason.poster_path}
-              width={185}
-              height={278}
             />
           </Link>
           <div className="flex flex-col justify-between gap-4 md:basis-4/5">

@@ -46,8 +46,6 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
                     type={{ type: "poster", size: "w154" }}
                     alt={season.name}
                     src={season.poster_path}
-                    width={154}
-                    height={231}
                   />
                 </Link>
               </div>

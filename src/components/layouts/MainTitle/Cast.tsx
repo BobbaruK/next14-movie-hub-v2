@@ -68,8 +68,6 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                       type={{ type: "profile", size: "w45" }}
                       alt={person.name}
                       src={person.profile_path}
-                      width={45}
-                      height={68}
                       priority
                     />
                   </Link>
@@ -150,8 +148,6 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                                 type={{ type: "profile", size: "w45" }}
                                 alt={person.name}
                                 src={person.profile_path}
-                                width={45}
-                                height={68}
                                 priority
                               />
                             </Link>

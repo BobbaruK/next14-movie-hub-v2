@@ -40,8 +40,6 @@ const ProductionCompanies = ({ queryKey, endpoint }: Props) => {
                     type={{ type: "logo", size: "w92" }}
                     alt={company.name}
                     src={company.logo_path}
-                    width={92}
-                    height={28}
                   />
                 ) : (
                   `${company.name}${

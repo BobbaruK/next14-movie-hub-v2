@@ -30,8 +30,6 @@ const VideoCard = ({ video, mainTitleID, videoTypeLink, titleType }: Props) => {
               type={{ type: "other" }}
               src={`https://img.youtube.com/vi/${video.key}/0.jpg`}
               alt={video.name}
-              width={480}
-              height={360}
               className="h-full w-full object-cover"
             />
             <div className="playBtnWrapper absolute inset-x-[50%] inset-y-[50%] z-10 grid h-14 w-14 translate-x-[-50%] translate-y-[-50%] place-items-center rounded-full bg-primary text-secondary opacity-80 hover:opacity-100">

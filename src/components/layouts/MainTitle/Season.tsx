@@ -53,8 +53,6 @@ const Season = ({ queryKey, endpoint }: Props) => {
               type={{ type: "poster", size: "w185" }}
               alt={data?.name!}
               src={data?.poster_path!}
-              width={185}
-              height={278}
             />
           </div>
         </div>
@@ -98,8 +96,6 @@ const Season = ({ queryKey, endpoint }: Props) => {
                   type={{ type: "still", size: "w185" }}
                   alt={data?.name!}
                   src={episode.still_path}
-                  width={185}
-                  height={104}
                 />
               </Link>
             </div>

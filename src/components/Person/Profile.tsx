@@ -28,8 +28,6 @@ const PersonProfile = ({ endpoint, queryKey }: Props) => {
         type={{ type: "profile", size: "h632" }}
         alt={data?.name!}
         src={data?.profile_path!}
-        width={421}
-        height={632}
         priority
       />
     </div>
