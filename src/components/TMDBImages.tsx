@@ -1,7 +1,7 @@
 "use client";
 
-import noImage from "../../public/noimage.svg";
 import { RQ_CONFIG_ENDPOINT, RQ_CONFIG_KEY } from "@/constants";
+import { cn } from "@/lib/utils";
 import MyAPIClient from "@/services/myApiClient";
 import { Image_Configuration } from "@/types/TMDB_API_Configuration";
 import {
@@ -13,6 +13,7 @@ import {
 } from "@/types/imageSizes";
 import { useQuery } from "@tanstack/react-query";
 import Image, { ImageLoaderProps } from "next/image";
+import noImage from "../../public/noimage.svg";
 
 const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   return `${src}?w=${width}`;
@@ -45,20 +46,10 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
       };
   src: string | null;
   alt: string;
-  width: number;
-  height: number;
   priority?: boolean;
 }
 
-const TMDBImages = ({
-  type,
-  src,
-  alt,
-  width,
-  height,
-  priority,
-  ...restProps
-}: Props) => {
+const TMDBImages = ({ type, src, alt, priority, ...restProps }: Props) => {
   const apiClientConfig = new MyAPIClient<Image_Configuration>(
     RQ_CONFIG_ENDPOINT,
   );
@@ -81,16 +72,26 @@ const TMDBImages = ({
   const outputSrc = getOuputSrc();
 
   return (
-    <Image
-      {...restProps}
-      loader={imageLoader}
-      src={outputSrc}
-      alt={alt}
-      width={width}
-      height={height}
-      priority={priority}
-      title={alt}
-    />
+    <>
+      <div
+        {...restProps}
+        className={cn(
+          `relative w-full overflow-hidden rounded-md ${restProps.className}`,
+        )}
+      >
+        <Image
+          loader={imageLoader}
+          src={outputSrc}
+          alt={alt}
+          // width={width}
+          // height={height}
+          priority={priority}
+          title={alt}
+          fill
+          className="object-cover"
+        />
+      </div>
+    </>
   );
 };
 
