@@ -15,7 +15,7 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import { ReactNode } from "react";
-import "../globals.css";
+import "../globals.scss";
 import { Language } from "@/types/movies/Language";
 import { Footer } from "@/components/layouts/Footer";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
