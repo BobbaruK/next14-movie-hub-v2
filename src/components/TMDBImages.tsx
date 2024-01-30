@@ -35,8 +35,6 @@ const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   const sizeSmallerThen780: PosterSizes = "w780";
   const sizeSmallerThenOriginal: PosterSizes = "original";
 
-  // console.log("src: " + src);
-
   if (width <= 92)
     return (
       secureBaseUrl +
@@ -77,11 +75,19 @@ const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
       `?device_width=${width}&screen_size=${sizeSmallerThen500}`
     );
 
+  if (width > 780 && width <= 992)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen780 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThen780}`
+    );
+
   return (
     secureBaseUrl +
-    sizeSmallerThen780 +
+    sizeSmallerThenOriginal +
     src +
-    `?device_width=${width}&screen_size=${sizeSmallerThen780}`
+    `?device_width=${width}&screen_size=${sizeSmallerThenOriginal}`
   );
 };
 
@@ -92,8 +98,6 @@ const profileImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   const sizeSmallerThen185: ProfileSizes = "w185";
   const sizeSmallerThenH632: ProfileSizes = "h632";
   const sizeSmallerThenOriginal: ProfileSizes = "original";
-
-  // console.log("src: " + src);
 
   if (width <= 45)
     return (
@@ -140,8 +144,6 @@ const logoImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   const sizeSmallerThen300: LogoSizes = "w300";
   const sizeSmallerThen500: LogoSizes = "w500";
   const sizeSmallerThenOriginal: LogoSizes = "original";
-
-  // console.log("src: " + src);
 
   if (width <= 45)
     return (
@@ -198,6 +200,45 @@ const logoImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   );
 };
 
+const stillImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+  if (src === noImage.src) return src + "?w=" + width;
+
+  const sizeSmallerThen92: StillSizes = "w92";
+  const sizeSmallerThen185: StillSizes = "w185";
+  const sizeSmallerThen300: StillSizes = "w300";
+  const sizeSmallerThenOriginal: StillSizes = "original";
+
+  if (width <= 92)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen92 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThen92}`
+    );
+
+  if (width > 92 && width <= 185)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen185 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThen185}`
+    );
+
+  if (width > 185 && width <= 300)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen300 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThen300}`
+    );
+
+  return (
+    secureBaseUrl +
+    sizeSmallerThenOriginal +
+    `${src}?device_width=${width}original`
+  );
+};
+
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   type:
     | {
@@ -249,6 +290,9 @@ const TMDBImages = ({
 
       case "logo":
         return logoImageLoader({ src, width, quality });
+
+      case "still":
+        return stillImageLoader({ src, width, quality });
 
       default:
         return imageLoader({ src, width, quality });

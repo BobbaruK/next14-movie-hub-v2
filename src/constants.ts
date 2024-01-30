@@ -246,8 +246,8 @@ export const recommendationImageHeight = `
   xl:h-recommendationImageHeight-xl`;
 
 export const mainTitleCastImageHeight = `
-  h-mainCardCastImageHeight 
-  sm:h-mainCardCastImageHeight-sm 
-  md:h-mainCardCastImageHeight-md 
-  lg:h-mainCardCastImageHeight-lg 
-  xl:h-mainCardCastImageHeight-xl`;
+    h-mainCardCastImageHeight 
+    sm:h-mainCardCastImageHeight-sm 
+    md:h-mainCardCastImageHeight-md 
+    lg:h-mainCardCastImageHeight-lg 
+    xl:h-mainCardCastImageHeight-xl`;

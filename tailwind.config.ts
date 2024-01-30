@@ -120,6 +120,15 @@ const config = {
           "clamp(16.25rem, 1.1912rem + 23.5294vw, 20rem)",
         "mainCardCastImageHeight-xl":
           "clamp(15.625rem, -11.0417rem + 33.3333vw, 18.125rem)",
+
+        seasonPosterImageHeight:
+          "clamp(24.375rem, -3.8382rem + 141.0658vw, 52.5rem)",
+        "seasonPosterImageHeight-sm":
+          "clamp(13.75rem, 413.75rem + -1000vw, 14.375rem)",
+
+          
+        seasonsEpisodeImageHeight:
+        "clamp(9.375rem, -1.9103rem + 56.4263vw, 20.625rem)",
       },
       width: {},
     },
