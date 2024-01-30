@@ -44,6 +44,7 @@ const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
       src +
       `?device_width=${width}&screen_size=${sizeSmallerThen92}`
     );
+
   if (width > 92 && width <= 154)
     return (
       secureBaseUrl +
@@ -51,6 +52,7 @@ const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
       src +
       `?device_width=${width}&screen_size=${sizeSmallerThen154}`
     );
+
   if (width > 154 && width <= 342)
     return (
       secureBaseUrl +
@@ -58,6 +60,7 @@ const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
       src +
       `?device_width=${width}&screen_size=${sizeSmallerThen256}`
     );
+
   if (width > 342 && width <= 500)
     return (
       secureBaseUrl +
@@ -65,6 +68,7 @@ const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
       src +
       `?device_width=${width}&screen_size=${sizeSmallerThen342}`
     );
+
   if (width > 500 && width <= 780)
     return (
       secureBaseUrl +
@@ -72,23 +76,16 @@ const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
       src +
       `?device_width=${width}&screen_size=${sizeSmallerThen500}`
     );
-  if (width > 780 && width <= 1400)
-    return (
-      secureBaseUrl +
-      sizeSmallerThen780 +
-      src +
-      `?device_width=${width}&screen_size=${sizeSmallerThen780}`
-    );
 
   return (
     secureBaseUrl +
-    sizeSmallerThenOriginal +
-    `${src}?device_width=${width}original`
+    sizeSmallerThen780 +
+    src +
+    `?device_width=${width}&screen_size=${sizeSmallerThen780}`
   );
 };
 
 const profileImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-  console.log("rpofile");
   if (src === noImage.src) return src + "?w=" + width;
 
   const sizeSmallerThen45: ProfileSizes = "w45";
@@ -105,6 +102,7 @@ const profileImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
       src +
       `?device_width=${width}&screen_size=${sizeSmallerThen45}`
     );
+
   if (width > 45 && width <= 185)
     return (
       secureBaseUrl +
@@ -112,6 +110,7 @@ const profileImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
       src +
       `?device_width=${width}&screen_size=${sizeSmallerThen185}`
     );
+
   if (width > 185 && width <= 632)
     return (
       secureBaseUrl +
@@ -124,6 +123,77 @@ const profileImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
     secureBaseUrl +
     sizeSmallerThenOriginal +
     `${src}?device_width=${width}original`
+  );
+};
+
+const logoImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+  const srcSVG = src.replace(".png", ".svg");
+  console.log(srcSVG);
+
+  if (srcSVG === noImage.src) return srcSVG + "?w=" + width;
+
+  const sizeSmallerThen45: LogoSizes = "w45";
+  const sizeSmallerThen92: LogoSizes = "w92";
+  const sizeSmallerThen154: LogoSizes = "w154";
+  const sizeSmallerThen185: LogoSizes = "w185";
+  const sizeSmallerThen300: LogoSizes = "w300";
+  const sizeSmallerThen500: LogoSizes = "w500";
+  const sizeSmallerThenOriginal: LogoSizes = "original";
+
+  // console.log("src: " + src);
+
+  if (width <= 45)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen45 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen45}`
+    );
+
+  if (width > 45 && width <= 92)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen92 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen92}`
+    );
+
+  if (width > 92 && width <= 154)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen154 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen154}`
+    );
+
+  if (width > 154 && width <= 185)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen185 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen185}`
+    );
+
+  if (width > 185 && width <= 300)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen300 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen300}`
+    );
+
+  if (width > 300 && width <= 500)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen500 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen500}`
+    );
+
+  return (
+    secureBaseUrl +
+    sizeSmallerThenOriginal +
+    `${srcSVG}?device_width=${width}original`
   );
 };
 
@@ -176,6 +246,9 @@ const TMDBImages = ({
       case "profile":
         return profileImageLoader({ src, width, quality });
 
+      case "logo":
+        return logoImageLoader({ src, width, quality });
+
       default:
         return imageLoader({ src, width, quality });
     }
@@ -185,7 +258,9 @@ const TMDBImages = ({
     <>
       <div
         {...restProps}
-        className={cn(`relative w-full overflow-hidden ${restProps.className}`)}
+        className={cn(
+          `relative w-full overflow-hidden ${restProps.className || ""}`,
+        )}
       >
         <Image
           loader={customLoader}

@@ -29,11 +29,13 @@ const Networks = ({ queryKey, endpoint }: Props) => {
           <h3>Networks</h3>
           <ol className="flex flex-col gap-3">
             {data.networks.map((network) => (
-              <li key={network.id}>
+              <li key={network.id} className="flex">
                 <TMDBImages
                   type={{ type: "logo", size: "w92" }}
                   alt={network.name}
                   src={network.logo_path}
+                  className="w-32 h-16 object-contain [&>img]:object-contain [&>img]:object-left"
+                  sizes="200px"
                 />
               </li>
             ))}
