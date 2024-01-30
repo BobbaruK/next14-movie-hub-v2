@@ -127,8 +127,9 @@ const profileImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
 };
 
 const logoImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-  const srcSVG = src.replace(".png", ".svg");
-  console.log(srcSVG);
+  // const srcSVG = src.replace(".png", ".svg");
+  // not all logos are svgs
+  const srcSVG = src;
 
   if (srcSVG === noImage.src) return srcSVG + "?w=" + width;
 
