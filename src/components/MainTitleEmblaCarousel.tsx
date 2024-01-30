@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ImageDetails } from "@/types/ImageDetails";
 import { TheCast } from "@/types/movies/CastAndCrew";
 import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
@@ -26,6 +27,7 @@ interface Props {
   carouselOptions?: {
     showButtons?: boolean;
   };
+  imageDetails: ImageDetails;
 }
 
 export function MainTitleEmblaCarousel({
@@ -33,6 +35,7 @@ export function MainTitleEmblaCarousel({
   emblaCarouselOptions,
   slideSizes,
   carouselOptions,
+  imageDetails,
 }: Props) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     containScroll: "trimSnaps",
@@ -56,13 +59,21 @@ export function MainTitleEmblaCarousel({
     switch (typeOptions.type) {
       case "cast":
         const cast = arrItem as TheCast;
-        return <DynamicCastPersonCard cast={cast} key={cast.id} />;
+        return (
+          <DynamicCastPersonCard
+            cast={cast}
+            key={cast.id}
+            imageDetails={imageDetails}
+          />
+        );
 
       case "movie-recommendation":
         const recommendation = arrItem as
           | MovieRecommendation
           | TVShowRecommendation;
-        return <DynamicMainCard movie={recommendation} />;
+        return (
+          <DynamicMainCard movie={recommendation} imageDetails={imageDetails} />
+        );
 
       default:
         break;

@@ -3,8 +3,14 @@ import idTitleHyphen from "@/utils/idTitleHyphen";
 import TMDBImages from "../TMDBImages";
 import { Card, CardHeader, CardTitle, CardDescription } from "../ui/card";
 import Link from "next/link";
+import { ImageDetails } from "@/types/ImageDetails";
 
-const CastPersonCard = ({ cast }: { cast: TheCast }) => {
+interface Props {
+  cast: TheCast;
+  imageDetails: ImageDetails;
+}
+
+const CastPersonCard = ({ cast, imageDetails }: Props) => {
   return (
     <>
       <Card className="h-full overflow-hidden">
@@ -16,6 +22,8 @@ const CastPersonCard = ({ cast }: { cast: TheCast }) => {
             type={{ type: "profile", size: "w185" }}
             alt={cast.name}
             src={cast.profile_path}
+            sizes={imageDetails.sizes}
+            className={imageDetails.classes}
           />
         </Link>
         <CardHeader>
