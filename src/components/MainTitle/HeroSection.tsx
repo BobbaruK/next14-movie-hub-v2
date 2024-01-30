@@ -66,7 +66,7 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
               type={{ type: "poster", size: "w342" }}
               alt={"title" in data! ? data.title : data?.name!}
               src={data?.poster_path!}
-              className="h-full max-h-[513px] w-full"
+              className="h-full max-h-[513px] w-full overflow-hidden rounded-md"
               priority
               style={{
                 width: "clamp(15.625rem, 13.9213rem + 8.5185vw, 21.375rem)",

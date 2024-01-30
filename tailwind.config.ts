@@ -109,6 +109,17 @@ const config = {
         currentSeasonImageHeight: "clamp(30rem, 4.9216rem + 125.3918vw, 55rem)",
         "currentSeasonImageHeight-sm":
           "clamp(22.5rem, 0.4528rem + 55.1181vw, 26.875rem)",
+
+        mainCardCastImageHeight:
+          "clamp(16.875rem, 6.8437rem + 50.1567vw, 26.875rem)",
+        "mainCardCastImageHeight-sm":
+          "clamp(18.125rem, -0.7726rem + 47.2441vw, 21.875rem)",
+        "mainCardCastImageHeight-md":
+          "clamp(21.875rem, -0.7132rem + 47.0588vw, 29.375rem)",
+        "mainCardCastImageHeight-lg":
+          "clamp(16.25rem, 1.1912rem + 23.5294vw, 20rem)",
+        "mainCardCastImageHeight-xl":
+          "clamp(15.625rem, -11.0417rem + 33.3333vw, 18.125rem)",
       },
       width: {},
     },

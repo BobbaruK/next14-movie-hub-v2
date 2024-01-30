@@ -70,7 +70,7 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
                 (max-width: 320px) 250px,
                 (max-width: 639px) 584px,
                 (max-width: 767px) 286px,
-                208px
+                350px
               `}
               className="h-currentSeasonImageHeight sm:h-currentSeasonImageHeight-sm md:h-[310px]"
             />

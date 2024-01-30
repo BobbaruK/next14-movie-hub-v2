@@ -14,7 +14,7 @@ import noImage from "../../public/noimage.svg";
 const secureBaseUrl = "https://image.tmdb.org/t/p/";
 
 const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-  if (src === noImage.src) return src;
+  if (src === noImage.src) return src + "?w=" + width;
 
   return (
     secureBaseUrl +
@@ -25,7 +25,7 @@ const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
 };
 
 const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-  if (src === noImage.src) return src;
+  if (src === noImage.src) return src + "?w=" + width;
 
   const sizeSmallerThen92: PosterSizes = "w92";
   const sizeSmallerThen154: PosterSizes = "w154";
@@ -87,6 +87,46 @@ const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   );
 };
 
+const profileImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+  console.log("rpofile");
+  if (src === noImage.src) return src + "?w=" + width;
+
+  const sizeSmallerThen45: ProfileSizes = "w45";
+  const sizeSmallerThen185: ProfileSizes = "w185";
+  const sizeSmallerThenH632: ProfileSizes = "h632";
+  const sizeSmallerThenOriginal: ProfileSizes = "original";
+
+  // console.log("src: " + src);
+
+  if (width <= 45)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen45 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThen45}`
+    );
+  if (width > 45 && width <= 185)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen185 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThen185}`
+    );
+  if (width > 185 && width <= 632)
+    return (
+      secureBaseUrl +
+      sizeSmallerThenH632 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThenH632}`
+    );
+
+  return (
+    secureBaseUrl +
+    sizeSmallerThenOriginal +
+    `${src}?device_width=${width}original`
+  );
+};
+
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   type:
     | {
@@ -128,31 +168,13 @@ const TMDBImages = ({
 }: Props) => {
   // TODO: a lot of shit here
 
-  // const apiClientConfig = new MyAPIClient<Image_Configuration>(
-  //   RQ_CONFIG_ENDPOINT,
-  // );
-
-  // const { data: config } = useQuery<Image_Configuration>({
-  //   queryKey: [RQ_CONFIG_KEY],
-  //   queryFn: () => apiClientConfig.getAll(),
-  // });
-
-  // const secureBaseUrl = config?.images.secure_base_url
-  //   ? config.images.secure_base_url
-  //   : "https://image.tmdb.org/t/p/";
-
-  // const getOuputSrc = () => {
-  //   if (src && type.type !== "other") return secureBaseUrl + type.size + src;
-  //   if (src && type.type === "other") return src;
-  //   return noImage;
-  // };
-
-  // const outputSrc = getOuputSrc();
-
   const customLoader = ({ src, width, quality }: ImageLoaderProps) => {
     switch (type.type) {
       case "poster":
         return posterImageLoader({ src, width, quality });
+
+      case "profile":
+        return profileImageLoader({ src, width, quality });
 
       default:
         return imageLoader({ src, width, quality });
