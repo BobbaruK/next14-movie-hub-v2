@@ -12,6 +12,7 @@ import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import MovieGrid from "./MovieGrid";
 import MoviePagination from "./MoviePagination";
 import CustomAlert from "../CustomAlert";
+import { ImageDetails } from "@/types/ImageDetails";
 
 interface Props {
   page: number;
@@ -20,7 +21,7 @@ interface Props {
   with_original_language: string;
   queryKey: string;
   endpoint: string;
-  imageWrapperClasses?: string;
+  imageDetails: ImageDetails;
 }
 
 const CardsGrid = ({
@@ -30,7 +31,7 @@ const CardsGrid = ({
   with_original_language,
   queryKey,
   endpoint,
-  imageWrapperClasses,
+  imageDetails,
 }: Props) => {
   const moviesConfig = moviesFetchConfig(
     page,
@@ -85,7 +86,7 @@ const CardsGrid = ({
           with_original_language={with_original_language}
         />
       </div>
-      <MovieGrid movies={data!} imageWrapperClasses={imageWrapperClasses} />
+      <MovieGrid movies={data!} imageDetails={imageDetails} />
       <div className="mt-4">
         <MoviePagination
           movie={data!}
