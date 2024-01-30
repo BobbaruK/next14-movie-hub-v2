@@ -69,7 +69,7 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
     <div className="to-neutral text-secondary-content mb-10 bg-gradient-to-r from-secondary via-primary py-4">
       <div className="appContaier">
         <div className="flex gap-5">
-          <div className="overflow-hidden rounded-md">
+          <div className="w-full basis-28 overflow-hidden rounded-md">
             <Link href={backTo.link}>
               {(movie || tv) && (
                 <TMDBImages
@@ -77,6 +77,8 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
                   alt={title()}
                   src={data.poster_path}
                   priority
+                  className="h-36 w-full"
+                  sizes="102px"
                 />
               )}
               {person && (
@@ -85,11 +87,13 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
                   alt={title()}
                   src={data.profile_path}
                   priority
+                  className="h-36 w-full"
+                  sizes="102px"
                 />
               )}
             </Link>
           </div>
-          <div className="flex flex-col items-start justify-center gap-4">
+          <div className="flex basis-full flex-col items-start justify-center gap-4">
             <h1 className="m-0">
               <Link href={backTo.link}>
                 {`${title()}${year() && ` (${year()})`}`}
