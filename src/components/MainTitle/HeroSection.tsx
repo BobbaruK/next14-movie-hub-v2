@@ -54,6 +54,7 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
             src={data?.backdrop_path!}
             priority
             className="h-full w-full"
+            sizes="100vw"
           />
         </div>
         <div className="absolute inset-0 -z-10  h-full w-full bg-primary bg-gradient-to-r from-primary to-secondary opacity-90"></div>
@@ -71,6 +72,14 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
                 width: "clamp(15.625rem, 13.9213rem + 8.5185vw, 21.375rem)",
                 height: "clamp(23.4375rem, 20.8819rem + 12.7778vw, 32.0625rem)",
               }}
+              sizes={`
+                (max-width: 320px) 250px,
+                (max-width: 639px) 277px,
+                (max-width: 767px) 288px,
+                (max-width: 1023px) 310px,
+                (max-width: 1279px) 332px,
+                342px
+              `}
             />
           </div>
           <div className="flex flex-col justify-center gap-8 sm:basis-4/6 lg:basis-3/4">
