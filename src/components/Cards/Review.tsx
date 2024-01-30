@@ -51,6 +51,7 @@ const ReviewCard = ({ review }: Props) => {
               alt={review.author}
               src={review.author_details.avatar_path}
               className="h-[45px] w-[45px] rounded-full object-cover"
+              sizes="45px"
             />
             <div>
               <h3 className="m-0 text-center sm:text-start">
