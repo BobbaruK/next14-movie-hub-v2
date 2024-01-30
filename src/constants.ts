@@ -232,8 +232,15 @@ export const imagesSizesWithSidebar = `
   xl:h-mainCardImageHeight_WithSidebar-xl`;
 
 export const imagesSizesNoSidebar = `
-  h-mainCardImageHeight_NoSidebar 
-  sm:h-mainCardImageHeight_NoSidebar-sm 
-  md:h-mainCardImageHeight_NoSidebar-md 
-  lg:h-mainCardImageHeight_NoSidebar-lg 
-  xl:h-mainCardImageHeight_NoSidebar-xl`;
+    h-mainCardImageHeight_NoSidebar 
+    sm:h-mainCardImageHeight_NoSidebar-sm 
+    md:h-mainCardImageHeight_NoSidebar-md 
+    lg:h-mainCardImageHeight_NoSidebar-lg 
+    xl:h-mainCardImageHeight_NoSidebar-xl`;
+
+export const recommendationImageHeight = `
+      h-recommendationImageHeight 
+      sm:h-recommendationImageHeight-sm 
+      md:h-recommendationImageHeight-md 
+      lg:h-recommendationImageHeight-lg 
+      xl:h-recommendationImageHeight-xl`;

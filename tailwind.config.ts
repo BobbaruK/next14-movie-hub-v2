@@ -91,10 +91,26 @@ const config = {
         "mainCardImageHeight_NoSidebar-md":
           "clamp(16.25rem, -0.6912rem + 35.2941vw, 21.875rem)",
         "mainCardImageHeight_NoSidebar-lg":
-          "clamp(21.25rem, -3.848rem + 39.2157vw, 27.5rem);",
+          "clamp(21.25rem, -3.848rem + 39.2157vw, 27.5rem)",
         "mainCardImageHeight_NoSidebar-xl":
-          "clamp(21.25rem, -12.0833rem + 41.6667vw, 24.375rem);",
+          "clamp(21.25rem, -12.0833rem + 41.6667vw, 24.375rem)",
+
+        recommendationImageHeight:
+          "clamp(13.75rem, -0.0431rem + 68.9655vw, 27.5rem)",
+        "recommendationImageHeight-sm":
+          "clamp(17.5rem, -4.5472rem + 55.1181vw, 21.875rem)",
+        "recommendationImageHeight-md":
+          "clamp(16.25rem, -0.6912rem + 35.2941vw, 21.875rem)",
+        "recommendationImageHeight-lg":
+          "clamp(16.875rem, 7.4817rem + 19.5695vw, 23.125rem)",
+        "recommendationImageHeight-xl":
+          "clamp(11.25rem, 4.4415rem + 10.6383vw, 13.75rem)",
+
+        currentSeasonImageHeight: "clamp(30rem, 4.9216rem + 125.3918vw, 55rem)",
+        "currentSeasonImageHeight-sm":
+          "clamp(22.5rem, 0.4528rem + 55.1181vw, 26.875rem)",
       },
+      width: {},
     },
   },
   plugins: [require("tailwindcss-animate")],
