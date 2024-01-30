@@ -13,13 +13,14 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Badge } from "../ui/badge";
+import { ImageDetails } from "@/types/ImageDetails";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   movie: Movie | TVShow | People;
-  imageWrapperClasses?: string;
+  imageDetails: ImageDetails;
 }
 
-const MainCard = ({ movie, imageWrapperClasses, ...restProps }: Props) => {
+const MainCard = ({ movie, imageDetails, ...restProps }: Props) => {
   const title = "title" in movie ? movie.title : movie.name;
 
   const theMovie = "title" in movie && movie;
@@ -47,8 +48,6 @@ const MainCard = ({ movie, imageWrapperClasses, ...restProps }: Props) => {
     return "";
   };
 
-  // $
-
   return (
     <Card className="flex h-full flex-col overflow-hidden">
       <Link href={link()} className="relative w-full">
@@ -69,8 +68,9 @@ const MainCard = ({ movie, imageWrapperClasses, ...restProps }: Props) => {
             <TMDBImages
               type={{ type: "poster", size: "w342" }}
               alt={title}
-              src={movie.poster_path}
-              className={imageWrapperClasses ? imageWrapperClasses : ""}
+              src={movie.poster_path!}
+              className={imageDetails?.classes ? imageDetails.classes : ""}
+              sizes={imageDetails.sizes}
             />
           </>
         )}
@@ -79,14 +79,8 @@ const MainCard = ({ movie, imageWrapperClasses, ...restProps }: Props) => {
             type={{ type: "profile", size: "h632" }}
             alt={title}
             src={movie.profile_path}
-            style={
-              {
-                // height: "clamp(25rem, 27.4074rem + -12.037vw, 16.875rem)",
-              }
-            }
-            // width={342}
-            // height={513}
-            className={imageWrapperClasses ? imageWrapperClasses : ""}
+            className={imageDetails?.classes ? imageDetails.classes : ""}
+            sizes={imageDetails.sizes}
           />
         )}
       </Link>
