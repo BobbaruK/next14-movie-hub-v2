@@ -86,7 +86,17 @@ export default async function TVShows({
               with_original_language={with_original_language}
               queryKey={RQ_POPULAR_TVSHOWS_KEY}
               endpoint={RQ_POPULAR_TVSHOWS_ENDPOINT}
-              imageWrapperClasses={imagesSizesWithSidebar}
+              imageDetails={{
+                classes: imagesSizesWithSidebar,
+                sizes: `
+                    (max-width: 320px) 125px,
+                    (max-width: 639px) 283px,
+                    (max-width: 767px) 226px,
+                    (max-width: 1023px) 230px,
+                    (max-width: 1279px) 210px,
+                    185px
+                  `,
+              }}
             />
           </div>
         </div>

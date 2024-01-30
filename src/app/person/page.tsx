@@ -2,6 +2,7 @@ import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_POPULAR_PERSONS_ENDPOINT,
   RQ_POPULAR_PERSONS_KEY,
+  imagesSizesNoSidebar,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
@@ -51,6 +52,17 @@ export default async function Persons({
           with_original_language={with_original_language}
           queryKey={RQ_POPULAR_PERSONS_KEY}
           endpoint={RQ_POPULAR_PERSONS_ENDPOINT}
+          imageDetails={{
+            classes: imagesSizesNoSidebar,
+            sizes: `
+                (max-width: 320px) 125px,
+                (max-width: 639px) 283px,
+                (max-width: 767px) 226px,
+                (max-width: 1023px) 230px,
+                (max-width: 1279px) 294px,
+                260px
+              `,
+          }}
         />
       </div>
     </HydrationBoundary>

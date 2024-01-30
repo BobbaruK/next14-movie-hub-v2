@@ -62,7 +62,17 @@ export default async function TopRatedTVShows({
               with_original_language={with_original_language}
               queryKey={RQ_TOP_RATED_TVSHOWS_KEY}
               endpoint={RQ_TOP_RATED_TVSHOWS_ENDPOINT}
-              imageWrapperClasses={imagesSizesNoSidebar}
+              imageDetails={{
+                classes: imagesSizesNoSidebar,
+                sizes: `
+                    (max-width: 320px) 125px,
+                    (max-width: 639px) 283px,
+                    (max-width: 767px) 226px,
+                    (max-width: 1023px) 230px,
+                    (max-width: 1279px) 294px,
+                    260px
+                  `,
+              }}
             />
           </div>
         </div>

@@ -63,7 +63,17 @@ export default async function UpcomingMovies({
               sort_by=""
               queryKey={RQ_UPCOMING_MOVIES_KEY}
               endpoint={RQ_UPCOMING_MOVIES_ENDPOINT}
-              imageWrapperClasses={imagesSizesNoSidebar}
+              imageDetails={{
+                classes: imagesSizesNoSidebar,
+                sizes: `
+                    (max-width: 320px) 125px,
+                    (max-width: 639px) 283px,
+                    (max-width: 767px) 226px,
+                    (max-width: 1023px) 230px,
+                    (max-width: 1279px) 294px,
+                    260px
+                  `,
+              }}
             />
           </div>
         </div>
