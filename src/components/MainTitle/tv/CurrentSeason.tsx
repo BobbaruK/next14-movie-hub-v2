@@ -57,19 +57,26 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
         <div>
           <h2>Current Season</h2>
         </div>
-        <Card className="flex flex-col items-center overflow-hidden md:flex-row md:items-stretch">
+        <Card className="flex flex-col items-center overflow-hidden sm:flex-row md:w-full md:items-stretch">
           <Link
             href={`/tv/${id}/seasons/${lastSeason.season_number}/`}
-            className="flex items-center justify-center md:basis-1/5 md:items-start md:justify-start"
+            className="flex w-full items-center justify-center sm:basis-2/5 sm:items-start sm:justify-start md:w-full md:basis-52"
           >
             <TMDBImages
               type={{ type: "poster", size: "w185" }}
               alt={lastSeason.name}
               src={lastSeason.poster_path}
+              sizes={`
+                (max-width: 320px) 250px,
+                (max-width: 639px) 584px,
+                (max-width: 767px) 286px,
+                208px
+              `}
+              className="h-currentSeasonImageHeight sm:h-currentSeasonImageHeight-sm md:h-[310px]"
             />
           </Link>
-          <div className="flex flex-col justify-between gap-4 md:basis-4/5">
-            <CardHeader className="flex flex-col text-center md:text-start">
+          <div className="flex grow flex-col justify-between gap-4 sm:basis-3/5 md:basis-0">
+            <CardHeader className="flex flex-col text-center sm:text-start">
               <CardTitle>
                 <Link href={`/tv/${id}/seasons/${lastSeason.season_number}`}>
                   {lastSeason.name}
