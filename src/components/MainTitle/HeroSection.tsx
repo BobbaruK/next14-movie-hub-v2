@@ -54,13 +54,18 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
             src={data?.backdrop_path!}
             priority
             className="h-full w-full"
-            sizes="100vw"
+            sizes={`
+              (max-width: 450px) 300px,
+              (max-width: 780px) 780px,
+              (max-width: 1280px) 1280px,
+              1400px
+            `}
           />
         </div>
         <div className="absolute inset-0 -z-10  h-full w-full bg-primary bg-gradient-to-r from-primary to-secondary opacity-90"></div>
       </div>
       <div className="relative z-0">
-        <div className="appContaier text-primary-foreground flex flex-col gap-8 md:flex-row">
+        <div className="appContaier flex flex-col gap-8 text-primary-foreground md:flex-row">
           <div className="flex items-center justify-center sm:basis-2/6 lg:basis-1/4">
             <TMDBImages
               type="poster"
