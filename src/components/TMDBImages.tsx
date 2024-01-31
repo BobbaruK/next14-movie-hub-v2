@@ -13,16 +13,8 @@ import noImage from "../../public/noimage.svg";
 
 const secureBaseUrl = "https://image.tmdb.org/t/p/";
 
-const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-  if (src === noImage.src) return src + "?w=" + width;
-
-  return (
-    secureBaseUrl +
-    "original" +
-    src +
-    `?device_width=${width}&screen_size=original`
-  );
-};
+const imageLoader = ({ src, width, quality }: ImageLoaderProps) =>
+  src + `?device_width=${width}&screen_size=original`;
 
 const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   if (src === noImage.src) return src + "?w=" + width;
@@ -293,6 +285,9 @@ const TMDBImages = ({
 
       case "still":
         return stillImageLoader({ src, width, quality });
+
+      case "other":
+        return imageLoader({ src, width, quality });
 
       default:
         return imageLoader({ src, width, quality });

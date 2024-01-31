@@ -136,6 +136,13 @@ const config = {
           "clamp(24rem, 7.4353rem + 25.8824vw, 28.125rem)",
         "personImageHeight-xl":
           "clamp(28.125rem, 1.4583rem + 33.3333vw, 30.625rem)",
+
+        videoImageHeight: "clamp(12.5rem, -2.547rem + 75.2351vw, 27.5rem)",
+        "videoImageHeight-sm": "clamp(11rem, 0.2913rem + 26.7717vw, 13.125rem)",
+        "videoImageHeight-md": "clamp(11.25rem, -0.0441rem + 23.5294vw, 15rem)",
+        "videoImageHeight-lg":
+          "clamp(10.625rem, -1.924rem + 19.6078vw, 13.75rem)",
+        "videoImageHeight-xl": "clamp(13.75rem, -6.25rem + 25vw, 15.625rem)",
       },
       width: {},
     },
