@@ -13,8 +13,114 @@ import noImage from "../../public/noimage.svg";
 
 const secureBaseUrl = "https://image.tmdb.org/t/p/";
 
-const imageLoader = ({ src, width, quality }: ImageLoaderProps) =>
-  src + `?device_width=${width}&screen_size=original`;
+const backdropImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+  if (src === noImage.src) return src + "?w=" + width;
+
+  const sizeSmallerThen300: BackdropSizes = "w300";
+  const sizeSmallerThen780: BackdropSizes = "w780";
+  const sizeSmallerThen1280: BackdropSizes = "w1280";
+  const sizeSmallerThenOriginal: BackdropSizes = "original";
+
+  if (width <= 300)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen300 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThen300}`
+    );
+
+  if (width > 300 && width <= 780)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen780 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThen780}`
+    );
+
+  if (width > 780 && width <= 1280)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen1280 +
+      src +
+      `?device_width=${width}&screen_size=${sizeSmallerThen1280}`
+    );
+
+  return (
+    secureBaseUrl +
+    sizeSmallerThenOriginal +
+    `${src}?device_width=${width}original`
+  );
+};
+
+const logoImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
+  // const srcSVG = src.replace(".png", ".svg");
+  // not all logos are svgs
+  const srcSVG = src;
+
+  if (srcSVG === noImage.src) return srcSVG + "?w=" + width;
+
+  const sizeSmallerThen45: LogoSizes = "w45";
+  const sizeSmallerThen92: LogoSizes = "w92";
+  const sizeSmallerThen154: LogoSizes = "w154";
+  const sizeSmallerThen185: LogoSizes = "w185";
+  const sizeSmallerThen300: LogoSizes = "w300";
+  const sizeSmallerThen500: LogoSizes = "w500";
+  const sizeSmallerThenOriginal: LogoSizes = "original";
+
+  if (width <= 45)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen45 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen45}`
+    );
+
+  if (width > 45 && width <= 92)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen92 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen92}`
+    );
+
+  if (width > 92 && width <= 154)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen154 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen154}`
+    );
+
+  if (width > 154 && width <= 185)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen185 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen185}`
+    );
+
+  if (width > 185 && width <= 300)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen300 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen300}`
+    );
+
+  if (width > 300 && width <= 500)
+    return (
+      secureBaseUrl +
+      sizeSmallerThen500 +
+      srcSVG +
+      `?device_width=${width}&screen_size=${sizeSmallerThen500}`
+    );
+
+  return (
+    secureBaseUrl +
+    sizeSmallerThenOriginal +
+    `${srcSVG}?device_width=${width}original`
+  );
+};
 
 const posterImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   if (src === noImage.src) return src + "?w=" + width;
@@ -122,76 +228,6 @@ const profileImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   );
 };
 
-const logoImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-  // const srcSVG = src.replace(".png", ".svg");
-  // not all logos are svgs
-  const srcSVG = src;
-
-  if (srcSVG === noImage.src) return srcSVG + "?w=" + width;
-
-  const sizeSmallerThen45: LogoSizes = "w45";
-  const sizeSmallerThen92: LogoSizes = "w92";
-  const sizeSmallerThen154: LogoSizes = "w154";
-  const sizeSmallerThen185: LogoSizes = "w185";
-  const sizeSmallerThen300: LogoSizes = "w300";
-  const sizeSmallerThen500: LogoSizes = "w500";
-  const sizeSmallerThenOriginal: LogoSizes = "original";
-
-  if (width <= 45)
-    return (
-      secureBaseUrl +
-      sizeSmallerThen45 +
-      srcSVG +
-      `?device_width=${width}&screen_size=${sizeSmallerThen45}`
-    );
-
-  if (width > 45 && width <= 92)
-    return (
-      secureBaseUrl +
-      sizeSmallerThen92 +
-      srcSVG +
-      `?device_width=${width}&screen_size=${sizeSmallerThen92}`
-    );
-
-  if (width > 92 && width <= 154)
-    return (
-      secureBaseUrl +
-      sizeSmallerThen154 +
-      srcSVG +
-      `?device_width=${width}&screen_size=${sizeSmallerThen154}`
-    );
-
-  if (width > 154 && width <= 185)
-    return (
-      secureBaseUrl +
-      sizeSmallerThen185 +
-      srcSVG +
-      `?device_width=${width}&screen_size=${sizeSmallerThen185}`
-    );
-
-  if (width > 185 && width <= 300)
-    return (
-      secureBaseUrl +
-      sizeSmallerThen300 +
-      srcSVG +
-      `?device_width=${width}&screen_size=${sizeSmallerThen300}`
-    );
-
-  if (width > 300 && width <= 500)
-    return (
-      secureBaseUrl +
-      sizeSmallerThen500 +
-      srcSVG +
-      `?device_width=${width}&screen_size=${sizeSmallerThen500}`
-    );
-
-  return (
-    secureBaseUrl +
-    sizeSmallerThenOriginal +
-    `${srcSVG}?device_width=${width}original`
-  );
-};
-
 const stillImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
   if (src === noImage.src) return src + "?w=" + width;
 
@@ -230,6 +266,9 @@ const stillImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
     `${src}?device_width=${width}original`
   );
 };
+
+const imageLoader = ({ src, width, quality }: ImageLoaderProps) =>
+  src + `?device_width=${width}&screen_size=original`;
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   type:
@@ -274,14 +313,17 @@ const TMDBImages = ({
 
   const customLoader = ({ src, width, quality }: ImageLoaderProps) => {
     switch (type.type) {
+      case "backdrop":
+        return backdropImageLoader({ src, width, quality });
+
+      case "logo":
+        return logoImageLoader({ src, width, quality });
+
       case "poster":
         return posterImageLoader({ src, width, quality });
 
       case "profile":
         return profileImageLoader({ src, width, quality });
-
-      case "logo":
-        return logoImageLoader({ src, width, quality });
 
       case "still":
         return stillImageLoader({ src, width, quality });
