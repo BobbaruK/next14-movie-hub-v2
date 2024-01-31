@@ -56,22 +56,19 @@ const Cast = ({ queryKey, endpoint }: Props) => {
           <>
             <h2 className="flex items-center gap-4">
               Cast
-              <Badge variant="outline">{cast.length}</Badge>
+              <Badge variant="secondary">{cast.length}</Badge>
             </h2>
             {cast.map((person) => (
               <div key={person.id} className="flex items-center gap-4">
-                <div className="overflow-hidden rounded-md">
-                  <Link
-                    href={`/person/${idTitleHyphen(person.id, person.name)}`}
-                  >
-                    <TMDBImages
-                      type={{ type: "profile", size: "w45" }}
-                      alt={person.name}
-                      src={person.profile_path}
-                      priority
-                    />
-                  </Link>
-                </div>
+                <Link href={`/person/${idTitleHyphen(person.id, person.name)}`}>
+                  <TMDBImages
+                    type={{ type: "profile", size: "w45" }}
+                    alt={person.name}
+                    src={person.profile_path}
+                    sizes="80px"
+                    className="h-32 w-20"
+                  />
+                </Link>
                 <div>
                   <h3 className="m-0">
                     <Link
@@ -100,7 +97,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
           <div className="flex flex-col gap-8">
             <h2 className="m-0 flex items-center gap-4">
               Crew
-              <Badge variant="outline">{crew.length}</Badge>
+              <Badge variant="secondary">{crew.length}</Badge>
             </h2>
             {crewSorted
               .sort((a, b) => {
@@ -137,21 +134,20 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                           key={`person-${person.id}-${ind}`}
                           className="flex items-center gap-4"
                         >
-                          <div className="overflow-hidden rounded-md">
-                            <Link
-                              href={`/person/${idTitleHyphen(
-                                person.id,
-                                person.name,
-                              )}`}
-                            >
-                              <TMDBImages
-                                type={{ type: "profile", size: "w45" }}
-                                alt={person.name}
-                                src={person.profile_path}
-                                priority
-                              />
-                            </Link>
-                          </div>
+                          <Link
+                            href={`/person/${idTitleHyphen(
+                              person.id,
+                              person.name,
+                            )}`}
+                          >
+                            <TMDBImages
+                              type={{ type: "profile", size: "w45" }}
+                              alt={person.name}
+                              src={person.profile_path}
+                              sizes="80px"
+                              className="h-32 w-20"
+                            />
+                          </Link>
                           <div>
                             <h4 className="m-0">
                               <Link
