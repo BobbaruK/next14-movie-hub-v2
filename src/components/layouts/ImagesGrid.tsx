@@ -1,21 +1,29 @@
 "use client";
 
 import MyAPIClient from "@/services/myApiClient";
+import { ImageDetails } from "@/types/ImageDetails";
 import { ImagesResponse } from "@/types/ImagesResponse";
 import { useQuery } from "@tanstack/react-query";
 import { AlertCircle } from "lucide-react";
 import ImageCard from "../Cards/Image";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 
-type ImageType = "backdrops" | "logos" | "posters";
+type GridImagesType = "backdrops" | "logos" | "posters";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   queryKey: string;
   endpoint: string;
-  imagesType: ImageType;
+  imagesType: GridImagesType;
+  imageDetails: ImageDetails;
 }
 
-const ImagesGrid = ({ queryKey, endpoint, imagesType }: Props) => {
+const ImagesGrid = ({
+  queryKey,
+  endpoint,
+  imagesType,
+  imageDetails,
+  ...restProps
+}: Props) => {
   const apiClientReleases = new MyAPIClient<ImagesResponse>(endpoint);
 
   const { data, error, isLoading } = useQuery<ImagesResponse>({
@@ -53,7 +61,11 @@ const ImagesGrid = ({ queryKey, endpoint, imagesType }: Props) => {
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
       {images()?.map((image, index) => (
-        <ImageCard key={image.file_path + "" + index} image={image} />
+        <ImageCard
+          key={image.file_path + "" + index}
+          image={image}
+          imageDetails={imageDetails}
+        />
       ))}
     </div>
   );

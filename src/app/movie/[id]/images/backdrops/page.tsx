@@ -16,6 +16,10 @@ export default function MovieImagesBackdrops({ params: { id } }: Props) {
           queryKey={RQ_MOVIE_IMAGES_KEY(id)}
           endpoint={RQ_MOVIE_IMAGES_ENDPOINT(id)}
           imagesType="backdrops"
+          imageDetails={{
+            classes: "h-40",
+            sizes: "238px",
+          }}
         />
       }
       sidebar={<p>Main Movie Filtering Sidebar</p>}

@@ -16,6 +16,10 @@ export default function TVShowsImagesBackdrops({ params: { id } }: Props) {
           queryKey={RQ_TVSHOWS_IMAGES_KEY(id)}
           endpoint={RQ_TVSHOWS_IMAGES_ENDPOINT(id)}
           imagesType="backdrops"
+          imageDetails={{
+            classes: "h-40",
+            sizes: "238px",
+          }}
         />
       }
       sidebar={<p>Main Movie Filtering Sidebar</p>}

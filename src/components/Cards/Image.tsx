@@ -2,12 +2,14 @@ import { ImageShape } from "@/types/ImagesResponse";
 import TMDBImages from "../TMDBImages";
 import { Card, CardDescription, CardFooter, CardHeader } from "../ui/card";
 import { cn } from "@/lib/utils";
+import { ImageDetails } from "@/types/ImageDetails";
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props {
   image: ImageShape;
+  imageDetails: ImageDetails;
 }
 
-const ImageCard = ({ image, ...restProps }: Props) => {
+const ImageCard = ({ image, imageDetails }: Props) => {
   return (
     <>
       <Card>
@@ -15,8 +17,9 @@ const ImageCard = ({ image, ...restProps }: Props) => {
           type={{ type: "backdrop", size: "w300" }}
           alt={image.file_path}
           src={image.file_path}
-          sizes="238px"
-          className={cn(`w-full rounded-b-none ${restProps.className || ""}`)}
+          // sizes="238px"
+          sizes={imageDetails.sizes}
+          className={cn(`w-full rounded-b-none ${imageDetails.classes || ""}`)}
         />
         <CardHeader>
           <CardDescription>

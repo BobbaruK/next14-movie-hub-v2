@@ -15,4 +15,10 @@ export interface ImageShape {
   width: number;
 }
 
-export type ImagesType = "backdrop" | "logo" | "poster" | "profile" | "still";
+export type ImagesType =
+  | "backdrop"
+  | "logo"
+  | "poster"
+  | "profile"
+  | "still"
+  | "other";
