@@ -47,12 +47,12 @@ const Seasons = ({ queryKey, endpoint }: Props) => {
                 className="w-full"
               >
                 <TMDBImages
-                  type={{ type: "poster", size: "w154" }}
+                  type="poster"
                   alt={season.name}
                   src={season.poster_path}
                   className={cn(
-                    `h-seasonPosterImageHeight sm:h-seasonPosterImageHeight-sm w-full overflow-hidden 
-                    rounded-md `,
+                    `h-seasonPosterImageHeight w-full overflow-hidden rounded-md 
+                    sm:h-seasonPosterImageHeight-sm `,
                   )}
                   sizes={`
                     (max-width: 320px) 300px,

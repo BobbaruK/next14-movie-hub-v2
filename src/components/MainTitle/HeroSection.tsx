@@ -49,7 +49,7 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="absolute inset-0 -z-20  h-full w-full">
           <TMDBImages
-            type={{ type: "backdrop", size: "original" }}
+            type="backdrop"
             alt={"title" in data! ? data.title : data?.name!}
             src={data?.backdrop_path!}
             priority
@@ -63,7 +63,7 @@ const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
         <div className="appContaier text-primary-content flex flex-col gap-8 md:flex-row">
           <div className="flex items-center justify-center sm:basis-2/6 lg:basis-1/4">
             <TMDBImages
-              type={{ type: "poster", size: "w342" }}
+              type="poster"
               alt={"title" in data! ? data.title : data?.name!}
               src={data?.poster_path!}
               className="h-full max-h-[513px] w-full overflow-hidden rounded-md"

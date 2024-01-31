@@ -49,7 +49,7 @@ const Season = ({ queryKey, endpoint }: Props) => {
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="flex w-full items-center md:basis-[185px] md:justify-center">
           <TMDBImages
-            type={{ type: "poster", size: "w185" }}
+            type="poster"
             alt={data?.name!}
             src={data?.poster_path!}
             className="h-seasonPosterImageHeight w-full overflow-hidden rounded-md md:h-72 md:w-[185px]"
@@ -97,7 +97,7 @@ const Season = ({ queryKey, endpoint }: Props) => {
               className="w-full sm:w-[250px] sm:basis-[250px]"
             >
               <TMDBImages
-                type={{ type: "still", size: "w185" }}
+                type="still"
                 alt={data?.name!}
                 src={episode.still_path}
                 className="h-seasonsEpisodeImageHeight w-full overflow-hidden rounded-md sm:h-36"

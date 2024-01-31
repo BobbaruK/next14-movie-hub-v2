@@ -73,7 +73,7 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
             <Link href={backTo.link}>
               {(movie || tv) && (
                 <TMDBImages
-                  type={{ type: "poster", size: "w92" }}
+                  type="poster"
                   alt={title()}
                   src={data.poster_path}
                   priority
@@ -83,7 +83,7 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
               )}
               {person && (
                 <TMDBImages
-                  type={{ type: "profile", size: "w185" }}
+                  type="profile"
                   alt={title()}
                   src={data.profile_path}
                   priority

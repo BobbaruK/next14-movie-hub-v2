@@ -37,7 +37,7 @@ const ProductionCompanies = ({ queryKey, endpoint }: Props) => {
               <li key={company.id}>
                 {company.logo_path ? (
                   <TMDBImages
-                    type={{ type: "logo", size: "w92" }}
+                    type="logo"
                     alt={company.name}
                     src={company.logo_path}
                     className="h-16 w-32 object-contain [&>img]:object-contain [&>img]:object-left"

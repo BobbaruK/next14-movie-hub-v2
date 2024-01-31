@@ -22,7 +22,7 @@ const VideoCard = ({ video, mainTitleID, videoTypeLink, titleType }: Props) => {
           className="relative cursor-pointer sm:basis-2/5 md:basis-1/3"
         >
           <TMDBImages
-            type={{ type: "other" }}
+            type="other"
             src={`https://img.youtube.com/vi/${video.key}/0.jpg`}
             alt={video.name}
             className="h-videoImageHeight sm:h-videoImageHeight-sm md:h-videoImageHeight-md lg:h-videoImageHeight-lg xl:h-videoImageHeight-xl w-full "

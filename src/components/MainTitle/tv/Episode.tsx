@@ -57,7 +57,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
       <div className="flex flex-col gap-4 sm:flex-row">
         <div className="flex items-center sm:basis-[300px]  sm:justify-center">
           <TMDBImages
-            type={{ type: "still", size: "w300" }}
+            type="still"
             alt={data?.name!}
             src={data?.still_path!}
             sizes={`
@@ -107,7 +107,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
               <div key={star.id} className="flex flex-row gap-4">
                 <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
                   <TMDBImages
-                    type={{ type: "profile", size: "w45" }}
+                    type="profile"
                     alt={star.name}
                     src={star.profile_path}
                     sizes="80px"
@@ -135,7 +135,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
               <div key={star.id} className="flex flex-row gap-4">
                 <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
                   <TMDBImages
-                    type={{ type: "profile", size: "w45" }}
+                    type="profile"
                     alt={star.name}
                     src={star.profile_path}
                     sizes="80px"

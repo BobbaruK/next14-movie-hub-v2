@@ -10,6 +10,7 @@ import {
 } from "@/types/imageSizes";
 import Image, { ImageLoaderProps } from "next/image";
 import noImage from "../../public/noimage.svg";
+import { ImagesType } from "@/types/ImagesResponse";
 
 const secureBaseUrl = "https://image.tmdb.org/t/p/";
 
@@ -271,30 +272,7 @@ const imageLoader = ({ src, width, quality }: ImageLoaderProps) =>
   src + `?device_width=${width}&screen_size=original`;
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  type:
-    | {
-        type: "backdrop";
-        size: BackdropSizes;
-      }
-    | {
-        type: "logo";
-        size: LogoSizes;
-      }
-    | {
-        type: "poster";
-        size: PosterSizes;
-      }
-    | {
-        type: "profile";
-        size: ProfileSizes;
-      }
-    | {
-        type: "still";
-        size: StillSizes;
-      }
-    | {
-        type: "other";
-      };
+  type: ImagesType;
   src: string | null;
   alt: string;
   sizes: string;
@@ -312,7 +290,7 @@ const TMDBImages = ({
   // TODO: a lot of shit here
 
   const customLoader = ({ src, width, quality }: ImageLoaderProps) => {
-    switch (type.type) {
+    switch (type) {
       case "backdrop":
         return backdropImageLoader({ src, width, quality });
 

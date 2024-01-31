@@ -63,7 +63,7 @@ const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
             className="flex w-full items-center justify-center sm:basis-2/5 sm:items-start sm:justify-start md:w-full md:basis-52"
           >
             <TMDBImages
-              type={{ type: "poster", size: "w185" }}
+              type="poster"
               alt={lastSeason.name}
               src={lastSeason.poster_path}
               sizes={`

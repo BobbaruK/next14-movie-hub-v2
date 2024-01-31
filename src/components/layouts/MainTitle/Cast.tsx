@@ -62,7 +62,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
               <div key={person.id} className="flex items-center gap-4">
                 <Link href={`/person/${idTitleHyphen(person.id, person.name)}`}>
                   <TMDBImages
-                    type={{ type: "profile", size: "w45" }}
+                    type="profile"
                     alt={person.name}
                     src={person.profile_path}
                     sizes="80px"
@@ -141,7 +141,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                             )}`}
                           >
                             <TMDBImages
-                              type={{ type: "profile", size: "w45" }}
+                              type="profile"
                               alt={person.name}
                               src={person.profile_path}
                               sizes="80px"

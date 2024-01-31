@@ -24,7 +24,7 @@ const PersonProfile = ({ endpoint, queryKey }: Props) => {
 
   return (
     <TMDBImages
-      type={{ type: "profile", size: "h632" }}
+      type="profile"
       alt={data?.name!}
       src={data?.profile_path!}
       priority

@@ -19,7 +19,7 @@ const CastPersonCard = ({ cast, imageDetails }: Props) => {
           className="w-full"
         >
           <TMDBImages
-            type={{ type: "profile", size: "w185" }}
+            type="profile"
             alt={cast.name}
             src={cast.profile_path}
             sizes={imageDetails.sizes}

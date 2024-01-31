@@ -66,7 +66,7 @@ const MainCard = ({ movie, imageDetails, ...restProps }: Props) => {
               {movie.vote_average.toFixed(1)}
             </Badge>
             <TMDBImages
-              type={{ type: "poster", size: "w342" }}
+              type="poster"
               alt={title}
               src={movie.poster_path!}
               className={imageDetails?.classes ? imageDetails.classes : ""}
@@ -76,7 +76,7 @@ const MainCard = ({ movie, imageDetails, ...restProps }: Props) => {
         )}
         {thePerson && (
           <TMDBImages
-            type={{ type: "profile", size: "h632" }}
+            type="profile"
             alt={title}
             src={movie.profile_path}
             className={imageDetails?.classes ? imageDetails.classes : ""}

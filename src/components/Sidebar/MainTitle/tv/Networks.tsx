@@ -31,10 +31,10 @@ const Networks = ({ queryKey, endpoint }: Props) => {
             {data.networks.map((network) => (
               <li key={network.id} className="flex">
                 <TMDBImages
-                  type={{ type: "logo", size: "w92" }}
+                  type="logo"
                   alt={network.name}
                   src={network.logo_path}
-                  className="w-32 h-16 object-contain [&>img]:object-contain [&>img]:object-left"
+                  className="h-16 w-32 object-contain [&>img]:object-contain [&>img]:object-left"
                   sizes="200px"
                 />
               </li>

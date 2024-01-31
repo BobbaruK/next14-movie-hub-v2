@@ -47,7 +47,7 @@ const ReviewCard = ({ review }: Props) => {
         <CardContent className="flex flex-col justify-between gap-4 p-4">
           <div className="flex flex-col items-center gap-4 sm:flex-row">
             <TMDBImages
-              type={{ type: "profile", size: "w45" }}
+              type="profile"
               alt={review.author}
               src={review.author_details.avatar_path}
               className="h-[45px] w-[45px] rounded-full object-cover"

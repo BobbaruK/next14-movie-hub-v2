@@ -14,7 +14,7 @@ const ImageCard = ({ image, imageDetails }: Props) => {
     <>
       <Card>
         <TMDBImages
-          type={{ type: "backdrop", size: "w300" }}
+          type={imageDetails.type}
           alt={image.file_path}
           src={image.file_path}
           // sizes="238px"
