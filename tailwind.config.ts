@@ -126,9 +126,11 @@ const config = {
         "seasonPosterImageHeight-sm":
           "clamp(13.75rem, 413.75rem + -1000vw, 14.375rem)",
 
-          
         seasonsEpisodeImageHeight:
-        "clamp(9.375rem, -1.9103rem + 56.4263vw, 20.625rem)",
+          "clamp(9.375rem, -1.9103rem + 56.4263vw, 20.625rem)",
+
+        episodeImageHeight:
+          "clamp(9.375rem, -1.9103rem + 56.4263vw, 20.625rem)",
       },
       width: {},
     },

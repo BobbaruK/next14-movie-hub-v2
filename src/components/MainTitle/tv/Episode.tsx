@@ -3,6 +3,7 @@
 import Rating from "@/components/Rating";
 import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
 import TMDBImages from "@/components/TMDBImages";
+import { Badge } from "@/components/ui/badge";
 import {
   RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT,
   RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY,
@@ -55,13 +56,17 @@ const Episode = ({ queryKey, endpoint }: Props) => {
       </p>
       <div className="flex flex-col gap-4 sm:flex-row">
         <div className="flex items-center sm:basis-[300px]  sm:justify-center">
-          <div className="overflow-hidden rounded-md">
-            <TMDBImages
-              type={{ type: "still", size: "w300" }}
-              alt={data?.name!}
-              src={data?.still_path!}
-            />
-          </div>
+          <TMDBImages
+            type={{ type: "still", size: "w300" }}
+            alt={data?.name!}
+            src={data?.still_path!}
+            sizes={`
+              (max-width: 320px) 200px,
+              (max-width: 639px) 590px,
+              240px
+            `}
+            className="h-episodeImageHeight w-full overflow-hidden rounded-md sm:h-36"
+          />
         </div>
         <div className="flex flex-col items-start justify-center gap-4 py-4  sm:basis-[100%]">
           <div>
@@ -91,35 +96,24 @@ const Episode = ({ queryKey, endpoint }: Props) => {
       </div>
       <p>{data?.overview}</p>
 
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col gap-16 md:flex-row md:gap-0">
         <div className="md:basis-2/4">
           <h3 className="flex flex-row flex-wrap items-center gap-4">
             Guest stars{" "}
-            <div
-              className={[
-                "badge",
-                "badge-sm",
-                "badge-primary",
-                "text-primary-content",
-                "gap-2",
-                "p-2",
-              ].join(" ")}
-            >
-              {data?.guest_stars.length}
-            </div>
+            <Badge variant="secondary">{data?.guest_stars.length}</Badge>
           </h3>
           <div className="flex flex-col flex-wrap gap-8">
             {data?.guest_stars.map((star) => (
               <div key={star.id} className="flex flex-row gap-4">
-                <div className="overflow-hidden rounded-md">
-                  <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
-                    <TMDBImages
-                      type={{ type: "profile", size: "w45" }}
-                      alt={star.name}
-                      src={star.profile_path}
-                    />
-                  </Link>
-                </div>
+                <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
+                  <TMDBImages
+                    type={{ type: "profile", size: "w45" }}
+                    alt={star.name}
+                    src={star.profile_path}
+                    sizes="80px"
+                    className="h-32 w-20"
+                  />
+                </Link>
                 <div className="flex flex-col items-start justify-center gap-1">
                   <h4>
                     <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
@@ -134,32 +128,20 @@ const Episode = ({ queryKey, endpoint }: Props) => {
         </div>
         <div className="md:basis-2/4">
           <h3 className="flex flex-row flex-wrap items-center gap-4">
-            Crew{" "}
-            <div
-              className={[
-                "badge",
-                "badge-sm",
-                "badge-primary",
-                "text-primary-content",
-                "gap-2",
-                "p-2",
-              ].join(" ")}
-            >
-              {data?.crew.length}
-            </div>
+            Crew <Badge variant="secondary">{data?.crew.length}</Badge>
           </h3>
           <div className="flex flex-col flex-wrap gap-8">
             {data?.crew.map((star) => (
               <div key={star.id} className="flex flex-row gap-4">
-                <div className="overflow-hidden rounded-md">
-                  <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
-                    <TMDBImages
-                      type={{ type: "profile", size: "w45" }}
-                      alt={star.name}
-                      src={star.profile_path}
-                    />
-                  </Link>
-                </div>
+                <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
+                  <TMDBImages
+                    type={{ type: "profile", size: "w45" }}
+                    alt={star.name}
+                    src={star.profile_path}
+                    sizes="80px"
+                    className="h-32 w-20"
+                  />
+                </Link>
                 <div className="flex flex-col items-start justify-center gap-1">
                   <h4>
                     <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>

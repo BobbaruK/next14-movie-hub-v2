@@ -304,7 +304,7 @@ const TMDBImages = ({
       <div
         {...restProps}
         className={cn(
-          `relative w-full overflow-hidden ${restProps.className || ""}`,
+          `relative w-full overflow-hidden rounded-lg ${restProps.className || ""}`,
         )}
       >
         <Image
