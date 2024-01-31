@@ -23,14 +23,17 @@ const PersonProfile = ({ endpoint, queryKey }: Props) => {
     return <div className="alert alert-warning">Loading person name...</div>;
 
   return (
-    <div className="overflow-hidden rounded-md">
-      <TMDBImages
-        type={{ type: "profile", size: "h632" }}
-        alt={data?.name!}
-        src={data?.profile_path!}
-        priority
-      />
-    </div>
+    <TMDBImages
+      type={{ type: "profile", size: "h632" }}
+      alt={data?.name!}
+      src={data?.profile_path!}
+      priority
+      sizes={`
+          (max-width: 1023px) 256px,
+          330px
+        `}
+      className="lg:h-personImageHeight-lg xl:h-personImageHeight-xl h-96 w-64 lg:w-full"
+    />
   );
 };
 

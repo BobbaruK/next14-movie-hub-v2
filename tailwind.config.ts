@@ -131,6 +131,11 @@ const config = {
 
         episodeImageHeight:
           "clamp(9.375rem, -1.9103rem + 56.4263vw, 20.625rem)",
+
+        "personImageHeight-lg":
+          "clamp(24rem, 7.4353rem + 25.8824vw, 28.125rem)",
+        "personImageHeight-xl":
+          "clamp(28.125rem, 1.4583rem + 33.3333vw, 30.625rem)",
       },
       width: {},
     },
