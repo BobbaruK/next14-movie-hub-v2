@@ -62,6 +62,7 @@ export default async function Persons({
                 (max-width: 1279px) 294px,
                 260px
               `,
+            type: "profile",
           }}
         />
       </div>

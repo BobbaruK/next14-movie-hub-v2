@@ -72,6 +72,7 @@ export default async function TopRatedTVShows({
                     (max-width: 1279px) 294px,
                     260px
                   `,
+                type: "poster",
               }}
             />
           </div>

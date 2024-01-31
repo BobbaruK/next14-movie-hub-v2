@@ -63,7 +63,7 @@ export function MainTitleEmblaCarousel({
           <DynamicCastPersonCard
             cast={cast}
             key={cast.id}
-            imageDetails={imageDetails}
+            imageDetails={{ ...imageDetails, type: "profile" }}
           />
         );
 
@@ -72,7 +72,10 @@ export function MainTitleEmblaCarousel({
           | MovieRecommendation
           | TVShowRecommendation;
         return (
-          <DynamicMainCard movie={recommendation} imageDetails={imageDetails} />
+          <DynamicMainCard
+            movie={recommendation}
+            imageDetails={{ ...imageDetails, type: "poster" }}
+          />
         );
 
       default:

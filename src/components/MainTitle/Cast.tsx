@@ -46,14 +46,6 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
         slideSizes="auto-cols-[50%] grid-flow-col sm:auto-cols-[33.33333333333333%] md:auto-cols-[33.33%] lg:auto-cols-[25%] xl:auto-cols-[20%]"
         imageDetails={{
           classes: mainTitleCastImageHeight,
-          // sizes: `
-          //   (max-width: 320px) 160px,
-          //   (max-width: 639px) 291px,
-          //   (max-width: 767px) 236px,
-          //   (max-width: 1023px) 321px,
-          //   (max-width: 1279px) 221px,
-          //   50px
-          // `,
           sizes: `
             (max-width: 320px) 50px,
             (max-width: 639px) 50px,
@@ -62,6 +54,7 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
             (max-width: 1279px) 50px,
             50px
           `,
+          type: "other", // doesn't matter, it is being handled inside this component
         }}
       />
       <div className="py-4">

@@ -73,6 +73,7 @@ export default async function AiringTodayTVShows({
                     (max-width: 1279px) 294px,
                     260px
                   `,
+                type: "poster",
               }}
             />
           </div>

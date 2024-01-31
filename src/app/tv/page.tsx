@@ -96,6 +96,7 @@ export default async function TVShows({
                     (max-width: 1279px) 210px,
                     185px
                   `,
+                type: "poster",
               }}
             />
           </div>

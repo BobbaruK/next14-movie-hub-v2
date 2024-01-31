@@ -73,6 +73,7 @@ export default async function OnTheAirTVShows({
                     (max-width: 1279px) 294px,
                     260px
                   `,
+                type: "poster",
               }}
             />
           </div>
