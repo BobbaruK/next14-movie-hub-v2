@@ -19,6 +19,7 @@ export default function MovieImagesBackdrops({ params: { id } }: Props) {
           imageDetails={{
             classes: "h-40",
             sizes: "238px",
+            type: "backdrop",
           }}
         />
       }
