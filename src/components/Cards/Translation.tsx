@@ -32,7 +32,7 @@ const TranslationCard = ({ translation }: Props) => {
       className="overflow-hidden"
       id={`${translation.iso_639_1}-${translation.iso_3166_1}`}
     >
-      <div className="text-primary-content bg-primary px-4 py-2 font-bold">
+      <div className="bg-primary px-4 py-2 font-bold text-primary-foreground">
         {translation.english_name}{" "}
         <small>
           ({translation.iso_639_1}-{translation.iso_3166_1})

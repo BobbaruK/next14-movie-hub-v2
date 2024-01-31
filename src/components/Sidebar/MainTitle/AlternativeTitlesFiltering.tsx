@@ -64,7 +64,7 @@ const AlternativeTitlesFiltering = ({ title, queryKey, endpoint }: Props) => {
   return (
     <>
       <Card className="overflow-hidden">
-        <h2 className="text-primary-content m-0 flex items-center justify-between bg-primary px-2 py-4">
+        <h2 className="m-0 flex items-center justify-between bg-primary px-2 py-4 text-primary-foreground">
           {title}
           <Badge variant="secondary">{titles.length}</Badge>
         </h2>
@@ -81,7 +81,10 @@ const AlternativeTitlesFiltering = ({ title, queryKey, endpoint }: Props) => {
                 return 0;
               })
               .map((country, index) => (
-                <li key={index} className="p-2 hover:bg-slate-600">
+                <li
+                  key={index}
+                  className="p-2 hover:bg-secondary hover:text-secondary-foreground"
+                >
                   <Link
                     href={`#${country}`}
                     className={[
@@ -95,21 +98,13 @@ const AlternativeTitlesFiltering = ({ title, queryKey, endpoint }: Props) => {
                       countries?.find((cntry) => cntry.iso_3166_1 === country)
                         ?.english_name
                     }
-                    <div
-                      className={[
-                        "badge",
-                        "badge-secondary",
-                        "text-secondary-content",
-                        "gap-2",
-                        "p-3",
-                      ].join(" ")}
-                    >
-                      {/* {renderedImages.filter((imgs) => imgs.iso_639_1 === lang).length} */}
+
+                    <Badge variant="default">
                       {
                         titles.filter((title) => title.iso_3166_1 === country)
                           .length
                       }
-                    </div>
+                    </Badge>
                   </Link>
                 </li>
               ))}

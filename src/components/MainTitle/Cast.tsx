@@ -52,7 +52,7 @@ const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
             (max-width: 767px) 236px,
             (max-width: 1023px) 321px,
             (max-width: 1279px) 50px,
-            50px
+            250px
           `,
           type: "other", // doesn't matter, it is being handled inside this component
         }}

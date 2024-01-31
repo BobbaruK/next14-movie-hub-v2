@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import useGetVideos from "@/hooks/useGetVideos";
 import MyAPIClient from "@/services/myApiClient";
@@ -81,11 +82,17 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
       href: "featurettes",
       count: featurettes.length,
     },
+    {
+      label: "Opening Credits",
+      key: "opening-credits",
+      href: "opening-credits",
+      count: openingCredits.length,
+    },
   ];
 
   return (
     <Card className="overflow-hidden">
-      <h2 className="text-primary-content m-0 flex items-center justify-start gap-4 bg-primary px-2 py-4">
+      <h2 className="m-0 flex items-center justify-start gap-4 bg-primary px-2 py-4 text-primary-foreground">
         Videos
         {isPending && <small> Loading...</small>}
       </h2>
@@ -101,10 +108,13 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
                 router.push(path);
               });
 
+            if (index === videoTypes.length - 1 && titleType === "movie")
+              return null;
+
             return (
               <li
                 key={index}
-                className={` cursor-pointer  ${isActive ? "text-accent-content bg-accent" : "hover:bg-slate-600"}`}
+                className={` cursor-pointer  ${isActive ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
                 role="link"
                 tabIndex={0}
                 aria-label={type.label}
@@ -120,44 +130,12 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
                   className="flex items-center justify-between p-2"
                 >
                   {type.label}
-                  <div
-                    className={[
-                      "badge",
-                      `${isActive ? "badge-neutral text-neutral-content" : "badge-secondary text-secondary-content"}`,
-                      "gap-2",
-                      "p-3",
-                    ].join(" ")}
-                  >
-                    {type.count}
-                  </div>
+
+                  <Badge variant="default">{type.count}</Badge>
                 </div>
               </li>
             );
           })}
-          {titleType === "tv" && (
-            <li
-              className="flex cursor-pointer items-center justify-between p-2 hover:bg-slate-600"
-              onClick={() =>
-                startTransition(() =>
-                  router.push(`/${titleType}/${id}/videos/opening-credits`),
-                )
-              }
-              role="link"
-            >
-              Opening Credits
-              <div
-                className={[
-                  "badge",
-                  "badge-secondary",
-                  "text-secondary-content",
-                  "gap-2",
-                  "p-3",
-                ].join(" ")}
-              >
-                {openingCredits.length}
-              </div>
-            </li>
-          )}
         </ul>
       </CardContent>
     </Card>

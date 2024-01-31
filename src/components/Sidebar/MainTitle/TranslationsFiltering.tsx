@@ -35,7 +35,7 @@ const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
   return (
     <>
       <Card className="overflow-hidden">
-        <h2 className="text-primary-content m-0 flex items-center justify-between bg-primary px-2 py-4">
+        <h2 className="m-0 flex items-center justify-between bg-primary px-2 py-4 text-primary-foreground">
           {title}
           <Badge variant="secondary">{data?.translations.length}</Badge>
         </h2>
@@ -54,7 +54,7 @@ const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
               .map((translation, index) => (
                 <li
                   key={translation.iso_3166_1 + index}
-                  className="p-2 hover:bg-slate-600"
+                  className="p-2 hover:bg-secondary hover:text-secondary-foreground"
                 >
                   <Link
                     href={`#${translation.iso_639_1}-${translation.iso_3166_1}`}
@@ -66,17 +66,9 @@ const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
                     ].join(" ")}
                   >
                     {translation.english_name}
-                    <div
-                      className={[
-                        "badge",
-                        "badge-secondary",
-                        "text-secondary-content",
-                        "gap-2",
-                        "p-3",
-                      ].join(" ")}
-                    >
+                    <Badge variant="default">
                       {translation.iso_639_1}-{translation.iso_3166_1}
-                    </div>
+                    </Badge>
                   </Link>
                 </li>
               ))}

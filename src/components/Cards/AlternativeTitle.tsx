@@ -21,7 +21,7 @@ const AlternativeTitleCard = ({ titles, countries }: Props) => {
   );
   return (
     <Card className="overflow-hidden" id={titles[0].iso_3166_1}>
-      <div className="text-primary-content bg-primary px-4 py-2 font-bold">
+      <div className="bg-primary px-4 py-2 font-bold text-primary-foreground">
         {countryName?.english_name}
       </div>
       <CardContent className="p-0 md:hidden">
