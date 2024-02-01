@@ -145,6 +145,9 @@ const config = {
         "videoImageHeight-xl": "clamp(13.75rem, -6.25rem + 25vw, 15.625rem)",
       },
       width: {},
+      gridTemplateColumns: {
+        "person-credit": "65px 30px 1fr",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

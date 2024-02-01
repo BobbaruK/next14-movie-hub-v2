@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import usePersonTitlesCrew from "@/hooks/usePersonTitlesCrew";
 import useYearsByDepartment from "@/hooks/useYearsByDepartment";
 import {
@@ -26,7 +27,7 @@ const Crew = ({ crewArr }: Props) => {
       {actualDepartments.map((department, index) => (
         <div key={`department-${index}`}>
           <h2>{department[0][0].department}</h2>
-          <div className="flex flex-col gap-6 rounded-md border border-primary pt-4 shadow-md shadow-primary">
+          <Card className="flex flex-col gap-6 overflow-hidden pt-4">
             {department
               .sort((a, b) => b[0].year - a[0].year)
               .map((yearGroup, ind) => (
@@ -34,7 +35,7 @@ const Crew = ({ crewArr }: Props) => {
                   {yearGroup.map((crew, indx) => (
                     <div
                       key={crew.id + "" + indx}
-                      className="grid grid-cols-person-credit gap-4 px-3"
+                      className="grid-cols-person-credit grid gap-4 px-3"
                     >
                       <div className="text-center">
                         {crew.year ? crew.year : "-"}
@@ -55,10 +56,10 @@ const Crew = ({ crewArr }: Props) => {
                       </div>
                     </div>
                   ))}
-                  <hr className="border-primary" />
+                  <hr />
                 </div>
               ))}
-          </div>
+          </Card>
         </div>
       ))}
     </>

@@ -1,5 +1,9 @@
+import { Card } from "@/components/ui/card";
 import usePersonTitlesCast from "@/hooks/usePersonTitlesCast";
-import { CombinedCreditsMovieCast, CombinedCreditsTVCast } from "@/types/people/CombinedCredits";
+import {
+  CombinedCreditsMovieCast,
+  CombinedCreditsTVCast,
+} from "@/types/people/CombinedCredits";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import Link from "next/link";
 import React from "react";
@@ -12,7 +16,7 @@ const Acting = ({ castArr }: Props) => {
   const creditsCombined = usePersonTitlesCast(castArr);
 
   return (
-    <div className="flex flex-col gap-6 rounded-md border border-primary pt-4 shadow-md shadow-primary">
+    <Card className="flex flex-col gap-6 overflow-hidden pt-4">
       {creditsCombined
         .sort((a, b) => {
           return b[0][0].year - a[0][0].year;
@@ -23,7 +27,7 @@ const Acting = ({ castArr }: Props) => {
               {groups.map((groupCredit, ind) => (
                 <div
                   key={`groupCredit-${ind}`}
-                  className="grid grid-cols-person-credit gap-4"
+                  className="grid-cols-person-credit grid gap-4"
                 >
                   <div className="text-center">
                     {groupCredit[0].year ? groupCredit[0].year : "-"}
@@ -63,10 +67,10 @@ const Acting = ({ castArr }: Props) => {
                 </div>
               ))}
             </div>
-            <hr className="border-primary" />
+            <hr className="" />
           </React.Fragment>
         ))}
-    </div>
+    </Card>
   );
 };
 
