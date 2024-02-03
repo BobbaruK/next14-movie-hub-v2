@@ -35,12 +35,12 @@ const Crew = ({ crewArr }: Props) => {
                   {yearGroup.map((crew, indx) => (
                     <div
                       key={crew.id + "" + indx}
-                      className="grid-cols-person-credit grid gap-4 px-3"
+                      className="sm:grid sm:grid-cols-person-credit sm:gap-4 px-3 text-center sm:text-start"
                     >
                       <div className="text-center">
                         {crew.year ? crew.year : "-"}
                       </div>
-                      &bull;
+                      <div className="hidden sm:block">&bull;</div>
                       <div className="flex flex-col">
                         <div className="font-bold">
                           <Link

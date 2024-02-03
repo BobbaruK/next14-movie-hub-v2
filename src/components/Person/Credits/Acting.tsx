@@ -27,12 +27,12 @@ const Acting = ({ castArr }: Props) => {
               {groups.map((groupCredit, ind) => (
                 <div
                   key={`groupCredit-${ind}`}
-                  className="grid-cols-person-credit grid gap-4"
+                  className="text-center sm:grid sm:grid-cols-person-credit sm:gap-4 sm:text-start"
                 >
                   <div className="text-center">
                     {groupCredit[0].year ? groupCredit[0].year : "-"}
                   </div>
-                  &bull;
+                  <div className="hidden sm:block">&bull;</div>
                   <div className="flex flex-col">
                     <div className="font-bold">
                       {/* <Link
