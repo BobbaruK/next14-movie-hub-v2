@@ -22,7 +22,7 @@ const AlternativeTitleCard = ({ titles, countries }: Props) => {
   return (
     <Card className="overflow-hidden" id={titles[0].iso_3166_1}>
       <div className="bg-primary px-4 py-2 font-bold text-primary-foreground">
-        {countryName?.english_name}
+        {countryName?.english_name || titles[0].iso_3166_1}
       </div>
       <CardContent className="p-0 md:hidden">
         {titles.map((title, ind) => (

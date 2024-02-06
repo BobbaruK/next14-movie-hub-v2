@@ -94,10 +94,8 @@ const AlternativeTitlesFiltering = ({ title, queryKey, endpoint }: Props) => {
                       "w-full",
                     ].join(" ")}
                   >
-                    {
-                      countries?.find((cntry) => cntry.iso_3166_1 === country)
-                        ?.english_name
-                    }
+                    {countries?.find((cntry) => cntry.iso_3166_1 === country)
+                      ?.english_name || country}
 
                     <Badge variant="default">
                       {
