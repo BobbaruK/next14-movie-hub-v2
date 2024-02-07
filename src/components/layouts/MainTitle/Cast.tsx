@@ -66,7 +66,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                     alt={person.name}
                     src={person.profile_path}
                     sizes="80px"
-                    className="h-32 w-20"
+                    className="h-32 w-20 rounded-lg"
                   />
                 </Link>
                 <div>
@@ -145,7 +145,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
                               alt={person.name}
                               src={person.profile_path}
                               sizes="80px"
-                              className="h-32 w-20"
+                              className="h-32 w-20 rounded-lg"
                             />
                           </Link>
                           <div>

@@ -111,7 +111,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
                     alt={star.name}
                     src={star.profile_path}
                     sizes="80px"
-                    className="h-32 w-20"
+                    className="h-32 w-20 rounded-lg"
                   />
                 </Link>
                 <div className="flex flex-col items-start justify-center gap-1">
@@ -139,7 +139,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
                     alt={star.name}
                     src={star.profile_path}
                     sizes="80px"
-                    className="h-32 w-20"
+                    className="h-32 w-20 rounded-lg"
                   />
                 </Link>
                 <div className="flex flex-col items-start justify-center gap-1">

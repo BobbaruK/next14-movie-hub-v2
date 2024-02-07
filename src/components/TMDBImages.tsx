@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ImagesType } from "@/types/ImagesResponse";
 import {
   BackdropSizes,
   LogoSizes,
@@ -8,7 +9,6 @@ import {
 } from "@/types/imageSizes";
 import Image, { ImageLoaderProps } from "next/image";
 import noImage from "../../public/noimage.svg";
-import { ImagesType } from "@/types/ImagesResponse";
 
 const secureBaseUrl = "https://image.tmdb.org/t/p/";
 
@@ -285,8 +285,6 @@ const TMDBImages = ({
   priority,
   ...restProps
 }: Props) => {
-  // TODO: a lot of shit here
-
   const customLoader = ({ src, width, quality }: ImageLoaderProps) => {
     switch (type) {
       case "backdrop":
@@ -312,6 +310,12 @@ const TMDBImages = ({
     }
   };
 
+  // TODO: Better data blur via Plaiceholder
+  /**
+   * https://plaiceholder.co/docs
+   * https://www.youtube.com/watch?v=6zDb1kh52nM
+   */
+
   // Pixel GIF code adapted from https://stackoverflow.com/a/33919020/266535
   const keyStr =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -332,7 +336,7 @@ const TMDBImages = ({
       <div
         {...restProps}
         className={cn(
-          `relative w-full overflow-hidden rounded-lg ${restProps.className || ""}`,
+          `relative w-full overflow-hidden ${restProps.className || ""}`,
         )}
       >
         <Image

@@ -29,10 +29,10 @@ const PersonProfile = ({ endpoint, queryKey }: Props) => {
       src={data?.profile_path!}
       priority
       sizes={`
-          (max-width: 1023px) 256px,
-          330px
-        `}
-      className="lg:h-personImageHeight-lg xl:h-personImageHeight-xl h-96 w-64 lg:w-full"
+        (max-width: 1023px) 256px,
+        330px
+      `}
+      className="h-96 w-64 rounded-lg lg:h-personImageHeight-lg lg:w-full xl:h-personImageHeight-xl"
     />
   );
 };
