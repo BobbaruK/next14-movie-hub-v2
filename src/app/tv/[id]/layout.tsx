@@ -100,7 +100,7 @@ export default async function MainTVTitleNavigationLayout({
         },
         {
           label: "Logos",
-          href: `/tv/${id}/images/logos`,
+          href: `/tv/${id}/images/logos?lang=en`, // TODO: maybe i can find a better way without searchParams
         },
         {
           label: "Posters",

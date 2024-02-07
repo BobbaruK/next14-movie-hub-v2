@@ -1,3 +1,4 @@
+import ImagesFiltering from "@/components/Sidebar/MainTitle/ImagesFiltering";
 import ImagesGrid from "@/components/layouts/ImagesGrid";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import { RQ_TVSHOWS_IMAGES_ENDPOINT, RQ_TVSHOWS_IMAGES_KEY } from "@/constants";
@@ -14,7 +15,6 @@ export default function TVShowsImagesPosters({ params: { id } }: Props) {
       content={
         <ImagesGrid
           queryKey={RQ_TVSHOWS_IMAGES_KEY(id)}
-          endpoint={RQ_TVSHOWS_IMAGES_ENDPOINT(id)}
           imagesType="posters"
           imageDetails={{
             classes:
@@ -28,9 +28,17 @@ export default function TVShowsImagesPosters({ params: { id } }: Props) {
             `,
             type: "poster",
           }}
+          titleType="tv"
         />
       }
-      sidebar={<p>Main Movie Filtering Sidebar</p>}
+      sidebar={
+        <ImagesFiltering
+          title="Posters"
+          queryKey={RQ_TVSHOWS_IMAGES_KEY(id)}
+          imagesType="posters"
+          titleType="tv"
+        />
+      }
     />
   );
 }

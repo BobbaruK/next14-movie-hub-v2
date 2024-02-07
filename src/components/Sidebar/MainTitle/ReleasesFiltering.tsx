@@ -37,7 +37,6 @@ const ReleasesFiltering = ({ title, queryKey }: Props) => {
           <Badge variant="secondary">{data?.results.length}</Badge>
         </h2>
         <CardContent className="p-0">
-          {" "}
           <ul className="flex flex-col gap-1 py-2">
             {data?.results
               .sort((a, b) => {

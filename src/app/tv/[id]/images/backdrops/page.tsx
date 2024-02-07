@@ -1,6 +1,7 @@
+import ImagesFiltering from "@/components/Sidebar/MainTitle/ImagesFiltering";
 import ImagesGrid from "@/components/layouts/ImagesGrid";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
-import { RQ_TVSHOWS_IMAGES_ENDPOINT, RQ_TVSHOWS_IMAGES_KEY } from "@/constants";
+import { RQ_TVSHOWS_IMAGES_KEY } from "@/constants";
 
 interface Props {
   params: {
@@ -14,7 +15,6 @@ export default function TVShowsImagesBackdrops({ params: { id } }: Props) {
       content={
         <ImagesGrid
           queryKey={RQ_TVSHOWS_IMAGES_KEY(id)}
-          endpoint={RQ_TVSHOWS_IMAGES_ENDPOINT(id)}
           imagesType="backdrops"
           imageDetails={{
             classes:
@@ -22,9 +22,17 @@ export default function TVShowsImagesBackdrops({ params: { id } }: Props) {
             sizes: `200px`,
             type: "backdrop",
           }}
+          titleType="tv"
         />
       }
-      sidebar={<p>Main Movie Filtering Sidebar</p>}
+      sidebar={
+        <ImagesFiltering
+          title="Backdrops"
+          queryKey={RQ_TVSHOWS_IMAGES_KEY(id)}
+          imagesType="backdrops"
+          titleType="tv"
+        />
+      }
     />
   );
 }

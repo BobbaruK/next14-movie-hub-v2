@@ -1,3 +1,4 @@
+import ImagesFiltering from "@/components/Sidebar/MainTitle/ImagesFiltering";
 import ImagesGrid from "@/components/layouts/ImagesGrid";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import { RQ_MOVIE_IMAGES_ENDPOINT, RQ_MOVIE_IMAGES_KEY } from "@/constants";
@@ -14,7 +15,6 @@ export default function MovieImagesBackdrops({ params: { id } }: Props) {
       content={
         <ImagesGrid
           queryKey={RQ_MOVIE_IMAGES_KEY(id)}
-          endpoint={RQ_MOVIE_IMAGES_ENDPOINT(id)}
           imagesType="backdrops"
           imageDetails={{
             classes:
@@ -22,9 +22,17 @@ export default function MovieImagesBackdrops({ params: { id } }: Props) {
             sizes: `200px`,
             type: "backdrop",
           }}
+          titleType="movie"
         />
       }
-      sidebar={<p>Main Movie Filtering Sidebar</p>}
+      sidebar={
+        <ImagesFiltering
+          title="Backdrops"
+          queryKey={RQ_MOVIE_IMAGES_KEY(id)}
+          imagesType="backdrops"
+          titleType="movie"
+        />
+      }
     />
   );
 }
