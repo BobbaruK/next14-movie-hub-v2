@@ -182,6 +182,27 @@ const config = {
         "videoImageHeight-lg":
           "clamp(10.625rem, -1.924rem + 19.6078vw, 13.75rem)",
         "videoImageHeight-xl": "clamp(13.75rem, -6.25rem + 25vw, 15.625rem)",
+
+        backdropsImageHeight: "clamp(4.375rem, -1.2676rem + 28.2132vw, 10rem)",
+        "backdropsImageHeight-sm":
+          "clamp(6.25rem, -3.1988rem + 23.622vw, 8.125rem)",
+        "backdropsImageHeight-md":
+          "clamp(8.125rem, 0.5956rem + 15.6863vw, 10.625rem)",
+        "backdropsImageHeight-lg":
+          "clamp(5.625rem, -1.9044rem + 11.7647vw, 7.5rem)",
+        "backdropsImageHeight-xl":
+          "clamp(7.5rem, 0.8333rem + 8.3333vw, 8.125rem)",
+
+        postersImageHeight:
+          "clamp(11.875rem, -2.5451rem + 72.1003vw, 26.25rem)",
+        "postersImageHeight-sm":
+          "clamp(16.875rem, -5.1722rem + 55.1181vw, 21.25rem)",
+        "postersImageHeight-md":
+          "clamp(21.25rem, -1.3382rem + 47.0588vw, 28.75rem)",
+        "postersImageHeight-lg":
+          "clamp(15rem, -2.5686rem + 27.451vw, 19.375rem)",
+        "postersImageHeight-xl":
+          "clamp(18.75rem, -7.9167rem + 33.3333vw, 21.25rem)",
       },
       width: {},
       gridTemplateColumns: {

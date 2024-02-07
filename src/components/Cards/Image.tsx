@@ -3,6 +3,7 @@ import TMDBImages from "../TMDBImages";
 import { Card, CardDescription, CardFooter, CardHeader } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { ImageDetails } from "@/types/ImageDetails";
+import Link from "next/link";
 
 interface Props {
   image: ImageShape;
@@ -13,14 +14,19 @@ const ImageCard = ({ image, imageDetails }: Props) => {
   return (
     <>
       <Card className="overflow-hidden">
-        <TMDBImages
-          type={imageDetails.type}
-          alt={image.file_path}
-          src={image.file_path}
-          // sizes="238px"
-          sizes={imageDetails.sizes}
-          className={cn(`w-full  ${imageDetails.classes || ""}`)}
-        />
+        <Link
+          href={"https://image.tmdb.org/t/p/original" + image.file_path}
+          target="_blank"
+        >
+          <TMDBImages
+            type={imageDetails.type}
+            alt={image.file_path}
+            src={image.file_path}
+            // sizes="238px"
+            sizes={imageDetails.sizes}
+            className={cn(`w-full  ${imageDetails.classes || ""}`)}
+          />
+        </Link>
         <CardHeader>
           <CardDescription>
             <p>Width: {image.width}</p>

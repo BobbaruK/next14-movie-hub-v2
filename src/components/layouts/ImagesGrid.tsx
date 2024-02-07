@@ -6,6 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import { AlertCircle } from "lucide-react";
 import ImageCard from "../Cards/Image";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import CustomAlert from "../CustomAlert";
+import Link from "next/link";
 
 type GridImagesType = "backdrops" | "logos" | "posters";
 
@@ -31,11 +33,11 @@ const ImagesGrid = ({
 
   if (isLoading)
     return (
-      <Alert variant="default">
-        <AlertCircle className="h-4 w-4" />
-        <AlertTitle>Info</AlertTitle>
-        <AlertDescription>Loading images...</AlertDescription>
-      </Alert>
+      <CustomAlert
+        variant="default"
+        title={"Images Grid"}
+        description="Loading... Please be patient"
+      />
     );
 
   const images = () => {

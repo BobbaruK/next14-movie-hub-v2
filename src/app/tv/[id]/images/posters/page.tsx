@@ -1,5 +1,6 @@
+import ImagesGrid from "@/components/layouts/ImagesGrid";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
-import Link from "next/link";
+import { RQ_TVSHOWS_IMAGES_ENDPOINT, RQ_TVSHOWS_IMAGES_KEY } from "@/constants";
 
 interface Props {
   params: {
@@ -11,20 +12,23 @@ export default function TVShowsImagesPosters({ params: { id } }: Props) {
   return (
     <MainTitleSidebarLeft
       content={
-        <div>
-          <h1>TVShows Images Posters</h1>
-          <Link href={`/tv/${id}/images/posters/12`} scroll={false}>
-            posters 12
-          </Link>
-          <br />
-          <Link href={`/tv/${id}/images/posters/13`} scroll={false}>
-            posters 13
-          </Link>
-          <br />
-          <Link href={`/tv/${id}/images/posters/123`} scroll={false}>
-            posters 123
-          </Link>
-        </div>
+        <ImagesGrid
+          queryKey={RQ_TVSHOWS_IMAGES_KEY(id)}
+          endpoint={RQ_TVSHOWS_IMAGES_ENDPOINT(id)}
+          imagesType="posters"
+          imageDetails={{
+            classes:
+              "h-postersImageHeight sm:h-postersImageHeight-sm md:h-postersImageHeight-md lg:h-postersImageHeight-lg xl:h-postersImageHeight-xl",
+            sizes: `
+              (max-width: 320px) 150px,
+              (max-width: 767px) 285px,
+              (max-width: 1023px) 312px,
+              (max-width: 1279px) 210px,
+              343px
+            `,
+            type: "poster",
+          }}
+        />
       }
       sidebar={<p>Main Movie Filtering Sidebar</p>}
     />

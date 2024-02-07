@@ -17,8 +17,9 @@ export default function TVShowsImagesBackdrops({ params: { id } }: Props) {
           endpoint={RQ_TVSHOWS_IMAGES_ENDPOINT(id)}
           imagesType="backdrops"
           imageDetails={{
-            classes: "h-40",
-            sizes: "238px",
+            classes:
+              "h-backdropsImageHeight sm:h-backdropsImageHeight-sm md:h-backdropsImageHeight-md lg:h-backdropsImageHeight-lg xl:h-backdropsImageHeight-xl",
+            sizes: `200px`,
             type: "backdrop",
           }}
         />
