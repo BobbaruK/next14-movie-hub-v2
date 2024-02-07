@@ -43,7 +43,6 @@ const ReleaseDateCard = ({ releaseDate }: Props) => {
   return (
     <>
       <Card id={`${releaseDate.iso_3166_1}`} className="overflow-hidden">
-        {/* TODO: solve this issue with classes from daisy ui, text-primary-foreground, everywere */}
         <div className="text-primary-foreground bg-primary px-4 py-2 font-bold">
           <IsoLang iso={releaseDate.iso_3166_1} />
         </div>
