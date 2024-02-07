@@ -1,9 +1,9 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import Rating from "@/components/Rating";
 import TMDBImages from "@/components/TMDBImages";
 import { cn } from "@/lib/utils";
-import MyAPIClient from "@/services/myApiClient";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
@@ -12,25 +12,25 @@ import { useParams } from "next/navigation";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const Seasons = ({ queryKey, endpoint }: Props) => {
+const Seasons = ({ queryKey }: Props) => {
   const { id } = useParams<{ id: string }>();
 
-  const apiClient = new MyAPIClient<TVShowResponse>(endpoint);
   const { data, error, isLoading } = useQuery<TVShowResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
     return (
-      <div className="appContaier">
-        <div className="alert alert-warning">Loading tv show seasons...</div>
-      </div>
+      <CustomAlert
+        variant="default"
+        title={"Seasons"}
+        description="Loading... Please be patient"
+        className="appContaier"
+      />
     );
 
   const seasons = data?.seasons;

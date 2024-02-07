@@ -1,6 +1,5 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import { PeopleResponse } from "@/types/people/PeopleResponse";
@@ -10,27 +9,23 @@ import Link from "next/link";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import CustomAlert from "./CustomAlert";
 import TMDBImages from "./TMDBImages";
+import { notFound } from "next/navigation";
 
-interface BackTo {
+interface IBackTo {
   label: string;
   link: string;
 }
 
 interface Props {
   queryKey: string;
-  endpoint: string;
-  backTo: BackTo;
+  backTo: IBackTo;
 }
 
-const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
-  const apiClient = new MyAPIClient<
-    MovieResponse | TVShowResponse | PeopleResponse
-  >(endpoint);
+const BackTo = ({ queryKey, backTo }: Props) => {
   const { data, error, isLoading } = useQuery<
     MovieResponse | TVShowResponse | PeopleResponse
   >({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
@@ -45,7 +40,7 @@ const BackTo = ({ queryKey, endpoint, backTo }: Props) => {
       />
     );
 
-  if (!data) return;
+  if (!data) notFound();
 
   const movie = "title" in data && data;
   const tv = "seasons" in data && data;

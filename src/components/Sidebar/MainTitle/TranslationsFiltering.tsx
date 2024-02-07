@@ -1,15 +1,8 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import MyAPIClient from "@/services/myApiClient";
+import { Card, CardContent } from "@/components/ui/card";
 import { TranslationsBase } from "@/types/movies/TranslationsResponse";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -17,20 +10,23 @@ import Link from "next/link";
 interface Props {
   title: string;
   queryKey: string;
-  endpoint: string;
 }
 
-const TranslationsFiltering = ({ title, queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<TranslationsBase>(endpoint);
+const TranslationsFiltering = ({ title, queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<TranslationsBase>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading sidebar...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Translations sidebar"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <>

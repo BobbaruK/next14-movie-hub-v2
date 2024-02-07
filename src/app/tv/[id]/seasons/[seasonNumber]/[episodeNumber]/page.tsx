@@ -1,11 +1,6 @@
 import BackTo from "@/components/BackTo";
 import Episode from "@/components/MainTitle/tv/Episode";
-import {
-  RQ_TVSHOW_KEY,
-  RQ_TVSHOW_ENDPOINT,
-  RQ_TVSHOW_EPISODE_ENDPOINT,
-  RQ_TVSHOW_EPISODE_KEY,
-} from "@/constants";
+import { RQ_TVSHOW_EPISODE_KEY, RQ_TVSHOW_KEY } from "@/constants";
 
 interface Props {
   params: {
@@ -22,7 +17,6 @@ export default function TVShowEpisode({
     <>
       <BackTo
         queryKey={RQ_TVSHOW_KEY(id)}
-        endpoint={RQ_TVSHOW_ENDPOINT(id)}
         backTo={{
           label: `Season ${seasonNumber}`,
           link: `/tv/${id}/seasons/${seasonNumber}`,
@@ -30,7 +24,6 @@ export default function TVShowEpisode({
       />
       <Episode
         queryKey={RQ_TVSHOW_EPISODE_KEY(id, seasonNumber, episodeNumber)}
-        endpoint={RQ_TVSHOW_EPISODE_ENDPOINT(id, seasonNumber, episodeNumber)}
       />
     </>
   );

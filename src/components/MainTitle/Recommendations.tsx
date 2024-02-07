@@ -1,28 +1,22 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
+import { recommendationImageHeight } from "@/constants";
 import { RecommendationsResponse } from "@/types/movies/Recommendations";
 import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
 import { useQuery } from "@tanstack/react-query";
-import { MainTitleEmblaCarousel } from "../MainTitleEmblaCarousel";
 import CustomAlert from "../CustomAlert";
-import { recommendationImageHeight } from "@/constants";
+import { MainTitleEmblaCarousel } from "../MainTitleEmblaCarousel";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const MainTitleRecommendations = ({ queryKey, endpoint }: Props) => {
-  const apiClient = new MyAPIClient<
-    RecommendationsResponse<MovieRecommendation | TVShowRecommendation>
-  >(endpoint);
+const MainTitleRecommendations = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<
     RecommendationsResponse<MovieRecommendation | TVShowRecommendation>
   >({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
@@ -32,7 +26,7 @@ const MainTitleRecommendations = ({ queryKey, endpoint }: Props) => {
       <>
         <CustomAlert
           variant="default"
-          title={"Movie recommendations"}
+          title={"Recommendations"}
           description="Loading... Please be patient"
         />
       </>

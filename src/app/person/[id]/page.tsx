@@ -9,7 +9,6 @@ import PlaceOfBirth from "@/components/Person/PersonalInfo/PlaceOfBirth";
 import PersonProfile from "@/components/Person/Profile";
 import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
 import {
-  RQ_COMBINED_CREDITS_ENDPOINT,
   RQ_COMBINED_CREDITS_KEY,
   RQ_PERSON_ENDPOINT,
   RQ_PERSON_EXTERNAL_IDS_ENDPOINT,
@@ -43,55 +42,26 @@ export default function Person({ params: { id } }: Props) {
     <div className="appContaier flex flex-col gap-8 py-20 lg:flex-row">
       <div className="flex flex-col gap-10 lg:basis-1/4">
         <div className="flex flex-col gap-2">
-          <PersonProfile
-            queryKey={RQ_PERSON_KEY(id)}
-            endpoint={RQ_PERSON_ENDPOINT(id)}
-          />
+          <PersonProfile queryKey={RQ_PERSON_KEY(id)} />
           <SocialMediaLinks
             queryKeyMainTitle={RQ_PERSON_KEY(id)}
-            endpointMainTitle={RQ_PERSON_ENDPOINT(id)}
             queryKeyExternalIds={RQ_PERSON_EXTERNAL_IDS_KEY(id)}
-            endpointExternalIds={RQ_PERSON_EXTERNAL_IDS_ENDPOINT(id)}
           />
         </div>
 
         <div className="flex flex-col gap-6">
           <h2 className="m-0">Personal info</h2>
-          <KnownFor
-            queryKey={RQ_PERSON_KEY(id)}
-            endpoint={RQ_PERSON_ENDPOINT(id)}
-          />
-          <Gender
-            queryKey={RQ_PERSON_KEY(id)}
-            endpoint={RQ_PERSON_ENDPOINT(id)}
-          />
-          <Birthday
-            queryKey={RQ_PERSON_KEY(id)}
-            endpoint={RQ_PERSON_ENDPOINT(id)}
-          />
-          <PlaceOfBirth
-            queryKey={RQ_PERSON_KEY(id)}
-            endpoint={RQ_PERSON_ENDPOINT(id)}
-          />
-          <AlsoKnownAs
-            queryKey={RQ_PERSON_KEY(id)}
-            endpoint={RQ_PERSON_ENDPOINT(id)}
-          />
+          <KnownFor queryKey={RQ_PERSON_KEY(id)} />
+          <Gender queryKey={RQ_PERSON_KEY(id)} />
+          <Birthday queryKey={RQ_PERSON_KEY(id)} />
+          <PlaceOfBirth queryKey={RQ_PERSON_KEY(id)} />
+          <AlsoKnownAs queryKey={RQ_PERSON_KEY(id)} />
         </div>
       </div>
       <div className="lg:basis-3/4">
-        <PersonName
-          queryKey={RQ_PERSON_KEY(id)}
-          endpoint={RQ_PERSON_ENDPOINT(id)}
-        />
-        <Biography
-          queryKey={RQ_PERSON_KEY(id)}
-          endpoint={RQ_PERSON_ENDPOINT(id)}
-        />
-        <Credits
-          creditsQueryKey={RQ_COMBINED_CREDITS_KEY(id)}
-          creditsEndpoint={RQ_COMBINED_CREDITS_ENDPOINT(id)}
-        />
+        <PersonName queryKey={RQ_PERSON_KEY(id)} />
+        <Biography queryKey={RQ_PERSON_KEY(id)} />
+        <Credits queryKey={RQ_COMBINED_CREDITS_KEY(id)} />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const CustomAlert = ({ variant, title, description, ...restProps }: Props) => {
   return (
-    <div {...restProps} className={cn("py-4", restProps.className)}>
+    <div {...restProps} className={cn(restProps.className)}>
       <Alert variant={variant}>
         <AlertCircle className="h-4 w-4" />
         <AlertTitle>{title}</AlertTitle>

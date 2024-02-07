@@ -1,7 +1,6 @@
 "use client";
 
 import { mainTitleCastImageHeight } from "@/constants";
-import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -11,17 +10,14 @@ import { MainTitleEmblaCarousel } from "../MainTitleEmblaCarousel";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
   type: "movie" | "tv";
 }
 
-const MainTitleCast = ({ queryKey, endpoint, type }: Props) => {
+const MainTitleCast = ({ queryKey, type }: Props) => {
   const { id } = useParams<{ id: string }>();
 
-  const apiClient = new MyAPIClient<CastAndCrew>(endpoint);
   const { data, error, isLoading } = useQuery<CastAndCrew>({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

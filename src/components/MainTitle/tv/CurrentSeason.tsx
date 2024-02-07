@@ -5,13 +5,12 @@ import Rating from "@/components/Rating";
 import TMDBImages from "@/components/TMDBImages";
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
 } from "@/components/ui/card";
-import MyAPIClient from "@/services/myApiClient";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
@@ -22,18 +21,15 @@ import { FaCalendarAlt } from "react-icons/fa";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const MainTitleCurrentSeason = ({ queryKey, endpoint }: Props) => {
+const MainTitleCurrentSeason = ({ queryKey }: Props) => {
   const { id } = useParams<{
     id: string;
   }>();
 
-  const apiClientMainTitle = new MyAPIClient<TVShowResponse>(endpoint);
   const { data, error, isLoading } = useQuery<TVShowResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

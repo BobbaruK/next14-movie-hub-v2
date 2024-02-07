@@ -1,25 +1,28 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
+import CustomAlert from "@/components/CustomAlert";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const Revenue = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<MovieResponse>(endpoint);
+const Revenue = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<MovieResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading revenue...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Revenue"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <>

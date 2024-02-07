@@ -1,5 +1,6 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import Rating from "@/components/Rating";
 import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
 import TMDBImages from "@/components/TMDBImages";
@@ -8,7 +9,6 @@ import {
   RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT,
   RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY,
 } from "@/constants";
-import MyAPIClient from "@/services/myApiClient";
 import { EpisodeResponse } from "@/types/movies/tv/EpisodeResponse";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
@@ -18,21 +18,17 @@ import { useParams } from "next/navigation";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const Episode = ({ queryKey, endpoint }: Props) => {
+const Episode = ({ queryKey }: Props) => {
   const { id, seasonNumber, episodeNumber } = useParams<{
     id: string;
     seasonNumber: string;
     episodeNumber: string;
   }>();
 
-  const apiClient = new MyAPIClient<EpisodeResponse>(endpoint);
-
   const { data, error, isLoading } = useQuery<EpisodeResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
@@ -40,9 +36,11 @@ const Episode = ({ queryKey, endpoint }: Props) => {
   if (isLoading)
     return (
       <div className="appContaier">
-        <div className="alert alert-warning">
-          Loading tv show&apos;s episode...
-        </div>
+        <CustomAlert
+          variant="default"
+          title={"Episode"}
+          description="Loading... Please be patient"
+        />
       </div>
     );
 
@@ -80,13 +78,7 @@ const Episode = ({ queryKey, endpoint }: Props) => {
           </div>
           <SocialMediaLinks
             queryKeyMainTitle={queryKey}
-            endpointMainTitle={endpoint}
             queryKeyExternalIds={RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY(
-              id,
-              seasonNumber,
-              episodeNumber,
-            )}
-            endpointExternalIds={RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT(
               id,
               seasonNumber,
               episodeNumber,
@@ -131,8 +123,8 @@ const Episode = ({ queryKey, endpoint }: Props) => {
             Crew <Badge variant="secondary">{data?.crew.length}</Badge>
           </h3>
           <div className="flex flex-col flex-wrap gap-8">
-            {data?.crew.map((star) => (
-              <div key={star.id} className="flex flex-row gap-4">
+            {data?.crew.map((star, index) => (
+              <div key={star.id + "" + index} className="flex flex-row gap-4">
                 <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
                   <TMDBImages
                     type="profile"

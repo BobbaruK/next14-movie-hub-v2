@@ -1,9 +1,9 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import { IsoLang } from "@/components/IsoLang";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import MyAPIClient from "@/services/myApiClient";
 import { ReleaseDatesResponse } from "@/types/movies/movie/ReleaseDates";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -11,20 +11,23 @@ import Link from "next/link";
 interface Props {
   title: string;
   queryKey: string;
-  endpoint: string;
 }
 
-const ReleasesFiltering = ({ title, queryKey, endpoint }: Props) => {
-  const apiClientReleases = new MyAPIClient<ReleaseDatesResponse>(endpoint);
+const ReleasesFiltering = ({ title, queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<ReleaseDatesResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientReleases.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading sidebar...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Release dates sidebar"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <>

@@ -61,7 +61,6 @@ export default async function TopRatedTVShows({
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_TOP_RATED_TVSHOWS_KEY}
-              endpoint={RQ_TOP_RATED_TVSHOWS_ENDPOINT}
               imageDetails={{
                 classes: imagesSizesNoSidebar,
                 sizes: `

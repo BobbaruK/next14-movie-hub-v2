@@ -2,7 +2,6 @@ import BackTo from "@/components/BackTo";
 import {
   RQ_TVSHOWS_IMAGES_ENDPOINT,
   RQ_TVSHOWS_IMAGES_KEY,
-  RQ_TVSHOW_ENDPOINT,
   RQ_TVSHOW_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
@@ -40,7 +39,6 @@ export default async function MovieImagesLayout({
     <HydrationBoundary state={dehydrate(queryClient)}>
       <BackTo
         queryKey={RQ_TVSHOW_KEY(id)}
-        endpoint={RQ_TVSHOW_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/tv/${id}` }}
       />
       {children}

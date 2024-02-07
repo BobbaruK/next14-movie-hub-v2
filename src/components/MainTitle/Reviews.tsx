@@ -1,26 +1,22 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
 import { ReviewsResponse } from "@/types/movies/Reviews";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import ReviewCard from "../Cards/Review";
 import { useParams } from "next/navigation";
+import ReviewCard from "../Cards/Review";
 import CustomAlert from "../CustomAlert";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
   type: "movie" | "tv";
 }
 
-const MainTitleReviews = ({ queryKey, endpoint, type }: Props) => {
+const MainTitleReviews = ({ queryKey, type }: Props) => {
   const { id } = useParams<{ id: string }>();
 
-  const apiClient = new MyAPIClient<ReviewsResponse>(endpoint);
   const { data, error, isLoading } = useQuery<ReviewsResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

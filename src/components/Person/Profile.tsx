@@ -1,26 +1,29 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
 import { PeopleResponse } from "@/types/people/PeopleResponse";
 import { useQuery } from "@tanstack/react-query";
 import TMDBImages from "../TMDBImages";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const PersonProfile = ({ endpoint, queryKey }: Props) => {
-  const apiClient = new MyAPIClient<PeopleResponse>(endpoint);
+const PersonProfile = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<PeopleResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading person name...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Profile"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <TMDBImages

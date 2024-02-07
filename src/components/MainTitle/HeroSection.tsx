@@ -1,6 +1,5 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import ReleaseDateUI from "@/utils/releaseDateUI";
@@ -12,14 +11,11 @@ import { Badge } from "../ui/badge";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const MainTitleHeroSection = ({ queryKey, endpoint }: Props) => {
-  const apiClient = new MyAPIClient<MovieResponse | TVShowResponse>(endpoint);
+const MainTitleHeroSection = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

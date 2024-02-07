@@ -62,7 +62,6 @@ export default async function NowPlayingMovies({
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_NOW_PLAYING_MOVIES_KEY}
-              endpoint={RQ_NOW_PLAYING_MOVIES_ENDPOINT}
               imageDetails={{
                 classes: imagesSizesNoSidebar,
                 sizes: `

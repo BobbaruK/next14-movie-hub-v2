@@ -1,24 +1,28 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
+import CustomAlert from "@/components/CustomAlert";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const Type = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<TVShowResponse>(endpoint);
+const Type = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<TVShowResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
-  if (isLoading) return <div className="alert alert-warning">Loading type...</div>;
+  if (isLoading)
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Type"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <>

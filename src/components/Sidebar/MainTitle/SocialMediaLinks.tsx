@@ -1,6 +1,6 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
+import CustomAlert from "@/components/CustomAlert";
 import { ExternalIDs } from "@/types/ExternalIDs";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
@@ -19,37 +19,25 @@ import { SiWikidata } from "react-icons/si";
 
 interface Props {
   queryKeyMainTitle: string;
-  endpointMainTitle: string;
   queryKeyExternalIds: string;
-  endpointExternalIds: string;
 }
 
 const SocialMediaLinks = ({
   queryKeyMainTitle,
-  endpointMainTitle,
   queryKeyExternalIds,
-  endpointExternalIds,
 }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<
-    MovieResponse | TVShowResponse | PeopleResponse
-  >(endpointMainTitle);
   const { data, error, isLoading } = useQuery<
     MovieResponse | TVShowResponse | PeopleResponse
   >({
     queryKey: [queryKeyMainTitle],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
-  const apiClientExternalIds = new MyAPIClient<ExternalIDs>(
-    endpointExternalIds,
-  );
   const {
     data: externalIds,
     error: externalIdsError,
     isLoading: externalIdsIsLoading,
   } = useQuery<ExternalIDs>({
     queryKey: [queryKeyExternalIds],
-    queryFn: () => apiClientExternalIds.getAll(),
   });
 
   if (error) throw new Error(`${queryKeyMainTitle} - ${error.message}`);
@@ -58,7 +46,11 @@ const SocialMediaLinks = ({
 
   if (isLoading || externalIdsIsLoading)
     return (
-      <div className="alert alert-warning">Loading Social Media Link(s)...</div>
+      <CustomAlert
+        variant="default"
+        title={"Social media links"}
+        description="Loading... Please be patient"
+      />
     );
 
   const imdbPath = (externalId: string) => {

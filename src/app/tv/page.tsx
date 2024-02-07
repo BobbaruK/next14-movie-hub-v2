@@ -85,7 +85,6 @@ export default async function TVShows({
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_POPULAR_TVSHOWS_KEY}
-              endpoint={RQ_POPULAR_TVSHOWS_ENDPOINT}
               imageDetails={{
                 classes: imagesSizesWithSidebar,
                 sizes: `

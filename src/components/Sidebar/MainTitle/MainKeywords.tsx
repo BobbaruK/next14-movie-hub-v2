@@ -1,22 +1,17 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
+import CustomAlert from "@/components/CustomAlert";
 import { MovieKeywords } from "@/types/movies/movie/MovieKeywords";
 import { TVShowKeywords } from "@/types/movies/tv/TVShowKeywords";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const MainKeywords = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitleKeywords = new MyAPIClient<
-    MovieKeywords | TVShowKeywords
-  >(endpoint);
+const MainKeywords = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<MovieKeywords | TVShowKeywords>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitleKeywords.getAll(),
   });
 
   if (error)
@@ -27,7 +22,13 @@ const MainKeywords = ({ queryKey, endpoint }: Props) => {
     );
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading keywords...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Keywords"}
+        description="Loading... Please be patient"
+      />
+    );
 
   const keywords = "keywords" in data! ? data.keywords : data?.results;
 

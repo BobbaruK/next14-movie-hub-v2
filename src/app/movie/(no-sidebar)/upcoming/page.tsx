@@ -62,7 +62,6 @@ export default async function UpcomingMovies({
               with_original_language=""
               sort_by=""
               queryKey={RQ_UPCOMING_MOVIES_KEY}
-              endpoint={RQ_UPCOMING_MOVIES_ENDPOINT}
               imageDetails={{
                 classes: imagesSizesNoSidebar,
                 sizes: `

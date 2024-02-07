@@ -1,26 +1,29 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import TMDBImages from "@/components/TMDBImages";
-import MyAPIClient from "@/services/myApiClient";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const Networks = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<TVShowResponse>(endpoint);
+const Networks = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<TVShowResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading networks...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Networks"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <>

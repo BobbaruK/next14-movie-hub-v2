@@ -1,29 +1,38 @@
 "use client";
 
 import ReleaseDateCard from "@/components/Cards/ReleaseDate";
-import MyAPIClient from "@/services/myApiClient";
+import CustomAlert from "@/components/CustomAlert";
 import { ReleaseDatesResponse } from "@/types/movies/movie/ReleaseDates";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const ReleaseDates = ({ queryKey, endpoint }: Props) => {
-  const apiClientReleases = new MyAPIClient<ReleaseDatesResponse>(endpoint);
+const ReleaseDates = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<ReleaseDatesResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientReleases.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading release dates...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Release dates"}
+        description="Loading... Please be patient"
+      />
+    );
 
   if (data?.results.length === 0)
-    return <div className="alert alert-warning">No results</div>;
+    return (
+      <CustomAlert
+        variant="destructive"
+        title={"Error"}
+        description="No results"
+      />
+    );
 
   return (
     <div className="flex flex-col gap-8">

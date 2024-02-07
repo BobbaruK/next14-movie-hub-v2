@@ -1,38 +1,31 @@
 "use client";
 
-import { RQ_COUNTRIES_ENDPOINT, RQ_COUNTRIES_KEY } from "@/constants";
-import MyAPIClient from "@/services/myApiClient";
+import { RQ_COUNTRIES_KEY } from "@/constants";
 import { Country } from "@/types/Country";
 import { AltTitle } from "@/types/movies/AlternativeTitle";
 import { MovieAlternativeTitles } from "@/types/movies/movie/MovieAlternativeTitles";
 import { TVShowAlternativeTitles } from "@/types/movies/tv/TVShowAlternativeTitles";
 import { useQuery } from "@tanstack/react-query";
 import AlternativeTitleCard from "../Cards/AlternativeTitle";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const AlternativeTitles = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<
-    MovieAlternativeTitles | TVShowAlternativeTitles
-  >(endpoint);
+const AlternativeTitles = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<
     MovieAlternativeTitles | TVShowAlternativeTitles
   >({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
-  const apiClientCountries = new MyAPIClient<Country[]>(RQ_COUNTRIES_ENDPOINT);
   const {
     data: countries,
     error: errorCountries,
     isLoading: isLoadingCountries,
   } = useQuery<Country[]>({
     queryKey: [RQ_COUNTRIES_KEY],
-    queryFn: () => apiClientCountries.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
@@ -41,7 +34,12 @@ const AlternativeTitles = ({ queryKey, endpoint }: Props) => {
 
   if (isLoading || isLoadingCountries)
     return (
-      <div className="alert alert-warning">Loading alternative titles...</div>
+      <CustomAlert
+        variant="default"
+        title={"Alternative Titles"}
+        description="Loading... Please be patient"
+        className="appContaier"
+      />
     );
 
   const titles =
@@ -82,7 +80,11 @@ const AlternativeTitles = ({ queryKey, endpoint }: Props) => {
           return 0;
         })
         .map((titles, ind) => (
-          <AlternativeTitleCard titles={titles} key={ind} countries={countries!} />
+          <AlternativeTitleCard
+            titles={titles}
+            key={ind}
+            countries={countries!}
+          />
         ))}
     </div>
   );

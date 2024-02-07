@@ -51,7 +51,6 @@ export default async function Persons({
           sort_by={sort_by}
           with_original_language={with_original_language}
           queryKey={RQ_POPULAR_PERSONS_KEY}
-          endpoint={RQ_POPULAR_PERSONS_ENDPOINT}
           imageDetails={{
             classes: imagesSizesNoSidebar,
             sizes: `

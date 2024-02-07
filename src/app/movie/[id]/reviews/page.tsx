@@ -1,7 +1,6 @@
 import BackTo from "@/components/BackTo";
 import ReviewsGrid from "@/components/layouts/ReviewsGrid";
 import {
-  RQ_MOVIE_ENDPOINT,
   RQ_MOVIE_KEY,
   RQ_MOVIE_REVIEWS_ENDPOINT,
   RQ_MOVIE_REVIEWS_KEY,
@@ -36,13 +35,9 @@ export default function MovieReviews({ params: { id } }: Props) {
     <>
       <BackTo
         queryKey={RQ_MOVIE_KEY(id)}
-        endpoint={RQ_MOVIE_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/movie/${id}` }}
       />
-      <ReviewsGrid
-        queryKey={RQ_MOVIE_REVIEWS_KEY(id)}
-        endpoint={RQ_MOVIE_REVIEWS_ENDPOINT(id)}
-      />
+      <ReviewsGrid queryKey={RQ_MOVIE_REVIEWS_KEY(id)} />
     </>
   );
 }

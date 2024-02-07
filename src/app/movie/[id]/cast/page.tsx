@@ -1,12 +1,6 @@
-
 import BackTo from "@/components/BackTo";
 import Cast from "@/components/layouts/MainTitle/Cast";
-import {
-  RQ_MOVIE_CAST_ENDPOINT,
-  RQ_MOVIE_CAST_KEY,
-  RQ_MOVIE_ENDPOINT,
-  RQ_MOVIE_KEY,
-} from "@/constants";
+import { RQ_MOVIE_CAST_KEY, RQ_MOVIE_KEY } from "@/constants";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
@@ -35,13 +29,9 @@ export default function MovieCast({ params: { id } }: Props) {
     <>
       <BackTo
         queryKey={RQ_MOVIE_KEY(id)}
-        endpoint={RQ_MOVIE_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/movie/${id}` }}
       />
-      <Cast
-        queryKey={RQ_MOVIE_CAST_KEY(id)}
-        endpoint={RQ_MOVIE_CAST_ENDPOINT(id)}
-      />
+      <Cast queryKey={RQ_MOVIE_CAST_KEY(id)} />
     </>
   );
 }

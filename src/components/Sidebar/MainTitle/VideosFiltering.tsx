@@ -1,9 +1,9 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import useGetVideos from "@/hooks/useGetVideos";
-import MyAPIClient from "@/services/myApiClient";
 import { VideosResponse } from "@/types/VideoResponse";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, usePathname, useRouter } from "next/navigation";
@@ -11,11 +11,10 @@ import { useTransition } from "react";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
   titleType: "movie" | "tv";
 }
 
-const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
+const VideosFiltering = ({ queryKey, titleType }: Props) => {
   const { id } = useParams<{ id: string }>();
 
   const pathname = usePathname();
@@ -23,11 +22,8 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
-  const apiClientVideos = new MyAPIClient<VideosResponse>(endpoint);
-
   const { data, error, isLoading } = useQuery<VideosResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientVideos.getAll(),
   });
 
   const {
@@ -43,7 +39,13 @@ const VideosFiltering = ({ queryKey, endpoint, titleType }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading videos...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Videos sidebar"}
+        description="Loading... Please be patient"
+      />
+    );
 
   const videoTypes = [
     {

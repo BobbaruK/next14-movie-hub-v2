@@ -1,25 +1,21 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import { badgeVariants } from "@/components/ui/badge";
-import { RQ_LANGUAGES_ENDPOINT } from "@/constants";
-import MyAPIClient from "@/services/myApiClient";
 import { GenreResponse } from "@/types/movies/GenreResponse";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
 interface Props {
-  rqKey: string;
+  queryKey: string;
 }
 
-const ByGenre = ({ rqKey }: Props) => {
+const ByGenre = ({ queryKey }: Props) => {
   const [isPending, startTransition] = useTransition();
 
-  const apiClient = new MyAPIClient<GenreResponse>(RQ_LANGUAGES_ENDPOINT);
-
   const { data, error, isLoading } = useQuery<GenreResponse>({
-    queryKey: [rqKey],
-    queryFn: () => apiClient.getAll(),
+    queryKey: [queryKey],
   });
 
   const params = useSearchParams();
@@ -31,10 +27,16 @@ const ByGenre = ({ rqKey }: Props) => {
 
   const router = useRouter();
 
-  if (error) throw new Error(`${rqKey} - ${error.message}`);
+  if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading genres...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Filter by Genre"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <div className="mb-6">

@@ -1,6 +1,5 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
 import { Review } from "@/types/movies/Reviews";
 import { useQuery } from "@tanstack/react-query";
@@ -11,17 +10,11 @@ import MoviePagination from "./MoviePagination";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const ReviewsGrid = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<MainTitleResponse<Review>>(
-    endpoint,
-  );
-
+const ReviewsGrid = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<MainTitleResponse<Review>>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

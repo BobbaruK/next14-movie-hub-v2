@@ -62,7 +62,6 @@ export default async function AiringTodayTVShows({
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_AIRING_TODAY_TVSHOWS_KEY}
-              endpoint={RQ_AIRING_TODAY_TVSHOWS_ENDPOINT}
               imageDetails={{
                 classes: imagesSizesNoSidebar,
                 sizes: `

@@ -62,7 +62,6 @@ export default async function TopRatedMovies({
               with_original_language={with_original_language}
               sort_by={sort_by}
               queryKey={RQ_TOP_RATED_MOVIES_KEY}
-              endpoint={RQ_TOP_RATED_MOVIES_ENDPOINT}
               imageDetails={{
                 classes: imagesSizesNoSidebar,
                 sizes: `

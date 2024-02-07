@@ -1,13 +1,8 @@
 import BackTo from "@/components/BackTo";
 import MainTitleTranslations from "@/components/MainTitle/Translations";
-import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import TranslationsFiltering from "@/components/Sidebar/MainTitle/TranslationsFiltering";
-import {
-  RQ_MOVIE_ENDPOINT,
-  RQ_MOVIE_KEY,
-  RQ_MOVIE_TRANSLATIONS_ENDPOINT,
-  RQ_MOVIE_TRANSLATIONS_KEY,
-} from "@/constants";
+import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
+import { RQ_MOVIE_KEY, RQ_MOVIE_TRANSLATIONS_KEY } from "@/constants";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
@@ -38,22 +33,17 @@ export default function MovieTranslations({ params: { id } }: Props) {
     <>
       <BackTo
         queryKey={RQ_MOVIE_KEY(id)}
-        endpoint={RQ_MOVIE_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/movie/${id}` }}
       />
 
       <MainTitleSidebarLeft
         content={
-          <MainTitleTranslations
-            queryKey={RQ_MOVIE_TRANSLATIONS_KEY(id)}
-            endpoint={RQ_MOVIE_TRANSLATIONS_ENDPOINT(id)}
-          />
+          <MainTitleTranslations queryKey={RQ_MOVIE_TRANSLATIONS_KEY(id)} />
         }
         sidebar={
           <TranslationsFiltering
             title={pageTitle}
             queryKey={RQ_MOVIE_TRANSLATIONS_KEY(id)}
-            endpoint={RQ_MOVIE_TRANSLATIONS_ENDPOINT(id)}
           />
         }
       />

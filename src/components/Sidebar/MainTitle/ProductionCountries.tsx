@@ -1,28 +1,29 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
+import CustomAlert from "@/components/CustomAlert";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const ProductionCountries = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<MovieResponse | TVShowResponse>(
-    endpoint,
-  );
+const ProductionCountries = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading production countries...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Production Countries"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <>

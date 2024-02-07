@@ -1,6 +1,5 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
 import { MediaType } from "@/types/MediaType";
 import {
   VideoType,
@@ -16,7 +15,6 @@ import { Skeleton } from "../ui/skeleton";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
   videoType: VideoType;
   videoTypeLink: VideoTypeLink;
   titleType: MediaType;
@@ -24,18 +22,14 @@ interface Props {
 
 const VideosGrid = ({
   queryKey,
-  endpoint,
   videoType,
   videoTypeLink,
   titleType,
 }: Props) => {
   const { id } = useParams<{ id: string }>();
 
-  const apiClientVideos = new MyAPIClient<VideosResponse>(endpoint);
-
   const { data, error, isLoading } = useQuery<VideosResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientVideos.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
@@ -78,10 +72,10 @@ const VideosGrid = ({
   if (videos?.length === 0)
     return (
       <div className="appContaier">
-        <Alert variant="default">
+        <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Info</AlertTitle>
-          <AlertDescription>No videos</AlertDescription>
+          <AlertDescription>No videos found</AlertDescription>
         </Alert>
       </div>
     );

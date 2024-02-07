@@ -3,7 +3,6 @@ import VideosFiltering from "@/components/Sidebar/MainTitle/VideosFiltering";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import VideosGrid from "@/components/layouts/VideosGrid";
 import {
-  RQ_MOVIE_ENDPOINT,
   RQ_MOVIE_KEY,
   RQ_MOVIE_VIDEOS_ENDPOINT,
   RQ_MOVIE_VIDEOS_KEY,
@@ -20,14 +19,12 @@ const MovieVideosFeaturettes = ({ params: { id } }: Props) => {
     <>
       <BackTo
         queryKey={RQ_MOVIE_KEY(id)}
-        endpoint={RQ_MOVIE_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/movie/${id}` }}
       />
       <MainTitleSidebarLeft
         content={
           <VideosGrid
             queryKey={RQ_MOVIE_VIDEOS_KEY(id)}
-            endpoint={RQ_MOVIE_VIDEOS_ENDPOINT(id)}
             videoType="featurette"
             videoTypeLink="featurettes"
             titleType="movie"
@@ -36,7 +33,6 @@ const MovieVideosFeaturettes = ({ params: { id } }: Props) => {
         sidebar={
           <VideosFiltering
             queryKey={RQ_MOVIE_VIDEOS_KEY(id)}
-            endpoint={RQ_MOVIE_VIDEOS_ENDPOINT(id)}
             titleType="movie"
           />
         }

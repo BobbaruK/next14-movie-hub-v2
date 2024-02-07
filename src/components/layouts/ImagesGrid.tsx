@@ -1,6 +1,5 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
 import { ImageDetails } from "@/types/ImageDetails";
 import { ImagesResponse } from "@/types/ImagesResponse";
 import { useQuery } from "@tanstack/react-query";
@@ -24,11 +23,8 @@ const ImagesGrid = ({
   imageDetails,
   ...restProps
 }: Props) => {
-  const apiClientReleases = new MyAPIClient<ImagesResponse>(endpoint);
-
   const { data, error, isLoading } = useQuery<ImagesResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientReleases.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);

@@ -1,25 +1,28 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
+import CustomAlert from "@/components/CustomAlert";
 import { PeopleResponse } from "@/types/people/PeopleResponse";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const KnownFor = ({ endpoint, queryKey }: Props) => {
-  const apiClient = new MyAPIClient<PeopleResponse>(endpoint);
+const KnownFor = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<PeopleResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading personal info...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Known for"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <>

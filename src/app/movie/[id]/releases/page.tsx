@@ -2,12 +2,7 @@ import BackTo from "@/components/BackTo";
 import ReleaseDates from "@/components/MainTitle/movie/ReleaseDates";
 import ReleasesFiltering from "@/components/Sidebar/MainTitle/ReleasesFiltering";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
-import {
-  RQ_MOVIE_ENDPOINT,
-  RQ_MOVIE_KEY,
-  RQ_MOVIE_RELEASES_ENDPOINT,
-  RQ_MOVIE_RELEASES_KEY,
-} from "@/constants";
+import { RQ_MOVIE_KEY, RQ_MOVIE_RELEASES_KEY } from "@/constants";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
@@ -38,22 +33,15 @@ export default function MovieReleases({ params: { id } }: Props) {
     <>
       <BackTo
         queryKey={RQ_MOVIE_KEY(id)}
-        endpoint={RQ_MOVIE_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/movie/${id}` }}
       />
 
       <MainTitleSidebarLeft
-        content={
-          <ReleaseDates
-            queryKey={RQ_MOVIE_RELEASES_KEY(id)}
-            endpoint={RQ_MOVIE_RELEASES_ENDPOINT(id)}
-          />
-        }
+        content={<ReleaseDates queryKey={RQ_MOVIE_RELEASES_KEY(id)} />}
         sidebar={
           <ReleasesFiltering
             title={pageTitle}
             queryKey={RQ_MOVIE_RELEASES_KEY(id)}
-            endpoint={RQ_MOVIE_RELEASES_ENDPOINT(id)}
           />
         }
       />

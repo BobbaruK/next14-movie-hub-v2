@@ -12,14 +12,14 @@ interface Props {
 const ImageCard = ({ image, imageDetails }: Props) => {
   return (
     <>
-      <Card>
+      <Card className="overflow-hidden">
         <TMDBImages
           type={imageDetails.type}
           alt={image.file_path}
           src={image.file_path}
           // sizes="238px"
           sizes={imageDetails.sizes}
-          className={cn(`w-full rounded-b-none ${imageDetails.classes || ""}`)}
+          className={cn(`w-full  ${imageDetails.classes || ""}`)}
         />
         <CardHeader>
           <CardDescription>

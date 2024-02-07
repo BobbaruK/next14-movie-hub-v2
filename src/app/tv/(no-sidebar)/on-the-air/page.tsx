@@ -62,7 +62,6 @@ export default async function OnTheAirTVShows({
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_ON_THE_AIR_TVSHOW_KEY}
-              endpoint={RQ_ON_THE_AIR_TVSHOW_ENDPOINT}
               imageDetails={{
                 classes: imagesSizesNoSidebar,
                 sizes: `

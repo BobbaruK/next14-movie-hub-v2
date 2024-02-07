@@ -1,16 +1,9 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import { RQ_COUNTRIES_ENDPOINT, RQ_COUNTRIES_KEY } from "@/constants";
-import MyAPIClient from "@/services/myApiClient";
+import { Card, CardContent } from "@/components/ui/card";
+import { RQ_COUNTRIES_KEY } from "@/constants";
 import { Country } from "@/types/Country";
 import { MovieAlternativeTitles } from "@/types/movies/movie/MovieAlternativeTitles";
 import { TVShowAlternativeTitles } from "@/types/movies/tv/TVShowAlternativeTitles";
@@ -20,28 +13,21 @@ import Link from "next/link";
 interface Props {
   title: string;
   queryKey: string;
-  endpoint: string;
 }
 
-const AlternativeTitlesFiltering = ({ title, queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<
-    MovieAlternativeTitles | TVShowAlternativeTitles
-  >(endpoint);
+const AlternativeTitlesFiltering = ({ title, queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<
     MovieAlternativeTitles | TVShowAlternativeTitles
   >({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
-  const apiClientCountries = new MyAPIClient<Country[]>(RQ_COUNTRIES_ENDPOINT);
   const {
     data: countries,
     error: errorCountries,
     isLoading: isLoadingCountries,
   } = useQuery<Country[]>({
     queryKey: [RQ_COUNTRIES_KEY],
-    queryFn: () => apiClientCountries.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
@@ -49,7 +35,13 @@ const AlternativeTitlesFiltering = ({ title, queryKey, endpoint }: Props) => {
     throw new Error(`${queryKey} - ${errorCountries.message}`);
 
   if (isLoading || isLoadingCountries)
-    return <div className="alert alert-warning">Loading sidebar...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Alternative titles sidebar"}
+        description="Loading... Please be patient"
+      />
+    );
 
   const titles =
     "titles" in data! ? data.titles : "results" in data! ? data.results : [];

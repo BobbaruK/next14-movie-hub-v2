@@ -1,20 +1,17 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
 import { PeopleResponse } from "@/types/people/PeopleResponse";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import CustomAlert from "../CustomAlert";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const Biography = ({ endpoint, queryKey }: Props) => {
-  const apiClient = new MyAPIClient<PeopleResponse>(endpoint);
+const Biography = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<PeopleResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   const [show, setShow] = useState(false);
@@ -23,10 +20,22 @@ const Biography = ({ endpoint, queryKey }: Props) => {
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading person name...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Biography"}
+        description="Loading... Please be patient"
+      />
+    );
 
   if (!data?.biography)
-    return <div className="alert alert-warning">No Biography for this person</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Error"}
+        description="No biography found"
+      />
+    );
 
   return (
     <>

@@ -11,7 +11,7 @@ const FilteringMovies = ({ genresRQKey }: Props) => {
     <>
       <Sorting />
       <h2 className="mt-14">Filtering</h2>
-      <ByGenre rqKey={genresRQKey} />
+      <ByGenre queryKey={genresRQKey} />
       <ByLanguage />
     </>
   );

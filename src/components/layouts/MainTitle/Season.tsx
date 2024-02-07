@@ -1,5 +1,6 @@
 "use client";
 
+import CustomAlert from "@/components/CustomAlert";
 import Rating from "@/components/Rating";
 import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
 import TMDBImages from "@/components/TMDBImages";
@@ -7,7 +8,6 @@ import {
   RQ_SEASON_EXTERNAL_IDS_ENDPOINT,
   RQ_SEASON_EXTERNAL_IDS_KEY,
 } from "@/constants";
-import MyAPIClient from "@/services/myApiClient";
 import { SeasonResponse } from "@/types/movies/tv/SeasonResponse";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
@@ -17,31 +17,28 @@ import { useParams } from "next/navigation";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const Season = ({ queryKey, endpoint }: Props) => {
+const Season = ({ queryKey }: Props) => {
   const { id, seasonNumber } = useParams<{
     id: string;
     seasonNumber: string;
   }>();
 
-  const apiClient = new MyAPIClient<SeasonResponse>(endpoint);
-
   const { data, error, isLoading } = useQuery<SeasonResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClient.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
     return (
-      <div className="appContaier">
-        <div className="alert alert-warning">
-          Loading tv show&apos;s season...
-        </div>
-      </div>
+      <CustomAlert
+        variant="default"
+        title={"Season"}
+        description="Loading... Please be patient"
+        className="appContaier"
+      />
     );
 
   return (
@@ -74,12 +71,7 @@ const Season = ({ queryKey, endpoint }: Props) => {
           <p>{data?.overview}</p>
           <SocialMediaLinks
             queryKeyMainTitle={queryKey}
-            endpointMainTitle={endpoint}
             queryKeyExternalIds={RQ_SEASON_EXTERNAL_IDS_KEY(id, seasonNumber)}
-            endpointExternalIds={RQ_SEASON_EXTERNAL_IDS_ENDPOINT(
-              id,
-              seasonNumber,
-            )}
           />
         </div>
       </div>

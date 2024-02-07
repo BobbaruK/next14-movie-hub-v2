@@ -1,5 +1,5 @@
 import BackTo from "@/components/BackTo";
-import { RQ_PERSON_ENDPOINT, RQ_PERSON_KEY } from "@/constants";
+import { RQ_PERSON_KEY } from "@/constants";
 import { ReactNode } from "react";
 
 interface Props {
@@ -20,7 +20,6 @@ export default function PersonFilteringSidebarLayout({
           label: "Main",
           link: `/person/${id}`,
         }}
-        endpoint={RQ_PERSON_ENDPOINT(id)}
         queryKey={RQ_PERSON_KEY(id)}
       />
       {children}

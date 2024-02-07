@@ -1,5 +1,5 @@
-import CardsGrid from "@/components/layouts/CardsGrid";
 import { FilteringMovies } from "@/components/Sidebar/FilteringMovies";
+import CardsGrid from "@/components/layouts/CardsGrid";
 import {
   RQ_LANGUAGES_ENDPOINT,
   RQ_LANGUAGES_KEY,
@@ -85,7 +85,6 @@ export default async function PopularMovies({
               sort_by={sort_by}
               with_original_language={with_original_language}
               queryKey={RQ_POPULAR_MOVIES_KEY}
-              endpoint={RQ_POPULAR_MOVIES_ENDPOINT}
               imageDetails={{
                 classes: imagesSizesWithSidebar,
                 sizes: `

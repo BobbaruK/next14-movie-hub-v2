@@ -1,32 +1,34 @@
 "use client";
 
-import MyAPIClient from "@/services/myApiClient";
 import { CombinedCredits } from "@/types/people/CombinedCredits";
 import { useQuery } from "@tanstack/react-query";
 import Acting from "./Acting";
 import Crew from "./Crew";
+import CustomAlert from "@/components/CustomAlert";
 
 interface Props {
-  creditsQueryKey: string;
-  creditsEndpoint: string;
+  queryKey: string;
 }
 
-const Credits = ({ creditsEndpoint, creditsQueryKey }: Props) => {
-  const apiClient = new MyAPIClient<CombinedCredits>(creditsEndpoint);
+const Credits = ({ queryKey }: Props) => {
   const {
     data: credits,
     error: creditsError,
     isLoading: creditsIsLoading,
   } = useQuery<CombinedCredits>({
-    queryKey: [creditsQueryKey],
-    queryFn: () => apiClient.getAll(),
+    queryKey: [queryKey],
   });
 
-  if (creditsError)
-    throw new Error(`${creditsQueryKey} - ${creditsError.message}`);
+  if (creditsError) throw new Error(`${queryKey} - ${creditsError.message}`);
 
   if (creditsIsLoading)
-    return <div className="alert alert-warning">Loading credits...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Credits"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <div className="flex flex-col gap-8 py-10">

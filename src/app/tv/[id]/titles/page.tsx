@@ -2,12 +2,7 @@ import BackTo from "@/components/BackTo";
 import AlternativeTitles from "@/components/MainTitle/AlternativeTitles";
 import AlternativeTitlesFiltering from "@/components/Sidebar/MainTitle/AlternativeTitlesFiltering";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
-import {
-  RQ_TVSHOW_ALTERNATIVE_TITLES_KEY,
-  RQ_TVSHOW_ALTERNATIVE_TITLES_ENDPOINT,
-  RQ_TVSHOW_ENDPOINT,
-  RQ_TVSHOW_KEY,
-} from "@/constants";
+import { RQ_TVSHOW_ALTERNATIVE_TITLES_KEY, RQ_TVSHOW_KEY } from "@/constants";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
@@ -38,21 +33,16 @@ export default function TVShowsTitles({ params: { id } }: Props) {
     <>
       <BackTo
         queryKey={RQ_TVSHOW_KEY(id)}
-        endpoint={RQ_TVSHOW_ENDPOINT(id)}
         backTo={{ label: "Main", link: `/tv/${id}` }}
       />
       <MainTitleSidebarLeft
         content={
-          <AlternativeTitles
-            queryKey={RQ_TVSHOW_ALTERNATIVE_TITLES_KEY(id)}
-            endpoint={RQ_TVSHOW_ALTERNATIVE_TITLES_ENDPOINT(id)}
-          />
+          <AlternativeTitles queryKey={RQ_TVSHOW_ALTERNATIVE_TITLES_KEY(id)} />
         }
         sidebar={
           <AlternativeTitlesFiltering
             title={pageTitle}
             queryKey={RQ_TVSHOW_ALTERNATIVE_TITLES_KEY(id)}
-            endpoint={RQ_TVSHOW_ALTERNATIVE_TITLES_ENDPOINT(id)}
           />
         }
       />

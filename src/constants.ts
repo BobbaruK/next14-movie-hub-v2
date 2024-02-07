@@ -152,7 +152,7 @@ export const RQ_TVSHOW_EPISODE_KEY = (
   id: string,
   seasonNumber: string,
   episodeNumber: string,
-) => `tvshow-${parseInt(id)}-season-${seasonNumber}-episode-${episodeNumber}`;
+) => `tvshow-${parseInt(id)}-season-${parseInt(seasonNumber)}-episode-${parseInt(episodeNumber)}`;
 export const RQ_TVSHOW_EPISODE_ENDPOINT = (
   id: string,
   seasonNumber: string,

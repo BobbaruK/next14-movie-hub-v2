@@ -1,7 +1,6 @@
 "use client";
 
-import { RQ_LANGUAGES_ENDPOINT, RQ_LANGUAGES_KEY } from "@/constants";
-import MyAPIClient from "@/services/myApiClient";
+import { RQ_LANGUAGES_KEY } from "@/constants";
 import { Language } from "@/types/movies/Language";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -20,6 +19,7 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 
+import CustomAlert from "@/components/CustomAlert";
 import {
   Popover,
   PopoverContent,
@@ -32,11 +32,8 @@ const ByLanguage = () => {
 
   const [isPending, startTransition] = useTransition();
 
-  const apiClient = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
-
   const { data, error, isLoading } = useQuery<Language[]>({
     queryKey: [RQ_LANGUAGES_KEY],
-    queryFn: () => apiClient.getAll(),
   });
 
   const params = useSearchParams();
@@ -55,7 +52,13 @@ const ByLanguage = () => {
   if (error) throw new Error(`${RQ_LANGUAGES_KEY} - ${error.message}`);
 
   if (isLoading)
-    return <div className="alert alert-warning">Loading languages...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Filter by Language"}
+        description="Loading... Please be patient"
+      />
+    );
 
   const languages = [...(data || [])];
 

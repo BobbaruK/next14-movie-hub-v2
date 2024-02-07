@@ -3,7 +3,6 @@
 import CustomAlert from "@/components/CustomAlert";
 import TMDBImages from "@/components/TMDBImages";
 import { Badge } from "@/components/ui/badge";
-import MyAPIClient from "@/services/myApiClient";
 import { CastAndCrew, TheCrew } from "@/types/movies/CastAndCrew";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import { useQuery } from "@tanstack/react-query";
@@ -11,14 +10,11 @@ import Link from "next/link";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const Cast = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitleCast = new MyAPIClient<CastAndCrew>(endpoint);
+const Cast = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<CastAndCrew>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitleCast.getAll(),
   });
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
@@ -27,7 +23,7 @@ const Cast = ({ queryKey, endpoint }: Props) => {
     return (
       <CustomAlert
         variant="default"
-        title={"Translations"}
+        title={"Cast and crew"}
         description="Loading... Please be patient"
         className="appContaier"
       />

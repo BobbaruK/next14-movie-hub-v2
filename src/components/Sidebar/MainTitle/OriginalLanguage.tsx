@@ -1,7 +1,7 @@
 "use client";
 
-import { RQ_LANGUAGES_ENDPOINT, RQ_LANGUAGES_KEY } from "@/constants";
-import MyAPIClient from "@/services/myApiClient";
+import CustomAlert from "@/components/CustomAlert";
+import { RQ_LANGUAGES_KEY } from "@/constants";
 import { Language } from "@/types/movies/Language";
 import { MovieResponse } from "@/types/movies/movie/MovieResponse";
 import { TVShowResponse } from "@/types/movies/tv/TVShowResponse";
@@ -9,26 +9,19 @@ import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   queryKey: string;
-  endpoint: string;
 }
 
-const OriginalLanguage = ({ queryKey, endpoint }: Props) => {
-  const apiClientMainTitle = new MyAPIClient<MovieResponse | TVShowResponse>(
-    endpoint,
-  );
+const OriginalLanguage = ({ queryKey }: Props) => {
   const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
     queryKey: [queryKey],
-    queryFn: () => apiClientMainTitle.getAll(),
   });
 
-  const apiClientLanguage = new MyAPIClient<Language[]>(RQ_LANGUAGES_ENDPOINT);
   const {
     data: languages,
     error: languagesError,
     isLoading: languagesIsLoading,
   } = useQuery<Language[]>({
     queryKey: [RQ_LANGUAGES_KEY],
-    queryFn: () => apiClientLanguage.getAll(),
   });
 
   const originalLang = languages?.find(
@@ -40,7 +33,13 @@ const OriginalLanguage = ({ queryKey, endpoint }: Props) => {
     throw new Error(`${queryKey} - ${languagesError.message}`);
 
   if (isLoading || languagesIsLoading)
-    return <div className="alert alert-warning">Loading original language...</div>;
+    return (
+      <CustomAlert
+        variant="default"
+        title={"Original language"}
+        description="Loading... Please be patient"
+      />
+    );
 
   return (
     <>
