@@ -343,7 +343,8 @@ const TMDBImages = ({
           loader={customLoader}
           src={src || noImage}
           alt={alt}
-          priority={priority}
+          priority={priority === undefined ? false : priority}
+          // priority={true}
           title={alt}
           fill
           className="object-cover"
