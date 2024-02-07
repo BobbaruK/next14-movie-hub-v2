@@ -8,6 +8,7 @@ import Link from "next/link";
 interface Props {
   image: ImageShape;
   imageDetails: ImageDetails;
+  priority?: boolean;
 }
 
 const ImageCard = ({ image, imageDetails }: Props) => {
@@ -25,6 +26,7 @@ const ImageCard = ({ image, imageDetails }: Props) => {
             // sizes="238px"
             sizes={imageDetails.sizes}
             className={cn(`w-full  ${imageDetails.classes || ""}`)}
+            priority
           />
         </Link>
         <CardHeader>

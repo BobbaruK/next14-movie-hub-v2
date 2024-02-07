@@ -71,6 +71,7 @@ const ImagesGrid = ({
             key={image.file_path + "" + index}
             image={image}
             imageDetails={imageDetails}
+            priority={index === 0 || false}
           />
         ))}
     </div>
