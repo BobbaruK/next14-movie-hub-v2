@@ -9,7 +9,7 @@ import { ImagesResponse } from "@/types/ImagesResponse";
 import { Language } from "@/types/movies/Language";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
   title: string;
@@ -23,6 +23,8 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
 
   const searchParams = useSearchParams();
   const imagesLanguage = searchParams.get("lang");
+
+  const router = useRouter();
 
   const {
     data: imagesData,
@@ -53,57 +55,57 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
       />
     );
 
-  if (!imagesData?.backdrops)
-    return (
-      <CustomAlert
-        variant="destructive"
-        title={"Error"}
-        description="No backdrops"
-      />
-    );
+  const countries: string[] = [];
 
-  const images: string[] = [];
+  if (imagesData) {
+    switch (imagesType) {
+      case "backdrops":
+        for (let i = 0; i < imagesData.backdrops.length; i++) {
+          const langToPush = languagesData?.find(
+            (lang) => lang.iso_639_1 === imagesData.backdrops[i].iso_639_1,
+          )?.english_name;
 
-  switch (imagesType) {
-    case "backdrops":
-      for (let i = 0; i < imagesData.backdrops.length; i++) {
-        const langToPush = languagesData?.find(
-          (lang) => lang.iso_639_1 === imagesData.backdrops[i].iso_639_1,
-        )?.english_name;
+          if (langToPush === undefined) continue;
 
-        if (langToPush === undefined) continue;
+          if (!countries.includes(langToPush)) countries.push(langToPush);
+        }
 
-        if (!images.includes(langToPush)) images.push(langToPush);
-      }
+        break;
 
-      break;
+      case "logos":
+        for (let i = 0; i < imagesData.logos.length; i++) {
+          const langToPush = languagesData?.find(
+            (lang) => lang.iso_639_1 === imagesData.logos[i].iso_639_1,
+          )?.english_name;
 
-    case "logos":
-      for (let i = 0; i < imagesData.logos.length; i++) {
-        const langToPush = languagesData?.find(
-          (lang) => lang.iso_639_1 === imagesData.logos[i].iso_639_1,
-        )?.english_name;
+          if (langToPush === undefined) continue;
 
-        if (langToPush === undefined) continue;
+          if (!countries.includes(langToPush)) countries.push(langToPush);
+        }
 
-        if (!images.includes(langToPush)) images.push(langToPush);
-      }
+        break;
 
-      break;
+      case "posters":
+        for (let i = 0; i < imagesData.posters.length; i++) {
+          const langToPush = languagesData?.find(
+            (lang) => lang.iso_639_1 === imagesData.posters[i].iso_639_1,
+          )?.english_name;
 
-    case "posters":
-      for (let i = 0; i < imagesData.posters.length; i++) {
-        const langToPush = languagesData?.find(
-          (lang) => lang.iso_639_1 === imagesData.posters[i].iso_639_1,
-        )?.english_name;
+          if (langToPush === undefined) continue;
 
-        if (langToPush === undefined) continue;
+          if (!countries.includes(langToPush)) countries.push(langToPush);
+        }
 
-        if (!images.includes(langToPush)) images.push(langToPush);
-      }
-
-      break;
+        break;
+    }
   }
+
+  const hasNull =
+    imagesData &&
+    imagesData[imagesType].filter((lng) => lng.iso_639_1 === null).length > 0
+      ? true
+      : false;
+
 
   return (
     <Card className="overflow-hidden">
@@ -112,57 +114,59 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
       </h2>
       <CardContent className="p-0">
         <ul className="flex flex-col gap-1 py-2">
-          {imagesData[imagesType].filter((lng) => lng.iso_639_1 === null)
-            .length > 0 && (
-            <li
-              className={`p-2 hover:bg-secondary hover:text-secondary-foreground ${imagesLanguage === null ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
-            >
-              <Link
-                href={`/${titleType}/${id}/images/${imagesType}`}
-                className={[
-                  "flex",
-                  "items-center",
-                  "justify-between",
-                  "w-full",
-                ].join(" ")}
+          {imagesData &&
+            imagesData[imagesType].filter((lng) => lng.iso_639_1 === null)
+              .length > 0 && (
+              <li
+                className={`p-2 hover:bg-secondary hover:text-secondary-foreground ${imagesLanguage === null ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
               >
-                No Language
-                <Badge variant="default">
-                  {
-                    imagesData[imagesType].filter(
-                      (lng) => lng.iso_639_1 === null,
-                    ).length
-                  }
-                </Badge>
-              </Link>
-            </li>
-          )}{" "}
-          {imagesData[imagesType].filter((lng) => lng.iso_639_1 === "en")
-            .length > 0 && (
-            <li
-              className={`p-2 hover:bg-secondary hover:text-secondary-foreground ${imagesLanguage === "en" ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
-            >
-              <Link
-                href={`/${titleType}/${id}/images/${imagesType}?lang=en`}
-                className={[
-                  "flex",
-                  "items-center",
-                  "justify-between",
-                  "w-full",
-                ].join(" ")}
+                <Link
+                  href={`/${titleType}/${id}/images/${imagesType}`}
+                  className={[
+                    "flex",
+                    "items-center",
+                    "justify-between",
+                    "w-full",
+                  ].join(" ")}
+                >
+                  No Language
+                  <Badge variant="default">
+                    {
+                      imagesData[imagesType].filter(
+                        (lng) => lng.iso_639_1 === null,
+                      ).length
+                    }
+                  </Badge>
+                </Link>
+              </li>
+            )}
+          {imagesData &&
+            imagesData[imagesType].filter((lng) => lng.iso_639_1 === "en")
+              .length > 0 && (
+              <li
+                className={`p-2 hover:bg-secondary hover:text-secondary-foreground ${imagesLanguage === "en" || (!hasNull && imagesLanguage === null) ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
               >
-                English
-                <Badge variant="default">
-                  {
-                    imagesData[imagesType].filter(
-                      (lng) => lng.iso_639_1 === "en",
-                    ).length
-                  }
-                </Badge>
-              </Link>
-            </li>
-          )}
-          {images
+                <Link
+                  href={`/${titleType}/${id}/images/${imagesType}?lang=en`}
+                  className={[
+                    "flex",
+                    "items-center",
+                    "justify-between",
+                    "w-full",
+                  ].join(" ")}
+                >
+                  English
+                  <Badge variant="default">
+                    {
+                      imagesData[imagesType].filter(
+                        (lng) => lng.iso_639_1 === "en",
+                      ).length
+                    }
+                  </Badge>
+                </Link>
+              </li>
+            )}
+          {countries
             .sort((a, b) => {
               if (a < b) {
                 return -1;
@@ -182,7 +186,7 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
               return (
                 <li
                   key={lang.replaceAll(" ", "")}
-                  className={`p-2 hover:bg-secondary hover:text-secondary-foreground ${lang === imagesLanguage ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
+                  className={`p-2 hover:bg-secondary hover:text-secondary-foreground ${langIso === imagesLanguage ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
                 >
                   <Link
                     href={`/${titleType}/${id}/images/${imagesType}?lang=${langIso}`}
@@ -195,11 +199,10 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
                   >
                     {lang}
                     <Badge variant="default">
-                      {
+                      {imagesData &&
                         imagesData[imagesType].filter(
                           (lng) => lng.iso_639_1 === langIso,
-                        ).length
-                      }
+                        ).length}
                     </Badge>
                   </Link>
                 </li>

@@ -69,10 +69,19 @@ const ImagesGrid = ({
       />
     );
 
+  const hasNull =
+    images &&
+    images.filter((lng) => lng.iso_639_1 === null).length === 0 &&
+    languageImage === null
+      ? true
+      : false;
+
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
       {images
         ?.filter((image) => {
+          if (hasNull) return image.iso_639_1 === "en";
+
           return image.iso_639_1 === languageImage;
         })
         .map((image, index) => (
