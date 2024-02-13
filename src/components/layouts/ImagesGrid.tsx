@@ -60,6 +60,15 @@ const ImagesGrid = ({
 
   const images = imagesFn();
 
+  if (!images?.length)
+    return (
+      <CustomAlert
+        variant="destructive"
+        title={"Images Grid"}
+        description="No Images"
+      />
+    );
+
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
       {images
