@@ -152,7 +152,8 @@ export const RQ_TVSHOW_EPISODE_KEY = (
   id: string,
   seasonNumber: string,
   episodeNumber: string,
-) => `tvshow-${parseInt(id)}-season-${parseInt(seasonNumber)}-episode-${parseInt(episodeNumber)}`;
+) =>
+  `tvshow-${parseInt(id)}-season-${parseInt(seasonNumber)}-episode-${parseInt(episodeNumber)}`;
 export const RQ_TVSHOW_EPISODE_ENDPOINT = (
   id: string,
   seasonNumber: string,
@@ -207,6 +208,10 @@ export const RQ_TVSHOWS_IMAGES_KEY = (id: string) =>
   `tv-${parseInt(id)}-images`;
 export const RQ_TVSHOWS_IMAGES_ENDPOINT = (id: string) =>
   `tv/${parseInt(id)}/images`;
+
+export const RQ_PERSON_IMAGES_KEY = (id: string) => `person-${parseInt(id)}-images`;
+export const RQ_PERSON_IMAGES_ENDPOINT = (id: string) =>
+  `person/${parseInt(id)}/images`;
 
 // Videos
 export const RQ_MOVIE_VIDEOS_KEY = (id: string) =>

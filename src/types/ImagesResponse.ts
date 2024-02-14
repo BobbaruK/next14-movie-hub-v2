@@ -3,6 +3,12 @@ export interface ImagesResponse {
   backdrops: ImageShape[];
   logos: ImageShape[];
   posters: ImageShape[];
+  profiles: ImageShape[];
+}
+
+export interface PersonImagesResponse {
+  id: number;
+  profiles: ImageShape[];
 }
 
 export interface ImageShape {

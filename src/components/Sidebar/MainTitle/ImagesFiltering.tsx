@@ -9,7 +9,7 @@ import { ImagesResponse } from "@/types/ImagesResponse";
 import { Language } from "@/types/movies/Language";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 interface Props {
   title: string;
@@ -23,8 +23,6 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
 
   const searchParams = useSearchParams();
   const imagesLanguage = searchParams.get("lang");
-
-  const router = useRouter();
 
   const {
     data: imagesData,
@@ -97,6 +95,9 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
         }
 
         break;
+
+      case "profiles":
+        break;
     }
   }
 
@@ -105,7 +106,6 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
     imagesData[imagesType].filter((lng) => lng.iso_639_1 === null).length > 0
       ? true
       : false;
-
 
   return (
     <Card className="overflow-hidden">

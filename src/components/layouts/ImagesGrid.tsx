@@ -31,6 +31,7 @@ const ImagesGrid = ({
     queryKey: [queryKey],
   });
 
+  console.log(data);
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
   if (isLoading)
@@ -53,12 +54,17 @@ const ImagesGrid = ({
       case "posters":
         return data?.posters;
 
+      case "profiles":
+        return data?.profiles;
+
       default:
         break;
     }
   };
 
   const images = imagesFn();
+
+  console.log(images);
 
   if (!images?.length)
     return (
