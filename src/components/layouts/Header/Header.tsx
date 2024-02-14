@@ -84,8 +84,12 @@ const Header = () => {
             </Link>
           </div>
           <MainNavigation menuItems={menuItems} />
-          <BurgerMenu menuItems={menuItems} className="ms-auto" />
-          <Button variant="outline" size="icon" className="hidden md:flex">
+          <BurgerMenu menuItems={menuItems} className="ms-auto md:hidden" showIcon/>
+          <Button
+            variant="outline"
+            size="icon"
+            className="ms-auto hidden md:flex"
+          >
             <IoSearch />
           </Button>
           <div className="hidden md:block">

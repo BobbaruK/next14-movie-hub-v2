@@ -8,9 +8,14 @@ interface Props {
 
 const MovieNavigation = ({ menu }: Props) => {
   return (
-    <div className="flex items-center justify-end bg-primary p-4 md:justify-center shadow-md shadow-secondary relative z-10">
+    <div className="relative z-10 flex items-center justify-center bg-primary p-4 shadow-md shadow-secondary md:justify-center">
       <MainNavigation menuItems={menu} />
-      <BurgerMenu menuItems={menu} />
+      <BurgerMenu
+        menuItems={menu}
+        className="rounded-md border border-secondary p-2 hover:bg-secondary hover:text-secondary-foreground md:hidden"
+        text="Movie navigation"
+        showIcon
+      />
     </div>
   );
 };
