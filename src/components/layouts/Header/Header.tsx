@@ -83,8 +83,8 @@ const Header = () => {
               SCSSeco&apos;s <br /> MovieHub
             </Link>
           </div>
-          <MainNavigation menuItems={menuItems} />
-          <BurgerMenu menuItems={menuItems} className="ms-auto md:hidden" showIcon/>
+          <MainNavigation menuItems={menuItems} className="hidden md:block" />
+          <BurgerMenu menuItems={menuItems} className="ms-auto md:hidden" />
           <Button
             variant="outline"
             size="icon"

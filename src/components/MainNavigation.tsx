@@ -14,24 +14,14 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   menuItems: MainTitleMenuItem[];
 }
 
 export function MainNavigation({ menuItems, ...restProps }: Props) {
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
-
   return (
-    <NavigationMenu className="hidden md:block">
+    <NavigationMenu className={`${restProps.className}`}>
       <NavigationMenuList>
         {menuItems.map((item) => (
           <NavigationMenuItem key={item.label.replaceAll(" ", "-")}>
