@@ -84,7 +84,10 @@ const Header = () => {
             </Link>
           </div>
           <MainNavigation menuItems={menuItems} className="hidden md:block" />
-          <BurgerMenu menuItems={menuItems} className="ms-auto md:hidden" />
+          <BurgerMenu
+            menuItems={menuItems}
+            className="ms-auto md:hidden [&>button]:rounded-md [&>button]:border [&>button]:border-secondary [&>button]:bg-primary [&>button]:p-2 [&>button]:hover:bg-secondary [&>button]:hover:text-secondary-foreground"
+          />
           <Button
             variant="outline"
             size="icon"

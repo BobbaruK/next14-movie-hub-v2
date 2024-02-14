@@ -35,7 +35,7 @@ const BurgerMenu = ({ menuItems, showIcon, label, ...restProps }: Props) => {
   return (
     <div {...restProps} className={`${restProps.className}`}>
       <Sheet>
-        <SheetTrigger className="flex flex-row items-center justify-center gap-2 hover:text-inherit">
+        <SheetTrigger className="flex flex-row items-center justify-center gap-2 text-primary-foreground hover:text-inherit">
           {(showIcon || !label) && (
             <span className="text-3xl">
               <GiHamburgerMenu />
@@ -50,9 +50,9 @@ const BurgerMenu = ({ menuItems, showIcon, label, ...restProps }: Props) => {
           <SheetHeader>
             <SheetTitle className="text-start">
               <SheetClose
-                // onClick={(e) => {
-                //   router.push("/");
-                // }}
+              // onClick={(e) => {
+              //   router.push("/");
+              // }}
               >
                 {label}
               </SheetClose>
