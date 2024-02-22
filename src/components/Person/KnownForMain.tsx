@@ -30,20 +30,20 @@ const KnownForMain = ({ queryKey }: Props) => {
       />
     );
 
-  const knownForMovies = credits?.cast;
+  const knownForMovies = [...credits?.cast!];
   knownForMovies?.sort((a, b) => {
     if (a.vote_average > b.vote_average) return -1;
     if (a.vote_average < b.vote_average) return 1;
     return 0;
   });
 
-  if (knownForMovies) knownForMovies.length = 10;
+  // if (knownForMovies) knownForMovies.length = 10;
 
   return (
     <div className="pt-10">
       <h2>Known For</h2>
       <MainTitleEmblaCarousel
-        typeOptions={{ type: "known-for", arr: knownForMovies! }}
+        typeOptions={{ type: "known-for", arr: knownForMovies }}
         slideSizes="auto-cols-[50%] grid-flow-col sm:auto-cols-[33.33333333333333%] md:auto-cols-[25%]  xl:auto-cols-[14.28571428571429%]"
         imageDetails={{
           classes: recommendationImageHeight,

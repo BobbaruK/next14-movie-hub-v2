@@ -27,7 +27,7 @@ interface Props {
       }
     | {
         type: "known-for";
-        arr: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[];
+        arr: (CombinedCreditsMovieCast | CombinedCreditsTVCast)[];
       };
 
   emblaCarouselOptions?: EmblaOptionsType;

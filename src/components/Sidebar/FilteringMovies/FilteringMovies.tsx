@@ -9,13 +9,13 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 
 const Sorting = dynamic(() => import("./Sorting"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <p>Loading sorting...</p>,
 });
 const ByGenre = dynamic(() => import("./ByGenre"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <p>Loading genres...</p>,
 });
 const ByLanguage = dynamic(() => import("./ByLanguage"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <p>Loading languages...</p>,
 });
 
 interface Props {
