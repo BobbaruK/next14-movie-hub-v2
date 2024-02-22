@@ -74,10 +74,10 @@ const ByLanguage = () => {
 
   return (
     <div>
-      <h3 className="flex items-center gap-4">
-        By Language
+      <div className="mb-4 flex items-center gap-4">
+        Filter by language
         {isPending && <small> Loading...</small>}
-      </h3>
+      </div>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button

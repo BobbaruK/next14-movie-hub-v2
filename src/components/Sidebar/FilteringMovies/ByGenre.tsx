@@ -40,10 +40,10 @@ const ByGenre = ({ queryKey }: Props) => {
 
   return (
     <div className="mb-6">
-      <h3 className="flex items-center gap-4">
-        By Genre
+      <div className="flex items-center gap-4 mb-4">
+        Filter by genre(s)
         {isPending && <small> Loading...</small>}
-      </h3>
+      </div>
       <div className="flex flex-wrap gap-2">
         {data?.genres.map((genre) => (
           <button

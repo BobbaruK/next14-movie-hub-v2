@@ -82,10 +82,10 @@ const Sorting = () => {
 
   return (
     <>
-      <h2 className="flex items-center gap-4">
-        Sorting
+      <div className="flex items-center gap-4 mb-2">
+        Sort result by
         {isPending && <small> Loading...</small>}
-      </h2>
+      </div>
       <Select
         onValueChange={(e) => {
           startTransition(() => {
