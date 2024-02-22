@@ -38,7 +38,7 @@ const Biography = ({ queryKey }: Props) => {
     );
 
   return (
-    <>
+    <div>
       {data?.biography.length! <= 600
         ? data?.biography
         : show
@@ -58,7 +58,7 @@ const Biography = ({ queryKey }: Props) => {
           </button>
         </>
       )}
-    </>
+    </div>
   );
 };
 

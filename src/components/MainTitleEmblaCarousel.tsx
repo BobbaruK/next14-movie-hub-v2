@@ -3,6 +3,10 @@ import { ImageDetails } from "@/types/ImageDetails";
 import { TheCast } from "@/types/movies/CastAndCrew";
 import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
+import {
+  CombinedCreditsMovieCast,
+  CombinedCreditsTVCast,
+} from "@/types/people/CombinedCredits";
 import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import dynamic from "next/dynamic";
@@ -20,6 +24,10 @@ interface Props {
     | {
         type: "movie-recommendation";
         arr: (MovieRecommendation | TVShowRecommendation)[];
+      }
+    | {
+        type: "known-for";
+        arr: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[];
       };
 
   emblaCarouselOptions?: EmblaOptionsType;
@@ -78,6 +86,17 @@ export function MainTitleEmblaCarousel({
           />
         );
 
+      case "known-for":
+        const knownForMovies = arrItem as
+          | CombinedCreditsMovieCast
+          | CombinedCreditsTVCast;
+        return (
+          <DynamicMainCard
+            movie={knownForMovies}
+            imageDetails={{ ...imageDetails, type: "poster" }}
+          />
+        );
+
       default:
         break;
     }
@@ -91,8 +110,8 @@ export function MainTitleEmblaCarousel({
             `embla__container grid auto-cols-[100%] grid-flow-col gap-x-4 sm:auto-cols-[50%] md:auto-cols-[33.33%] lg:auto-cols-[25%] xl:auto-cols-[20%] ${slideSizes}`,
           )}
         >
-          {typeOptions.arr.map((arrItem) => (
-            <div key={arrItem.id} className="embla__slide min-w-0">
+          {typeOptions.arr.map((arrItem, index) => (
+            <div key={arrItem.id + "" + index} className="embla__slide min-w-0">
               {cardRender(arrItem)}
             </div>
           ))}

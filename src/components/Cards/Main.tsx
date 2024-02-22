@@ -14,9 +14,18 @@ import {
 } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { ImageDetails } from "@/types/ImageDetails";
+import {
+  CombinedCreditsMovieCast,
+  CombinedCreditsTVCast,
+} from "@/types/people/CombinedCredits";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  movie: Movie | TVShow | People;
+  movie:
+    | Movie
+    | TVShow
+    | People
+    | CombinedCreditsMovieCast
+    | CombinedCreditsTVCast;
   imageDetails: ImageDetails;
 }
 

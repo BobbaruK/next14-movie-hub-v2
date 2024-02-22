@@ -1,5 +1,6 @@
 import Biography from "@/components/Person/Biography";
 import { Credits } from "@/components/Person/Credits";
+import KnownForMain from "@/components/Person/KnownForMain";
 import PersonName from "@/components/Person/Name";
 import AlsoKnownAs from "@/components/Person/PersonalInfo/AlsoKnownAs";
 import Birthday from "@/components/Person/PersonalInfo/Birthday";
@@ -10,8 +11,6 @@ import PersonProfile from "@/components/Person/Profile";
 import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
 import {
   RQ_COMBINED_CREDITS_KEY,
-  RQ_PERSON_ENDPOINT,
-  RQ_PERSON_EXTERNAL_IDS_ENDPOINT,
   RQ_PERSON_EXTERNAL_IDS_KEY,
   RQ_PERSON_KEY,
 } from "@/constants";
@@ -61,6 +60,7 @@ export default function Person({ params: { id } }: Props) {
       <div className="lg:basis-3/4">
         <PersonName queryKey={RQ_PERSON_KEY(id)} />
         <Biography queryKey={RQ_PERSON_KEY(id)} />
+        <KnownForMain queryKey={RQ_COMBINED_CREDITS_KEY(id)} />
         <Credits queryKey={RQ_COMBINED_CREDITS_KEY(id)} />
       </div>
     </div>
