@@ -70,8 +70,6 @@ const Sorting = () => {
   ];
 
   const searchParams = useSearchParams();
-  const genreParams = searchParams.get("with_genres");
-  const langParams = searchParams.get("with_original_language");
   const pageParams = searchParams.get("page");
 
   const createQueryString = useCallback(
@@ -84,11 +82,6 @@ const Sorting = () => {
     },
     [searchParams, pageParams],
   );
-
-  const paramsString = (sortBy: string): string =>
-    `?page=1${genreParams ? "&with_genres=" + genreParams : ""}${
-      langParams ? "&with_original_language=" + langParams : ""
-    }&sort_by=${sortBy}`;
 
   const router = useRouter();
 

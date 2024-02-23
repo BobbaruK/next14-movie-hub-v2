@@ -49,7 +49,7 @@ const ByLanguage = () => {
 
       return params.toString();
     },
-    [searchParams,pageParams],
+    [searchParams, pageParams],
   );
 
   const deleteQueryString = useCallback(
@@ -60,7 +60,7 @@ const ByLanguage = () => {
 
       return params.toString();
     },
-    [searchParams,pageParams],
+    [searchParams, pageParams],
   );
 
   if (error) throw new Error(`${RQ_LANGUAGES_KEY} - ${error.message}`);
