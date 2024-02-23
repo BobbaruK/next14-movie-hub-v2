@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTransition } from "react";
+import { useCallback, useTransition } from "react";
 
 export const enum SortBy {
   popularityAsc = "popularity.asc",
@@ -69,9 +69,21 @@ const Sorting = () => {
     },
   ];
 
-  const params = useSearchParams();
-  const genreParams = params.get("with_genres");
-  const langParams = params.get("with_original_language");
+  const searchParams = useSearchParams();
+  const genreParams = searchParams.get("with_genres");
+  const langParams = searchParams.get("with_original_language");
+  const pageParams = searchParams.get("page");
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (!params.has("page") || pageParams !== "1") params.set("page", "1");
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams, pageParams],
+  );
 
   const paramsString = (sortBy: string): string =>
     `?page=1${genreParams ? "&with_genres=" + genreParams : ""}${
@@ -82,17 +94,18 @@ const Sorting = () => {
 
   return (
     <>
-      <div className="flex items-center gap-4 mb-2">
+      <div className="mb-2 flex items-center gap-4">
         Sort result by
         {isPending && <small> Loading...</small>}
       </div>
       <Select
-        onValueChange={(e) => {
+        onValueChange={(value) => {
           startTransition(() => {
-            router.push(paramsString(e));
+            // router.push(paramsString(e));
+            router.push("?" + createQueryString("sort_by", value));
           });
         }}
-        value={params.get("sort_by") || SortBy.popularityDesc}
+        value={searchParams.get("sort_by") || SortBy.popularityDesc}
       >
         <SelectTrigger className="w-[270px]">
           <SelectValue placeholder="Sorting by..." />
