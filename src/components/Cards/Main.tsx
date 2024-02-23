@@ -72,7 +72,7 @@ const MainCard = ({ movie, imageDetails, ...restProps }: Props) => {
               }
               className="absolute left-2 top-2 z-10"
             >
-              {movie.vote_average.toFixed(1)}
+              {movie.vote_average && movie.vote_average.toFixed(1)}
             </Badge>
             <TMDBImages
               type="poster"

@@ -34,6 +34,7 @@ const Credits = ({ queryKey }: Props) => {
     <div className="flex flex-col gap-8 py-10">
       <div>
         <h2>Acting</h2>
+        {/* TODO: filtering acting/crew */}
         <Acting castArr={credits?.cast!} />
       </div>
       <Crew crewArr={credits?.crew!} />
