@@ -5,7 +5,7 @@ import { badgeVariants } from "@/components/ui/badge";
 import { GenreResponse } from "@/types/movies/GenreResponse";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTransition } from "react";
+import { useCallback, useTransition } from "react";
 
 interface Props {
   queryKey: string;
@@ -18,14 +18,35 @@ const ByGenre = ({ queryKey }: Props) => {
     queryKey: [queryKey],
   });
 
-  const params = useSearchParams();
-  const genreParams = params.get("with_genres");
-  const langParams = params.get("with_original_language");
-  const sortByParams = params.get("sort_by");
+  const searchParams = useSearchParams();
+  const genreParams = searchParams.get("with_genres");
+  const pageParams = searchParams.get("page");
 
   const genresArr = genreParams?.split(",") || [];
 
   const router = useRouter();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (!params.has("page") || pageParams !== "1") params.set("page", "1");
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams, pageParams],
+  );
+
+  const deleteQueryString = useCallback(
+    (name: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (!params.has("page") || pageParams !== "1") params.set("page", "1");
+      params.delete(name);
+
+      return params.toString();
+    },
+    [searchParams, pageParams],
+  );
 
   if (error) throw new Error(`${queryKey} - ${error.message}`);
 
@@ -40,7 +61,7 @@ const ByGenre = ({ queryKey }: Props) => {
 
   return (
     <div className="mb-6">
-      <div className="flex items-center gap-4 mb-4">
+      <div className="mb-4 flex items-center gap-4">
         Filter by genre(s)
         {isPending && <small> Loading...</small>}
       </div>
@@ -59,14 +80,13 @@ const ByGenre = ({ queryKey }: Props) => {
                   const ind = genresArr.indexOf(String(genre.id));
                   genresArr.splice(ind, 1);
 
+                  if (genresArr.length === 0) {
+                    router.push("?" + deleteQueryString("with_genres"));
+                    return;
+                  }
+
                   router.push(
-                    `?page=1${
-                      genresArr.length
-                        ? "&with_genres=" + genresArr.join(",")
-                        : ""
-                    }${
-                      langParams ? "&with_original_language=" + langParams : ""
-                    }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
+                    "?" + createQueryString("with_genres", genresArr.join(",")),
                   );
 
                   return;
@@ -75,9 +95,7 @@ const ByGenre = ({ queryKey }: Props) => {
                 genresArr?.push(String(genre.id));
 
                 router.push(
-                  `?page=1&with_genres=${genresArr}${
-                    langParams ? "&with_original_language=" + langParams : ""
-                  }${sortByParams ? "&sort_by=" + sortByParams : ""}`,
+                  "?" + createQueryString("with_genres", genresArr.join(",")),
                 );
               });
             }}
