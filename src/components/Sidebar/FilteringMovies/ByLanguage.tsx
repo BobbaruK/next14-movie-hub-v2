@@ -4,7 +4,7 @@ import { RQ_LANGUAGES_KEY } from "@/constants";
 import { Language } from "@/types/movies/Language";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useCallback, useState, useTransition } from "react";
 
 import { Check, ChevronsUpDown } from "lucide-react";
 
@@ -36,18 +36,32 @@ const ByLanguage = () => {
     queryKey: [RQ_LANGUAGES_KEY],
   });
 
-  const params = useSearchParams();
-  const genreParams = params.get("with_genres");
-  const sortByParams = params.get("sort_by");
-
-  const paramsString = (lang: string): string =>
-    `?page=1${
-      genreParams ? "&with_genres=" + genreParams : ""
-    }&with_original_language=${lang}${
-      sortByParams ? "&sort_by=" + sortByParams : ""
-    }`;
+  const searchParams = useSearchParams();
+  const pageParams = searchParams.get("page");
 
   const router = useRouter();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (!params.has("page") || pageParams !== "1") params.set("page", "1");
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams,pageParams],
+  );
+
+  const deleteQueryString = useCallback(
+    (name: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (!params.has("page") || pageParams !== "1") params.set("page", "1");
+      params.delete(name);
+
+      return params.toString();
+    },
+    [searchParams,pageParams],
+  );
 
   if (error) throw new Error(`${RQ_LANGUAGES_KEY} - ${error.message}`);
 
@@ -104,11 +118,25 @@ const ByLanguage = () => {
                   value={framework.iso_639_1}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
+
                     setOpen(false);
-                    console.log(currentValue);
-                    startTransition(() =>
-                      router.push(paramsString(currentValue)),
-                    );
+
+                    startTransition(() => {
+                      if (currentValue === value) {
+                        router.push(
+                          "?" + deleteQueryString("with_original_language"),
+                        );
+                        return;
+                      }
+
+                      router.push(
+                        "?" +
+                          createQueryString(
+                            "with_original_language",
+                            currentValue,
+                          ),
+                      );
+                    });
                   }}
                 >
                   <Check
