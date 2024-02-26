@@ -50,7 +50,7 @@ const MainTitleCast = ({ queryKey, type }: Props) => {
             (max-width: 1279px) 50px,
             250px
           `,
-          type: "other", // doesn't matter, it is being handled inside this component
+          type: "other", 
         }}
       />
       <div className="py-4">

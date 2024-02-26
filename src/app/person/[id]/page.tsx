@@ -39,7 +39,7 @@ export async function generateMetadata({
 export default function Person({ params: { id } }: Props) {
   return (
     <div className="appContaier flex flex-col gap-8 py-20 lg:flex-row">
-      <div className="flex flex-col gap-10 lg:basis-1/4">
+      <div className="flex flex-col gap-10 lg:w-3/4 lg:basis-1/4">
         <div className="flex flex-col gap-2">
           <PersonProfile queryKey={RQ_PERSON_KEY(id)} />
           <SocialMediaLinks
@@ -57,7 +57,7 @@ export default function Person({ params: { id } }: Props) {
           <AlsoKnownAs queryKey={RQ_PERSON_KEY(id)} />
         </div>
       </div>
-      <div className="lg:basis-3/4">
+      <div className="lg:w-3/4 lg:basis-3/4">
         <PersonName queryKey={RQ_PERSON_KEY(id)} />
         <Biography queryKey={RQ_PERSON_KEY(id)} />
         <KnownForMain queryKey={RQ_COMBINED_CREDITS_KEY(id)} />

@@ -52,7 +52,7 @@ const MainTitleRecommendations = ({ queryKey }: Props) => {
                 (max-width: 1279px) 223px,
                 141px
               `,
-              type: "other", // doesn't matter, it is being handled inside this component
+              type: "other", 
             }}
           />
         </div>

@@ -37,7 +37,7 @@ const KnownForMain = ({ queryKey }: Props) => {
     return 0;
   });
 
-  // if (knownForMovies) knownForMovies.length = 10;
+  if (knownForMovies) knownForMovies.length = 10;
 
   return (
     <div className="pt-10">
@@ -55,7 +55,7 @@ const KnownForMain = ({ queryKey }: Props) => {
                 (max-width: 1279px) 223px,
                 141px
               `,
-          type: "other", // doesn't matter, it is being handled inside this component
+          type: "other", 
         }}
       />
     </div>
