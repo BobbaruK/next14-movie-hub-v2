@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "@/components/Spinner";
 import {
   Select,
   SelectContent,
@@ -89,7 +90,7 @@ const Sorting = () => {
     <>
       <div className="mb-2 flex items-center gap-4">
         Sort result by
-        {isPending && <small> Loading...</small>}
+        {isPending && <Spinner size={15} />}
       </div>
       <Select
         onValueChange={(value) => {

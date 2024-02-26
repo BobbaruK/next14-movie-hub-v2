@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "@/components/Spinner";
 import {
   Collapsible,
   CollapsibleContent,
@@ -9,13 +10,25 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 
 const Sorting = dynamic(() => import("./Sorting"), {
-  loading: () => <p>Loading sorting...</p>,
+  loading: () => (
+    <p className="flex items-center justify-start gap-4">
+      <Spinner /> Loading sorting...
+    </p>
+  ),
 });
 const ByGenre = dynamic(() => import("./ByGenre"), {
-  loading: () => <p>Loading genres...</p>,
+  loading: () => (
+    <p className="flex items-center justify-start gap-4">
+      <Spinner /> Loading genres...
+    </p>
+  ),
 });
 const ByLanguage = dynamic(() => import("./ByLanguage"), {
-  loading: () => <p>Loading languages...</p>,
+  loading: () => (
+    <p className="flex items-center justify-start gap-4">
+      <Spinner /> Loading languages...
+    </p>
+  ),
 });
 
 interface Props {

@@ -6,6 +6,7 @@ import { People } from "@/types/people/PeoplesResponse";
 import moviesFetchConfig from "@/utils/moviesFetchConfig";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import Spinner from "../Spinner";
 import { Button } from "../ui/button";
 
 interface Props {
@@ -59,7 +60,7 @@ const MoviePagination = ({
         Prev
       </Button>
       {isPending ? (
-        <small> Loading...</small>
+        <Spinner />
       ) : (
         <>
           {movie?.page} of {movie?.total_pages} / {movie?.total_results} results

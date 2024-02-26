@@ -1,16 +1,8 @@
 "use client";
 
-import { RQ_LANGUAGES_KEY } from "@/constants";
-import { Language } from "@/types/movies/Language";
-import { useQuery } from "@tanstack/react-query";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useState, useTransition } from "react";
-
-import { Check, ChevronsUpDown } from "lucide-react";
-
+import CustomAlert from "@/components/CustomAlert";
+import Spinner from "@/components/Spinner";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-
 import {
   Command,
   CommandEmpty,
@@ -18,13 +10,18 @@ import {
   CommandInput,
   CommandItem,
 } from "@/components/ui/command";
-
-import CustomAlert from "@/components/CustomAlert";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { RQ_LANGUAGES_KEY } from "@/constants";
+import { cn } from "@/lib/utils";
+import { Language } from "@/types/movies/Language";
+import { useQuery } from "@tanstack/react-query";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useState, useTransition } from "react";
 
 const ByLanguage = () => {
   const [open, setOpen] = useState(false);
@@ -90,7 +87,7 @@ const ByLanguage = () => {
     <div>
       <div className="mb-4 flex items-center gap-4">
         Filter by language
-        {isPending && <small> Loading...</small>}
+        {isPending && <Spinner size={15} />}
       </div>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>

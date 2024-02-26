@@ -1,6 +1,7 @@
 "use client";
 
 import CustomAlert from "@/components/CustomAlert";
+import Spinner from "@/components/Spinner";
 import { badgeVariants } from "@/components/ui/badge";
 import { GenreResponse } from "@/types/movies/GenreResponse";
 import { useQuery } from "@tanstack/react-query";
@@ -63,7 +64,7 @@ const ByGenre = ({ queryKey }: Props) => {
     <div className="mb-6">
       <div className="mb-4 flex items-center gap-4">
         Filter by genre(s)
-        {isPending && <small> Loading...</small>}
+        {isPending && <Spinner size={15} />}
       </div>
       <div className="flex flex-wrap gap-2">
         {data?.genres.map((genre) => (

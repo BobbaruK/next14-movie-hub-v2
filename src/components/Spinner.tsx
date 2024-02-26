@@ -8,7 +8,7 @@ const Spinner = ({ size }: Props) => {
   return (
     <ImSpinner10
       className="animate-spin transition-all duration-1000 ease-linear"
-      size={size || 15}
+      size={size || 20}
     />
   );
 };

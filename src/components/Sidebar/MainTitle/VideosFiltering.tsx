@@ -1,6 +1,7 @@
 "use client";
 
 import CustomAlert from "@/components/CustomAlert";
+import Spinner from "@/components/Spinner";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import useGetVideos from "@/hooks/useGetVideos";
@@ -96,7 +97,7 @@ const VideosFiltering = ({ queryKey, titleType }: Props) => {
     <Card className="overflow-hidden">
       <h2 className="m-0 flex items-center justify-start gap-4 bg-primary px-2 py-4 text-primary-foreground">
         Videos
-        {isPending && <small> Loading...</small>}
+        {isPending && <Spinner />}
       </h2>
       <CardContent className="p-0">
         <ul className="flex flex-col gap-1 py-2">
