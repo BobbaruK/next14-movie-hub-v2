@@ -1,3 +1,5 @@
+"use client";
+
 import { CombinedCredits } from "@/types/people/CombinedCredits";
 import { useQuery } from "@tanstack/react-query";
 import CustomAlert from "../CustomAlert";
@@ -53,7 +55,7 @@ const KnownForMain = ({ queryKey }: Props) => {
                 (max-width: 1279px) 223px,
                 141px
               `,
-          type: "other",
+          type: "other", 
         }}
       />
     </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import CustomAlert from "@/components/CustomAlert";
 import { MediaType } from "@/types/MediaType";
 import { CombinedCredits } from "@/types/people/CombinedCredits";
