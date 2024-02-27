@@ -4,6 +4,7 @@ import { PeopleResponse } from "@/types/people/PeopleResponse";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import CustomAlert from "../CustomAlert";
+import { Button } from "../ui/button";
 
 interface Props {
   queryKey: string;
@@ -48,14 +49,15 @@ const Biography = ({ queryKey }: Props) => {
       {data.biography.length > 600 && (
         <>
           {!show && "..."}{" "}
-          <button
-            className="btn btn-outline btn-xs"
+          <Button
+            variant={"outline"}
+            size={'sm'}
             onClick={() => {
               setShow(!show);
             }}
           >
             {show ? "show less" : "show more"}
-          </button>
+          </Button>
         </>
       )}
     </div>
