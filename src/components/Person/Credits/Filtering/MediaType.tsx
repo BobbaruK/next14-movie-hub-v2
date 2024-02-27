@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -8,15 +9,23 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { RQ_COMBINED_CREDITS_KEY } from "@/constants";
 import { MediaType } from "@/types/MediaType";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { CombinedCredits } from "@/types/people/CombinedCredits";
+import { useQuery } from "@tanstack/react-query";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 const FilteringMediaType = () => {
   const pathname = usePathname();
+  const { id } = useParams<{ id: string }>();
   const searchParams = useSearchParams();
   const router = useRouter();
-
   const [mediaTypeState, setMediaTypeState] = useState<MediaType | null>(null);
 
   const createQueryString = useCallback(
@@ -38,6 +47,41 @@ const FilteringMediaType = () => {
     return () => {};
   }, [searchParams]);
 
+  const { data: credits } = useQuery<CombinedCredits>({
+    queryKey: [RQ_COMBINED_CREDITS_KEY(id)],
+  });
+
+  const titlesCounter = () => {
+    let moviesCounter = 0,
+      tvShowsCounter = 0;
+
+    if (credits?.cast) {
+      for (let i = 0; i < credits.cast.length; i++) {
+        if (credits.cast[i].media_type === "movie") moviesCounter++;
+      }
+      for (let i = 0; i < credits.cast.length; i++) {
+        if (credits.cast[i].media_type === "tv") tvShowsCounter++;
+      }
+    }
+
+    if (credits?.crew) {
+      for (let i = 0; i < credits.crew.length; i++) {
+        if (credits.crew[i].media_type === "movie") moviesCounter++;
+      }
+
+      for (let i = 0; i < credits.crew.length; i++) {
+        if (credits.crew[i].media_type === "tv") tvShowsCounter++;
+      }
+    }
+
+    return {
+      moviesCounter,
+      tvShowsCounter,
+    };
+  };
+
+  const counters = titlesCounter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -58,8 +102,18 @@ const FilteringMediaType = () => {
             );
           }}
         >
-          <DropdownMenuRadioItem value="movie">Movie</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="tv">TV Shows</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem
+            value="movie"
+            className="flex justify-between gap-4"
+          >
+            Movie <Badge>{counters.moviesCounter}</Badge>
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem
+            value="tv"
+            className="flex justify-between gap-4"
+          >
+            TV Shows <Badge>{counters.tvShowsCounter}</Badge>
+          </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -68,7 +68,7 @@ export interface CombinedCreditsMovieCrew {
   credit_id: string;
   department: string;
   job: string;
-  media_type: string;
+  media_type: MediaType;
   year: number;
 }
 
@@ -91,6 +91,6 @@ export interface CombinedCreditsTVCrew {
   department: string;
   episode_count: number;
   job: string;
-  media_type: string;
+  media_type: MediaType;
   year: number;
 }
