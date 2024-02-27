@@ -1,5 +1,6 @@
 "use client";
 
+import { MediaType } from "@/types/MediaType";
 import { ReviewsResponse } from "@/types/movies/Reviews";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -9,7 +10,7 @@ import CustomAlert from "../CustomAlert";
 
 interface Props {
   queryKey: string;
-  type: "movie" | "tv";
+  type: MediaType;
 }
 
 const MainTitleReviews = ({ queryKey, type }: Props) => {

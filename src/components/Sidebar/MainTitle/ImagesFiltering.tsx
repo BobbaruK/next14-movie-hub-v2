@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { RQ_LANGUAGES_KEY } from "@/constants";
 import { GridImagesType } from "@/types/GridImagesType";
 import { ImagesResponse } from "@/types/ImagesResponse";
+import { MediaType } from "@/types/MediaType";
 import { Language } from "@/types/movies/Language";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -15,7 +16,7 @@ interface Props {
   title: string;
   queryKey: string;
   imagesType: GridImagesType;
-  titleType: "movie" | "tv";
+  titleType: MediaType;
 }
 
 const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {

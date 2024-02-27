@@ -5,6 +5,7 @@ import Spinner from "@/components/Spinner";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import useGetVideos from "@/hooks/useGetVideos";
+import { MediaType } from "@/types/MediaType";
 import { VideosResponse } from "@/types/VideoResponse";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, usePathname, useRouter } from "next/navigation";
@@ -12,7 +13,7 @@ import { useTransition } from "react";
 
 interface Props {
   queryKey: string;
-  titleType: "movie" | "tv";
+  titleType: MediaType;
 }
 
 const VideosFiltering = ({ queryKey, titleType }: Props) => {

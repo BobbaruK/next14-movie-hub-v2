@@ -1,6 +1,7 @@
 "use client";
 
 import { mainTitleCastImageHeight } from "@/constants";
+import { MediaType } from "@/types/MediaType";
 import { CastAndCrew } from "@/types/movies/CastAndCrew";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -10,7 +11,7 @@ import { MainTitleEmblaCarousel } from "../MainTitleEmblaCarousel";
 
 interface Props {
   queryKey: string;
-  type: "movie" | "tv";
+  type: MediaType;
 }
 
 const MainTitleCast = ({ queryKey, type }: Props) => {
@@ -50,7 +51,7 @@ const MainTitleCast = ({ queryKey, type }: Props) => {
             (max-width: 1279px) 50px,
             250px
           `,
-          type: "other", 
+          type: "other",
         }}
       />
       <div className="py-4">

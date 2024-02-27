@@ -3,6 +3,7 @@
 import { GridImagesType } from "@/types/GridImagesType";
 import { ImageDetails } from "@/types/ImageDetails";
 import { ImagesResponse } from "@/types/ImagesResponse";
+import { MediaType } from "@/types/MediaType";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import ImageCard from "../Cards/Image";
@@ -12,7 +13,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   queryKey: string;
   imagesType: GridImagesType;
   imageDetails: ImageDetails;
-  titleType: "movie" | "tv";
+  titleType: MediaType;
 }
 
 const ImagesGrid = ({
