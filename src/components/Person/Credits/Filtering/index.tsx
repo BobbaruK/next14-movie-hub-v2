@@ -1,9 +1,13 @@
+"use client";
+
 import { buttonVariants } from "@/components/ui/button";
 import { MediaType } from "@/types/MediaType";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
-import FilteringMediaType from "./MediaType";
+
+const FilteringMediaType = dynamic(() => import("./MediaType"));
 
 const FilteringCredits = () => {
   const pathname = usePathname();
