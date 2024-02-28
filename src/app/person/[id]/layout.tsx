@@ -6,9 +6,12 @@ import {
   RQ_PERSON_EXTERNAL_IDS_ENDPOINT,
   RQ_PERSON_EXTERNAL_IDS_KEY,
   RQ_PERSON_KEY,
+  RQ_POPULAR_JOBS_ENDPOINT,
+  RQ_POPULAR_JOBS_KEY,
 } from "@/constants";
 import MyAPIClient from "@/services/myApiClient";
 import { ExternalIDs } from "@/types/ExternalIDs";
+import { Job } from "@/types/Job";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 import { CombinedCredits } from "@/types/people/CombinedCredits";
 import { PeopleResponse } from "@/types/people/PeopleResponse";
@@ -72,6 +75,13 @@ export default async function MainTitleNavigationLayout({
   await queryClient.prefetchQuery({
     queryKey: [RQ_PERSON_EXTERNAL_IDS_KEY(id)],
     queryFn: () => apiClientExternalIDs.getAll(),
+  });
+
+  // Jobs
+  const apiClientJobs = new MyAPIClient<Job[]>(RQ_POPULAR_JOBS_ENDPOINT);
+  await queryClient.prefetchQuery({
+    queryKey: [RQ_POPULAR_JOBS_KEY],
+    queryFn: () => apiClientJobs.getAll(),
   });
 
   return (

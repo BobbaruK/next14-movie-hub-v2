@@ -1,6 +1,8 @@
 "use client";
 
 import CustomAlert from "@/components/CustomAlert";
+import { RQ_POPULAR_JOBS_KEY } from "@/constants";
+import { Job } from "@/types/Job";
 import { MediaType } from "@/types/MediaType";
 import { CombinedCredits } from "@/types/people/CombinedCredits";
 import { useQuery } from "@tanstack/react-query";
@@ -28,9 +30,18 @@ const Credits = ({ queryKey }: Props) => {
     queryKey: [queryKey],
   });
 
-  if (creditsError) throw new Error(`${queryKey} - ${creditsError.message}`);
+  const {
+    data: jobs,
+    error: jobsError,
+    isLoading: jobsIsLoading,
+  } = useQuery<Job[]>({
+    queryKey: [RQ_POPULAR_JOBS_KEY],
+  });
 
-  if (creditsIsLoading)
+  if (creditsError) throw new Error(`${queryKey} - ${creditsError.message}`);
+  if (jobsError) throw new Error(`${queryKey} - ${jobsError.message}`);
+
+  if (creditsIsLoading || jobsIsLoading)
     return (
       <CustomAlert
         variant="default"
@@ -58,6 +69,7 @@ const Credits = ({ queryKey }: Props) => {
       </div>
       <Crew
         crewArr={credits?.crew!}
+        jobs={jobs!}
         searchParams={{
           credit_media_type: creditMediaType,
         }}

@@ -1,12 +1,18 @@
 import {
   CombinedCreditsMovieCast,
+  CombinedCreditsMovieCrew,
   CombinedCreditsTVCast,
+  CombinedCreditsTVCrew,
 } from "@/types/people/CombinedCredits";
 import groupBy from "@/utils/groupBy";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 
 const usePersonTitlesCast = (
-  castArr: CombinedCreditsMovieCast[] | CombinedCreditsTVCast[],
+  castArr:
+    | CombinedCreditsMovieCast[]
+    | CombinedCreditsTVCast[]
+    | CombinedCreditsMovieCrew[]
+    | CombinedCreditsTVCrew[],
 ) => {
   const moviesCast = castArr.filter(
     (cast) => cast.media_type === "movie",
@@ -43,7 +49,10 @@ const usePersonTitlesCast = (
   }
 
   const groupByYear = groupBy<
-    CombinedCreditsMovieCast[] | CombinedCreditsTVCast[]
+    | CombinedCreditsMovieCast[]
+    | CombinedCreditsTVCast[]
+    | CombinedCreditsMovieCrew[]
+    | CombinedCreditsTVCrew[]
   >(castCreditsArray, (cast) => {
     return cast[0].year;
   });

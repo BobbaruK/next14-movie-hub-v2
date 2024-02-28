@@ -71,7 +71,9 @@ const Acting = ({ castArr, searchParams: { credit_media_type } }: Props) => {
                                         !("title" in title) &&
                                         (title.episode_count > 1 ? "s" : "")
                                       }) `}
-                                    {title.character && "as " + title.character}
+
+                                    {"character" in title &&
+                                      "as " + title.character}
                                   </div>
                                 );
                               })}
