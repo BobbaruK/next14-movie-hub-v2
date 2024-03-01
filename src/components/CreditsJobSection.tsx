@@ -1,5 +1,5 @@
 import usePersonCredits from "@/hooks/usePersonCredits";
-import { Job } from "@/types/Job";
+import { Department, Job } from "@/types/Job";
 import { MediaType } from "@/types/MediaType";
 import {
   CombinedCreditsMovieCast,
@@ -30,13 +30,14 @@ interface Props {
     | CombinedCreditsTVCast[];
   searchParams: {
     credit_media_type: MediaType | null;
+    credit_department: Department | null;
   };
   job?: Job;
 }
 
 const CreditsJobSection = ({
   departmentArr,
-  searchParams: { credit_media_type },
+  searchParams: { credit_media_type, credit_department },
   job,
 }: Props) => {
   const creditsCombined = usePersonCredits(departmentArr);
@@ -44,6 +45,9 @@ const CreditsJobSection = ({
   const departmentMediaArr = departmentArr.filter(
     (department) => department.media_type === credit_media_type,
   );
+
+  if (credit_department !== null && job?.department !== credit_department)
+    return;
 
   if (departmentMediaArr.length || credit_media_type === null)
     return (

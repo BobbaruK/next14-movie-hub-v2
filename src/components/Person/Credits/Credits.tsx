@@ -2,8 +2,12 @@
 
 import CreditsJobSection from "@/components/CreditsJobSection";
 import CustomAlert from "@/components/CustomAlert";
-import { RQ_POPULAR_JOBS_KEY } from "@/constants";
-import { Job } from "@/types/Job";
+import {
+  RQ_POPULAR_JOBS_KEY,
+  creditDepartmentSearchQuery,
+  creditMediaTypeSearchQuery,
+} from "@/constants";
+import { Department, Job } from "@/types/Job";
 import { MediaType } from "@/types/MediaType";
 import {
   CombinedCredits,
@@ -22,8 +26,11 @@ const Credits = ({ queryKey }: Props) => {
   const searchParams = useSearchParams();
 
   const creditMediaType = searchParams.get(
-    "credit_media_type",
+    creditMediaTypeSearchQuery,
   ) as MediaType | null;
+  const creditDepartment = searchParams.get(
+    creditDepartmentSearchQuery,
+  ) as Department | null;
 
   const {
     data: credits,
@@ -63,6 +70,7 @@ const Credits = ({ queryKey }: Props) => {
         departmentArr={credits?.cast!}
         searchParams={{
           credit_media_type: creditMediaType,
+          credit_department: creditDepartment,
         }}
       />
       {jobs
@@ -84,6 +92,7 @@ const Credits = ({ queryKey }: Props) => {
                 departmentArr={departmentArr}
                 searchParams={{
                   credit_media_type: creditMediaType,
+                  credit_department: creditDepartment,
                 }}
               />
             );

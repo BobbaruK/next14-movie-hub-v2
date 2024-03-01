@@ -209,7 +209,8 @@ export const RQ_TVSHOWS_IMAGES_KEY = (id: string) =>
 export const RQ_TVSHOWS_IMAGES_ENDPOINT = (id: string) =>
   `tv/${parseInt(id)}/images`;
 
-export const RQ_PERSON_IMAGES_KEY = (id: string) => `person-${parseInt(id)}-images`;
+export const RQ_PERSON_IMAGES_KEY = (id: string) =>
+  `person-${parseInt(id)}-images`;
 export const RQ_PERSON_IMAGES_ENDPOINT = (id: string) =>
   `person/${parseInt(id)}/images`;
 
@@ -256,3 +257,6 @@ export const mainTitleCastImageHeight = `
     md:h-mainCardCastImageHeight-md 
     lg:h-mainCardCastImageHeight-lg 
     xl:h-mainCardCastImageHeight-xl`;
+
+export const creditMediaTypeSearchQuery = "credit_media_type";
+export const creditDepartmentSearchQuery = "credit_department";

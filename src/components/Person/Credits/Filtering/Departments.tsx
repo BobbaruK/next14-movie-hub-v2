@@ -1,5 +1,3 @@
-"use client";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,17 +23,26 @@ import {
 } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
-const FilteringMediaType = () => {
+interface DepObj {
+  [key: string]: {
+    label: string;
+    count: number;
+  };
+}
+
+const FilteringDepartments = () => {
   const pathname = usePathname();
   const { id } = useParams<{ id: string }>();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [mediaTypeState, setMediaTypeState] = useState<MediaType | null>(null);
+  const [departmentState, setDepartmentState] = useState<MediaType | null>(
+    null,
+  );
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());
-      params.delete(creditDepartmentSearchQuery);
+      params.delete(creditMediaTypeSearchQuery);
       params.set(name, value);
 
       return params.toString();
@@ -44,11 +51,11 @@ const FilteringMediaType = () => {
   );
 
   useEffect(() => {
-    const creditMediaType = searchParams.get(
-      creditMediaTypeSearchQuery,
+    const creditDepartment = searchParams.get(
+      creditDepartmentSearchQuery,
     ) as MediaType | null;
 
-    setMediaTypeState((state) => (state = creditMediaType));
+    setDepartmentState((state) => (state = creditDepartment));
     return () => {};
   }, [searchParams]);
 
@@ -56,73 +63,70 @@ const FilteringMediaType = () => {
     queryKey: [RQ_COMBINED_CREDITS_KEY(id)],
   });
 
-  const titlesCounter = () => {
-    let moviesCounter = 0,
-      tvShowsCounter = 0;
+  const getDepartments = () => {
+    const depObj: DepObj = {};
 
-    if (credits?.cast) {
-      for (let i = 0; i < credits.cast.length; i++) {
-        if (credits.cast[i].media_type === "movie") moviesCounter++;
-      }
-      for (let i = 0; i < credits.cast.length; i++) {
-        if (credits.cast[i].media_type === "tv") tvShowsCounter++;
+    if (credits) {
+      for (let i = 0; i < credits.crew.length; i++) {
+        const department = credits.crew[i].department as keyof typeof depObj;
+
+        if (department === "Creator") continue; // TODO: add this when create loading
+
+        const count = credits.crew.filter(
+          (crew) => crew.department === credits.crew[i].department,
+        ).length;
+
+        if (department in depObj) continue;
+
+        depObj[department] = {
+          label: department as string,
+          count,
+        };
       }
     }
 
-    if (credits?.crew) {
-      for (let i = 0; i < credits.crew.length; i++) {
-        if (credits.crew[i].media_type === "movie") moviesCounter++;
-      }
+    const output = Object.values(depObj);
 
-      for (let i = 0; i < credits.crew.length; i++) {
-        if (credits.crew[i].media_type === "tv") tvShowsCounter++;
-      }
-    }
-
-    return {
-      moviesCounter,
-      tvShowsCounter,
-    };
+    return output;
   };
 
-  const counters = titlesCounter();
+  const departments = getDepartments();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">All</Button>
+        <Button variant="outline">Department</Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="center">
+      <DropdownMenuContent align="end">
         <DropdownMenuRadioGroup
-          value={mediaTypeState || undefined}
+          value={departmentState || undefined}
           onValueChange={(e) => {
             const value = e as MediaType;
-            setMediaTypeState((state) => (state = value));
+            setDepartmentState((state) => (state = value));
 
             router.push(
-              pathname + "?" + createQueryString("credit_media_type", value),
+              pathname +
+                "?" +
+                createQueryString(creditDepartmentSearchQuery, value),
               {
                 scroll: false,
               },
             );
           }}
         >
-          <DropdownMenuRadioItem
-            value="movie"
-            className="flex justify-between gap-4"
-          >
-            Movie <Badge>{counters.moviesCounter}</Badge>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem
-            value="tv"
-            className="flex justify-between gap-4"
-          >
-            TV Shows <Badge>{counters.tvShowsCounter}</Badge>
-          </DropdownMenuRadioItem>
+          {departments.map((department) => (
+            <DropdownMenuRadioItem
+              key={department.label}
+              value={department.label}
+              className="flex justify-between gap-4"
+            >
+              {department.label} <Badge>{department.count}</Badge>
+            </DropdownMenuRadioItem>
+          ))}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
 
-export default FilteringMediaType;
+export default FilteringDepartments;
