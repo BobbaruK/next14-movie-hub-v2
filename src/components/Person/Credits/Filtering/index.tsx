@@ -1,7 +1,6 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { MediaType } from "@/types/MediaType";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -23,12 +22,8 @@ const FilteringCredits = () => {
     [searchParams],
   );
 
-  const creditMediaType = searchParams.get(
-    "credit_media_type",
-  ) as MediaType | null;
-
   return (
-    <>
+    <div className="flex items-center justify-center gap-4">
       {searchParams.size > 0 && (
         <Link
           href={pathname + "?" + deleteQueryString("credit_media_type")}
@@ -39,7 +34,7 @@ const FilteringCredits = () => {
         </Link>
       )}
       <FilteringMediaType />
-    </>
+    </div>
   );
 };
 

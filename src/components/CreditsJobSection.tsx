@@ -9,7 +9,7 @@ import {
 } from "@/types/people/CombinedCredits";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import React from "react";
 import { Card } from "./ui/card";
 
 interface Props {
@@ -22,14 +22,12 @@ interface Props {
     credit_media_type: MediaType | null;
   };
   job?: Job;
-  filteringElement?: ReactNode;
 }
 
 const CreditsJobSection = ({
-  job,
   departmentArr,
   searchParams: { credit_media_type },
-  filteringElement,
+  job,
 }: Props) => {
   const creditsCombined = usePersonCredits(departmentArr);
 
@@ -41,10 +39,7 @@ const CreditsJobSection = ({
     return (
       <div>
         <div className={`mb-4 flex items-center justify-between gap-8`}>
-          <h2 className={`${filteringElement && "m-0"}`}>
-            {job?.department || "Acting"}
-          </h2>
-          {filteringElement}
+          <h3 className="m-0">{job?.department || "Acting"}</h3>
         </div>
         <Card className="flex flex-col gap-0 overflow-hidden">
           {creditsCombined

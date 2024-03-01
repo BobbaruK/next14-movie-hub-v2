@@ -55,16 +55,15 @@ const Credits = ({ queryKey }: Props) => {
 
   return (
     <div className="flex flex-col gap-8 py-10">
+      <div className={`flex items-center justify-between gap-8`}>
+        <h2 className="m-0">Credits</h2>
+        <FilteringCredits />
+      </div>
       <CreditsJobSection
         departmentArr={credits?.cast!}
         searchParams={{
           credit_media_type: creditMediaType,
         }}
-        filteringElement={
-          <div className="flex items-center justify-center gap-4">
-            <FilteringCredits />
-          </div>
-        }
       />
       {jobs
         ?.sort((a, b) => {
@@ -77,7 +76,7 @@ const Credits = ({ queryKey }: Props) => {
             (department) => department.department === job.department,
           ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
 
-          if (departmentArr.length)
+          if (departmentArr.length) {
             return (
               <CreditsJobSection
                 key={job.department}
@@ -86,13 +85,9 @@ const Credits = ({ queryKey }: Props) => {
                 searchParams={{
                   credit_media_type: creditMediaType,
                 }}
-                filteringElement={
-                  <div className="flex items-center justify-center gap-4">
-                    <FilteringCredits />
-                  </div>
-                }
               />
             );
+          }
         })}
     </div>
   );
