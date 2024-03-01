@@ -7,8 +7,6 @@ import {
 import groupBy from "@/utils/groupBy";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 
-// TODO: sort by year first and afterwards sort by name... eventually just the tv shows?
-
 const usePersonCredits = (
   creditsArr:
     | CombinedCreditsMovieCast[]

@@ -12,6 +12,16 @@ import Link from "next/link";
 import React from "react";
 import { Card } from "./ui/card";
 
+// TODO: handle multiple credits
+/**
+ * Not happy with multiple credits:
+ *
+ * http://localhost:3000/person/52139-seth-macfarlane
+ *
+ * search for Cosmos... al credits should be under
+ * the same entry "Cosmos"
+ */
+
 interface Props {
   departmentArr:
     | CombinedCreditsMovieCrew[]

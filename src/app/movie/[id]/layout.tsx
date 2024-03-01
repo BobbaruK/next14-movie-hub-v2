@@ -100,7 +100,6 @@ export default async function MainTitleNavigationLayout({
         },
         {
           label: "Logos",
-          // href: `/movie/${id}/images/logos?lang=en`, // TODO: maybe i can find a better way without searchParams
           href: `/movie/${id}/images/logos`,
         },
         {
