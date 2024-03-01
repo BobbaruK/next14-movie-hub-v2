@@ -1,14 +1,17 @@
 "use client";
 
+import CreditsJobSection from "@/components/CreditsJobSection";
 import CustomAlert from "@/components/CustomAlert";
 import { RQ_POPULAR_JOBS_KEY } from "@/constants";
 import { Job } from "@/types/Job";
 import { MediaType } from "@/types/MediaType";
-import { CombinedCredits } from "@/types/people/CombinedCredits";
+import {
+  CombinedCredits,
+  CombinedCreditsMovieCrew,
+  CombinedCreditsTVCrew,
+} from "@/types/people/CombinedCredits";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import Acting from "./Acting";
-import Crew from "./Crew";
 import FilteringCredits from "./Filtering";
 
 interface Props {
@@ -52,28 +55,45 @@ const Credits = ({ queryKey }: Props) => {
 
   return (
     <div className="flex flex-col gap-8 py-10">
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center justify-between gap-8">
-          <h2 className="m-0">Acting</h2>
-          <div className="flex items-center justify-center gap-4">
-            <FilteringCredits />
-          </div>
-        </div>
-        {/* TODO: filtering acting/crew */}
-        <Acting
-          castArr={credits?.cast!}
-          searchParams={{
-            credit_media_type: creditMediaType,
-          }}
-        />
-      </div>
-      <Crew
-        crewArr={credits?.crew!}
-        jobs={jobs!}
+      <CreditsJobSection
+        departmentArr={credits?.cast!}
         searchParams={{
           credit_media_type: creditMediaType,
         }}
+        filteringElement={
+          <div className="flex items-center justify-center gap-4">
+            <FilteringCredits />
+          </div>
+        }
       />
+      {jobs
+        ?.sort((a, b) => {
+          if (a.department < b.department) return -1;
+          if (a.department > b.department) return 1;
+          return 0;
+        })
+        .map((job) => {
+          const departmentArr = credits?.crew.filter(
+            (department) => department.department === job.department,
+          ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+
+          if (departmentArr.length)
+            return (
+              <CreditsJobSection
+                key={job.department}
+                job={job}
+                departmentArr={departmentArr}
+                searchParams={{
+                  credit_media_type: creditMediaType,
+                }}
+                filteringElement={
+                  <div className="flex items-center justify-center gap-4">
+                    <FilteringCredits />
+                  </div>
+                }
+              />
+            );
+        })}
     </div>
   );
 };
