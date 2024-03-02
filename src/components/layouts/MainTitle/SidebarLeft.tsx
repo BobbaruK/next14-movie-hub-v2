@@ -8,7 +8,7 @@ interface Props {
 const MainTitleSidebarLeft = ({ content, sidebar }: Props) => {
   return (
     <>
-      <div className="appContaier flex flex-col gap-8 lg:flex-row">
+      <div className="container flex flex-col gap-8 lg:flex-row">
         <aside className="flex flex-col gap-7 lg:basis-1/4">
           <div>{sidebar}</div>
         </aside>

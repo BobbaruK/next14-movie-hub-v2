@@ -6,7 +6,7 @@ const SingleVideo = () => {
   const { id, ytVideoId } = useParams<{ id: string; ytVideoId: string }>();
 
   return (
-    <div className="appContaier">
+    <div className="container">
       <iframe
         width="560"
         height="315"

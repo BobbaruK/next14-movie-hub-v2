@@ -26,7 +26,7 @@ const MainTitleHeroSection = ({ queryKey }: Props) => {
         variant={"default"}
         title={"Hero section"}
         description="Loading... Please be patient"
-        className="appContaier"
+        className="container"
       />
     );
 
@@ -61,7 +61,7 @@ const MainTitleHeroSection = ({ queryKey }: Props) => {
         <div className="absolute inset-0 -z-10  h-full w-full bg-primary bg-gradient-to-r from-primary to-secondary opacity-90"></div>
       </div>
       <div className="relative z-0">
-        <div className="appContaier flex flex-col gap-8 text-primary-foreground md:flex-row">
+        <div className="container flex flex-col gap-8 text-primary-foreground md:flex-row">
           <div className="flex items-center justify-center sm:basis-2/6 lg:basis-1/4">
             <TMDBImages
               type="poster"

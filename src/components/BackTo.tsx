@@ -36,7 +36,7 @@ const BackTo = ({ queryKey, backTo }: Props) => {
         variant={"default"}
         title={"Back to"}
         description="Loading... Please be patient"
-        className="appContaier"
+        className="container"
       />
     );
 
@@ -62,7 +62,7 @@ const BackTo = ({ queryKey, backTo }: Props) => {
 
   return (
     <div className="to-neutral text-secondary-content mb-10 bg-gradient-to-r from-secondary via-primary py-4">
-      <div className="appContaier">
+      <div className="container">
         <div className="flex gap-5">
           <div className="w-full basis-28 overflow-hidden rounded-md">
             <Link href={backTo.link}>

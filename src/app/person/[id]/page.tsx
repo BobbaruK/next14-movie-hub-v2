@@ -38,7 +38,7 @@ export async function generateMetadata({
 
 export default function Person({ params: { id } }: Props) {
   return (
-    <div className="appContaier flex flex-col gap-8 py-20 lg:flex-row">
+    <div className="container flex flex-col gap-8 py-20 lg:flex-row">
       <div className="flex flex-col gap-10 lg:w-3/4 lg:basis-1/4">
         <div className="flex flex-col gap-2">
           <PersonProfile queryKey={RQ_PERSON_KEY(id)} />

@@ -74,7 +74,7 @@ const Header = () => {
   return (
     <>
       <header className="relative z-20">
-        <div className="appContaier flex items-center justify-start gap-8 py-8">
+        <div className="container flex items-center justify-start gap-8 py-8">
           <div>
             <Link
               href="/"

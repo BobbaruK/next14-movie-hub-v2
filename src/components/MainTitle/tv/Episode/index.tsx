@@ -5,16 +5,15 @@ import Rating from "@/components/Rating";
 import SocialMediaLinks from "@/components/Sidebar/MainTitle/SocialMediaLinks";
 import TMDBImages from "@/components/TMDBImages";
 import { Badge } from "@/components/ui/badge";
-import {
-  RQ_TVSHOW_EPISODE_EXTERNAL_IDS_ENDPOINT,
-  RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY,
-} from "@/constants";
+import { RQ_TVSHOW_EPISODE_EXTERNAL_IDS_KEY } from "@/constants";
 import { EpisodeResponse } from "@/types/movies/tv/EpisodeResponse";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import React from "react";
+import EpisodeCast from "./Cast";
 
 interface Props {
   queryKey: string;
@@ -35,7 +34,7 @@ const Episode = ({ queryKey }: Props) => {
 
   if (isLoading)
     return (
-      <div className="appContaier">
+      <div className="container">
         <CustomAlert
           variant="default"
           title={"Episode"}
@@ -45,7 +44,7 @@ const Episode = ({ queryKey }: Props) => {
     );
 
   return (
-    <div className="appContaier flex flex-col gap-8">
+    <div className="container flex flex-col gap-8">
       <p>
         <Link href={`/tv/${id}/seasons/${seasonNumber}`}>
           Season {seasonNumber}
@@ -87,66 +86,7 @@ const Episode = ({ queryKey }: Props) => {
         </div>
       </div>
       <p>{data?.overview}</p>
-
-      <div className="flex flex-col gap-16 md:flex-row md:gap-0">
-        <div className="md:basis-2/4">
-          <h3 className="flex flex-row flex-wrap items-center gap-4">
-            Guest stars{" "}
-            <Badge variant="secondary">{data?.guest_stars.length}</Badge>
-          </h3>
-          <div className="flex flex-col flex-wrap gap-8">
-            {data?.guest_stars.map((star) => (
-              <div key={star.id} className="flex flex-row gap-4">
-                <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
-                  <TMDBImages
-                    type="profile"
-                    alt={star.name}
-                    src={star.profile_path}
-                    sizes="80px"
-                    className="h-32 w-20 rounded-lg"
-                  />
-                </Link>
-                <div className="flex flex-col items-start justify-center gap-1">
-                  <h4>
-                    <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
-                      {star.name}
-                    </Link>
-                  </h4>
-                  <div>{star.character}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="md:basis-2/4">
-          <h3 className="flex flex-row flex-wrap items-center gap-4">
-            Crew <Badge variant="secondary">{data?.crew.length}</Badge>
-          </h3>
-          <div className="flex flex-col flex-wrap gap-8">
-            {data?.crew.map((star, index) => (
-              <div key={star.id + "" + index} className="flex flex-row gap-4">
-                <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
-                  <TMDBImages
-                    type="profile"
-                    alt={star.name}
-                    src={star.profile_path}
-                    sizes="80px"
-                    className="h-32 w-20 rounded-lg"
-                  />
-                </Link>
-                <div className="flex flex-col items-start justify-center gap-1">
-                  <h4>
-                    <Link href={`/person/${idTitleHyphen(star.id, star.name)}`}>
-                      {star.name}
-                    </Link>
-                  </h4>
-                  <div>{star.department}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <EpisodeCast episodeResponse={data} />
     </div>
   );
 };

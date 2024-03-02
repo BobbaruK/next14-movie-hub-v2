@@ -160,6 +160,20 @@ export const RQ_TVSHOW_EPISODE_ENDPOINT = (
   episodeNumber: string,
 ) => `/tv/${parseInt(id)}/season/${seasonNumber}/episode/${episodeNumber}`;
 
+// Episode Cast
+export const RQ_TVSHOW_EPISODE_CAST_KEY = (
+  id: string,
+  seasonNumber: string,
+  episodeNumber: string,
+) =>
+  `tvshow-${parseInt(id)}-season-${parseInt(seasonNumber)}-episode-${parseInt(episodeNumber)}-cast`;
+export const RQ_TVSHOW_EPISODE_CAST_ENDPOINT = (
+  id: string,
+  seasonNumber: string,
+  episodeNumber: string,
+) =>
+  `/tv/${parseInt(id)}/season/${seasonNumber}/episode/${episodeNumber}/credits`;
+
 // External IDs
 export const RQ_MOVIE_EXTERNAL_IDS_KEY = (id: string) =>
   `movie-${parseInt(id)}-external`;

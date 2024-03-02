@@ -38,7 +38,7 @@ const AlternativeTitles = ({ queryKey }: Props) => {
         variant="default"
         title={"Alternative Titles"}
         description="Loading... Please be patient"
-        className="appContaier"
+        className="container"
       />
     );
 

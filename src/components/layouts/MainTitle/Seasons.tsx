@@ -29,7 +29,7 @@ const Seasons = ({ queryKey }: Props) => {
         variant="default"
         title={"Seasons"}
         description="Loading... Please be patient"
-        className="appContaier"
+        className="container"
       />
     );
 
@@ -39,7 +39,7 @@ const Seasons = ({ queryKey }: Props) => {
     <div className="flex flex-col gap-8">
       {seasons?.map((season) => (
         <div key={season.id} className="border-b-[1px] border-primary pb-8">
-          <div className="appContaier flex flex-col gap-4 sm:flex-row">
+          <div className="container flex flex-col gap-4 sm:flex-row">
             <div className="flex items-center justify-start sm:basis-[154px]">
               {/* <div className="inline-block overflow-hidden rounded-md [&>img]:object-cover"> */}
               <Link

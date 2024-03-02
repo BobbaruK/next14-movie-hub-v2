@@ -25,7 +25,7 @@ const Cast = ({ queryKey }: Props) => {
         variant="default"
         title={"Cast and crew"}
         description="Loading... Please be patient"
-        className="appContaier"
+        className="container"
       />
     );
   }
@@ -46,7 +46,7 @@ const Cast = ({ queryKey }: Props) => {
   const crewSorted = Object.values(groupedKeys!);
 
   return (
-    <div className="appContaier flex flex-col gap-8 lg:flex-row">
+    <div className="container flex flex-col gap-8 lg:flex-row">
       <div className="flex basis-1 flex-col gap-7 lg:basis-2/4">
         {cast?.length ? (
           <>

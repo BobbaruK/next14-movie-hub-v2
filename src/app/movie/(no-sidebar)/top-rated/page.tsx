@@ -50,11 +50,11 @@ export default async function TopRatedMovies({
 
   return (
     <>
-      <div className="appContaier">
+      <div className="container">
         <h1>{pageTitle}</h1>
       </div>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <div className="appContaier flex flex-col gap-8 lg:flex-row">
+        <div className="container flex flex-col gap-8 lg:flex-row">
           <div>
             <CardsGrid
               page={pageNumber}

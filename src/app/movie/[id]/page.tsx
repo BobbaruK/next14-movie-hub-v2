@@ -32,7 +32,7 @@ export default function Movie({ params: { id } }: Props) {
   return (
     <>
       <MainTitleHeroSection queryKey={RQ_MOVIE_KEY(id)} />
-      <div className="appContaier flex flex-col gap-8 py-20 lg:flex-row">
+      <div className="container flex flex-col gap-8 py-20 lg:flex-row">
         <div className="flex flex-col gap-7 lg:basis-3/4">
           <MainTitleCast queryKey={RQ_MOVIE_CAST_KEY(id)} type="movie" />
           <MainTitleReviews queryKey={RQ_MOVIE_REVIEWS_KEY(id)} type="movie" />

@@ -37,12 +37,12 @@ const Season = ({ queryKey }: Props) => {
         variant="default"
         title={"Season"}
         description="Loading... Please be patient"
-        className="appContaier"
+        className="container"
       />
     );
 
   return (
-    <div className="appContaier">
+    <div className="container">
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="flex w-full items-center md:basis-[185px] md:justify-center">
           <TMDBImages

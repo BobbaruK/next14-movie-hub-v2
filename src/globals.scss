@@ -71,14 +71,6 @@
   h4 {
     @apply text-sm font-bold;
   }
-
-  .appContaier {
-    @apply container mx-auto px-4;
-  }
-
-  .imagesSidebar {
-    @apply flex flex-col gap-4 overflow-hidden rounded-md border border-accent shadow-md shadow-accent;
-  }
 }
 
 #siteWrapper {

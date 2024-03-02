@@ -21,7 +21,7 @@ const ReviewsGrid = ({ queryKey }: Props) => {
 
   if (isLoading)
     return (
-      <div className="appContaier">
+      <div className="container">
         <Alert variant="default">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Info</AlertTitle>
@@ -32,7 +32,7 @@ const ReviewsGrid = ({ queryKey }: Props) => {
 
   if (!data?.results.length)
     return (
-      <div className="appContaier">
+      <div className="container">
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Info</AlertTitle>
@@ -42,7 +42,7 @@ const ReviewsGrid = ({ queryKey }: Props) => {
     );
 
   return (
-    <div className="appContaier flex flex-col gap-8">
+    <div className="container flex flex-col gap-8">
       <MoviePagination
         movie={data}
         page={data.page}

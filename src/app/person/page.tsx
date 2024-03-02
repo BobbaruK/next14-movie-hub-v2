@@ -44,7 +44,7 @@ export default async function Persons({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="appContaier">
+      <div className="container">
         <CardsGrid
           page={pageNumber}
           with_genres={with_genres}

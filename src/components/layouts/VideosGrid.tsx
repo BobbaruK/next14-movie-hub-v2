@@ -71,7 +71,7 @@ const VideosGrid = ({
 
   if (videos?.length === 0)
     return (
-      <div className="appContaier">
+      <div className="container">
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Info</AlertTitle>
