@@ -33,8 +33,8 @@ const Biography = ({ queryKey }: Props) => {
     return (
       <CustomAlert
         variant="default"
-        title={"Error"}
-        description="No biography found"
+        title={"Biography"}
+        description={`We don't have a biography for ${data?.name}.`}
       />
     );
 
