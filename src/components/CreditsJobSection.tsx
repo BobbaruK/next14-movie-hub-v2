@@ -72,7 +72,7 @@ const CreditsJobSection = ({
               return (
                 <React.Fragment key={`group-${index}`}>
                   <div>
-                    <div className="flex flex-col gap-4 px-3 py-4">
+                    <div className="peer flex flex-col gap-4 px-3 py-4 empty:hidden">
                       {groups.map((groupCredit, ind) => {
                         if (
                           groupCredit.media_type === credit_media_type ||
@@ -128,7 +128,7 @@ const CreditsJobSection = ({
                         }
                       })}
                     </div>
-                    <hr />
+                    <hr className="peer-empty:hidden" />
                   </div>
                 </React.Fragment>
               );
