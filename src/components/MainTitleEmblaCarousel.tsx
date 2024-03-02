@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ImageDetails } from "@/types/ImageDetails";
+import { ImageShape, ImagesResponse } from "@/types/ImagesResponse";
 import { TheCast } from "@/types/movies/CastAndCrew";
 import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
@@ -14,6 +15,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { Button } from "./ui/button";
 const DynamicCastPersonCard = dynamic(() => import("./Cards/CastPerson"));
 const DynamicMainCard = dynamic(() => import("./Cards/Main"));
+const DynamicImageCard = dynamic(() => import("./Cards/Image"));
 
 interface Props {
   typeOptions:
@@ -28,6 +30,11 @@ interface Props {
     | {
         type: "known-for";
         arr: (CombinedCreditsMovieCast | CombinedCreditsTVCast)[];
+      }
+    | {
+        type: "image";
+        arr: ImageShape[];
+        showBody: boolean;
       };
 
   emblaCarouselOptions?: EmblaOptionsType;
@@ -97,6 +104,16 @@ export function MainTitleEmblaCarousel({
           />
         );
 
+      case "image":
+        const image = arrItem as ImageShape;
+        return (
+          <DynamicImageCard
+            image={image}
+            imageDetails={{ ...imageDetails, type: "backdrop" }}
+            showBody={typeOptions.showBody}
+          />
+        );
+
       default:
         break;
     }
@@ -111,7 +128,12 @@ export function MainTitleEmblaCarousel({
           )}
         >
           {typeOptions.arr.map((arrItem, index) => (
-            <div key={arrItem.id + "" + index} className="embla__slide min-w-0">
+            <div
+              key={
+                "id" in arrItem ? arrItem.id : arrItem.file_path + "" + index
+              }
+              className="embla__slide min-w-0"
+            >
               {cardRender(arrItem)}
             </div>
           ))}

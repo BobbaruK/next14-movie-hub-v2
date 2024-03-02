@@ -57,6 +57,9 @@ const ImagesGrid = ({
       case "profiles":
         return data?.profiles;
 
+      case "stills":
+        return data?.stills;
+
       default:
         break;
     }

@@ -41,7 +41,6 @@ const page = async ({ params: { id, seasonNumber, episodeNumber } }: Props) => {
           link: `/tv/${id}/seasons/${seasonNumber}/${episodeNumber}`,
         }}
       />
-
       <HydrationBoundary state={dehydrate(queryClient)}>
         <EpisodeCastPage />
       </HydrationBoundary>

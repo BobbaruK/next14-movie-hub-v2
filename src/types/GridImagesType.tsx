@@ -1,1 +1,6 @@
-export type GridImagesType = "backdrops" | "logos" | "posters" | "profiles";
+export type GridImagesType =
+  | "backdrops"
+  | "logos"
+  | "posters"
+  | "profiles"
+  | "stills";

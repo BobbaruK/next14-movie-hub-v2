@@ -33,20 +33,21 @@ const EpisodeCast = ({ episodeResponse }: Props) => {
   //     />
   //   );
 
+  // TODO: try DRY bro wtf
+
   return (
     <div>
       <h2 className="flex items-center justify-between gap-8">
         Cast
-        <small className="text-sm">
-          <Link
-            href={`/tv/${id}/seasons/${seasonNumber}/${idTitleHyphen(
-              episodeResponse?.episode_number!,
-              episodeResponse?.name!,
-            )}/cast`}
-          >
-            Full Cast & Crew
-          </Link>
-        </small>
+        <Link
+          className="text-sm font-light"
+          href={`/tv/${id}/seasons/${seasonNumber}/${idTitleHyphen(
+            episodeResponse?.episode_number!,
+            episodeResponse?.name!,
+          )}/cast`}
+        >
+          Full Cast & Crew
+        </Link>
       </h2>
       <div className="flex flex-col gap-16 2xl:flex-row">
         <div className="2xl:min-w-56">

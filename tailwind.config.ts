@@ -203,6 +203,17 @@ const config = {
           "clamp(15rem, -2.5686rem + 27.451vw, 19.375rem)",
         "postersImageHeight-xl":
           "clamp(18.75rem, -7.9167rem + 33.3333vw, 21.25rem)",
+
+        backdropsEpisodeImagesHeight:
+          "clamp(9.375rem, -1.9103rem + 56.4263vw, 20.625rem)",
+        "backdropsEpisodeImagesHeight-sm":
+          "clamp(10rem, -2.5984rem + 31.4961vw, 12.5rem)",
+        "backdropsEpisodeImagesHeight-md":
+          "clamp(8.125rem, -1.2868rem + 19.6078vw, 11.25rem)",
+        "backdropsEpisodeImagesHeight-lg":
+          "clamp(10.625rem, 8.1152rem + 3.9216vw, 11.25rem)",
+        "backdropsEpisodeImagesHeight-xl":
+          "clamp(8.75rem, 2.0833rem + 8.3333vw, 9.375rem)",
       },
       width: {},
       gridTemplateColumns: {

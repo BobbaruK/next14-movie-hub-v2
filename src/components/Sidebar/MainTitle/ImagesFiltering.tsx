@@ -10,7 +10,7 @@ import { MediaType } from "@/types/MediaType";
 import { Language } from "@/types/movies/Language";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 
 interface Props {
   title: string;
@@ -21,6 +21,8 @@ interface Props {
 
 const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
   const { id } = useParams<{ id: string }>();
+  
+  const pathname = usePathname()
 
   const searchParams = useSearchParams();
   const imagesLanguage = searchParams.get("lang");
@@ -99,6 +101,19 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
 
       case "profiles":
         break;
+
+      case "stills":
+        for (let i = 0; i < imagesData.stills.length; i++) {
+          const langToPush = languagesData?.find(
+            (lang) => lang.iso_639_1 === imagesData.stills[i].iso_639_1,
+          )?.english_name;
+
+          if (langToPush === undefined) continue;
+
+          if (!countries.includes(langToPush)) countries.push(langToPush);
+        }
+
+        break;
     }
   }
 
@@ -122,7 +137,7 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
                 className={`p-2 hover:bg-secondary hover:text-secondary-foreground ${imagesLanguage === null ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
               >
                 <Link
-                  href={`/${titleType}/${id}/images/${imagesType}`}
+                  href={pathname}
                   className={[
                     "flex",
                     "items-center",
@@ -148,7 +163,7 @@ const ImagesFiltering = ({ title, queryKey, imagesType, titleType }: Props) => {
                 className={`p-2 hover:bg-secondary hover:text-secondary-foreground ${imagesLanguage === "en" || (!hasNull && imagesLanguage === null) ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
               >
                 <Link
-                  href={`/${titleType}/${id}/images/${imagesType}?lang=en`}
+                  href={`${pathname}?lang=en`}
                   className={[
                     "flex",
                     "items-center",

@@ -9,9 +9,15 @@ interface Props {
   image: ImageShape;
   imageDetails: ImageDetails;
   priority?: boolean;
+  showBody?: boolean;
 }
 
-const ImageCard = ({ image, imageDetails, priority }: Props) => {
+const ImageCard = ({
+  image,
+  imageDetails,
+  priority,
+  showBody = true,
+}: Props) => {
   return (
     <>
       <Card className="overflow-hidden">
@@ -29,16 +35,20 @@ const ImageCard = ({ image, imageDetails, priority }: Props) => {
             priority={priority}
           />
         </Link>
-        <CardHeader>
-          <CardDescription>
-            <p>Width: {image.width}</p>
-            <p>Height: {image.height}</p>
-            <p>Aspect Ratio: {image.aspect_ratio}</p>
-          </CardDescription>
-        </CardHeader>
-        <CardFooter>
-          <p>Average vote: {image.vote_average}</p>
-        </CardFooter>
+        {showBody && (
+          <>
+            <CardHeader>
+              <CardDescription>
+                <p>Width: {image.width}</p>
+                <p>Height: {image.height}</p>
+                <p>Aspect Ratio: {image.aspect_ratio}</p>
+              </CardDescription>
+            </CardHeader>
+            <CardFooter>
+              <p>Average vote: {image.vote_average}</p>
+            </CardFooter>
+          </>
+        )}
       </Card>
     </>
   );

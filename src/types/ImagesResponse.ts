@@ -4,6 +4,7 @@ export interface ImagesResponse {
   logos: ImageShape[];
   posters: ImageShape[];
   profiles: ImageShape[];
+  stills: ImageShape[];
 }
 
 export interface PersonImagesResponse {

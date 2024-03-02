@@ -174,6 +174,20 @@ export const RQ_TVSHOW_EPISODE_CAST_ENDPOINT = (
 ) =>
   `/tv/${parseInt(id)}/season/${seasonNumber}/episode/${episodeNumber}/credits`;
 
+// Episode Images
+export const RQ_TVSHOW_EPISODE_IMAGES_KEY = (
+  id: string,
+  seasonNumber: string,
+  episodeNumber: string,
+) =>
+  `tvshow-${parseInt(id)}-season-${parseInt(seasonNumber)}-episode-${parseInt(episodeNumber)}-images`;
+export const RQ_TVSHOW_EPISODE_IMAGES_ENDPOINT = (
+  id: string,
+  seasonNumber: string,
+  episodeNumber: string,
+) =>
+  `/tv/${parseInt(id)}/season/${seasonNumber}/episode/${episodeNumber}/images`;
+
 // External IDs
 export const RQ_MOVIE_EXTERNAL_IDS_KEY = (id: string) =>
   `movie-${parseInt(id)}-external`;
@@ -266,11 +280,18 @@ export const recommendationImageHeight = `
   xl:h-recommendationImageHeight-xl`;
 
 export const mainTitleCastImageHeight = `
-    h-mainCardCastImageHeight 
-    sm:h-mainCardCastImageHeight-sm 
-    md:h-mainCardCastImageHeight-md 
-    lg:h-mainCardCastImageHeight-lg 
-    xl:h-mainCardCastImageHeight-xl`;
+  h-mainCardCastImageHeight 
+  sm:h-mainCardCastImageHeight-sm 
+  md:h-mainCardCastImageHeight-md 
+  lg:h-mainCardCastImageHeight-lg 
+  xl:h-mainCardCastImageHeight-xl`;
+
+export const imagesSizesEpisodeImages = `
+  h-backdropsEpisodeImagesHeight 
+  sm:h-backdropsEpisodeImagesHeight-sm 
+  md:h-backdropsEpisodeImagesHeight-md 
+  lg:h-backdropsEpisodeImagesHeight-lg 
+  xl:h-backdropsEpisodeImagesHeight-xl`;
 
 export const creditMediaTypeSearchQuery = "credit_media_type";
 export const creditDepartmentSearchQuery = "credit_department";
