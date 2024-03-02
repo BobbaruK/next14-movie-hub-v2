@@ -46,10 +46,18 @@ const CreditsJobSection = ({
     (department) => department.media_type === credit_media_type,
   );
 
-  if (credit_department !== null && job?.department !== credit_department)
+  if (
+    credit_department !== null &&
+    job?.department !== credit_department &&
+    credit_department !== "Actors"
+  )
     return;
 
-  if (departmentMediaArr.length || credit_media_type === null)
+  if (
+    departmentMediaArr.length ||
+    credit_media_type === null ||
+    credit_department === "Actors"
+  )
     return (
       <div>
         <div className={`mb-4 flex items-center justify-between gap-8`}>
@@ -64,7 +72,7 @@ const CreditsJobSection = ({
               return (
                 <React.Fragment key={`group-${index}`}>
                   <div>
-                    <div className="peer flex flex-col gap-4 px-3 py-4 empty:hidden">
+                    <div className="flex flex-col gap-4 px-3 py-4">
                       {groups.map((groupCredit, ind) => {
                         if (
                           groupCredit.media_type === credit_media_type ||
@@ -120,7 +128,7 @@ const CreditsJobSection = ({
                         }
                       })}
                     </div>
-                    <hr className="peer-empty:hidden" />
+                    <hr />
                   </div>
                 </React.Fragment>
               );

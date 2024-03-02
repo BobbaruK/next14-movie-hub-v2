@@ -73,31 +73,32 @@ const Credits = ({ queryKey }: Props) => {
           credit_department: creditDepartment,
         }}
       />
-      {jobs
-        ?.sort((a, b) => {
-          if (a.department < b.department) return -1;
-          if (a.department > b.department) return 1;
-          return 0;
-        })
-        .map((job) => {
-          const departmentArr = credits?.crew.filter(
-            (department) => department.department === job.department,
-          ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
+      {creditDepartment !== "Actors" &&
+        jobs
+          ?.sort((a, b) => {
+            if (a.department < b.department) return -1;
+            if (a.department > b.department) return 1;
+            return 0;
+          })
+          .map((job) => {
+            const departmentArr = credits?.crew.filter(
+              (department) => department.department === job.department,
+            ) as CombinedCreditsMovieCrew[] | CombinedCreditsTVCrew[];
 
-          if (departmentArr.length) {
-            return (
-              <CreditsJobSection
-                key={job.department}
-                job={job}
-                departmentArr={departmentArr}
-                searchParams={{
-                  credit_media_type: creditMediaType,
-                  credit_department: creditDepartment,
-                }}
-              />
-            );
-          }
-        })}
+            if (departmentArr.length) {
+              return (
+                <CreditsJobSection
+                  key={job.department}
+                  job={job}
+                  departmentArr={departmentArr}
+                  searchParams={{
+                    credit_media_type: creditMediaType,
+                    credit_department: creditDepartment,
+                  }}
+                />
+              );
+            }
+          })}
     </div>
   );
 };

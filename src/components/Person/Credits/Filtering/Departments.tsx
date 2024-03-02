@@ -114,6 +114,12 @@ const FilteringDepartments = () => {
             );
           }}
         >
+          <DropdownMenuRadioItem
+            value={"Actors"}
+            className="flex justify-between gap-4"
+          >
+            {"Acting"} <Badge>{credits?.cast.length}</Badge>
+          </DropdownMenuRadioItem>
           {departments.map((department) => (
             <DropdownMenuRadioItem
               key={department.label}
