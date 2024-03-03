@@ -1,3 +1,5 @@
+import { MediaType } from "@/types/MediaType";
+
 export interface TVShowRecommendation {
   adult: boolean;
   backdrop_path: string;
@@ -7,7 +9,7 @@ export interface TVShowRecommendation {
   original_name: string;
   overview: string;
   poster_path: string;
-  media_type: string;
+  media_type: MediaType;
   genre_ids: number[];
   popularity: number;
   first_air_date: string;

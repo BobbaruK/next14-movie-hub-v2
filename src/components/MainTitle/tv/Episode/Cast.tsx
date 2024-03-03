@@ -50,7 +50,7 @@ const EpisodeCast = ({ episodeResponse }: Props) => {
         </Link>
       </h2>
       <div className="flex flex-col gap-16 2xl:flex-row">
-        <div className="2xl:min-w-56">
+        <div className="2xl:w-56">
           <h3 className="flex flex-row flex-wrap items-center gap-4">
             Crew{" "}
             <Badge variant="secondary">{episodeResponse?.crew.length}</Badge>
@@ -59,26 +59,26 @@ const EpisodeCast = ({ episodeResponse }: Props) => {
             <p>
               Directed by:{" "}
               {directedBy?.map((director, index) => (
-                <React.Fragment key={director.id}>
+                <React.Fragment key={director.id + "" + index}>
                   <Link
                     href={`/person/${idTitleHyphen(director.id, director.name)}`}
                   >
                     {director.name}
                   </Link>
-                  {index > 0 && index < directedBy.length - 1 && ", "}
+                  {(index > 0 || index < directedBy.length - 1) && ", "}
                 </React.Fragment>
               ))}
             </p>
             <p>
               Written by:{" "}
               {writtenBy?.map((writer, index) => (
-                <React.Fragment key={writer.id}>
+                <React.Fragment key={writer.id + "" + index}>
                   <Link
                     href={`/person/${idTitleHyphen(writer.id, writer.name)}`}
                   >
                     {writer.name}
                   </Link>
-                  {index > 0 && index < writtenBy.length - 1 && ", "}
+                  {(index > 0 || index < writtenBy.length - 1) && ", "}
                 </React.Fragment>
               ))}
             </p>
