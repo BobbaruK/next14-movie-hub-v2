@@ -309,5 +309,12 @@ export const homeTrendingImageHeight = `
   lg:h-homeTrendingImageHeight-lg 
   xl:h-homeTrendingImageHeight-xl`;
 
+export const homeTrendingTabHeight = `
+  h-homeTrendingTabHeight 
+  sm:h-homeTrendingTabHeight-sm 
+  md:h-homeTrendingTabHeight-md 
+  lg:h-homeTrendingTabHeight-lg 
+  xl:h-homeTrendingTabHeight-xl`;
+
 export const creditMediaTypeSearchQuery = "credit_media_type";
 export const creditDepartmentSearchQuery = "credit_department";
