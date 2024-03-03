@@ -50,6 +50,15 @@ export const RQ_TVSHOWS_GENRES_ENDPOINT = "genre/tv/list";
 export const RQ_POPULAR_PERSONS_KEY = "popular-persons";
 export const RQ_POPULAR_PERSONS_ENDPOINT = "/person/popular";
 
+// Trending
+export const RQ_TRENDING_ALL_DAY_KEY = "trending-all-day";
+export const RQ_TRENDING_ALL_DAY_ENDPOINT =
+  "https://api.themoviedb.org/3/trending/all/day";
+
+export const RQ_TRENDING_ALL_WEEK_KEY = "trending-all-week";
+export const RQ_TRENDING_ALL_WEEK_ENDPOINT =
+  "https://api.themoviedb.org/3/trending/all/week";
+
 // Main Title
 export const RQ_MOVIE_KEY = (id: string) => `movie-${parseInt(id)}`;
 export const RQ_MOVIE_ENDPOINT = (id: string) => `movie/${parseInt(id)}`;
@@ -292,6 +301,13 @@ export const imagesSizesEpisodeImages = `
   md:h-backdropsEpisodeImagesHeight-md 
   lg:h-backdropsEpisodeImagesHeight-lg 
   xl:h-backdropsEpisodeImagesHeight-xl`;
+
+export const homeTrendingImageHeight = `
+  h-homeTrendingImageHeight 
+  sm:h-homeTrendingImageHeight-sm 
+  md:h-homeTrendingImageHeight-md 
+  lg:h-homeTrendingImageHeight-lg 
+  xl:h-homeTrendingImageHeight-xl`;
 
 export const creditMediaTypeSearchQuery = "credit_media_type";
 export const creditDepartmentSearchQuery = "credit_department";

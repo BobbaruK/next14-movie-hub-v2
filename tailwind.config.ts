@@ -145,6 +145,17 @@ const config = {
         "recommendationImageHeight-xl":
           "clamp(11.25rem, 4.4415rem + 10.6383vw, 13.75rem)",
 
+        homeTrendingImageHeight:
+          "clamp(13.75rem, -0.0431rem + 68.9655vw, 27.5rem)",
+        "homeTrendingImageHeight-sm":
+          "clamp(17.5rem, -4.5472rem + 55.1181vw, 21.875rem)",
+        "homeTrendingImageHeight-md":
+          "clamp(16.25rem, -0.6912rem + 35.2941vw, 21.875rem)",
+        "homeTrendingImageHeight-lg":
+          "clamp(16.875rem, 7.4817rem + 19.5695vw, 23.125rem)",
+        "homeTrendingImageHeight-xl":
+          "clamp(20rem, 6.5546rem + 16.8067vw, 21.25rem)",
+
         currentSeasonImageHeight: "clamp(30rem, 4.9216rem + 125.3918vw, 55rem)",
         "currentSeasonImageHeight-sm":
           "clamp(22.5rem, 0.4528rem + 55.1181vw, 26.875rem)",
