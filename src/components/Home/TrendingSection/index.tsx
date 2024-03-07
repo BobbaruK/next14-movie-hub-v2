@@ -1,30 +1,61 @@
 "use client";
 
-import Spinner from "@/components/Spinner";
+import CustomAlert from "@/components/CustomAlert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { homeTrendingTabHeight } from "@/constants";
-import dynamic from "next/dynamic";
+import {
+  RQ_TRENDING_ALL_DAY_KEY,
+  RQ_TRENDING_ALL_WEEK_KEY,
+  homeTrendingTabHeight,
+} from "@/constants";
+import { RecommendationsResponse } from "@/types/movies/Recommendations";
+import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
+import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-
-const DynamicTrendingDay = dynamic(() => import("./TrendingDay"), {
-  loading: () => (
-    <p className="absolute inset-0 flex items-center justify-center gap-4">
-      <Spinner /> Loading day trending...
-    </p>
-  ),
-});
-
-const DynamicTrendingWeek = dynamic(() => import("./TrendingWeek"), {
-  loading: () => (
-    <p className="absolute inset-0 flex items-center justify-center gap-4">
-      <Spinner /> Loading week trending...
-    </p>
-  ),
-});
+import TrendingTab from "./TrendingTab";
 
 const TrendingSection = () => {
+  const {
+    data: trendingDay,
+    error: errorTrendingDay,
+    isLoading: isLoadingTrendingDay,
+  } = useQuery<
+    RecommendationsResponse<MovieRecommendation | TVShowRecommendation>
+  >({
+    queryKey: [RQ_TRENDING_ALL_DAY_KEY],
+  });
+
+  const {
+    data: trendingWeek,
+    error: errorTrendingWeek,
+    isLoading: isLoadingTrendingWeek,
+  } = useQuery<
+    RecommendationsResponse<MovieRecommendation | TVShowRecommendation>
+  >({
+    queryKey: [RQ_TRENDING_ALL_WEEK_KEY],
+  });
+
   const [showDayTrending, setShowDayTrending] = useState<boolean>(true);
   const [showWeekTrending, setShowWeekTrending] = useState<boolean>(false);
+
+  if (errorTrendingDay)
+    throw new Error(`${RQ_TRENDING_ALL_DAY_KEY} - ${errorTrendingDay.message}`);
+
+  if (errorTrendingWeek)
+    throw new Error(
+      `${RQ_TRENDING_ALL_WEEK_KEY} - ${errorTrendingWeek.message}`,
+    );
+
+  if (isLoadingTrendingDay || isLoadingTrendingWeek)
+    return (
+      <div className="container">
+        <CustomAlert
+          variant="default"
+          title={"Trending tab"}
+          description="Loading... Please be patient"
+        />
+      </div>
+    );
 
   return (
     <div className="container">
@@ -41,17 +72,11 @@ const TrendingSection = () => {
           </TabsList>
         </div>
         <div>
-          <TabsContent
-            value="day"
-            className={`relative m-0 ${homeTrendingTabHeight}`}
-          >
-            {showDayTrending && <DynamicTrendingDay />}
+          <TabsContent value="day" className={`m-0 ${homeTrendingTabHeight}`}>
+            {showDayTrending && <TrendingTab data={trendingDay?.results!} />}
           </TabsContent>
-          <TabsContent
-            value="week"
-            className={`relative m-0 ${homeTrendingTabHeight}`}
-          >
-            {showWeekTrending && <DynamicTrendingWeek />}
+          <TabsContent value="week" className={`m-0 ${homeTrendingTabHeight}`}>
+            {showWeekTrending && <TrendingTab data={trendingWeek?.results!} />}
           </TabsContent>
         </div>
       </Tabs>

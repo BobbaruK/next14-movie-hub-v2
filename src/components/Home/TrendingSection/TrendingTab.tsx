@@ -1,39 +1,19 @@
-"use client";
-
-import CustomAlert from "@/components/CustomAlert";
 import { MainTitleEmblaCarousel } from "@/components/MainTitleEmblaCarousel";
-import { RQ_TRENDING_ALL_DAY_KEY, homeTrendingImageHeight } from "@/constants";
-import { RecommendationsResponse } from "@/types/movies/Recommendations";
+import { homeTrendingImageHeight } from "@/constants";
 import { MovieRecommendation } from "@/types/movies/movie/MovieRecommendations";
 import { TVShowRecommendation } from "@/types/movies/tv/TVShowRecommendations";
-import { useQuery } from "@tanstack/react-query";
 
-const TrendingDay = () => {
-  const { data, error, isLoading } = useQuery<
-    RecommendationsResponse<MovieRecommendation | TVShowRecommendation>
-  >({
-    queryKey: [RQ_TRENDING_ALL_DAY_KEY],
-  });
+interface Props {
+  data: (MovieRecommendation | TVShowRecommendation)[];
+}
 
-  if (error) throw new Error(`${RQ_TRENDING_ALL_DAY_KEY} - ${error.message}`);
-
-  if (isLoading)
-    return (
-      <div className="container">
-        <CustomAlert
-          variant="default"
-          title={"Trending Day"}
-          description="Loading... Please be patient"
-        />
-      </div>
-    );
-
+const TrendingDay = ({ data }: Props) => {
   return (
     <>
       <MainTitleEmblaCarousel
         typeOptions={{
           type: "movie-recommendation",
-          arr: data?.results!,
+          arr: data,
         }}
         imageDetails={{
           classes: homeTrendingImageHeight,
