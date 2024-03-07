@@ -1,5 +1,6 @@
 import LatestTrailersSection from "@/components/Home/LatestTrailersSection";
 import TrendingSection from "@/components/Home/TrendingSection";
+import WhatsPopularSection from "@/components/Home/WhatsPopularSection";
 import {
   RQ_TRENDING_ALL_DAY_ENDPOINT,
   RQ_TRENDING_ALL_DAY_KEY,
@@ -42,6 +43,7 @@ export default async function Home() {
       <HydrationBoundary state={dehydrate(queryClient)}>
         <TrendingSection />
         <LatestTrailersSection />
+        <WhatsPopularSection />
       </HydrationBoundary>
     </>
   );
