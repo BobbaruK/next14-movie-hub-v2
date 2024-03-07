@@ -41,9 +41,11 @@ export default async function Home() {
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <TrendingSection />
-        <LatestTrailersSection />
-        <WhatsPopularSection />
+        <div className="flex flex-col gap-8">
+          <TrendingSection />
+          <LatestTrailersSection />
+          <WhatsPopularSection />
+        </div>
       </HydrationBoundary>
     </>
   );

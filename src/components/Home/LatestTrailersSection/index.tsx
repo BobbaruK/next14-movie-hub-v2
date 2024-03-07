@@ -59,9 +59,9 @@ const LatestTrailersSection = () => {
   return (
     <div className="container">
       <Tabs defaultValue="popular" className="flex flex-col gap-4">
-        <div className="flex items-center gap-8">
+        <div className="flex flex-wrap items-center gap-1 md:gap-8">
           <h2 className="m-0 font-bold">Latest Trailers</h2>
-          <TabsList className="">
+          <TabsList className="h-auto flex-wrap items-start justify-start">
             <TabsTrigger value="popular">Popular</TabsTrigger>
             <TabsTrigger value="streaming">Streaming</TabsTrigger>
             <TabsTrigger value="ontv">On TV</TabsTrigger>

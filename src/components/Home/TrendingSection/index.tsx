@@ -60,9 +60,9 @@ const TrendingSection = () => {
   return (
     <div className="container">
       <Tabs defaultValue="day" className="flex flex-col gap-4">
-        <div className="flex items-center gap-8">
+        <div className="flex flex-wrap items-center gap-1 md:gap-8">
           <h2 className="m-0 font-bold">Trending</h2>
-          <TabsList className="">
+          <TabsList className="h-auto flex-wrap items-start justify-start">
             <TabsTrigger value="day" onClick={() => setShowDayTrending(true)}>
               Today
             </TabsTrigger>
