@@ -1,3 +1,4 @@
+import FreeToWatch from "@/components/Home/FreeToWatchSection";
 import LatestTrailersSection from "@/components/Home/LatestTrailersSection";
 import TrendingSection from "@/components/Home/TrendingSection";
 import WhatsPopularSection from "@/components/Home/WhatsPopularSection";
@@ -45,6 +46,7 @@ export default async function Home() {
           <TrendingSection />
           <LatestTrailersSection />
           <WhatsPopularSection />
+          <FreeToWatch />
         </div>
       </HydrationBoundary>
     </>
