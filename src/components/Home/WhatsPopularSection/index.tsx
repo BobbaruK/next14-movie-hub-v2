@@ -60,7 +60,7 @@ const WhatsPopularSection = () => {
     <div className="container">
       <Tabs defaultValue="streaming" className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center gap-1 md:gap-8">
-          <h2 className="m-0 font-bold">What's Popular</h2>
+          <h2 className="m-0 font-bold">What&apos;s Popular</h2>
           <TabsList className="h-auto flex-wrap items-start justify-start">
             <TabsTrigger value="streaming">Streaming</TabsTrigger>
             <TabsTrigger value="ontv">On TV</TabsTrigger>
