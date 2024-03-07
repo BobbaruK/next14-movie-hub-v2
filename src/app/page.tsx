@@ -1,3 +1,4 @@
+import LatestTrailersSection from "@/components/Home/LatestTrailersSection";
 import TrendingSection from "@/components/Home/TrendingSection";
 import {
   RQ_TRENDING_ALL_DAY_ENDPOINT,
@@ -40,6 +41,7 @@ export default async function Home() {
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <TrendingSection />
+        <LatestTrailersSection />
       </HydrationBoundary>
     </>
   );
