@@ -2,10 +2,9 @@ import { MainNavigation } from "@/components/MainNavigation";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 
 import BurgerMenu from "@/components/BurgerMenu";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/mode-toggle";
-import { IoSearch } from "react-icons/io5";
+import Link from "next/link";
+import SearchDrawer from "./SearchDrawer";
 
 const Header = () => {
   const menuItems: MainTitleMenuItem[] = [
@@ -88,15 +87,12 @@ const Header = () => {
             menuItems={menuItems}
             className="ms-auto md:hidden [&>button]:rounded-md [&>button]:border [&>button]:border-secondary [&>button]:bg-primary [&>button]:p-2 [&>button]:hover:bg-secondary [&>button]:hover:text-secondary-foreground"
           />
-          <Button
-            variant="outline"
-            size="icon"
-            className="ms-auto hidden md:flex"
-          >
-            <IoSearch />
-          </Button>
-          <div className="hidden md:block">
-            <ModeToggle />
+          <div className="ms-auto hidden md:flex">
+            <div className="hidden md:block">
+              <ModeToggle />
+            </div>
+
+            <SearchDrawer />
           </div>
         </div>
       </header>
