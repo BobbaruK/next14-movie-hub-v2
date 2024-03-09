@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { SearchForm } from "@/components/Forms/SearchForm";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
@@ -23,7 +22,8 @@ const SearchDrawer = () => {
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Search</DrawerTitle>
-            <DrawerDescription>form here</DrawerDescription>
+            <SearchForm />
+            {/* <DrawerDescription>form here</DrawerDescription> */}
           </DrawerHeader>
           <DrawerFooter>
             <DrawerClose>Close</DrawerClose>
