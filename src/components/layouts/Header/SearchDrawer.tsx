@@ -1,8 +1,10 @@
 import { SearchForm } from "@/components/Forms/SearchForm";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
@@ -22,11 +24,20 @@ const SearchDrawer = () => {
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Search</DrawerTitle>
-            <SearchForm />
+            <SearchForm
+              formButton={
+                <DrawerClose
+                  type="submit"
+                  className={`${buttonVariants({ variant: "default" })}`}
+                >
+                  Search
+                </DrawerClose>
+              }
+            />
             {/* <DrawerDescription>form here</DrawerDescription> */}
           </DrawerHeader>
           <DrawerFooter>
-            <DrawerClose>Close</DrawerClose>
+            <DrawerClose type="submit">Close</DrawerClose>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

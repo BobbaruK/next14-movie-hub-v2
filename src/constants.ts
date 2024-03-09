@@ -262,6 +262,41 @@ export const RQ_TVSHOW_VIDEOS_KEY = (id: string) =>
 export const RQ_TVSHOW_VIDEOS_ENDPOINT = (id: string) =>
   `tv/${parseInt(id)}/videos`;
 
+// Search All
+export const RQ_SEARCH_MULTI_KEY = (query: string) =>
+  `search-multi-${query && query.replaceAll(" ", "_")}`;
+export const RQ_SEARCH_MULTI_ENDPOINT = `search/multi`;
+
+// Search Movie
+export const RQ_SEARCH_MOVIE_KEY = (query: string) =>
+  `search-movie-${query && query.replaceAll(" ", "_")}`;
+export const RQ_SEARCH_MOVIE_ENDPOINT = `search/movie`;
+
+// Search TV Show
+export const RQ_SEARCH_TVSHOW_KEY = (query: string) =>
+  `search-tv-${query && query.replaceAll(" ", "_")}`;
+export const RQ_SEARCH_TVSHOW_ENDPOINT = `search/tv`;
+
+// Search People
+export const RQ_SEARCH_PEOPLE_KEY = (query: string) =>
+  `search-person-${query && query.replaceAll(" ", "_")}`;
+export const RQ_SEARCH_PEOPLE_ENDPOINT = `search/person`;
+
+// Search Collection
+export const RQ_SEARCH_COLLECTION_KEY = (query: string) =>
+  `search-collection-${query && query.replaceAll(" ", "_")}`;
+export const RQ_SEARCH_COLLECTION_ENDPOINT = `search/collection`;
+
+// Search Company
+export const RQ_SEARCH_COMPANY_KEY = (query: string) =>
+  `search-company-${query && query.replaceAll(" ", "_")}`;
+export const RQ_SEARCH_COMPANY_ENDPOINT = `search/company`;
+
+// Search Keyword
+export const RQ_SEARCH_KEYWORD_KEY = (query: string) =>
+  `search-keyword-${query && query.replaceAll(" ", "_")}`;
+export const RQ_SEARCH_KEYWORD_ENDPOINT = `search/keyword`;
+
 /**
  * Miscellaneous
  */
