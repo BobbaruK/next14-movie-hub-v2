@@ -9,15 +9,11 @@ import {
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
 import { useRouter } from "next/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { IoSearch } from "react-icons/io5";
-import { Button } from "./ui/button";
-import { ModeToggle } from "./ui/mode-toggle";
 import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -105,13 +101,13 @@ const BurgerMenu = ({ menuItems, showIcon, label, ...restProps }: Props) => {
               popular, user editable database for movies and TV shows.
             </SheetDescription>
           </SheetHeader>
-          <SheetFooter className="flex-row items-center justify-between gap-8 sm:justify-between">
+          {/* <SheetFooter className="flex-row items-center justify-between gap-8 sm:justify-between">
             <Button variant="outline" size="icon">
               <IoSearch />
             </Button>
             <SheetClose>close</SheetClose>
             <ModeToggle />
-          </SheetFooter>
+          </SheetFooter> */}
         </SheetContent>
       </Sheet>
     </div>

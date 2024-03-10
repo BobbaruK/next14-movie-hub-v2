@@ -23,6 +23,7 @@ import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
 
 const SearchFiltering = () => {
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query");
 
@@ -117,8 +118,6 @@ const SearchFiltering = () => {
     // },
   ];
 
-  const pathname = usePathname();
-
   return (
     <Card className="overflow-hidden">
       <h2 className="m-0 flex items-center justify-between bg-primary px-2 py-4 text-primary-foreground">
@@ -129,7 +128,7 @@ const SearchFiltering = () => {
           {searchFilters.map((li) => {
             const [path] = li.href.split("?");
             const isActive = pathname === path;
-            console.log(isActive);
+
             return (
               <li
                 key={li.key}

@@ -17,7 +17,7 @@ const SearchDrawer = () => {
     <>
       <Drawer>
         <DrawerTrigger
-          className={`h-10 w-10 place-items-center rounded-full border p-0 md:grid`}
+          className={`grid h-10 w-10 place-items-center rounded-full border p-0`}
         >
           <IoSearch />
         </DrawerTrigger>

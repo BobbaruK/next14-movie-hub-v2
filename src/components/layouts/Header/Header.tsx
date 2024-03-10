@@ -73,7 +73,7 @@ const Header = () => {
   return (
     <>
       <header className="relative z-20">
-        <div className="container flex items-center justify-start gap-8 py-8">
+        <div className="container flex items-center justify-between gap-8 py-8">
           <div>
             <Link
               href="/"
@@ -83,17 +83,18 @@ const Header = () => {
             </Link>
           </div>
           <MainNavigation menuItems={menuItems} className="hidden md:block" />
-          <BurgerMenu
-            menuItems={menuItems}
-            className="ms-auto md:hidden [&>button]:rounded-md [&>button]:border [&>button]:border-secondary [&>button]:bg-primary [&>button]:p-2 [&>button]:hover:bg-secondary [&>button]:hover:text-secondary-foreground"
-          />
-          <div className="ms-auto hidden md:flex">
+          <div className="flex items-center gap-2">
+            <SearchDrawer />
+            <BurgerMenu
+              menuItems={menuItems}
+              className="ms-auto md:hidden [&>button]:rounded-md [&>button]:border [&>button]:border-secondary [&>button]:bg-primary [&>button]:p-2 [&>button]:hover:bg-secondary [&>button]:hover:text-secondary-foreground"
+            />
+          </div>
+          {/* <div className="ms-auto hidden md:flex">
             <div className="hidden md:block">
               <ModeToggle />
             </div>
-
-            <SearchDrawer />
-          </div>
+          </div> */}
         </div>
       </header>
     </>
