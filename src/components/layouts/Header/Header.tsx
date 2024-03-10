@@ -1,10 +1,10 @@
 import { MainNavigation } from "@/components/MainNavigation";
 import { MainTitleMenuItem } from "@/types/movies/MainMovieMenuItem";
-
 import BurgerMenu from "@/components/BurgerMenu";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import Link from "next/link";
 import SearchDrawer from "./SearchDrawer";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Header = () => {
   const menuItems: MainTitleMenuItem[] = [
@@ -73,7 +73,7 @@ const Header = () => {
   return (
     <>
       <header className="relative z-20">
-        <div className="container flex items-center justify-between gap-8 py-8">
+        <div className="container flex items-center justify-between gap-2 py-8">
           <div>
             <Link
               href="/"
@@ -84,6 +84,11 @@ const Header = () => {
           </div>
           <MainNavigation menuItems={menuItems} className="hidden md:block" />
           <div className="flex items-center gap-2">
+            <Avatar className="border">
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+
             <SearchDrawer />
             <BurgerMenu
               menuItems={menuItems}
