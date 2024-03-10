@@ -43,25 +43,13 @@ const ReviewsGrid = ({ queryKey }: Props) => {
 
   return (
     <div className="container flex flex-col gap-8">
-      <MoviePagination
-        movie={data}
-        page={data.page}
-        with_genres={""}
-        sort_by={""}
-        with_original_language={""}
-      />
+      <MoviePagination response={data!} page={data.page || 1} />
       <div className="flex flex-col gap-8">
         {data?.results.map((review) => (
           <ReviewCard key={review.id} review={review} />
         ))}
       </div>
-      <MoviePagination
-        movie={data}
-        page={data.page}
-        with_genres={""}
-        sort_by={""}
-        with_original_language={""}
-      />
+      <MoviePagination response={data!} page={data.page || 1} />
     </div>
   );
 };

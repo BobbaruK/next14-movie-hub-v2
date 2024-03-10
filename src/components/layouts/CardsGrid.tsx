@@ -68,23 +68,11 @@ const CardsGrid = ({
   return (
     <>
       <div className="mb-4">
-        <MoviePagination
-          movie={data!}
-          page={page}
-          with_genres={with_genres}
-          sort_by={sort_by}
-          with_original_language={with_original_language}
-        />
+        <MoviePagination response={data!} page={page || 1} />
       </div>
       <MovieGrid movies={data!} imageDetails={imageDetails} />
       <div className="mt-4">
-        <MoviePagination
-          movie={data!}
-          page={page}
-          with_genres={with_genres}
-          sort_by={sort_by}
-          with_original_language={with_original_language}
-        />
+        <MoviePagination response={data!} page={page || 1} />
       </div>
     </>
   );
