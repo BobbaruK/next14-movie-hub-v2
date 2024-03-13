@@ -13,6 +13,7 @@ import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import MovieGrid from "./MovieGrid";
 import MoviePagination from "./MoviePagination";
 
+// TODO: cleanup this shit ("with_genres", "sort_by", etc). try useSearchParams
 interface Props {
   page: number;
   with_genres: string;

@@ -114,7 +114,6 @@ const MoviePagination = ({ response }: Props) => {
                 disabled={page >= response.total_pages || isPending}
                 onClick={() => {
                   startTransition(() => {
-                    console.log(page + 1);
                     router.push("?" + createQueryString("page", `${page + 1}`));
                   });
                 }}
