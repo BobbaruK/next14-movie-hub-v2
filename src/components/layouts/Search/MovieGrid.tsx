@@ -1,25 +1,24 @@
 "use client";
 
 import CustomAlert from "@/components/CustomAlert";
-import { RQ_SEARCH_MOVIE_KEY, searchMovieCardImage } from "@/constants";
-import { MainTitleResponse } from "@/types/MainTitleResponse";
-import { SearchMovieResponse } from "@/types/search/movies";
-import { searchFetchConfig } from "@/utils/searchFetchConfig";
-import { useQuery } from "@tanstack/react-query";
-import { notFound, useSearchParams } from "next/navigation";
-import MoviePagination from "../MoviePagination";
+import TMDBImages from "@/components/TMDBImages";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import TMDBImages from "@/components/TMDBImages";
-import ReleaseDateUI from "@/utils/releaseDateUI";
-import Link from "next/link";
+import { RQ_SEARCH_MOVIE_KEY, searchMovieCardImage } from "@/constants";
+import { MainTitleResponse } from "@/types/MainTitleResponse";
+import { SearchMovieResponse } from "@/types/search/movies";
 import idTitleHyphen from "@/utils/idTitleHyphen";
+import ReleaseDateUI from "@/utils/releaseDateUI";
+import { searchFetchConfig } from "@/utils/searchFetchConfig";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { notFound, useSearchParams } from "next/navigation";
+import MoviePagination from "../MoviePagination";
 
 interface Props {
   query: string;
