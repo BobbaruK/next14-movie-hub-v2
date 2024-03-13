@@ -351,5 +351,12 @@ export const homeTrendingTabHeight = `
   lg:h-homeTrendingTabHeight-lg 
   xl:h-homeTrendingTabHeight-xl`;
 
+export const searchMovieCardImage = `
+  h-searchMovieCardImage 
+  sm:h-searchMovieCardImage-sm 
+  md:h-searchMovieCardImage-md 
+  lg:h-searchMovieCardImage-lg 
+  xl:h-searchMovieCardImage-xl`;
+
 export const creditMediaTypeSearchQuery = "credit_media_type";
 export const creditDepartmentSearchQuery = "credit_department";

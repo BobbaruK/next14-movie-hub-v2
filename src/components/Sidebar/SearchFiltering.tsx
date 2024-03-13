@@ -15,6 +15,7 @@ import { SearchCompany } from "@/types/search/companies";
 import { SearchKeyword } from "@/types/search/keywords";
 import { SearchMovieResponse } from "@/types/search/movies";
 import { SearchTVShowResponse } from "@/types/search/tvshows";
+import { searchFetchConfig } from "@/utils/searchFetchConfig";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -25,42 +26,46 @@ import { Card, CardContent } from "../ui/card";
 const SearchFiltering = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const searchQuery = searchParams.get("query");
+  const pageSearchParam = searchParams.get("page");
+  const page = parseInt(pageSearchParam || "1");
+  const searchQuery = searchParams.get("query") || "";
+
+  const searchConfig = searchFetchConfig(page, searchQuery);
 
   // Search Movie
   const { data: searchedMovies } = useQuery<
     MainTitleResponse<SearchMovieResponse>
   >({
-    queryKey: [RQ_SEARCH_MOVIE_KEY(searchQuery || "")],
+    queryKey: [RQ_SEARCH_MOVIE_KEY(searchQuery || ""), searchConfig.params],
   });
 
   // Search TV Show
   const { data: searchedTVShows } = useQuery<
     MainTitleResponse<SearchTVShowResponse>
   >({
-    queryKey: [RQ_SEARCH_TVSHOW_KEY(searchQuery || "")],
+    queryKey: [RQ_SEARCH_TVSHOW_KEY(searchQuery || ""), searchConfig.params],
   });
 
   // Search People
   const { data: searchedPeople } = useQuery<MainTitleResponse<People>>({
-    queryKey: [RQ_SEARCH_PEOPLE_KEY(searchQuery || "")],
+    queryKey: [RQ_SEARCH_PEOPLE_KEY(searchQuery || ""), searchConfig.params],
   });
 
   // Search Collection
   const { data: searchedCollection } = useQuery<
     MainTitleResponse<SearchCollection>
   >({
-    queryKey: [RQ_SEARCH_COLLECTION_KEY(searchQuery || "")],
+    queryKey: [RQ_SEARCH_COLLECTION_KEY(searchQuery || ""), searchConfig.params],
   });
 
   // Search Company
   const { data: searchedCompany } = useQuery<MainTitleResponse<SearchCompany>>({
-    queryKey: [RQ_SEARCH_COMPANY_KEY(searchQuery || "")],
+    queryKey: [RQ_SEARCH_COMPANY_KEY(searchQuery || ""), searchConfig.params],
   });
 
   // Search Keyword
   const { data: searchedKeyword } = useQuery<MainTitleResponse<SearchKeyword>>({
-    queryKey: [RQ_SEARCH_KEYWORD_KEY(searchQuery || "")],
+    queryKey: [RQ_SEARCH_KEYWORD_KEY(searchQuery || ""), searchConfig.params],
   });
 
   const createQueryString = useCallback(

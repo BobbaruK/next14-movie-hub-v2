@@ -19,7 +19,7 @@ export interface SeasonEpisode {
   id: number;
   name: string;
   overview: string;
-  production_code: "";
+  production_code: string;
   runtime: number;
   season_number: number;
   show_id: number;

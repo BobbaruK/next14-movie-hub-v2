@@ -23,6 +23,7 @@ import { SearchCompany } from "@/types/search/companies";
 import { SearchKeyword } from "@/types/search/keywords";
 import { SearchMovieResponse } from "@/types/search/movies";
 import { SearchTVShowResponse } from "@/types/search/tvshows";
+import { searchFetchConfig } from "@/utils/searchFetchConfig";
 import {
   HydrationBoundary,
   QueryClient,
@@ -30,7 +31,6 @@ import {
 } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import MainTitleSidebarLeft from "../MainTitle/SidebarLeft";
-import page from "@/app/tv/[id]/seasons/[seasonNumber]/[episodeNumber]/cast/page";
 
 interface Props {
   query: string;
@@ -39,22 +39,17 @@ interface Props {
 }
 
 const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
-  console.log(page);
   const queryClient = new QueryClient();
+
+  const searchConfig = searchFetchConfig(page, query);
 
   // Search Movie
   const apiClientSearchMovie = new MyAPIClient<
     MainTitleResponse<SearchMovieResponse>
   >(RQ_SEARCH_MOVIE_ENDPOINT);
   await queryClient.prefetchQuery({
-    queryKey: [RQ_SEARCH_MOVIE_KEY(query)],
-    queryFn: () =>
-      apiClientSearchMovie.getAll({
-        params: {
-          query: query,
-          page: page || 1,
-        },
-      }),
+    queryKey: [RQ_SEARCH_MOVIE_KEY(query), searchConfig.params],
+    queryFn: () => apiClientSearchMovie.getAll(searchConfig),
   });
 
   // Search TV Show
@@ -62,14 +57,8 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
     MainTitleResponse<SearchTVShowResponse>
   >(RQ_SEARCH_TVSHOW_ENDPOINT);
   await queryClient.prefetchQuery({
-    queryKey: [RQ_SEARCH_TVSHOW_KEY(query)],
-    queryFn: () =>
-      apiClientSearchTVShow.getAll({
-        params: {
-          query: query,
-          page: page || 1,
-        },
-      }),
+    queryKey: [RQ_SEARCH_TVSHOW_KEY(query), searchConfig.params],
+    queryFn: () => apiClientSearchTVShow.getAll(searchConfig),
   });
 
   // Search People
@@ -77,14 +66,8 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
     RQ_SEARCH_PEOPLE_ENDPOINT,
   );
   await queryClient.prefetchQuery({
-    queryKey: [RQ_SEARCH_PEOPLE_KEY(query)],
-    queryFn: () =>
-      apiClientSearchPeople.getAll({
-        params: {
-          query: query,
-          page: page || 1,
-        },
-      }),
+    queryKey: [RQ_SEARCH_PEOPLE_KEY(query), searchConfig.params],
+    queryFn: () => apiClientSearchPeople.getAll(searchConfig),
   });
 
   // Search Collection
@@ -92,14 +75,8 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
     MainTitleResponse<SearchCollection>
   >(RQ_SEARCH_COLLECTION_ENDPOINT);
   await queryClient.prefetchQuery({
-    queryKey: [RQ_SEARCH_COLLECTION_KEY(query)],
-    queryFn: () =>
-      apiClientSearchCollection.getAll({
-        params: {
-          query: query,
-          page: page || 1,
-        },
-      }),
+    queryKey: [RQ_SEARCH_COLLECTION_KEY(query), searchConfig.params],
+    queryFn: () => apiClientSearchCollection.getAll(searchConfig),
   });
 
   // Search Company
@@ -107,14 +84,8 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
     MainTitleResponse<SearchCompany>
   >(RQ_SEARCH_COMPANY_ENDPOINT);
   await queryClient.prefetchQuery({
-    queryKey: [RQ_SEARCH_COMPANY_KEY(query)],
-    queryFn: () =>
-      apiClientSearchCompany.getAll({
-        params: {
-          query: query,
-          page: page || 1,
-        },
-      }),
+    queryKey: [RQ_SEARCH_COMPANY_KEY(query), searchConfig.params],
+    queryFn: () => apiClientSearchCompany.getAll(searchConfig),
   });
 
   // Search Keywords
@@ -122,14 +93,8 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
     MainTitleResponse<SearchKeyword>
   >(RQ_SEARCH_KEYWORD_ENDPOINT);
   await queryClient.prefetchQuery({
-    queryKey: [RQ_SEARCH_KEYWORD_KEY(query)],
-    queryFn: () =>
-      apiClientSearchKeywords.getAll({
-        params: {
-          query: query,
-          page: page || 1,
-        },
-      }),
+    queryKey: [RQ_SEARCH_KEYWORD_KEY(query), searchConfig.params],
+    queryFn: () => apiClientSearchKeywords.getAll(searchConfig),
   });
 
   // Search Multi
@@ -137,14 +102,8 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
     SearchMovieResponse | SearchTVShowResponse | People
   >(RQ_SEARCH_MULTI_ENDPOINT);
   await queryClient.prefetchQuery({
-    queryKey: [RQ_SEARCH_MULTI_KEY(query)],
-    queryFn: () =>
-      apiClientSearchMulti.getAll({
-        params: {
-          query: query,
-          page: page || 1,
-        },
-      }),
+    queryKey: [RQ_SEARCH_MULTI_KEY(query), searchConfig.params],
+    queryFn: () => apiClientSearchMulti.getAll(searchConfig),
   });
 
   return (

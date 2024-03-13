@@ -226,8 +226,7 @@ const config = {
         "homeTrendingImageHeight-xl":
           "clamp(20rem, 6.5546rem + 16.8067vw, 21.25rem)",
 
-        homeTrendingTabHeight:
-          "clamp(25rem, 11.2069rem + 68.9655vw, 38.75rem)",
+        homeTrendingTabHeight: "clamp(25rem, 11.2069rem + 68.9655vw, 38.75rem)",
         "homeTrendingTabHeight-sm":
           "clamp(28.75rem, 6.7028rem + 55.1181vw, 33.125rem)",
         "homeTrendingTabHeight-md":
@@ -236,6 +235,17 @@ const config = {
           "clamp(31.25rem, 18.701rem + 19.6078vw, 34.375rem)",
         "homeTrendingTabHeight-xl":
           "clamp(31.25rem, 17.8046rem + 16.8067vw, 32.5rem)",
+
+        searchMovieCardImage:
+          "clamp(26.875rem, -1.3382rem + 141.0658vw, 55rem)",
+        "searchMovieCardImage-sm":
+          "clamp(55rem, -4.8425rem + 149.6063vw, 66.875rem)",
+        "searchMovieCardImage-md":
+          "clamp(12.5rem, 11.5588rem + 1.9608vw, 12.8125rem)",
+        "searchMovieCardImage-lg":
+          "clamp(12.5rem, 11.2451rem + 1.9608vw, 12.8125rem)",
+        "searchMovieCardImage-xl":
+          "size: clamp(12.5rem, 10.9375rem + 1.9531vw, 12.8125rem)",
       },
       width: {},
       gridTemplateColumns: {
