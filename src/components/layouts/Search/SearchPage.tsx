@@ -39,6 +39,7 @@ interface Props {
 }
 
 const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
+  console.log(page);
   const queryClient = new QueryClient();
 
   // Search Movie
@@ -51,7 +52,7 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
       apiClientSearchMovie.getAll({
         params: {
           query: query,
-          page: page,
+          page: page || 1,
         },
       }),
   });
@@ -66,7 +67,7 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
       apiClientSearchTVShow.getAll({
         params: {
           query: query,
-          page: page,
+          page: page || 1,
         },
       }),
   });
@@ -81,7 +82,7 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
       apiClientSearchPeople.getAll({
         params: {
           query: query,
-          page: page,
+          page: page || 1,
         },
       }),
   });
@@ -96,7 +97,7 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
       apiClientSearchCollection.getAll({
         params: {
           query: query,
-          page: page,
+          page: page || 1,
         },
       }),
   });
@@ -111,7 +112,7 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
       apiClientSearchCompany.getAll({
         params: {
           query: query,
-          page: page,
+          page: page || 1,
         },
       }),
   });
@@ -126,7 +127,7 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
       apiClientSearchKeywords.getAll({
         params: {
           query: query,
-          page: page,
+          page: page || 1,
         },
       }),
   });
@@ -141,7 +142,7 @@ const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
       apiClientSearchMulti.getAll({
         params: {
           query: query,
-          page: page,
+          page: page || 1,
         },
       }),
   });
