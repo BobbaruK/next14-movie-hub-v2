@@ -92,22 +92,28 @@ const MainTitleCurrentSeason = ({ queryKey }: Props) => {
                   : lastSeason.overview.substring(0, 200) + "..."}
               </p>
             </CardContent>
-            <CardFooter className="flex items-center gap-2">
-              <FaCalendarAlt />
-              <Link
-                href={`/tv/${id}/seasons/${
-                  lastSeason.season_number
-                }/${idTitleHyphen(
-                  data?.last_episode_to_air.episode_number!,
-                  data?.last_episode_to_air.name!,
-                )}`}
-              >
-                {data?.last_episode_to_air.name} (
-                {data?.last_episode_to_air.season_number}&times;
-                {data?.last_episode_to_air.episode_number},{" "}
-                {ReleaseDateUI(data?.last_episode_to_air.air_date).releaseDate})
-              </Link>
-            </CardFooter>
+            {data?.last_episode_to_air && (
+              <CardFooter className="flex items-center gap-2">
+                <FaCalendarAlt />
+                <Link
+                  href={`/tv/${id}/seasons/${
+                    lastSeason.season_number
+                  }/${idTitleHyphen(
+                    data?.last_episode_to_air.episode_number!,
+                    data?.last_episode_to_air.name!,
+                  )}`}
+                >
+                  {data?.last_episode_to_air.name} (
+                  {data?.last_episode_to_air.season_number}&times;
+                  {data?.last_episode_to_air.episode_number},{" "}
+                  {
+                    ReleaseDateUI(data?.last_episode_to_air.air_date)
+                      .releaseDate
+                  }
+                  )
+                </Link>
+              </CardFooter>
+            )}
           </div>
         </Card>
       </div>
