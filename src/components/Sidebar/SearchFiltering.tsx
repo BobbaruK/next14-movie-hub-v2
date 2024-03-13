@@ -73,6 +73,16 @@ const SearchFiltering = () => {
     [searchParams],
   );
 
+  const deleteQueryString = useCallback(
+    (param: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete(param);
+
+      return params.toString();
+    },
+    [searchParams],
+  );
+
   const searchFilters = [
     {
       label: "Movies",
@@ -135,7 +145,7 @@ const SearchFiltering = () => {
                 className={`p-2 hover:bg-secondary hover:text-secondary-foreground ${isActive ? "text-accent-content bg-primary-foreground text-primary" : "hover:bg-secondary hover:text-secondary-foreground"}`}
               >
                 <Link
-                  href={li.href}
+                  href={path + "?" + deleteQueryString("page")}
                   className={[
                     "flex",
                     "items-center",

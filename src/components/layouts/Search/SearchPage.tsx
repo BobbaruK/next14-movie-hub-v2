@@ -30,13 +30,15 @@ import {
 } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import MainTitleSidebarLeft from "../MainTitle/SidebarLeft";
+import page from "@/app/tv/[id]/seasons/[seasonNumber]/[episodeNumber]/cast/page";
 
 interface Props {
   query: string;
   contentGrid: ReactNode;
+  page: number;
 }
 
-const SearchPageComponent = async ({ query, contentGrid }: Props) => {
+const SearchPageComponent = async ({ query, contentGrid, page }: Props) => {
   const queryClient = new QueryClient();
 
   // Search Movie
@@ -49,6 +51,7 @@ const SearchPageComponent = async ({ query, contentGrid }: Props) => {
       apiClientSearchMovie.getAll({
         params: {
           query: query,
+          page: page,
         },
       }),
   });
@@ -63,6 +66,7 @@ const SearchPageComponent = async ({ query, contentGrid }: Props) => {
       apiClientSearchTVShow.getAll({
         params: {
           query: query,
+          page: page,
         },
       }),
   });
@@ -77,6 +81,7 @@ const SearchPageComponent = async ({ query, contentGrid }: Props) => {
       apiClientSearchPeople.getAll({
         params: {
           query: query,
+          page: page,
         },
       }),
   });
@@ -91,6 +96,7 @@ const SearchPageComponent = async ({ query, contentGrid }: Props) => {
       apiClientSearchCollection.getAll({
         params: {
           query: query,
+          page: page,
         },
       }),
   });
@@ -105,6 +111,7 @@ const SearchPageComponent = async ({ query, contentGrid }: Props) => {
       apiClientSearchCompany.getAll({
         params: {
           query: query,
+          page: page,
         },
       }),
   });
@@ -119,6 +126,7 @@ const SearchPageComponent = async ({ query, contentGrid }: Props) => {
       apiClientSearchKeywords.getAll({
         params: {
           query: query,
+          page: page,
         },
       }),
   });
@@ -133,7 +141,7 @@ const SearchPageComponent = async ({ query, contentGrid }: Props) => {
       apiClientSearchMulti.getAll({
         params: {
           query: query,
-          page: 3,
+          page: page,
         },
       }),
   });
