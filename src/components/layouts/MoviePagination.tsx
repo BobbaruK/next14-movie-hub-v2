@@ -17,15 +17,17 @@ interface Props {
   response: MainTitleResponse<unknown>;
 }
 
-const MoviePagination = ({ page, response }: Props) => {
+const MoviePagination = ({ response }: Props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pageSearchParam = searchParams.get("page");
+  const page = parseInt(pageSearchParam || "1");
   const [isPending, startTransition] = useTransition();
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());
-      if (!params.has("page") || page !== 1) params.set("page", "1");
+      if (!params.has("page") || response.page !== 1) params.set("page", "1");
       params.set(name, value);
 
       return params.toString();
@@ -35,7 +37,8 @@ const MoviePagination = ({ page, response }: Props) => {
 
   return (
     <>
-      {/* {response.total_pages} */}
+      {/* {response.total_pages} <br />
+      {page} */}
       <Pagination>
         <PaginationContent>
           {page > 1 && (
@@ -43,22 +46,23 @@ const MoviePagination = ({ page, response }: Props) => {
               <PaginationPrevious
                 disabled={page <= 1 || isPending}
                 onClick={() =>
-                  startTransition(() =>
-                    router.push("?" + createQueryString("page", `${page - 1}`)),
-                  )
+                  startTransition(() => {
+                    console.log(page - 1);
+                    router.push("?" + createQueryString("page", `${page - 1}`));
+                  })
                 }
               />
             </PaginationItem>
           )}
-          {response.page > 2 && (
+          {page > 2 && (
             <PaginationItem>
               <PaginationEllipsis />
             </PaginationItem>
           )}
-          {response.page - 1 > 0 && (
+          {page - 1 > 0 && (
             <PaginationItem>
               <PaginationLink
-                value={response.page - 1}
+                value={page - 1}
                 disabled={isPending}
                 onClick={(e) => {
                   const target = e.target as HTMLButtonElement;
@@ -69,21 +73,21 @@ const MoviePagination = ({ page, response }: Props) => {
                   );
                 }}
               >
-                {response.page - 1}
+                {page - 1}
               </PaginationLink>
             </PaginationItem>
           )}
 
           <PaginationItem>
-            <PaginationLink value={response.page} disabled={isPending} isActive>
-              {response.page}
+            <PaginationLink value={page} disabled={isPending} isActive>
+              {page}
             </PaginationLink>
           </PaginationItem>
-          {response.page + 1 < response.total_pages + 1 && (
+          {page + 1 < response.total_pages + 1 && (
             <>
               <PaginationItem>
                 <PaginationLink
-                  value={response.page + 1}
+                  value={page + 1}
                   disabled={isPending}
                   onClick={(e) => {
                     const target = e.target as HTMLButtonElement;
@@ -94,12 +98,12 @@ const MoviePagination = ({ page, response }: Props) => {
                     );
                   }}
                 >
-                  {response.page + 1}
+                  {page + 1}
                 </PaginationLink>
               </PaginationItem>
             </>
           )}
-          {response.page + 1 < response.total_pages && (
+          {page + 1 < response.total_pages && (
             <PaginationItem>
               <PaginationEllipsis />
             </PaginationItem>
@@ -109,11 +113,10 @@ const MoviePagination = ({ page, response }: Props) => {
               <PaginationNext
                 disabled={page >= response.total_pages || isPending}
                 onClick={() => {
-                  startTransition(() =>
-                    router.push(
-                      "?" + createQueryString("page", `${Number(page) + 1}`),
-                    ),
-                  );
+                  startTransition(() => {
+                    console.log(page + 1);
+                    router.push("?" + createQueryString("page", `${page + 1}`));
+                  });
                 }}
               />
             </PaginationItem>
