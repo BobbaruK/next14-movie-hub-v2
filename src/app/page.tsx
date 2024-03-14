@@ -1,7 +1,5 @@
-import FreeToWatch from "@/components/Home/FreeToWatchSection";
-import LatestTrailersSection from "@/components/Home/LatestTrailersSection";
+import HeroHome from "@/components/Home/Hero";
 import TrendingSection from "@/components/Home/TrendingSection";
-import WhatsPopularSection from "@/components/Home/WhatsPopularSection";
 import {
   RQ_TRENDING_ALL_DAY_ENDPOINT,
   RQ_TRENDING_ALL_DAY_KEY,
@@ -43,10 +41,11 @@ export default async function Home() {
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <div className="flex flex-col gap-8">
+          <HeroHome />
           <TrendingSection />
-          <LatestTrailersSection />
-          <WhatsPopularSection />
-          <FreeToWatch />
+          {/* <LatestTrailersSection /> */}
+          {/* <WhatsPopularSection /> */}
+          {/* <FreeToWatch /> */}
         </div>
       </HydrationBoundary>
     </>
