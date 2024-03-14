@@ -13,4 +13,5 @@ export interface SearchMovieResponse {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  media_type: "movie";
 }

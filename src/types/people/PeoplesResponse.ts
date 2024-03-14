@@ -12,7 +12,7 @@ export interface People {
   known_for: KnwonFor[];
 }
 
-interface KnwonFor {
+export interface KnwonFor {
   adult: boolean;
   backdrop_path: string;
   id: number;

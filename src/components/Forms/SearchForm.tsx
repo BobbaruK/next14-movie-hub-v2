@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ReactNode, useCallback } from "react";
+import { ReactNode } from "react";
 
 const formSchema = z.object({
   searchQuery: z.string().min(2, {
@@ -28,17 +28,17 @@ interface Props {
 
 export function SearchForm({ formButton }: Props) {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
+  // const createQueryString = useCallback(
+  //   (name: string, value: string) => {
+  //     const params = new URLSearchParams(searchParams.toString());
+  //     params.set(name, value);
 
-      return params.toString();
-    },
-    [searchParams],
-  );
+  //     return params.toString();
+  //   },
+  //   [searchParams],
+  // );
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -54,7 +54,8 @@ export function SearchForm({ formButton }: Props) {
     // ✅ This will be type-safe and validated.
     // console.log(values);
 
-    router.push(`/search?${createQueryString("query", values.searchQuery)}`);
+    // router.push(`/search?${createQueryString("query", values.searchQuery)}`);
+    router.push(`/search?query=${values.searchQuery}`);
   }
 
   return (

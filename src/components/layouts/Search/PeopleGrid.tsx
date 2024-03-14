@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { RQ_SEARCH_PEOPLE_KEY, searchMovieCardImage } from "@/constants";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
-import { People } from "@/types/people/PeoplesResponse";
+import { SearchPeopleResponse } from "@/types/search/people";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import { searchFetchConfig } from "@/utils/searchFetchConfig";
 import { useQuery } from "@tanstack/react-query";
@@ -29,7 +29,9 @@ const PeopleGridSearch = ({ query }: Props) => {
 
   const searchConfig = searchFetchConfig(page, query);
 
-  const { data, error, isLoading } = useQuery<MainTitleResponse<People>>({
+  const { data, error, isLoading } = useQuery<
+    MainTitleResponse<SearchPeopleResponse>
+  >({
     queryKey: [RQ_SEARCH_PEOPLE_KEY(query), searchConfig.params],
   });
 
