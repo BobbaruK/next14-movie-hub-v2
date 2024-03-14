@@ -26,7 +26,7 @@ interface Props {
   formButton: ReactNode;
 }
 
-export function SearchForm({ formButton }: Props) {
+export default function SearchForm({ formButton }: Props) {
   const router = useRouter();
   // const searchParams = useSearchParams();
 

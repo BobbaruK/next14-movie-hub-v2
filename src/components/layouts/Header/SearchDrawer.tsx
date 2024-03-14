@@ -1,4 +1,4 @@
-import { SearchForm } from "@/components/Forms/SearchForm";
+import SearchForm from "@/components/Forms/SearchForm";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Drawer,
@@ -16,7 +16,8 @@ const SearchDrawer = () => {
   return (
     <>
       <Drawer>
-        <DrawerTrigger aria-label="Search"
+        <DrawerTrigger
+          aria-label="Search"
           className={`grid h-10 w-10 place-items-center rounded-full border p-0`}
         >
           <IoSearch />
