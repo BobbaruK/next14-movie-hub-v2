@@ -94,12 +94,12 @@ const Header = () => {
               menuItems={menuItems}
               className="ms-auto md:hidden [&>button]:rounded-md [&>button]:border [&>button]:border-secondary [&>button]:bg-primary [&>button]:p-2 [&>button]:hover:bg-secondary [&>button]:hover:text-secondary-foreground"
             />
-          </div>
-          {/* <div className="ms-auto hidden md:flex">
-            <div className="hidden md:block">
-              <ModeToggle />
+            <div className="ms-auto hidden md:flex">
+              <div className="hidden md:block">
+                <ModeToggle />
+              </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </header>
     </>
