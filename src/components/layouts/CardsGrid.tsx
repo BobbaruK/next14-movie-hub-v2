@@ -12,25 +12,23 @@ import CustomAlert from "../CustomAlert";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import MovieGrid from "./MovieGrid";
 import MoviePagination from "./MoviePagination";
+import { useSearchParams } from "next/navigation";
 
-// TODO: cleanup this shit ("with_genres", "sort_by", etc). try useSearchParams
 interface Props {
-  page: number;
-  with_genres: string;
-  sort_by: string;
-  with_original_language: string;
   queryKey: string;
   imageDetails: ImageDetails;
 }
 
-const CardsGrid = ({
-  page,
-  with_genres,
-  sort_by,
-  with_original_language,
-  queryKey,
-  imageDetails,
-}: Props) => {
+const CardsGrid = ({ queryKey, imageDetails }: Props) => {
+  const searchParams = useSearchParams();
+
+  const pageSearchParam = searchParams.get("page") || "1";
+  const page = parseInt(pageSearchParam);
+  const with_genres = searchParams.get("with_genres") || "";
+  const with_original_language =
+    searchParams.get("with_original_language") || "";
+  const sort_by = searchParams.get("sort_by") || "";
+
   const moviesConfig = moviesFetchConfig(
     page,
     with_genres,

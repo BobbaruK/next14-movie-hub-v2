@@ -57,10 +57,6 @@ export default async function AiringTodayTVShows({
         <div className="container flex flex-col gap-8 lg:flex-row">
           <div>
             <CardsGrid
-              page={pageNumber}
-              with_genres={with_genres}
-              sort_by={sort_by}
-              with_original_language={with_original_language}
               queryKey={RQ_AIRING_TODAY_TVSHOWS_KEY}
               imageDetails={{
                 classes: imagesSizesNoSidebar,

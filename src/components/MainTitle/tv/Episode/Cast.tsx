@@ -33,8 +33,6 @@ const EpisodeCast = ({ episodeResponse }: Props) => {
   //     />
   //   );
 
-  // TODO: try DRY bro wtf - wtf do I have to DRY, bitch?
-
   return (
     <div>
       <h2 className="flex items-center justify-between gap-8">

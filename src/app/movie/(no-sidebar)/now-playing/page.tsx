@@ -57,21 +57,17 @@ export default async function NowPlayingMovies({
         <div className="container flex flex-col gap-8 lg:flex-row">
           <div>
             <CardsGrid
-              page={pageNumber}
-              with_genres={with_genres}
-              sort_by={sort_by}
-              with_original_language={with_original_language}
               queryKey={RQ_NOW_PLAYING_MOVIES_KEY}
               imageDetails={{
                 classes: imagesSizesNoSidebar,
                 sizes: `
-                    (max-width: 320px) 125px,
-                    (max-width: 639px) 283px,
-                    (max-width: 767px) 226px,
-                    (max-width: 1023px) 230px,
-                    (max-width: 1279px) 294px,
-                    260px
-                  `,
+                  (max-width: 320px) 125px,
+                  (max-width: 639px) 283px,
+                  (max-width: 767px) 226px,
+                  (max-width: 1023px) 230px,
+                  (max-width: 1279px) 294px,
+                  260px
+                `,
                 type: "poster",
               }}
             />

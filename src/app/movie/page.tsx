@@ -80,10 +80,6 @@ export default async function PopularMovies({
           </div>
           <div className="lg:basis-3/4">
             <CardsGrid
-              page={pageNumber}
-              with_genres={with_genres}
-              sort_by={sort_by}
-              with_original_language={with_original_language}
               queryKey={RQ_POPULAR_MOVIES_KEY}
               imageDetails={{
                 classes: imagesSizesWithSidebar,

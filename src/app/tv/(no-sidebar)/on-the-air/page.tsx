@@ -57,10 +57,6 @@ export default async function OnTheAirTVShows({
         <div className="container flex flex-col gap-8 lg:flex-row">
           <div>
             <CardsGrid
-              page={pageNumber}
-              with_genres={with_genres}
-              sort_by={sort_by}
-              with_original_language={with_original_language}
               queryKey={RQ_ON_THE_AIR_TVSHOW_KEY}
               imageDetails={{
                 classes: imagesSizesNoSidebar,

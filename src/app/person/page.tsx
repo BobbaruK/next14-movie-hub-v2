@@ -46,10 +46,6 @@ export default async function Persons({
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="container">
         <CardsGrid
-          page={pageNumber}
-          with_genres={with_genres}
-          sort_by={sort_by}
-          with_original_language={with_original_language}
           queryKey={RQ_POPULAR_PERSONS_KEY}
           imageDetails={{
             classes: imagesSizesNoSidebar,
