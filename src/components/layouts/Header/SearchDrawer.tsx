@@ -36,9 +36,9 @@ const SearchDrawer = () => {
             />
             {/* <DrawerDescription>form here</DrawerDescription> */}
           </DrawerHeader>
-          <DrawerFooter>
+          {/* <DrawerFooter>
             <DrawerClose type="submit">Close</DrawerClose>
-          </DrawerFooter>
+          </DrawerFooter> */}
         </DrawerContent>
       </Drawer>
     </>
