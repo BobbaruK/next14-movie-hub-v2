@@ -16,7 +16,7 @@ const SearchDrawer = () => {
   return (
     <>
       <Drawer>
-        <DrawerTrigger
+        <DrawerTrigger aria-label="Search"
           className={`grid h-10 w-10 place-items-center rounded-full border p-0`}
         >
           <IoSearch />

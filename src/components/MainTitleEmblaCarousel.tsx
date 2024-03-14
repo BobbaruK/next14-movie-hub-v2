@@ -145,6 +145,7 @@ export function MainTitleEmblaCarousel({
             className="embla__prev rounded-full"
             onClick={scrollPrev}
             size="icon"
+            aria-label="Previous"
           >
             <FaChevronLeft />
           </Button>
@@ -152,6 +153,7 @@ export function MainTitleEmblaCarousel({
             className="embla__next rounded-full"
             onClick={scrollNext}
             size="icon"
+            aria-label="Next"
           >
             <FaChevronRight />
           </Button>

@@ -31,7 +31,7 @@ const BurgerMenu = ({ menuItems, showIcon, label, ...restProps }: Props) => {
   return (
     <div {...restProps} className={`${restProps.className}`}>
       <Sheet>
-        <SheetTrigger className="flex flex-row items-center justify-center gap-2 text-primary-foreground hover:text-inherit">
+        <SheetTrigger className="flex flex-row items-center justify-center gap-2 text-primary-foreground hover:text-inherit" aria-label="Main Navigation">
           {(showIcon || !label) && (
             <span className="text-3xl">
               <GiHamburgerMenu />
