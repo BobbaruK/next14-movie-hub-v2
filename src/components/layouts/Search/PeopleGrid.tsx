@@ -69,7 +69,7 @@ const PeopleGridSearch = ({ query }: Props) => {
   return (
     <>
       {/* {page} */}
-      <h1>Search: {query}</h1>
+      <h1>Search people: &bdquo;{query}&rdquo;</h1>
       <MoviePagination page={page} response={data} />
       <div className="my-4 flex flex-col gap-4 lg:gap-8">
         {data.results.map((person) => (

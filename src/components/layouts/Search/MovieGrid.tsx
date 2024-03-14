@@ -75,7 +75,7 @@ const MovieGridSearch = ({ query }: Props) => {
   return (
     <>
       {/* {page} */}
-      <h1>Search: {query}</h1>
+      <h1>Search movies: &bdquo;{query}&rdquo;</h1>
       <MoviePagination page={page} response={data} />
       <div className="my-4 flex flex-col gap-4 lg:gap-8">
         {data.results.map((movie) => (
@@ -87,11 +87,11 @@ const MovieGridSearch = ({ query }: Props) => {
                 src={movie.poster_path!}
                 className={`w-full md:w-32 md:min-w-36 ${searchMovieCardImage}`}
                 sizes={`
-                (max-width: 320px) 285px,
-                (max-width: 639px) 588px,
-                (max-width: 767px) 716px,
-                144px
-              `}
+                  (max-width: 320px) 285px,
+                  (max-width: 639px) 588px,
+                  (max-width: 767px) 716px,
+                  144px
+                `}
               />
             </Link>
             <div className="flex flex-col justify-between gap-4">

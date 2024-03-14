@@ -64,6 +64,7 @@ const CompanyGridSearch = ({ query }: Props) => {
     <>
       {/* {page} */}
       <h1 className="flex gap-2">Search companies: &bdquo;{query}&rdquo;</h1>
+      <MoviePagination page={page} response={data} />
       <div className="my-4 flex flex-col gap-4 lg:gap-8">
         <ul>
           {data.results.map((keyword) => (
