@@ -42,15 +42,6 @@ const CompanyGridSearch = ({ query }: Props) => {
 
   if ((data && page > data?.total_pages) || !query) notFound();
 
-  // if (!query)
-  //   return (
-  //     <CustomAlert
-  //       variant={"destructive"}
-  //       title={"Error"}
-  //       description="No query passed to search"
-  //     />
-  //   );
-
   if (!data?.results.length)
     return (
       <CustomAlert

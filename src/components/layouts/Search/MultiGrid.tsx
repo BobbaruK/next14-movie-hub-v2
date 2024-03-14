@@ -1,22 +1,14 @@
 import CustomAlert from "@/components/CustomAlert";
 
 interface Props {
-  query: string | undefined;
+  query: string;
 }
 
 const MultiGridSearch = ({ query }: Props) => {
-  if (!query)
-    return (
-      <CustomAlert
-        variant={"destructive"}
-        title={"Error"}
-        description="No query passed to search"
-      />
-    );
-
   return (
     <div>
-      Multi: <b>{query}</b>
+      <h1>Search movies, tv shows and people: &bdquo;{query}&rdquo;</h1>
+      <p className="leading-5">Coming soon...</p>
     </div>
   );
 };
