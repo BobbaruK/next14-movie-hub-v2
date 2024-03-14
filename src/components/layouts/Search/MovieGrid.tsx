@@ -24,8 +24,6 @@ interface Props {
   query: string;
 }
 
-// TODO: handle errors on all search pages
-
 const MovieGridSearch = ({ query }: Props) => {
   const searchParams = useSearchParams();
   const pageSearchParam = searchParams.get("page");
