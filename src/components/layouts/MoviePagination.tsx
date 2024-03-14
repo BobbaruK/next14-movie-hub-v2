@@ -35,6 +35,8 @@ const MoviePagination = ({ response }: Props) => {
     [searchParams, page],
   );
 
+  if (response.total_pages === 1) return;
+
   return (
     <>
       {/* {response.total_pages} <br />
