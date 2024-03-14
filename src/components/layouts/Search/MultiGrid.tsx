@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/card";
 import { RQ_SEARCH_MULTI_KEY, searchMovieCardImage } from "@/constants";
 import { MainTitleResponse } from "@/types/MainTitleResponse";
-import { People } from "@/types/people/PeoplesResponse";
 import { SearchMovieResponse } from "@/types/search/movies";
+import { SearchPeopleResponse } from "@/types/search/people";
 import { SearchTVShowResponse } from "@/types/search/tvshows";
 import idTitleHyphen from "@/utils/idTitleHyphen";
 import ReleaseDateUI from "@/utils/releaseDateUI";
@@ -21,7 +21,6 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { notFound, useSearchParams } from "next/navigation";
 import MoviePagination from "../MoviePagination";
-import { SearchPeopleResponse } from "@/types/search/people";
 
 interface Props {
   query: string;
@@ -103,7 +102,9 @@ const MultiGridSearch = ({ query }: Props) => {
 
           return (
             <Card key={multi.id} className="flex-row overflow-hidden md:flex">
-              <Link href={`/${multi.media_type}/${idTitleHyphen(multi.id, title)}`}>
+              <Link
+                href={`/${multi.media_type}/${idTitleHyphen(multi.id, title)}`}
+              >
                 <TMDBImages
                   type="poster"
                   alt={title}
@@ -133,13 +134,14 @@ const MultiGridSearch = ({ query }: Props) => {
                         {multi.known_for.length > 0 && (
                           <>
                             &nbsp;&bull;&nbsp;
-                            {multi.known_for.map((chestie, index) => {
-                              if (chestie.title)
+                            {multi.known_for.map((job, index) => {
+                              if (job.title)
                                 return (
                                   <Link
-                                    href={`/${chestie.media_type}/${idTitleHyphen(chestie.id, chestie.title)}`}
+                                    key={job.id}
+                                    href={`/${job.media_type}/${idTitleHyphen(job.id, job.title)}`}
                                   >
-                                    {chestie.title}{" "}
+                                    {job.title}{" "}
                                     {index < multi.known_for.length - 1 && ", "}
                                   </Link>
                                 );
