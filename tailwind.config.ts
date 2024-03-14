@@ -74,6 +74,7 @@ const config = {
         quora: "#b92b27",
         react: "#61DBFB",
         "react-query": "#ff4154",
+        "react-icons": "#E91E63",
         reddit: "#ff5700",
         skype: "#00aff0",
         slack: "#3aaf85",
