@@ -1,9 +1,12 @@
+import { CollectionTranslationBase } from "../Collection";
+
 export interface TranslationsBase {
   id: number;
   translations:
     | TranslationMovieBase[]
     | TranslationTVShowBase[]
-    | TranslationPeopleBase[];
+    | TranslationPeopleBase[]
+    | CollectionTranslationBase[];
 }
 
 export interface TranslationMovieBase {

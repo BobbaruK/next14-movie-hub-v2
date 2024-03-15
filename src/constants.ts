@@ -267,6 +267,12 @@ export const RQ_COLLECTION_KEY = (id: string) => `collection-${id}`;
 export const RQ_COLLECTION_ENDPOINT = (id: string) =>
   `https://api.themoviedb.org/3/collection/${id}`;
 
+// Collection Translations
+export const RQ_COLLECTION_TRANSLATIONS_KEY = (id: string) =>
+  `collection-${id}-translations`;
+export const RQ_COLLECTION_TRANSLATIONS_ENDPOINT = (id: string) =>
+  `https://api.themoviedb.org/3/collection/${id}/translations`;
+
 // Search All
 export const RQ_SEARCH_MULTI_KEY = (query: string) =>
   `search-multi-${query && query.replaceAll(" ", "_")}`;

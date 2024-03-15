@@ -10,6 +10,7 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import CustomAlert from "./CustomAlert";
 import TMDBImages from "./TMDBImages";
 import { notFound } from "next/navigation";
+import { Collection } from "@/types/Collection";
 
 interface IBackTo {
   label: string;
@@ -23,7 +24,7 @@ interface Props {
 
 const BackTo = ({ queryKey, backTo }: Props) => {
   const { data, error, isLoading } = useQuery<
-    MovieResponse | TVShowResponse | PeopleResponse
+    MovieResponse | TVShowResponse | PeopleResponse | Collection
   >({
     queryKey: [queryKey],
   });
@@ -45,11 +46,13 @@ const BackTo = ({ queryKey, backTo }: Props) => {
   const movie = "title" in data && data;
   const tv = "seasons" in data && data;
   const person = "biography" in data && data;
+  const collection = "parts" in data && data;
 
   const title = () => {
     if (movie) return movie.title;
     if (tv) return tv.name;
     if (person) return person.name;
+    if (collection) return collection.name;
     return "";
   };
 
@@ -66,7 +69,7 @@ const BackTo = ({ queryKey, backTo }: Props) => {
         <div className="flex gap-5">
           <div className="w-full basis-28 overflow-hidden rounded-md">
             <Link href={backTo.link}>
-              {(movie || tv) && (
+              {(movie || tv || collection) && (
                 <TMDBImages
                   type="poster"
                   alt={title()}

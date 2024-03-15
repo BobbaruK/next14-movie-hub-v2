@@ -26,6 +26,8 @@ interface Props {
   formButton: ReactNode;
 }
 
+// TODO: rethink form
+
 export default function SearchForm({ formButton }: Props) {
   const router = useRouter();
   // const searchParams = useSearchParams();

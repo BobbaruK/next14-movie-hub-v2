@@ -1,23 +1,18 @@
+import { CollectionTranslationBase } from "@/types/Collection";
 import {
   TranslationMovieBase,
   TranslationPeopleBase,
   TranslationTVShowBase,
 } from "@/types/movies/TranslationsResponse";
 import Link from "next/link";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 
 interface Props {
   translation:
     | TranslationMovieBase
     | TranslationTVShowBase
-    | TranslationPeopleBase;
+    | TranslationPeopleBase
+    | CollectionTranslationBase;
 }
 
 const TranslationCard = ({ translation }: Props) => {

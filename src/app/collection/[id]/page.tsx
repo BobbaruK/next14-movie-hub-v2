@@ -13,14 +13,14 @@ const Collection = ({ params: { id } }: Props) => {
     <>
       <MainTitleHeroSection queryKey={RQ_COLLECTION_KEY(id)} />
       <div className="container flex flex-col gap-8 py-20">
-        <div>
+        {/* <div>
           <h2>Featured Cast</h2>
           <hr />
         </div>
         <div>
           <h2>Featured Crew</h2>
           <hr />
-        </div>
+        </div> */}
         <CollectionMovies />
       </div>
     </>
