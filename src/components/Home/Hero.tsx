@@ -1,10 +1,17 @@
 "use client";
 
+import Spinner from "../Spinner";
 import TMDBImages from "../TMDBImages";
 import { Button } from "../ui/button";
 import dynamic from "next/dynamic";
 
-const SearchFormDynamic = dynamic(() => import("../Forms/SearchForm"));
+const SearchFormDynamic = dynamic(() => import("../Forms/SearchForm"), {
+  loading: () => (
+    <p className="flex gap-4 items-center">
+      <Spinner /> Loading search component...
+    </p>
+  ),
+});
 
 const HeroHome = () => {
   return (
