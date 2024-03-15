@@ -12,13 +12,10 @@ import Budget from "@/components/Sidebar/MainTitle/movie/Budget";
 import Revenue from "@/components/Sidebar/MainTitle/movie/Revenue";
 import {
   RQ_MOVIE_CAST_KEY,
-  RQ_MOVIE_ENDPOINT,
   RQ_MOVIE_EXTERNAL_IDS_KEY,
   RQ_MOVIE_KEY,
   RQ_MOVIE_KEYWORDS_KEY,
-  RQ_MOVIE_RECOMMENDATIONS_ENDPOINT,
   RQ_MOVIE_RECOMMENDATIONS_KEY,
-  RQ_MOVIE_REVIEWS_ENDPOINT,
   RQ_MOVIE_REVIEWS_KEY,
 } from "@/constants";
 

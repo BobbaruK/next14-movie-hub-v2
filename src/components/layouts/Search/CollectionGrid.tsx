@@ -10,6 +10,8 @@ import { searchFetchConfig } from "@/utils/searchFetchConfig";
 import { useQuery } from "@tanstack/react-query";
 import { notFound, useSearchParams } from "next/navigation";
 import MoviePagination from "../MoviePagination";
+import idTitleHyphen from "@/utils/idTitleHyphen";
+import Link from "next/link";
 
 interface Props {
   query: string;
@@ -63,26 +65,30 @@ const CollectionGridSearch = ({ query }: Props) => {
             key={collection.id}
             className="flex-row overflow-hidden md:flex"
           >
-            {/* <Link href={`/movie/${idTitleHyphen(movie.id, movie.title)}`}> */}
-            <TMDBImages
-              type="poster"
-              alt={collection.name}
-              src={collection.poster_path}
-              className={`w-full md:w-32 md:min-w-36 ${searchMovieCardImage}`}
-              sizes={`
+            <Link
+              href={`/collection/${idTitleHyphen(collection.id, collection.name)}`}
+            >
+              <TMDBImages
+                type="poster"
+                alt={collection.name}
+                src={collection.poster_path}
+                className={`w-full md:w-32 md:min-w-36 ${searchMovieCardImage}`}
+                sizes={`
                   (max-width: 320px) 285px,
                   (max-width: 639px) 588px,
                   (max-width: 767px) 716px,
                   144px
                 `}
-            />
-            {/* </Link> */}
+              />
+            </Link>
             <div className="flex flex-col justify-between gap-4">
               <CardHeader>
                 <CardTitle className="m-0">
-                  {/* <Link href={`/movie/${idTitleHyphen(collection.id, collection.title)}`}> */}
-                  {collection.name}
-                  {/* </Link> */}
+                  <Link
+                    href={`/collection/${idTitleHyphen(collection.id, collection.name)}`}
+                  >
+                    {collection.name}
+                  </Link>
                 </CardTitle>
                 {/* <CardDescription>
                   {ReleaseDateUI(collection.release_date).releaseDate}

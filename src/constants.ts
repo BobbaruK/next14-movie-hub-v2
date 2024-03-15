@@ -262,6 +262,11 @@ export const RQ_TVSHOW_VIDEOS_KEY = (id: string) =>
 export const RQ_TVSHOW_VIDEOS_ENDPOINT = (id: string) =>
   `tv/${parseInt(id)}/videos`;
 
+// Collection
+export const RQ_COLLECTION_KEY = (id: string) => `collection-${id}`;
+export const RQ_COLLECTION_ENDPOINT = (id: string) =>
+  `https://api.themoviedb.org/3/collection/${id}`;
+
 // Search All
 export const RQ_SEARCH_MULTI_KEY = (query: string) =>
   `search-multi-${query && query.replaceAll(" ", "_")}`;

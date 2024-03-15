@@ -8,13 +8,16 @@ import React from "react";
 import CustomAlert from "../CustomAlert";
 import TMDBImages from "../TMDBImages";
 import { Badge } from "../ui/badge";
+import { Collection } from "@/types/Collection";
 
 interface Props {
   queryKey: string;
 }
 
 const MainTitleHeroSection = ({ queryKey }: Props) => {
-  const { data, error, isLoading } = useQuery<MovieResponse | TVShowResponse>({
+  const { data, error, isLoading } = useQuery<
+    MovieResponse | TVShowResponse | Collection
+  >({
     queryKey: [queryKey],
   });
 
@@ -30,15 +33,7 @@ const MainTitleHeroSection = ({ queryKey }: Props) => {
       />
     );
 
-  const { releaseDate, year } = ReleaseDateUI(
-    "title" in data! ? data.release_date : data?.first_air_date,
-  );
-
-  const style = {
-    "--value": data?.vote_average! * 10,
-    "--thickness": "3px",
-    "--size": "3rem",
-  } as React.CSSProperties;
+  if (!data) return null;
 
   return (
     <div className="relative py-20">
@@ -46,8 +41,8 @@ const MainTitleHeroSection = ({ queryKey }: Props) => {
         <div className="absolute inset-0 -z-20  h-full w-full">
           <TMDBImages
             type="backdrop"
-            alt={"title" in data! ? data.title : data?.name!}
-            src={data?.backdrop_path!}
+            alt={"title" in data ? data.title : data.name}
+            src={data.backdrop_path}
             priority
             className="h-full w-full"
             sizes={`
@@ -65,8 +60,8 @@ const MainTitleHeroSection = ({ queryKey }: Props) => {
           <div className="flex items-center justify-center sm:basis-2/6 lg:basis-1/4">
             <TMDBImages
               type="poster"
-              alt={"title" in data! ? data.title : data?.name!}
-              src={data?.poster_path!}
+              alt={"title" in data ? data.title : data.name}
+              src={data.poster_path}
               className="h-full max-h-[513px] w-full overflow-hidden rounded-md"
               priority
               style={{
@@ -86,49 +81,84 @@ const MainTitleHeroSection = ({ queryKey }: Props) => {
           <div className="flex flex-col justify-center gap-8 sm:basis-4/6 lg:basis-3/4">
             <div>
               <h1 className="m-0 flex flex-wrap items-center justify-start gap-6">
-                {"title" in data! ? data.title : data?.name} ({year})
-                <Badge
-                  variant={
-                    data!.vote_average > 7.5
-                      ? "default"
-                      : data!.vote_average > 6.0
-                        ? "secondary"
-                        : "destructive"
-                  }
-                >
-                  {data?.vote_average.toFixed(1)}
-                </Badge>
+                {"title" in data ? data.title : data.name}
+
+                {("release_date" in data || "first_air_date" in data) && (
+                  <>
+                    (
+                    {"release_date" in data &&
+                      ReleaseDateUI(data.release_date).year}
+                    {"first_air_date" in data &&
+                      ReleaseDateUI(data.first_air_date).year}
+                    )
+                  </>
+                )}
+                {"vote_average" in data && (
+                  <Badge
+                    variant={
+                      data.vote_average > 7.5
+                        ? "default"
+                        : data.vote_average > 6.0
+                          ? "secondary"
+                          : "destructive"
+                    }
+                  >
+                    {data?.vote_average.toFixed(1)}
+                  </Badge>
+                )}
               </h1>
-              <small>
-                {"title" in data! ? data.original_title : data?.original_name}
-              </small>
+              {("original_title" in data || "original_name" in data) && (
+                <small>
+                  {"original_title" in data && data.original_title}
+                  {"original_name" in data && data.original_name}
+                </small>
+              )}
             </div>
             <div className="flex flex-wrap gap-4">
-              <div className="">{releaseDate}</div>
-              &bull;
-              <div className="">
-                {data?.genres.map((genre, index) => (
-                  <React.Fragment key={genre.id}>
-                    <span>{genre.name}</span>
-                    {data.genres.length === index + 1 ? "" : ","}&nbsp;
-                  </React.Fragment>
-                ))}
-              </div>
-              &bull;
-              <div className="">
-                {"title" in data!
-                  ? `${data?.runtime} minutes`
-                  : data?.episode_run_time.length
-                    ? `${data?.episode_run_time[0]} minutes`
-                    : "unknowm"}
-              </div>
+              {("release_date" in data || "first_air_date" in data) && (
+                <div className="">
+                  {"release_date" in data && data.release_date}
+                  {"first_air_date" in data && data.first_air_date}
+                </div>
+              )}
+              {"genres" in data && (
+                <>
+                  &bull;
+                  <div className="">
+                    {data?.genres.map((genre, index) => (
+                      <React.Fragment key={genre.id}>
+                        <span>{genre.name}</span>
+                        {data.genres.length === index + 1 ? "" : ","}&nbsp;
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </>
+              )}
+              {("runtime" in data ||
+                ("episode_run_time" in data &&
+                  data.episode_run_time.length > 0)) && (
+                <>
+                  &bull;
+                  <div className="">
+                    {"runtime" in data && data.runtime + " minutes"}
+                    {"episode_run_time" in data &&
+                      data.episode_run_time.length > 0 &&
+                      `${data?.episode_run_time[0]} minutes`}
+                  </div>
+                </>
+              )}
             </div>
-            {data?.tagline && (
+            {"tagline" in data && (
               <p>
-                <em>{data?.tagline}</em>
+                <em>{data.tagline}</em>
               </p>
             )}
-            {data?.overview && <p>{data?.overview}</p>}
+            {data.overview && <p>{data.overview}</p>}
+            {"parts" in data && (
+              <p>
+                <strong>Number of Movies:</strong> {data.parts.length}
+              </p>
+            )}
           </div>
         </div>
       </div>
