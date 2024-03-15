@@ -28,7 +28,6 @@ export default function TVShowsImagesPosters({ params: { id } }: Props) {
             `,
             type: "poster",
           }}
-          titleType="tv"
         />
       }
       sidebar={

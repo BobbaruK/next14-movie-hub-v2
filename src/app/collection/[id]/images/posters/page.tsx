@@ -1,7 +1,7 @@
 import ImagesFiltering from "@/components/Sidebar/MainTitle/ImagesFiltering";
 import ImagesGrid from "@/components/layouts/ImagesGrid";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
-import { RQ_MOVIE_IMAGES_ENDPOINT, RQ_MOVIE_IMAGES_KEY } from "@/constants";
+import { RQ_COLLECTION_IMAGES_KEY } from "@/constants";
 
 interface Props {
   params: {
@@ -9,12 +9,12 @@ interface Props {
   };
 }
 
-export default function MovieImagesPosters({ params: { id } }: Props) {
+export default function CollectionImagesPosters({ params: { id } }: Props) {
   return (
     <MainTitleSidebarLeft
       content={
         <ImagesGrid
-          queryKey={RQ_MOVIE_IMAGES_KEY(id)}
+          queryKey={RQ_COLLECTION_IMAGES_KEY(id)}
           imagesType="posters"
           imageDetails={{
             classes:
@@ -33,9 +33,9 @@ export default function MovieImagesPosters({ params: { id } }: Props) {
       sidebar={
         <ImagesFiltering
           title="Posters"
-          queryKey={RQ_MOVIE_IMAGES_KEY(id)}
+          queryKey={RQ_COLLECTION_IMAGES_KEY(id)}
           imagesType="posters"
-          titleType="movie"
+          titleType="collection"
         />
       }
     />

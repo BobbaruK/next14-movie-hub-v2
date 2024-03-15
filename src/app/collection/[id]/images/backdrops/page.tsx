@@ -1,7 +1,7 @@
 import ImagesFiltering from "@/components/Sidebar/MainTitle/ImagesFiltering";
 import ImagesGrid from "@/components/layouts/ImagesGrid";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
-import { RQ_TVSHOWS_IMAGES_KEY } from "@/constants";
+import { RQ_COLLECTION_IMAGES_KEY } from "@/constants";
 
 interface Props {
   params: {
@@ -9,12 +9,12 @@ interface Props {
   };
 }
 
-export default function TVShowsImagesBackdrops({ params: { id } }: Props) {
+export default function CollectionImagesBackdrops({ params: { id } }: Props) {
   return (
     <MainTitleSidebarLeft
       content={
         <ImagesGrid
-          queryKey={RQ_TVSHOWS_IMAGES_KEY(id)}
+          queryKey={RQ_COLLECTION_IMAGES_KEY(id)}
           imagesType="backdrops"
           imageDetails={{
             classes:
@@ -27,9 +27,9 @@ export default function TVShowsImagesBackdrops({ params: { id } }: Props) {
       sidebar={
         <ImagesFiltering
           title="Backdrops"
-          queryKey={RQ_TVSHOWS_IMAGES_KEY(id)}
+          queryKey={RQ_COLLECTION_IMAGES_KEY(id)}
           imagesType="backdrops"
-          titleType="tv"
+          titleType="collection"
         />
       }
     />

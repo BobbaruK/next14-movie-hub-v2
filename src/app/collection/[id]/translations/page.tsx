@@ -3,7 +3,7 @@ import MainTitleTranslations from "@/components/MainTitle/Translations";
 import TranslationsFiltering from "@/components/Sidebar/MainTitle/TranslationsFiltering";
 import MainTitleSidebarLeft from "@/components/layouts/MainTitle/SidebarLeft";
 import { RQ_COLLECTION_KEY, RQ_COLLECTION_TRANSLATIONS_KEY } from "@/constants";
-import { MovieResponse } from "@/types/movies/movie/MovieResponse";
+import { Collection } from "@/types/Collection";
 import movieMetadataTitle from "@/utils/movieMetadataTitle";
 import { Metadata } from "next";
 
@@ -18,13 +18,13 @@ interface Props {
 export async function generateMetadata({
   params: { id },
 }: Props): Promise<Metadata> {
-  const movie: MovieResponse = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}`,
+  const collection: Collection = await fetch(
+    `https://api.themoviedb.org/3/collection/${id}?api_key=${process.env.TMDB_API_KEY}`,
   ).then((res) => res.json());
 
   return {
-    title: movieMetadataTitle(movie.title, movie.release_date, pageTitle),
-    description: movie.tagline,
+    title: movieMetadataTitle(collection.name, null, pageTitle),
+    description: collection.overview,
   };
 }
 

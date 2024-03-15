@@ -39,7 +39,6 @@ export default function EpisodeImagesBackdrops({
               sizes: `200px`,
               type: "backdrop",
             }}
-            titleType="tv"
           />
         }
         sidebar={

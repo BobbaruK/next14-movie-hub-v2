@@ -29,3 +29,8 @@ export type ImagesType =
   | "profile"
   | "still"
   | "other";
+
+export type CollectionImagesShape = Omit<
+  ImagesResponse,
+  "logos" | "profiles" | "stills"
+>;

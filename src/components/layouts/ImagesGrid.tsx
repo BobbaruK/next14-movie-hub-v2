@@ -13,14 +13,12 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   queryKey: string;
   imagesType: GridImagesType;
   imageDetails: ImageDetails;
-  titleType: MediaType;
 }
 
 const ImagesGrid = ({
   queryKey,
   imagesType,
   imageDetails,
-  titleType,
   ...restProps
 }: Props) => {
   // const { id } = useParams<{ id: string }>();

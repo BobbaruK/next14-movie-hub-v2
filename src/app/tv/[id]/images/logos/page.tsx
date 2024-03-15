@@ -21,7 +21,6 @@ export default function TVShowsImagesLogos({ params: { id } }: Props) {
             sizes: "238px",
             type: "logo",
           }}
-          titleType="tv"
         />
       }
       sidebar={

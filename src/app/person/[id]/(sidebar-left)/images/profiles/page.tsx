@@ -43,7 +43,6 @@ export default function PersonImagesProfiles({ params: { id } }: Props) {
             `,
             type: "profile",
           }}
-          titleType="movie"
         />
       }
       sidebar={

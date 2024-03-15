@@ -22,7 +22,6 @@ export default function MovieImagesBackdrops({ params: { id } }: Props) {
             sizes: `200px`,
             type: "backdrop",
           }}
-          titleType="movie"
         />
       }
       sidebar={
