@@ -1,14 +1,10 @@
 import SearchForm from "@/components/Forms/SearchForm";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
+  DrawerTrigger
 } from "@/components/ui/drawer";
 import { IoSearch } from "react-icons/io5";
 
@@ -25,16 +21,7 @@ const SearchDrawer = () => {
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Search</DrawerTitle>
-            <SearchForm
-              formButton={
-                <DrawerClose
-                  type="submit"
-                  className={`${buttonVariants({ variant: "default" })}`}
-                >
-                  Search
-                </DrawerClose>
-              }
-            />
+            <SearchForm />
             {/* <DrawerDescription>form here</DrawerDescription> */}
           </DrawerHeader>
           {/* <DrawerFooter>

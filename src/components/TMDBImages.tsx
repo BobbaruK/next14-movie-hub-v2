@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { ImagesType } from "@/types/ImagesResponse";
 import {
@@ -343,7 +345,7 @@ const TMDBImages = ({
           loader={customLoader}
           src={src || noImage}
           alt={alt}
-          priority={priority === undefined ? false : priority}
+          priority={priority || false}
           // priority={true}
           title={alt}
           fill

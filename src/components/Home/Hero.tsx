@@ -1,17 +1,5 @@
-"use client";
-
-import Spinner from "../Spinner";
+import SearchForm from "../Forms/SearchForm";
 import TMDBImages from "../TMDBImages";
-import { Button } from "../ui/button";
-import dynamic from "next/dynamic";
-
-const SearchFormDynamic = dynamic(() => import("../Forms/SearchForm"), {
-  loading: () => (
-    <p className="flex gap-4 items-center">
-      <Spinner /> Loading search component...
-    </p>
-  ),
-});
 
 const HeroHome = () => {
   return (
@@ -25,6 +13,7 @@ const HeroHome = () => {
         // sizes="238px"
         sizes={"100vw"}
         className={"z-0 h-videoImageHeight w-full"}
+        priority
       />
       <div className="absolute left-1/2 top-1/2 flex w-full max-w-[900px] -translate-x-1/2 -translate-y-1/2  flex-col justify-center gap-4 rounded-md bg-secondary/90 p-4 md:gap-6 md:p-6 lg:gap-8 lg:p-8">
         <div>
@@ -33,7 +22,7 @@ const HeroHome = () => {
             Millions of movies, TV shows and people to discover. Explore now.
           </p>
         </div>
-        <SearchFormDynamic formButton={<Button type="submit">Search</Button>} />
+        <SearchForm />
       </div>
     </div>
   );
