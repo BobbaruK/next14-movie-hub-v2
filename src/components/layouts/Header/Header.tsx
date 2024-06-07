@@ -84,14 +84,6 @@ const Header = () => {
           </div>
           <MainNavigation menuItems={menuItems} className="hidden md:block" />
           <div className="flex items-center gap-2">
-            <Avatar className="border">
-              <AvatarImage
-                src="https://github.com/shadcn.png"
-                alt="User Avatar"
-              />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-
             <SearchDrawer />
             <BurgerMenu
               menuItems={menuItems}

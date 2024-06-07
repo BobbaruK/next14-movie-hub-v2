@@ -4,7 +4,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger
+  DrawerTrigger,
 } from "@/components/ui/drawer";
 import { IoSearch } from "react-icons/io5";
 
@@ -14,7 +14,7 @@ const SearchDrawer = () => {
       <Drawer>
         <DrawerTrigger
           aria-label="Search"
-          className={`grid h-10 w-10 place-items-center rounded-full border p-0`}
+          className={`grid h-10 w-10 place-items-center rounded-md border p-0 hover:bg-gray-200`}
         >
           <IoSearch />
         </DrawerTrigger>
